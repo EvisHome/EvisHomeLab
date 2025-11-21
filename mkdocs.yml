@@ -1,9 +1,10 @@
-site_name: My Smart Home Docs
+site_name: EvisHomeLab
+
+# 1. THEME SETTINGS (Must be indented exactly like this)
 theme:
   name: material
-  # Use your custom CSS
   palette: 
-    # Default to Dark Mode (Slate)
+    # Dark Mode (Default)
     - scheme: slate
       primary: blue-grey
       accent: green
@@ -11,7 +12,7 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
 
-    # Light Mode (Optional fallback)
+    # Light Mode (Fallback)
     - scheme: default
       primary: indigo
       accent: cyan
@@ -19,20 +20,24 @@ theme:
         icon: material/brightness-7
         name: Switch to dark mode
 
+  # 2. FEATURES (This turns on the Top Navigation Tabs)
   features:
-    - navigation.tabs
-    - content.code.copy
-    - navigation.top
+    - navigation.tabs        # <-- This enables the top menu
+    - navigation.top         # <-- This adds the "Back to Top" arrow
+    - navigation.sections    # <-- Keeps the sidebar clean
+    - content.code.copy      # <-- Adds copy button to code blocks
 
-# Link your custom stylesheet here
+# 3. CUSTOM CSS
 extra_css:
   - stylesheets/extra.css
 
+# 4. NAVIGATION STRUCTURE
 nav:
   - Home: index.md
   - Inventory: inventory.md
   - Topology: topology.md
 
+# 5. MARKDOWN EXTENSIONS (For Mermaid Diagrams)
 markdown_extensions:
   - pymdownx.superfences:
       custom_fences:
@@ -40,6 +45,7 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
 
+# 6. PLUGINS (For the Inventory Database)
 plugins:
   - search
   - macros:
