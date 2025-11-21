@@ -32,11 +32,11 @@ Status
 
 {{ device.model }}
 
-`{{ device.ip
-
-default('DHCP') }}`
+{{ device.get('ip', 'DHCP') }}
 
 {{ device.location }}
+
+{% if device.status == "Active" %}🟢{% elif device.status == "Planned" %}🟡{% else %}🔴{% endif %} {{ device.status }}
 
 {%- endfor %}
 
