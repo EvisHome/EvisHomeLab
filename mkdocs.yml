@@ -1,15 +1,45 @@
-site_name: EvisHomeLab
+site_name: My Smart Home Docs
 theme:
   name: material
+  # Use your custom CSS
+  palette: 
+    # Default to Dark Mode (Slate)
+    - scheme: slate
+      primary: blue-grey
+      accent: green
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+    # Light Mode (Optional fallback)
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
   features:
     - navigation.tabs
     - content.code.copy
+    - navigation.top
+
+# Link your custom stylesheet here
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Inventory: inventory.md
+  - Topology: topology.md
+
 markdown_extensions:
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+
 plugins:
   - search
   - macros:
