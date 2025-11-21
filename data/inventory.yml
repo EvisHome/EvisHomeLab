@@ -1,0 +1,24 @@
+devices:
+  - name: "Core-Aggregation"
+    type: "Switch"
+    model: "USW-Aggregation"
+    location: "Office Rack"
+    ip: "192.168.1.2"
+    status: "Active"
+    tags: ["10GbE", "Backbone"]
+
+  - name: "Staircase-Distro"
+    type: "Switch"
+    model: "USW-Flex-2.5G-8-PoE"
+    location: "Staircase"
+    ip: "192.168.1.10"
+    status: "Active"
+    tags: ["2.5GbE", "PoE++"]
+
+  - name: "Pi-Witness"
+    type: "Server"
+    model: "Raspberry Pi 5"
+    location: "Office Rack"
+    ip: "192.168.1.5"
+    status: "Active"
+    tags: ["Zigbee", "Cluster"]
