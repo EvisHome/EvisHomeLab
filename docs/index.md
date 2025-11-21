@@ -32,3 +32,17 @@ graph TD
     AGG -->|10G Fiber/RJ45| STAIR[Staircase Flex 2.5G]
     STAIR -->|2.5GbE| U7[U7 Pro AP]
 ```
+
+
+
+# 🏢 Office Rack Equipment
+
+Here is everything physically located in the main rack.
+
+{% for device in devices if device.location == "Office Rack" %}
+### {{ device.name }}
+- **Type:** {{ device.type }}
+- **Model:** {{ device.model }}
+- **IP:** {{ device.ip }}
+---
+{% endfor %}
