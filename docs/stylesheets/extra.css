@@ -1,0 +1,23 @@
+/* Apply these styles when in Dark Mode (Slate) */
+[data-md-color-scheme="slate"] {
+  
+  /* 1. Normal Text - Almost White */
+  --md-typeset-color: #eeeeee;                /* Main text color */
+  --md-code-fg-color: #eeeeee;                /* Code block text */
+
+  /* 2. Links - Light Green (Matrix style) */
+  --md-typeset-a-color: #69f0ae;              /* Link color (Light Green) */
+  --md-typeset-a-color--hover: #b9f6ca;       /* Link hover color (Paler Green) */
+  --md-accent-fg-color: #69f0ae;              /* Accents (like active tabs) */
+
+  /* 3. Titles - Orange */
+  --md-typeset-h1-color: #ffab40;             /* H1 Title Orange */
+  --md-typeset-h2-color: #ffab40;             /* H2 Title Orange */
+  --md-typeset-h3-color: #ffab40;             /* H3 Title Orange */
+  --md-typeset-h4-color: #ffab40;             /* H4 Title Orange */
+  --md-typeset-h5-color: #ffab40;             /* H5 Title Orange */
+  --md-typeset-h6-color: #ffab40;             /* H6 Title Orange */
+  
+  /* Optional: Make the top header bar dark grey instead of Indigo */
+  --md-primary-fg-color: #263238;             
+}
