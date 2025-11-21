@@ -43,6 +43,5 @@ Here is everything physically located in the main rack.
 ### {{ device.name }}
 - **Type:** {{ device.type }}
 - **Model:** {{ device.model }}
-- **IP:** {{ device.ip }}
 ---
 {% endfor %}
