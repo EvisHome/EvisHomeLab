@@ -1,24 +1,172 @@
 devices:
-  - name: "Core-Aggregation"
+  # --- CORE NETWORK ---
+  - name: "UDM-Pro"
+    type: "Gateway"
+    model: "UniFi Dream Machine Pro"
+    location: "Office Rack"
+    ip: "192.168.1.1"
+    status: "Active"
+    tags: ["Core", "Router", "10GbE"]
+
+  - name: "USW-Aggregation"
     type: "Switch"
     model: "USW-Aggregation"
     location: "Office Rack"
     ip: "192.168.1.2"
-    status: "Active"
-    tags: ["10GbE", "Backbone"]
+    status: "Planned"
+    tags: ["Core", "10GbE", "Fiber"]
 
+  - name: "USW-Enterprise-24-PoE"
+    type: "Switch"
+    model: "USW-Enterprise-24-PoE"
+    location: "Office Rack"
+    ip: "192.168.1.3"
+    status: "Active"
+    tags: ["Core", "PoE+", "2.5GbE"]
+
+  # --- DISTRIBUTION SWITCHES ---
   - name: "Staircase-Distro"
     type: "Switch"
     model: "USW-Flex-2.5G-8-PoE"
     location: "Staircase"
     ip: "192.168.1.10"
-    status: "Active"
-    tags: ["2.5GbE", "PoE++"]
+    status: "Planned"
+    tags: ["Distribution", "PoE++", "2.5GbE"]
 
-  - name: "Pi-Witness"
+  - name: "LivingRoom-Switch"
+    type: "Switch"
+    model: "USW-Lite-8-PoE"
+    location: "Living Room"
+    ip: "192.168.1.11"
+    status: "Active"
+    tags: ["Access", "PoE+"]
+
+  - name: "GuestRoom-Switch"
+    type: "Switch"
+    model: "USW-Flex-Mini"
+    location: "Guest Bedroom"
+    ip: "192.168.1.12"
+    status: "Active"
+    tags: ["Access", "1GbE"]
+
+  - name: "FrontPorch-Switch"
+    type: "Switch"
+    model: "USW-Flex"
+    location: "Front Porch"
+    ip: "192.168.1.13"
+    status: "Active"
+    tags: ["Outdoor", "PoE++ Input"]
+
+  - name: "Backyard-Switch"
+    type: "Switch"
+    model: "USW-Flex"
+    location: "Backyard"
+    ip: "192.168.1.14"
+    status: "Active"
+    tags: ["Outdoor", "PoE++ Input"]
+
+  # --- COMPUTE ---
+  - name: "Proxmox-Node-01"
+    type: "Server"
+    model: "Custom i9-10920X"
+    location: "Office Rack"
+    ip: "192.168.1.50"
+    status: "Active"
+    tags: ["Compute", "10GbE", "Cluster"]
+
+  - name: "Proxmox-Node-02"
+    type: "Server"
+    model: "Intel NUC 10 (i7)"
+    location: "Office Rack"
+    ip: "192.168.1.51"
+    status: "Active"
+    tags: ["Compute", "2.5GbE", "Cluster"]
+
+  - name: "Cluster-Witness"
     type: "Server"
     model: "Raspberry Pi 5"
     location: "Office Rack"
-    ip: "192.168.1.5"
+    ip: "192.168.1.52"
     status: "Active"
-    tags: ["Zigbee", "Cluster"]
+    tags: ["Compute", "Zigbee", "DNS"]
+
+  # --- CAMERAS & SECURITY ---
+  - name: "UNVR"
+    type: "NVR"
+    model: "UniFi UNVR"
+    location: "Office Rack"
+    ip: "192.168.1.20"
+    status: "Planned"
+    tags: ["Security", "10GbE", "Storage"]
+
+  - name: "AI-Port"
+    type: "AI Accelerator"
+    model: "UP-AI-Port"
+    location: "Office Rack"
+    ip: "192.168.1.21"
+    status: "Active"
+    tags: ["Security", "AI"]
+
+  - name: "Front-Doorbell"
+    type: "Camera"
+    model: "G4 Doorbell Pro PoE"
+    location: "Front Door"
+    status: "Active"
+    tags: ["Security", "Camera"]
+
+  - name: "Front-Porch-Cam"
+    type: "Camera"
+    model: "G5 Turret Ultra"
+    location: "Front Porch"
+    status: "Active"
+    tags: ["Security", "Camera", "4K"]
+
+  - name: "Backyard-Cam"
+    type: "Camera"
+    model: "G5 Turret Ultra"
+    location: "Backyard"
+    status: "Active"
+    tags: ["Security", "Camera", "4K"]
+    
+  - name: "Storage-Cam"
+    type: "Camera"
+    model: "Unknown (G3/G4?)"
+    location: "Storage Room"
+    status: "Active"
+    tags: ["Security", "Camera"]
+
+  # --- IOT & ACCESSORIES ---
+  - name: "U7-Pro-AP"
+    type: "Access Point"
+    model: "U7 Pro"
+    location: "Staircase Ceiling"
+    status: "Active"
+    tags: ["WiFi", "2.5GbE", "WiFi 7"]
+
+  - name: "U6-Lite-AP"
+    type: "Access Point"
+    model: "U6 Lite"
+    location: "Backyard"
+    status: "Active"
+    tags: ["WiFi", "WiFi 6"]
+
+  - name: "Smart-Chime"
+    type: "Chime"
+    model: "Smart PoE Chime"
+    location: "Living Room"
+    status: "Active"
+    tags: ["IoT", "Audio"]
+
+  - name: "Aqara-FP2-1"
+    type: "Sensor"
+    model: "Aqara FP2"
+    location: "Living Room"
+    status: "Active"
+    tags: ["IoT", "Presence"]
+
+  - name: "Aqara-FP2-2"
+    type: "Sensor"
+    model: "Aqara FP2"
+    location: "Living Room"
+    status: "Active"
+    tags: ["IoT", "Presence"]
