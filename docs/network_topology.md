@@ -12,8 +12,7 @@ graph TD
     classDef core fill:#2d3436,stroke:#00b894,stroke-width:2px,color:white;
     classDef switch fill:#0984e3,stroke:none,color:white;
     classDef device fill:#dfe6e9,stroke:#2d3436,color:black;
-    classDef fiber stroke:#d63031,stroke-width:3px;
-
+    
     %% --- NODES ---
     ISP[ISP Fiber]:::core
     UDM[UDM-Pro Gateway]:::core
@@ -48,9 +47,9 @@ graph TD
     AGG -->|10G DAC| UNVR
     AGG -->|10G RJ45| SERVER
     
-    %% The Critical 10G Uplink
+    %% The Critical 10G Uplink (Index 5)
     AGG ===|10G Fiber/RJ45 + PoE Injector| FLEX25
-    linkStyle 5 class fiber
+    linkStyle 5 stroke:#d63031,stroke-width:3px;
 
     %% Downlinks
     ENT -->|2.5GbE| NUC
