@@ -1,3 +1,4 @@
+```mermaid
 graph TD
     %% --- STYLES ---
     classDef core fill:#2d3436,stroke:#00b894,stroke-width:2px,color:white;
@@ -55,3 +56,4 @@ graph TD
     %% Outdoor
     ENT -->|PoE++| FLEXOUT
     FLEXOUT --> CAMS
+```
