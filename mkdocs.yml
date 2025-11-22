@@ -34,8 +34,8 @@ extra_css:
 # 4. NAVIGATION STRUCTURE
 nav:
   - Home: index.md
-  - Inventory: inventory.md
-  - Topology: topology.md
+  - Inventory: network_inventory.md
+  - Topology: network_topology.md
 
 # 5. MARKDOWN EXTENSIONS (For Mermaid Diagrams)
 markdown_extensions:
