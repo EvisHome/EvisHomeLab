@@ -1,23 +1,31 @@
-/* Apply these styles when in Dark Mode (Slate) */
+/* Apply these styles only when in Dark Mode (Slate) */
 [data-md-color-scheme="slate"] {
-  
-  /* 1. Normal Text - Almost White */
-  --md-typeset-color: #eeeeee;                /* Main text color */
+
+  /* --- 1. LINKS (Light Green) --- */
+  --md-typeset-a-color: #69f0ae;              /* Main Link Color */
+  --md-typeset-a-color--hover: #b9f6ca;       /* Hover Color (Lighter) */
+  --md-accent-fg-color: #69f0ae;              /* Accents (Active Tabs, Radio Buttons) */
+
+  /* --- 2. TITLES & HEADLINES (Orange) --- */
+  /* We target all header levels to ensure consistency */
+  --md-typeset-h1-color: #ffab40;             
+  --md-typeset-h2-color: #ffab40;
+  --md-typeset-h3-color: #ffab40;
+  --md-typeset-h4-color: #ffab40;
+  --md-typeset-h5-color: #ffab40;
+  --md-typeset-h6-color: #ffab40;
+
+  /* --- 3. GENERAL TEXT (Off-White) --- */
+  --md-typeset-color: #eeeeee;                /* Body text */
   --md-code-fg-color: #eeeeee;                /* Code block text */
 
-  /* 2. Links - Light Green (Matrix style) */
-  --md-typeset-a-color: #69f0ae;              /* Link color (Light Green) */
-  --md-typeset-a-color--hover: #b9f6ca;       /* Link hover color (Paler Green) */
-  --md-accent-fg-color: #69f0ae;              /* Accents (like active tabs) */
-
-  /* 3. Titles - Orange */
-  --md-typeset-h1-color: #ffab40;             /* H1 Title Orange */
-  --md-typeset-h2-color: #ffab40;             /* H2 Title Orange */
-  --md-typeset-h3-color: #ffab40;             /* H3 Title Orange */
-  --md-typeset-h4-color: #ffab40;             /* H4 Title Orange */
-  --md-typeset-h5-color: #ffab40;             /* H5 Title Orange */
-  --md-typeset-h6-color: #ffab40;             /* H6 Title Orange */
+  /* --- 4. NAVIGATION BAR (Top Header) --- */
+  /* Make the top bar dark grey instead of blue/indigo */
+  --md-header-bg: #263238;
+  --md-header-fg: #ffab40;                    /* Site Title in Orange */
   
-  /* Optional: Make the top header bar dark grey instead of Indigo */
-  --md-primary-fg-color: #263238;             
+  /* --- 5. TABS (Navigation Menu) --- */
+  --md-tabs-bg: #263238;                      /* Tab background matches header */
+  --md-tabs-fg: #bdbdbd;                      /* Inactive tabs are grey */
+  /* Active tabs will automatically pick up the "accent" color (Green) defined above */
 }
