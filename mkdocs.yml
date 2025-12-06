@@ -5,6 +5,7 @@ nav:
   - Home: index.md
   - Smart Home:
       - Overview: smart-home/index.md
+      - Configuration & Structure: smart-home/structure.md
       - Automations: smart-home/automations.md
       - Dashboards: smart-home/dashboards.md
       - Packages:
