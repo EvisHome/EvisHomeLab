@@ -7,10 +7,8 @@ An overview of the key directories and files in the Home Assistant root folder.
 | Directory / File | Purpose |
 | :--- | :--- |
 | **`.storage/`** | Internal Home Assistant storage for registries (devices, entities, etc.). **Do not edit manually.** |
-| **`automations.yaml`** | The main file for storing automations, commonly managed via the UI. |
 | **`blueprints/`** | Stores automation blueprints downloaded or created for reusability. |
 | **`button_card_templates/`** | Custom templates for `custom:button-card` Lovelace cards. |
-| **`configuration.yaml`** | The main configuration file for Home Assistant. |
 | **`custom_components/`** | Custom integrations installed manually or via HACS. |
 | **`custom_templates/`** | Global Jinja2 templates (macros) available throughout Home Assistant. |
 | **`deps/`** | Python dependencies installed by Home Assistant or integrations. |
@@ -20,13 +18,15 @@ An overview of the key directories and files in the Home Assistant root folder.
 | **`node-red/`** | Storage for Node-RED flows and settings (if the add-on is used). |
 | **`packages/`** | Configuration split into logical "packages" (bundling automations, scripts, configuration by feature). |
 | **`pyscript/`** | Python scripts and apps for the `pyscript` integration. |
-| **`scenes.yaml`** | Configuration file for defining scenes. |
-| **`scripts.yaml`** | Configuration file for scripts (sequences of actions). |
-| **`secrets.yaml`** | Stores sensitive data (passwords, tokens) referenced via `!secret`. |
 | **`themes/`** | Frontend themes definition files. |
 | **`tts/`** | Text-to-speech cache or configuration. |
 | **`www/`** | Publicly accessible folder mapped to `/local/` for hosting custom cards, images, and resources. |
 | **`zigbee2mqtt/`** | Zigbee2MQTT data directory containing configuration and database. |
+| **`automations.yaml`** | The main file for storing automations, commonly managed via the UI. |
+| **`configuration.yaml`** | The main configuration file for Home Assistant. |
+| **`scenes.yaml`** | Configuration file for defining scenes. |
+| **`scripts.yaml`** | Configuration file for scripts (sequences of actions). |
+| **`secrets.yaml`** | Stores sensitive data (passwords, tokens) referenced via `!secret`. |
 
 ---
 
