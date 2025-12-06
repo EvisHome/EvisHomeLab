@@ -26,3 +26,12 @@ nav:
           - Smart Notifications: smart-home/packages/smart_notifications.md
   - Home Lab: home-lab/index.md
   - Network: network/index.md
+
+markdown_extensions:
+  - attr_list # Required for MkDocs Material styling features
+  - pymdownx.extra
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
