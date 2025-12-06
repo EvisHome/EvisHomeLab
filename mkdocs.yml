@@ -1,9 +1,9 @@
-﻿site_name: Home Assistant Documentation
+﻿site_name: EvisHomeLab
 theme:
   name: material
 nav:
   - Home: index.md
-  - Smart Home:
+  - Smart Home Documentation:
       - Overview: smart-home/index.md
       - Configuration & Structure: smart-home/structure.md
       - Automations: smart-home/automations.md
