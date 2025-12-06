@@ -1,6 +1,24 @@
 ﻿site_name: EvisHomeLab
 theme:
   name: material
+  # Add the following block for color customization
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    # Palette toggle for dark mode (Default selection)
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: orange
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
 nav:
   - Home: index.md
   - Smart Home Documentation:
