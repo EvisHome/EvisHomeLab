@@ -2,6 +2,8 @@
 
 Welcome to the EvisHomeLab documentation.
 
+![Dashboard Image](../../../assets/images/evishomelab.png)
+
 ## Sections
 - **[Smart Home Documentation](smart-home/index.md)**: Home Assistant configuration, automations, and dashboards.
 - **[Home Lab](home-lab/index.md)**: Server infrastructure, VMs, and containers.
