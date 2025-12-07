@@ -104,6 +104,7 @@ Run these commands in order to keep everything synced.
 **Task: Deep Package Analysis (Mermaid & Summary)**
 *Use this prompt to add diagrams and intelligence to an existing package document.*
 > "Update the documentation for the **[PACKAGE_NAME]** package.
+>
 > 1. Read `packages/[PACKAGE_NAME].yaml` and `docs_site/docs/smart-home/packages/[PACKAGE_NAME].md`.
 > 2. **Guard Check:** If the Markdown contains `auto_update: false`, **ABORT**.
 > 3. **Smart Analysis:**
