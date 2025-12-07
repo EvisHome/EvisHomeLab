@@ -86,17 +86,19 @@ Run these commands in order to keep everything synced.
 
 ### 3. The Agent Prompts
 
-**Task: Standardize Package Headers (Source Code Management)**
-> "Scan `packages/`. Check headers. If missing/legacy, prepend:
-
-```yaml
-# ------------------------------------------------------------------------------
-# Package: [Filename]
-# Version: 1.0.0
-# Description: [Summary]
-# Dependencies: [Entities used]
-# ------------------------------------------------------------------------------
-```"
+```markdown
+> **Task: Standardize Package Headers (Source Code Management)**
+> 
+> Scan `packages/`. Check headers. If missing/legacy, prepend:
+> 
+> ```yaml
+> # ------------------------------------------------------------------------------
+> # Package: [Filename]
+> # Version: 1.0.0
+> # Description: [Summary]
+> # Dependencies: [Entities used]
+> # ------------------------------------------------------------------------------
+> ```
 
 **Task: Deep Package Analysis (Mermaid & Summary)**
 *Use this prompt to add diagrams and intelligence to an existing package document.*
