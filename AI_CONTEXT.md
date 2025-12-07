@@ -23,9 +23,9 @@ We operate on a **"Detached Docs"** strategy to ensure security:
    
    * 'Jukka' OR 'jukka' -> 'Evis'
    * 'Alisa' OR 'alisa' -> 'Daughter'
-   * 'Piia' OR 'piia' -> 'Grandma'
-   * 'Elias' OR 'elias' -> 'Grandpa'
-   * 'Anton' OR 'anton' -> 'Guest'
+   * 'Piia' OR 'piia' -> 'Guest 1'
+   * 'Elias' OR 'elias' -> 'Guest 2'
+   * 'Anton' OR 'anton' -> 'Guest 3'
 
 ## 3. Documentation Style Guide
 
@@ -35,9 +35,6 @@ We operate on a **"Detached Docs"** strategy to ensure security:
   * All Markdown files should start with YAML Frontmatter.
   * **Locking:** If a file contains `auto_update: false`, **DO NOT EDIT IT**.
   * **Tags:** Use `tags: [category, status]` (e.g., `tags: [package, manual]`).
-
-* **Versioning (Source of Truth):**
-  * Extract version numbers from the YAML Header (`# Version: x.x`) and add to frontmatter.
 
 * **Visuals (Web Designer Role):**
   * **Mermaid JS:** Use sequence diagrams for logic flow.
@@ -89,3 +86,6 @@ When creating Python or Shell scripts for this project:
 
 4. **ADR-004: MkDocs Material Features:**
    * **Decision:** We explicitly enable `navigation.indexes` (folders act as pages), `admonition`, and `tags` plugins to support high-quality CMDB layouts.
+
+5. **ADR-005: Modular Tooling:**
+   * **Decision:** We split the documentation tools into an orchestrator (`ag_update_docs.py`) and content definitions (`.ag_definitions/`) to prevent accidental deletion of critical sections during updates.
