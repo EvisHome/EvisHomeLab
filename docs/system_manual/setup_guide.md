@@ -4,16 +4,18 @@
     "## PART C: Daily Operations",
     "The AI Architect Workflow",
     "Visual Assets Standard",
+    "Standard YAML Header",
     "Task: Web Design & Image Management",
     "Task: Update Single Package",
     "Task: Generate All Package Documentation",
+    "Task: Configure Sidebar Navigation",
     "ag_regenerate_dashboards.py",
     "## PART E: Tool Reference",
     "## PART F: Troubleshooting"
 ] -->
 # EvisHomeLab: Documentation System Manual
 
-**Version:** 5.1
+**Version:** 5.4
 **Philosophy:** Agentic CMDB (Configuration Management Database)
 **Strategy:** "Detached Docs" (Private Config -> Public Documentation)
 
@@ -215,7 +217,18 @@ Paste this prompt to "hydrate" the AI with the project context:
 >
 > **Action:** Confirm you have loaded the context and are ready to assist with maintaining the CMDB."
 
-### 3. Visual Assets Standard
+### 3. Coding Standard: YAML Headers
+All Package files in `packages/` must begin with this standard header. This is the **Source of Truth** for versioning.
+
+```yaml
+# ------------------------------------------------------------------------------
+# Package: [Name]
+# Version: 1.0.0
+# Description: [Short description of what this controls]
+# ------------------------------------------------------------------------------
+```
+
+### 4. Visual Assets Standard
 When adding images, you **must** use the correct naming convention so the automation scripts can find them.
 
 | Type | Folder Location | Naming Convention |
@@ -224,17 +237,34 @@ When adding images, you **must** use the correct naming convention so the automa
 | **Packages** | `docs/assets/images/packages/` | `[package_name].png` (e.g. `heating.png`) |
 | **General** | `docs/assets/images/brand/` | Free choice |
 
-### 4. The Agent Prompts (Execution)
+### 5. The Agent Prompts (Execution)
+
+**Task: Configure Sidebar Navigation**
+> "Edit `docs_site/mkdocs.yml` and `docs_site/docs/assets/css/custom.css` to refine the sidebar.
+> 1. **Config:** Ensure `navigation.tabs` is **DISABLED** (We want a left sidebar).
+> 2. **Config:** Ensure the 'System Manual' is the last item in the `nav` list.
+> 3. **CSS Style:** Add a visual separator above the System Manual link.
+>    ```css
+>    /* Separator for System Manual */
+>    .md-nav__item a[href*='system_manual'] {
+>        border-top: 1px solid rgba(255,255,255,0.1);
+>        margin-top: 10px;
+>        padding-top: 10px;
+>    }
+>    ```
+> 4. Commit changes: 'Add sidebar separator for Manual'."
 
 **Task: Update Single Package (Focus Mode)**
 > "Update the documentation for the **[PACKAGE_NAME]** package.
 > 1. Read `packages/[PACKAGE_NAME].yaml`.
-> 2. Find/Create `docs_site/docs/smart-home/packages/[PACKAGE_NAME].md`.
-> 3. **Check Metadata:** Read the top of the Markdown file. If it contains `auto_update: false`, **ABORT**.
-> 4. **Update Content:** Logic Summary & Mermaid Diagram.
-> 5. **Dashboard Links:** Scan `.storage/lovelace_dashboards` for cards using these entities and embed them.
-> 6. **Visuals:** Look in `assets/images/packages/` for an image named `[PACKAGE_NAME].png`.
-> 7. **Tags:** Ensure frontmatter includes `tags: [package, automated]`."
+> 2. **Metadata Extraction:** Extract the `Version` and `Description` from the YAML header comments.
+> 3. Find/Create `docs_site/docs/smart-home/packages/[PACKAGE_NAME].md`.
+> 4. **Check Locking:** If file has `auto_update: false`, **ABORT**.
+> 5. **Update Content:**
+>    - **Frontmatter:** Add `version: [extracted_version]` and `tags: [package, automated]`.
+>    - **Summary:** Use the extracted description.
+>    - **Visuals:** Logic Diagram + YAML Code + Image Link.
+> 6. **Dashboard Links:** Scan `.storage/lovelace_dashboards` for cards using these entities and embed them."
 
 **Task: Web Design & Image Management**
 > "I have added new images to `docs_site/docs/assets/images/` and I want to update the styling.
@@ -243,13 +273,12 @@ When adding images, you **must** use the correct naming convention so the automa
 
 **Task: Generate All Package Documentation (Full Scan)**
 > "Perform a deep architectural scan of my `packages/` directory.
-> **For EVERY YAML file found, create a corresponding Markdown file in `docs_site/docs/smart-home/packages/` containing:**
-> 1. **Frontmatter:** Add tags `['package', 'automated']`.
-> 2. **Executive Summary:** What does this package do?
-> 3. **Architecture Diagram:** Generate a `mermaid` sequence diagram of the logic.
-> 4. **The Code:** Embed the YAML content in a code block (Redact secrets!).
-> 5. **Dashboard Connections:** Scan `.storage/lovelace_dashboards`. Identify cards that control entities from this package and embed their configuration.
-> 6. **Visuals:** Insert a placeholder link for a screenshot (e.g., `![View](assets/images/heating.png)`).
+> **For EVERY YAML file found:**
+> 1. **Extract Metadata:** Parse the `# Version:` and `# Description:` header.
+> 2. **Create Markdown:** Generate `docs_site/docs/smart-home/packages/[name].md`.
+> 3. **Frontmatter:** Include `tags: ['package', 'automated']` and `version: [value]`.
+> 4. **Content:** Executive Summary, Mermaid Diagram, Redacted Code, Dashboard Cards.
+> 5. **Visuals:** Insert a placeholder link `![View](assets/images/packages/[name].png)`.
 > Finally, update `mkdocs.yml` navigation."
 
 **Task: Update Structure Documentation**
@@ -264,16 +293,6 @@ When adding images, you **must** use the correct naming convention so the automa
 
 **Task: Convert Dashboard to YAML**
 > "Run `python ag_regenerate_dashboards.py`."
-
-### 5. System Integrity Check (Audit)
-**Use when:** You want to verify the system is healthy.
-
-1.  **Run Tool Update:** `python ag_update_docs.py` (Should pass without errors).
-2.  **Check Backups:** Look in `.ag_backups/` to ensure old versions are rotating (max 5).
-3.  **Check Git Status:**
-    * `git status` (Root): Should show no changes if you haven't edited config.
-    * `cd docs_site; git status`: Should show no changes if you haven't edited docs.
-4.  **Verify Web:** Check `https://www.evishome.com` for 404s.
 
 ---
 

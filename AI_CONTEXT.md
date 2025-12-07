@@ -36,6 +36,9 @@ We operate on a **"Detached Docs"** strategy to ensure security:
   * **Locking:** If a file contains `auto_update: false`, **DO NOT EDIT IT**.
   * **Tags:** Use `tags: [category, status]` (e.g., `tags: [package, manual]`).
 
+* **Versioning (Source of Truth):**
+  * Extract version numbers from the YAML Header (`# Version: x.x`) and add to frontmatter.
+
 * **Visuals (Web Designer Role):**
   * **Mermaid JS:** Use sequence diagrams for logic flow.
   * **No Fakes:** Do NOT generate fake HTML/CSS UI simulations.
