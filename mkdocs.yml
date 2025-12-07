@@ -33,13 +33,12 @@ nav:
       - Packages:
           - Airthings: smart-home/packages/airthings.md
           - Aqara W500: smart-home/packages/aqara_w500.md
-          - Car GLC: smart-home/packages/car_glc.md
+          - Car GLC: smart-home/packages/car.md
           - Dishwasher: smart-home/packages/dishwasher.md
           - DNA TV Hub: smart-home/packages/dna_tv_hub.md
           - Fingerprint Mgmt: smart-home/packages/fingerprint_management.md
           - Garmin: smart-home/packages/garmin.md
           - Home Time Modes: smart-home/packages/home_time_modes.md
-          - Mercedes GLC: smart-home/packages/mercedes_glc.md
           - Nordpool Prices: smart-home/packages/nordpool_prices.md
           - Office PC: smart-home/packages/office_pc.md
           - Philips Air Purifier: smart-home/packages/philips_air_purifier.md
