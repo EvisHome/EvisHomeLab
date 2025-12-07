@@ -1,4 +1,8 @@
 ﻿site_name: EvisHomeLab
+site_url: https://www.evishome.com/
+repo_name: EvisHome/EvisHomeLab
+repo_url: https://github.com/EvisHome/EvisHomeLab
+edit_uri: edit/main/docs/
 theme:
   name: material
   # Add the following block for color customization
