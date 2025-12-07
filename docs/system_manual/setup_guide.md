@@ -1,7 +1,7 @@
 <!-- VALIDATION_CHECKLIST: ["## PART A", "## PART B", "## PART C", "Visual Assets Standard", "Task: Standardize Package Headers", "Task: Update Structure Documentation"] -->
 # EvisHomeLab: Documentation System Manual
 
-**Version:** 7.2 (Refined Package Standardization)
+**Version:** 7.3 (Added Local Commit Workflow)
 **Philosophy:** Agentic CMDB (Configuration Management Database)
 **Strategy:** "Detached Docs" (Private Config -> Public Documentation)
 
@@ -51,10 +51,20 @@ Create `.antigravity/rules.md`:
 ## PART C: Daily Operations (The Workflow)
 
 ### 1. The Full Maintenance Cycle
-1.  **Update Tools:** `python ag_update_docs.py` (Refreshes manual/scripts from definitions).
-2.  **Regenerate Dashboards:** `python ag_regenerate_dashboards.py`.
-3.  **Regenerate Packages:** `python ag_update_package.py --all`.
-4.  **Publish Docs:** `cd docs_site; git add .; git commit -m "Routine update"; git push`
+Run these commands in order to keep everything synced.
+
+1.  **Mass Commit Config (Local):** Saves all Home Assistant changes to your local history.
+    ```powershell
+    git add .; git commit -m "Work in progress: Config updates"
+    ```
+2.  **Update Tools:** `python ag_update_docs.py` (Refreshes manual/scripts).
+3.  **Regenerate Docs:**
+    * Dashboards: `python ag_regenerate_dashboards.py`
+    * Packages: `python ag_update_package.py --all`
+4.  **Publish Docs (Public):**
+    ```powershell
+    cd docs_site; git add .; git commit -m "Routine update"; git push
+    ```
 
 ### 2. The AI Architect Workflow
 **Start new chats with:** "I am resuming EvisHomeLab. Read `docs_site/AI_CONTEXT.md` and `docs_site/docs/system_manual/setup_guide.md`. Adopt the persona."
