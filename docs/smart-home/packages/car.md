@@ -10,7 +10,11 @@ version: 2.0.3
 **Version:** 2.0.3  
 **Description:** Unified logic for Mercedes GLC. Normalizes sensors (Windows/Doors), wrapper switches, and Status Notifications.
 
-![Package Diagram](../../../assets/images/packages/car.png)
+![Package Image](../../../assets/images/packages/car.png)
+
+## Dashboard
+
+![Dashboard Image](../../../assets/images/dashboards/car.png)
 
 ## Executive Summary
 This package creates a unified interface for the Mercedes GLC, normalizing data from the `mbapi2020` integration. It provides standardized sensors for windows, doors, and locks, and exposes switches for remote control (A/C, Windows, Locks). The package also includes a smart notification system that alerts on critical events like charging status, pre-conditioning, and vehicle warnings (Tire Pressure, Brake Fluid, etc.).
