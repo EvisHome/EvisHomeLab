@@ -1,7 +1,7 @@
-<!-- VALIDATION_CHECKLIST: ["## PART A", "## PART B", "## PART C", "Visual Assets Standard", "Task: Standardize Package Headers", "Task: Update Structure Documentation", "Task: Web Design & Image Management"] -->
+<!-- VALIDATION_CHECKLIST: ["## PART A", "## PART B", "## PART C", "Visual Assets Standard", "Task: Standardize Package Headers", "Task: Update Structure Documentation"] -->
 # EvisHomeLab: Documentation System Manual
 
-**Version:** 7.5 (Modular & Audited)
+**Version:** 7.1 (Updated Package Workflow)
 **Philosophy:** Agentic CMDB (Configuration Management Database)
 **Strategy:** "Detached Docs" (Private Config -> Public Documentation)
 
@@ -53,7 +53,8 @@ Create `.antigravity/rules.md`:
 ### 1. The Full Maintenance Cycle
 1.  **Update Tools:** `python ag_update_docs.py` (Refreshes manual/scripts from definitions).
 2.  **Regenerate Dashboards:** `python ag_regenerate_dashboards.py`.
-3.  **Publish Docs:** `cd docs_site; git add .; git commit -m "Routine update"; git push`
+3.  **Regenerate Packages:** `python ag_update_package.py --all`.
+4.  **Publish Docs:** `cd docs_site; git add .; git commit -m "Routine update"; git push`
 
 ### 2. The AI Architect Workflow
 **Start new chats with:** "I am resuming EvisHomeLab. Read `docs_site/AI_CONTEXT.md` and `docs_site/docs/system_manual/setup_guide.md`. Adopt the persona."
@@ -79,9 +80,9 @@ Create `.antigravity/rules.md`:
 >    # ------------------------------------------------------------------------------
 >    ```"
 
-**Task: Update Single Package (Focus Mode)**
+**Task: Update Package Documentation (Focus Mode)**
 > "Run `python ag_update_package.py [package_name]`."
-> *(Or use Agent fallback: "Update `[package].md` reading from `[package].yaml` with frontmatter `auto_update: true` check.")*
+> *(Fallback: "Update `[package].md` reading from `[package].yaml`. Check frontmatter `auto_update`.")*
 
 **Task: Update Structure Documentation**
 > "Update `docs_site/docs/smart-home/structure.md`.
@@ -91,7 +92,7 @@ Create `.antigravity/rules.md`:
 **Task: Web Design & Image Management**
 > "Scan `assets/images/`. Update Markdown files to replace placeholder text with actual image links. If asking for CSS changes, edit `assets/css/custom.css`."
 
-**Task: Generate All Package Documentation**
+**Task: Generate All Package Documentation (Manual Fallback)**
 > "Deep scan `packages/`. Create Markdown for all files with: Frontmatter tags, Summary, Architecture Diagram, Redacted Code, Dashboard connections, and Visuals."
 
 **Task: Enable Tags & Tag Cloud**
@@ -107,7 +108,10 @@ The Master Orchestrator. Imports content from `.ag_definitions/`, validates it, 
 The Privacy Engine. Reads `.storage/lovelace_dashboards`, performs regex-based name redaction (Jukka->Evis), and outputs clean YAML blocks.
 
 ### 3. `ag_update_package.py`
-The Package Doc Generator. Reads a specific package YAML, extracts header metadata (Version/Desc), and updates the specific Markdown file.
+The Package Doc Generator. 
+* **Single Mode:** `python ag_update_package.py heating` (Updates one file).
+* **Batch Mode:** `python ag_update_package.py --all` (Updates all packages).
+* **Features:** Extracts header metadata (Version/Desc), checks for `auto_update: false` locks, and redacts secrets.
 
 ---
 ## PART F: Troubleshooting
