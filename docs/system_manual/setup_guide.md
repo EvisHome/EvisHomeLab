@@ -99,6 +99,7 @@ Run these commands in order to keep everything synced.
 > # Dependencies: [Entities used]
 > # ------------------------------------------------------------------------------
 > ```
+```
 
 **Task: Deep Package Analysis (Mermaid & Summary)**
 *Use this prompt to add diagrams and intelligence to an existing package document.*
