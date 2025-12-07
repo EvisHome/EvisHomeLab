@@ -12,6 +12,37 @@ version: 2.0.3
 
 ![Package Diagram](../../../assets/images/packages/car.png)
 
+## Executive Summary
+This package creates a unified interface for the Mercedes GLC, normalizing data from the `mbapi2020` integration. It provides standardized sensors for windows, doors, and locks, and exposes switches for remote control (A/C, Windows, Locks). The package also includes a smart notification system that alerts on critical events like charging status, pre-conditioning, and vehicle warnings (Tire Pressure, Brake Fluid, etc.).
+
+## Architecture
+```mermaid
+sequenceDiagram
+    participant Car as Mercedes API
+    participant Pkg as Package Logic
+    participant HA as Home Assistant
+    participant User as User
+
+    Note over Car, Pkg: Normalization
+    Car->>Pkg: Attributes (Windowstatus, Doorlock, etc.)
+    Pkg->>HA: binary_sensor.car_glc_window_*
+    Pkg->>HA: binary_sensor.car_glc_lock_*
+
+    Note over User, Car: Remote Control
+    User->>HA: Switch: Car Pre-entry A/C
+    HA->>Car: Service: mbapi2020.preheat_start
+
+    Note over Pkg, HA: Automations
+    rect rgb(20, 50, 20)
+        Car->>Pkg: Charging Started / Full
+        Pkg->>HA: Notify "Charging Status"
+    end
+    rect rgb(50, 20, 20)
+        Car->>Pkg: Warning (Tire, Brake Fluid)
+        Pkg->>HA: Notify "Critical Warning"
+    end
+```
+
 ## Configuration
 ```yaml
 # ------------------------------------------------------------------------------

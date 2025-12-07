@@ -33,7 +33,7 @@ nav:
       - Packages:
           - Airthings: smart-home/packages/airthings.md
           - Aqara W500: smart-home/packages/aqara_w500.md
-          - Car GLC: smart-home/packages/car.md
+          - Car: smart-home/packages/car.md
           - Dishwasher: smart-home/packages/dishwasher.md
           - DNA TV Hub: smart-home/packages/dna_tv_hub.md
           - Fingerprint Mgmt: smart-home/packages/fingerprint_management.md
