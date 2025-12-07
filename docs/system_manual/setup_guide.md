@@ -88,14 +88,15 @@ Run these commands in order to keep everything synced.
 
 **Task: Standardize Package Headers**
 > "Scan `packages/`. Check headers. If missing/legacy, prepend:
->    ```yaml
->    # ------------------------------------------------------------------------------
->    # Package: [Filename]
->    # Version: 1.0.0
->    # Description: [Summary]
->    # Dependencies: [Entities used]
->    # ------------------------------------------------------------------------------
->    ```"
+>
+> ```yaml
+> # ------------------------------------------------------------------------------
+> # Package: [Filename]
+> # Version: 1.0.0
+> # Description: [Summary]
+> # Dependencies: [Entities used]
+> # ------------------------------------------------------------------------------
+> ```"
 
 **Task: Update Single Package (Focus Mode)**
 > "Run `python ag_update_package.py [package_name]`."
@@ -103,6 +104,7 @@ Run these commands in order to keep everything synced.
 
 **Task: Update Architecture (Structure & Overview)**
 > "Update `docs_site/docs/smart-home/structure.md` AND `docs_site/docs/index.md`.
+>
 > 1. **Structure:** Re-scan root. Update file tree.
 > 2. **Overview:** Update 'High Level Architecture' with new integrations."
 

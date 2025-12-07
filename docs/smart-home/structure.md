@@ -15,6 +15,7 @@ An overview of the key directories and files in the Home Assistant root folder.
 | **`docs_site/`** | This documentation repository and MkDocs site structure. |
 | **`esphome/`** | ESPHome configuration YAML files and compilation artifacts (binaries). |
 | **`include/`** | Split configuration files referenced from `configuration.yaml` to keep it clean. |
+| **`model_cache/`** | Cache for local AI models (Wake words, assist pipelines). |
 | **`node-red/`** | Storage for Node-RED flows and settings (if the add-on is used). |
 | **`packages/`** | Configuration split into logical "packages" (bundling automations, scripts, configuration by feature). |
 | **`pyscript/`** | Python scripts and apps for the `pyscript` integration. |
@@ -22,6 +23,7 @@ An overview of the key directories and files in the Home Assistant root folder.
 | **`tts/`** | Text-to-speech cache or configuration. |
 | **`www/`** | Publicly accessible folder mapped to `/local/` for hosting custom cards, images, and resources. |
 | **`zigbee2mqtt/`** | Zigbee2MQTT data directory containing configuration and database. |
+| **`zigbee2mqtt-2/`** | Secondary Zigbee2MQTT instance data directory. |
 | **`automations.yaml`** | The main file for storing automations, commonly managed via the UI. |
 | **`configuration.yaml`** | The main configuration file for Home Assistant. |
 | **`scenes.yaml`** | Configuration file for defining scenes. |
