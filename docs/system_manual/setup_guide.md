@@ -1,7 +1,7 @@
 <!-- VALIDATION_CHECKLIST: ["## PART A", "## PART B", "## PART C", "Visual Assets Standard", "Task: Standardize Package Headers", "Task: Update Structure Documentation"] -->
 # EvisHomeLab: Documentation System Manual
 
-**Version:** 7.1 (Updated Package Workflow)
+**Version:** 7.2 (Refined Package Standardization)
 **Philosophy:** Agentic CMDB (Configuration Management Database)
 **Strategy:** "Detached Docs" (Private Config -> Public Documentation)
 
@@ -68,9 +68,12 @@ Create `.antigravity/rules.md`:
 
 **Task: Standardize Package Headers (Source Code Management)**
 > "Scan the `packages/` directory. For every YAML file:
-> 1. Check if it has a standard header block.
-> 2. If missing, analyze the file to determine its dependencies (entities used) and purpose.
-> 3. **Prepend** this header to the file (do not delete code):
+> 1. **Analyze:** Read the file to determine its dependencies (entities used) and purpose.
+> 2. **Check Header:** Look for an existing top comment block.
+> 3. **Action:**
+>    - **If missing:** Prepend the standard header.
+>    - **If present but legacy/incomplete:** REPLACE the existing top comments with the standard header format (ensure `Version` is present).
+>    - **Standard Header Format:**
 >    ```yaml
 >    # ------------------------------------------------------------------------------
 >    # Package: [Filename]
