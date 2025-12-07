@@ -1,0 +1,62 @@
+﻿site_name: EvisHomeLab
+theme:
+  name: material
+  # Add the following block for color customization
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    # Palette toggle for dark mode (Default selection)
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: orange
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+nav:
+  - Home: index.md
+  - Smart Home:
+      - Overview: smart-home/index.md
+      - Configuration & Structure: smart-home/structure.md
+      - Automations: smart-home/automations.md
+      - Dashboards: smart-home/dashboards.md
+      - Packages:
+          - Airthings: smart-home/packages/airthings.md
+          - Aqara W500: smart-home/packages/aqara_w500.md
+          - Car GLC: smart-home/packages/car_glc.md
+          - Dishwasher: smart-home/packages/dishwasher.md
+          - DNA TV Hub: smart-home/packages/dna_tv_hub.md
+          - Fingerprint Mgmt: smart-home/packages/fingerprint_management.md
+          - Garmin: smart-home/packages/garmin.md
+          - Home Time Modes: smart-home/packages/home_time_modes.md
+          - Mercedes GLC: smart-home/packages/mercedes_glc.md
+          - Nordpool Prices: smart-home/packages/nordpool_prices.md
+          - Office PC: smart-home/packages/office_pc.md
+          - Philips Air Purifier: smart-home/packages/philips_air_purifier.md
+          - Room Automation: smart-home/packages/room_automation.md
+          - Scenes: smart-home/packages/scenes.md
+          - Shelly 3EM: smart-home/packages/shelly_3em.md
+          - Smart Notifications: smart-home/packages/smart_notifications.md
+  - Home Lab: home-lab/index.md
+  - Network: network/index.md
+  - System Manual: system_manual/setup_guide.md
+
+markdown_extensions:
+  - attr_list # Required for MkDocs Material styling features
+  - admonition
+  - pymdownx.details
+  - pymdownx.extra
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_css:
+  - assets/css/custom.css

@@ -1,0 +1,31 @@
+/* Make H1, H2, and H3 headers Orange (using the Accent color variable) */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+    color: var(--md-accent-fg-color);
+    font-weight: bold;
+}
+
+/* Add separator line before System Manual in Sidebar */
+/* Make H1, H2, and H3 headers Orange (using the Accent color variable) */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+    color: var(--md-accent-fg-color);
+    font-weight: bold;
+}
+
+/* Add separator line before System Manual in Sidebar */
+.md-nav__item a[href*='system_manual'] {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+
+/* Add separator line below Home in Sidebar */
+.md-nav__item a[href^='index.md'],
+.md-nav__item a[href='.'] {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
