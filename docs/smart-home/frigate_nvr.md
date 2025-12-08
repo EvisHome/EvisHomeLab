@@ -14,6 +14,8 @@ version: 1.0.1
 **Source:** External `config.yml` running on Unraid.
 **Description:** Documentation of the external Frigate NVR instance (running on Unraid/Docker) and its connection to Home Assistant for critical notifications.
 
+![Package Image](../../../assets/images/frigate_nvr.png)
+
 ## Executive Summary
 
 Frigate is the critical component responsible for local object detection and event management for all security cameras. It runs externally on the Unraid VM within the HALO Proxmox server stack.
@@ -43,14 +45,30 @@ This diagram illustrates how the infrastructure layers feed data to Home Assista
 graph TD
     subgraph Infrastructure Stack
         HALO[Host: Proxmox Server] --> UNRAID[VM: Unraid OS]
-        UNRAID --> FRIGATE(Docker: Frigate NVR System)
+        UNRAID --> FRIGATE(Docker: Frigate NVR System - 2x Coral TPU / NVIDIA)
     end
-    FRIGATE --> MQTT(MQTT Broker)
+    
+    subgraph Camera Streams (UDM Pro NVR)
+        B[Backyard Cam]
+        FDP[Front Door Porch Cam]
+        FDD[Front Door Doorbell]
+        S[Storage Cam]
+    end
+
+    B --> GO2RTC(Go2RTC Restreamer)
+    FDP --> GO2RTC
+    FDD --> GO2RTC
+    S --> GO2RTC
+    
+    GO2RTC --> FRIGATE
+    
+    FRIGATE --> MQTT(MQTT Broker - Topic: frigate/#)
     MQTT --> HA(Home Assistant OS)
     HA --> NOTIFY(Master Notifications)
 
     style FRIGATE fill:#03A9F4,stroke:#333,stroke-width:2px
     style HA fill:#4CAF50,stroke:#333,stroke-width:2px
+    style NVR fill:#FFD700
 ```
 
 ## Configuration

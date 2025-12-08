@@ -30,6 +30,7 @@ nav:
       - Configuration & Structure: smart-home/structure.md
       - Automations: smart-home/automations.md
       - Dashboards: smart-home/dashboards.md
+      - Frigate NVR: smart-home/frigate_nvr.md
       - Packages:
           - Airthings: smart-home/packages/airthings.md
           - Aqara W500: smart-home/packages/aqara_w500.md
