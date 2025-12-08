@@ -72,12 +72,12 @@ Use YAML frontmatter to categorize pages for the Tag Cloud.
 Run these commands in order to keep everything synced.
 
 1.  **Commit Config (Local Repo A):**
-    * `git add .; git commit -m "WIP: Config updates"`
+    * `cd /; git add .; git commit -m "WIP: Config updates"`
 2.  **Update Tools:**
-    * `python ag_update_docs.py` (Refreshes manual/scripts).
+    * `cd /; python ag_update_docs.py` (Refreshes manual/scripts).
 3.  **Regenerate Docs:**
-    * Dashboards: `python ag_regenerate_dashboards.py`
-    * Packages: `python ag_update_package.py --all`
+    * Dashboards: `cd /; python ag_regenerate_dashboards.py`
+    * Packages: `cd /; python ag_update_package.py --all`
 4.  **Publish Docs (Public Repo B):**
     * `cd docs_site; git add .; git commit -m "Routine update"; git push`
 
