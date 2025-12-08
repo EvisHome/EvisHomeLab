@@ -2,59 +2,36 @@
 tags:
   - package
   - automated
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Package: Dishwasher
 
-**Version:** 1.0.0  
-**Description:** Logic, sensors, flags, and automations for the LG Dishwasher. Handles normalization of LG ThinQ data and maintenance reminders.
+**Version:** 1.1.0  
+**Description:** Logic, sensors, flags, and automations for the LG Dishwasher. Handles normalization of LG ThinQ data, maintenance reminders, and leak detection.
 
-![Package Diagram](../../../assets/images/packages/dishwasher.png)
 
-## Executive Summary
-This package handles the integration with the LG Dishwasher via the SmartThinQ integration. It provides state normalization (converting raw status codes to human-readable states), calculates remaining cycle time, and manages maintenance reminders (specifically for the "Machine Clean" cycle). It also includes a suite of smart notifications for cycle start (with estimated finish time), cycle completion (with total runtime), and maintenance alerts.
 
-## Architecture
-```mermaid
-sequenceDiagram
-    participant LG as LG ThinQ
-    participant Pkg as Package Logic
-    participant HA as Home Assistant
-    participant User as User
+<!-- PACKAGE_SUMMARY_SLOT -->
 
-    Note over LG, Pkg: Normalization
-    LG->>Pkg: Update Status & Time
-    Pkg->>HA: binary_sensor.dishwasher_active
-    Pkg->>HA: sensor.dishwasher_remaining_time_human
 
-    Note over Pkg, HA: Automations
-    rect rgb(20, 50, 20)
-        LG->>Pkg: Status: Running
-        Pkg->>HA: Notify "Dishwasher Started"
-    end
-    rect rgb(20, 20, 50)
-        LG->>Pkg: Status: End
-        Pkg->>HA: Notify "Dishes are Clean"
-    end
-    rect rgb(50, 20, 20)
-        LG->>Pkg: Machine Clean Reminder
-        Pkg->>HA: Set Flag (Needs Cleaning)
-        Pkg->>HA: Notify "Maintenance Needed"
-        User->>LG: Run Machine Clean
-        LG->>Pkg: Status: machine_clean
-        Pkg->>HA: Clear Flag
-    end
-```
+
+## Architecture Diagram
+
+
+<!-- PACKAGE_MERMAID_SLOT -->
+
+
 
 ## Configuration
 ```yaml
 # ------------------------------------------------------------------------------
 # Package: Dishwasher
-# Version: 1.0.0
-# Description: Logic, sensors, flags, and automations for the LG Dishwasher. Handles normalization of LG ThinQ data and maintenance reminders.
+# Version: 1.1.0
+# Description: Logic, sensors, flags, and automations for the LG Dishwasher. Handles normalization of LG ThinQ data, maintenance reminders, and leak detection.
 # Dependencies:
 #   - Integration: LG ThinQ (SmartThinQ LGE Sensors)
+#   - Entity: binary_sensor.kitchen_dishwasher_leak_sensor_water_leak
 #   - Script: script.notify_smart_master
 # ------------------------------------------------------------------------------
 
@@ -256,4 +233,37 @@ automation:
                   entity_id: input_boolean.dishwasher_needs_cleaning
     mode: single
 
+  # --- DISHWASHER LEAK DETECTION ---
+  # Critical alarm if the external leak sensor detects water.
+  - alias: "Notify: Dishwasher Leak"
+    id: notify_dishwasher_leak_pkg
+    description: Critical alarm triggered by the kitchen leak sensor.
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.kitchen_dishwasher_leak_sensor_water_leak
+        to: "on"
+    action:
+      - service: script.notify_smart_master
+        data:
+          category: alarm
+          title: "💧 Dishwasher Leak Detected!"
+          message: "CRITICAL: Water detected under the dishwasher. Check immediately!"
+          tag: dishwasher_leak
+          critical: true
+          sticky: true
+          clickAction: /lovelace/kitchen
+    mode: single
+# ------------------------------------------------------------------------------
+# Changelog
+# ------------------------------------------------------------------------------
+# 1.1.0 (2025-12-09): Added critical leak detection automation.
+# 1.0.0 (2025-12-07): Initial package creation with status, time logic, and maintenance reminders.
+# ------------------------------------------------------------------------------
+
 ```
+
+
+
+## Dashboard Connections
+<!-- DASHBOARD_CONNECTIONS_SLOT -->
+
