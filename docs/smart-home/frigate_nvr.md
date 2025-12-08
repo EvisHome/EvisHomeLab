@@ -5,6 +5,7 @@ tags:
 - frigate
 - infrastructure
 - manual
+- unifi protect
 version: 1.0.1
 ---
 
