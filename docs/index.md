@@ -1,4 +1,4 @@
-﻿# EvisHomeLab
+# EvisHomeLab
 
 Welcome to the EvisHomeLab documentation.
 
