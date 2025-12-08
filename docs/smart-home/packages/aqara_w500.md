@@ -34,6 +34,44 @@ version: 1.0.0
 #   - Helpers: input_number.electricity_high_price_threshold, input_number.bathroom_floor_heat_target_temperature, input_number.bathroom_floor_heat_default_temperature, input_number.bathroom_floor_heat_override_duration, timer.bathroom_floor_heating_timer
 # ------------------------------------------------------------------------------
 
+# ==============================================================================
+# 1. TEMPLATE SENSORS (Raw Data Normalization)
+# ==============================================================================
+template:
+  - sensor:
+      - name: "Aqara W500 Temperature (Raw)"
+        unique_id: aqara_w500_temperature_raw
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+        state: >
+          {% set raw = state_attr('climate.aqara_w500', 'current_temperature') %}
+          {% set value = raw | float(default=0.0) %}
+          {{ value | round(1) }}
+
+      - name: "Aqara W500 Bathroom Heating HVAC"
+        unique_id: aqara_w500_bathroom_heating_hvac
+        state: "{{ state_attr('climate.aqara_w500', 'hvac_action') }}"
+        icon: mdi:heating-coil
+
+# ==============================================================================
+# 2. FILTER SENSORS (Data Smoothing)
+# ==============================================================================
+sensor:
+  - platform: filter
+    name: "Aqara W500 Temperature (Smoothed)"
+    entity_id: sensor.aqara_w500_temperature_raw
+    unique_id: aqara_w500_temperature_smoothed
+    filters:
+      - filter: lowpass
+        time_constant: 10
+        precision: 1
+      - filter: time_throttle
+        window_size: 60
+
+# ==============================================================================
+# 3. AUTOMATION (Control Logic)
+# ==============================================================================
 automation:
   # ==============================================================================
   # 1. Automation: Bathroom Heating On when showering
