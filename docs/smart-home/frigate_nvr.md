@@ -43,32 +43,31 @@ This diagram illustrates how the infrastructure layers feed data to Home Assista
 
 ```mermaid
 graph TD
-    subgraph Infrastructure Stack
+    subgraph "Infrastructure Stack"
         HALO[Host: Proxmox Server] --> UNRAID[VM: Unraid OS]
-        UNRAID --> FRIGATE(Docker: Frigate NVR System - 2x Coral TPU / NVIDIA)
+        UNRAID --> FRIGATE[Docker: Frigate NVR System - 2x Coral TPU / NVIDIA]
     end
-    
-    subgraph Camera Streams (UDM Pro NVR)
+
+    subgraph "Camera Streams (UDM Pro NVR)"
         B[Backyard Cam]
         FDP[Front Door Porch Cam]
         FDD[Front Door Doorbell]
         S[Storage Cam]
     end
 
-    B --> GO2RTC(Go2RTC Restreamer)
+    B --> GO2RTC[Go2RTC Restreamer]
     FDP --> GO2RTC
     FDD --> GO2RTC
     S --> GO2RTC
-    
+
     GO2RTC --> FRIGATE
-    
-    FRIGATE --> MQTT(MQTT Broker - Topic: frigate/#)
-    MQTT --> HA(Home Assistant OS)
-    HA --> NOTIFY(Master Notifications)
+
+    FRIGATE --> MQTT[MQTT Broker - Topic: frigate/#]
+    MQTT --> HA[Home Assistant OS]
+    HA --> NOTIFY[Master Notifications]
 
     style FRIGATE fill:#03A9F4,stroke:#333,stroke-width:2px
     style HA fill:#4CAF50,stroke:#333,stroke-width:2px
-    style NVR fill:#FFD700
 ```
 
 ## Configuration
