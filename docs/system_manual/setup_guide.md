@@ -79,7 +79,7 @@ Run these commands in order to keep everything synced.
     * Dashboards: `cd /; python ag_regenerate_dashboards.py`
     * Packages: `cd /; python ag_update_package.py --all`
 4.  **Publish Docs (Public Repo B):**
-    * `cd docs_site; git add .; git commit -m "Routine update"; git push`
+    * `cd /docs_site; git add .; git commit -m "Routine update"; git push`
 
 ### 2. The AI Architect Workflow
 **Start new chats with:** "I am resuming EvisHomeLab. Read `docs_site/AI_CONTEXT.md` and `docs_site/docs/system_manual/setup_guide.md`. Adopt the persona."
