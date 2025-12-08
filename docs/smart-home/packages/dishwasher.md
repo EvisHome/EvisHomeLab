@@ -10,20 +10,30 @@ version: 1.1.0
 **Version:** 1.1.0  
 **Description:** Logic, sensors, flags, and automations for the LG Dishwasher. Handles normalization of LG ThinQ data, maintenance reminders, and leak detection.
 
+<!-- START_IMAGE -->
+![Package Diagram](../../../assets/images/packages/dishwasher.png)
+<!-- END_IMAGE -->
 
+## Executive Summary
+<!-- START_SUMMARY -->
+*No executive summary generated yet.*
+<!-- END_SUMMARY -->
 
-<!-- PACKAGE_SUMMARY_SLOT -->
-
-
+## Process Description (Non-Technical)
+<!-- START_DETAILED -->
+*No detailed non-technical description generated yet.*
+<!-- END_DETAILED -->
 
 ## Architecture Diagram
+<!-- START_MERMAID_DESC -->
+*No architecture explanation generated yet.*
+<!-- END_MERMAID_DESC -->
 
+<!-- START_MERMAID -->
+*No architecture diagram generated yet.*
+<!-- END_MERMAID -->
 
-<!-- PACKAGE_MERMAID_SLOT -->
-
-
-
-## Configuration
+## Configuration (Source Code)
 ```yaml
 # ------------------------------------------------------------------------------
 # Package: Dishwasher
@@ -262,8 +272,7 @@ automation:
 
 ```
 
-
-
 ## Dashboard Connections
-<!-- DASHBOARD_CONNECTIONS_SLOT -->
-
+<!-- START_DASHBOARD -->
+*No dashboard connections analyzed yet.*
+<!-- END_DASHBOARD -->
