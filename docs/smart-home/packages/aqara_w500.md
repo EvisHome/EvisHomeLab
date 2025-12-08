@@ -11,16 +11,37 @@ version: 1.0.0
 **Description:** Manages temperature settings and schedules for the Bathroom Floor Heat (Aqara W500 Climate). Includes logic for high electricity price reduction and shower occupancy boost.
 
 
+![Package Diagram](../../../assets/images/packages/aqara_w500.png)
 
-<!-- PACKAGE_SUMMARY_SLOT -->
+## Executive Summary
+This package manages the Aqara W500 thermostat for the bathroom floor heating. It ensures comfort by boosting the temperature during showers (detected via `fp2_occupancy`) and optimizes costs by reducing the target temperature when electricity prices are high. It also features a manual override timer system that automatically resets the temperature to default after a user-defined duration.
 
+## Architecture
+```mermaid
+sequenceDiagram
+    participant Sensor as Sensors
+    participant Pkg as Package Logic
+    participant Thermostat as Aqara W500
+    participant Timer as Timer
 
+    Note over Sensor, Thermostat: 1. Shower Boost
+    Sensor->>Pkg: Bath Occupancy (30m+)
+    Pkg->>Pkg: Check Price < High Threshold
+    Pkg->>Thermostat: Set Target Temp (Boost)
 
-## Architecture Diagram
+    Note over Thermostat, Timer: 2. Manual Override
+    Thermostat->>Pkg: Temp > Default
+    Pkg->>Timer: Start Override Timer
+    
+    Note over Timer, Thermostat: 3. Reset
+    Timer->>Pkg: Timer Finished
+    Pkg->>Thermostat: Reset to Default Temp
 
-
-<!-- PACKAGE_MERMAID_SLOT -->
-
+    Note over Sensor, Thermostat: 4. Price Reduction
+    Sensor->>Pkg: Price > High Threshold
+    Pkg->>Pkg: Check Temp > Default
+    Pkg->>Thermostat: Reset to Default Temp
+```
 
 
 ## Configuration
