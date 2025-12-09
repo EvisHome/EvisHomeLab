@@ -56,8 +56,8 @@ This is the master script located in the root.
 
 ### B. The Privacy Engine (`ag_regenerate_dashboards.py`)
 A specialized tool for the Lovelace Dashboards.
-* **Problem:** Dashboards contain personal names and sensitive IDs.
-* **Solution:** This script reads the raw JSON, applies a **Regex Privacy Map** (anonymizing the names), and generates clean YAML documentation. It creates the documentation *programmatically*, ensuring it never drifts from the actual configuration.
+* **Problem:** Dashboards contain personal names (Jukka, Alisa) and sensitive IDs.
+* **Solution:** This script reads the raw JSON, applies a **Regex Privacy Map** (e.g., `(?i)jukka -> Evis`), and generates clean YAML documentation. It creates the documentation *programmatically*, ensuring it never drifts from the actual configuration.
 
 ### C. The Package Manager (`ag_update_package.py`)
 A hybrid tool for documenting YAML packages.

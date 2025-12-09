@@ -115,7 +115,7 @@ Run these commands in order to keep everything synced.
 > 3. **Smart Analysis:**
 >    - **Executive Summary:** Technical overview for admins.
 >    - **Process Description:** Non-technical explanation for users (How it works).
->    - **Architecture:** Generate a `mermaid` sequence diagram + a short text explanation of the flow.
+>    - **Architecture:** Generate a `mermaid` sequence diagram. **CRITICAL:** Write a specific narrative paragraph explaining the logic flow shown in the diagram (e.g. 'When the sensor triggers, it evaluates Condition A before firing Script B'). **Do NOT** use generic captions like 'This diagram shows the flow'.
 > 4. **Update Documentation File:**
 >    - **Target:** Locate the specific HTML comment markers (slots).
 >    - **Action:** Replace the content *between* the markers.
