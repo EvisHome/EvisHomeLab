@@ -101,28 +101,32 @@ Run these commands in order to keep everything synced.
 > ```
 ```
 
-**Task: Deep Package Analysis (Mermaid & Summary)**
-*Use this prompt to add diagrams and intelligence to an existing package document.*
+**Task: Update Package Boilerplate (Automation)**
+*Use this prompt first to ensure the documentation structure is correct and versioned.*
+> "Run `cd /; python ag_update_package.py [package_name]`."
+
+**Task: Deep Package Analysis (Intelligence Injection)**
+*Use this prompt AFTER running the Python script to fill the intelligent content slots.*
 > "Update the documentation for the **[PACKAGE_NAME]** package.
->
+
 > 1. Read `packages/[PACKAGE_NAME].yaml` and `docs_site/docs/smart-home/packages/[PACKAGE_NAME].md`.
 > 2. **Guard Check:** If the Markdown contains `auto_update: false`, **ABORT**.
 > 3. **Smart Analysis:**
->    - **Summary:** Provide a detailed executive summary of the package's functionality.
->    - **Architecture:** Generate a `mermaid` sequence diagram illustrating the primary logic flow (e.g., `Trigger -> Condition -> Action`).
+>    - **Executive Summary:** Technical overview for admins.
+>    - **Process Description:** Non-technical explanation for users (How it works).
+>    - **Architecture:** Generate a `mermaid` sequence diagram + a short text explanation of the flow.
 > 4. **Update Documentation File:**
->    - **Do NOT** overwrite the entire file.
->    - **Find & Replace:** Insert the generated Summary and Diagram into the relevant sections/placeholders in the existing Markdown content."
-
-**Task: Update Package Documentation (Boilerplate & Version Stamp)**
-*Use this prompt to quickly update versioning, tags, and code block content.*
-> "Run `python ag_update_package.py [package_name]`."
-> *(Fallback: "Update `[package].md` reading from `[package].yaml`. Check `auto_update` lock.")*
-
+>    - **Target:** Locate the specific HTML comment markers (slots).
+>    - **Action:** Replace the content *between* the markers.
+>      - `<!-- START_SUMMARY -->` ... `<!-- END_SUMMARY -->`
+>      - `<!-- START_DETAILED -->` ... `<!-- END_DETAILED -->`
+>      - `<!-- START_MERMAID_DESC -->` ... `<!-- END_MERMAID_DESC -->`
+>      - `<!-- START_MERMAID -->` ... `<!-- END_MERMAID -->`
+>    - **Dashboard Links:** Scan `.storage/lovelace_dashboards` and embed cards into `<!-- START_DASHBOARD -->`."
 
 **Task: Update Architecture (Structure & Overview)**
 > "Update `docs_site/docs/smart-home/structure.md` AND `docs_site/docs/index.md`.
->
+
 > 1. **Structure:** Re-scan root. Update file tree.
 > 2. **Overview:** Update 'High Level Architecture' with new integrations."
 
@@ -131,6 +135,9 @@ Run these commands in order to keep everything synced.
 
 **Task: Generate All Package Documentation**
 > "Deep scan `packages/`. Create Markdown for all files with: Frontmatter tags, Summary, Architecture Diagram, Redacted Code, Dashboard connections, and Visuals."
+
+**Task: Convert Dashboard to YAML**
+> "Run `python ag_regenerate_dashboards.py`."
 
 ---
 ## PART E: Tool Reference
