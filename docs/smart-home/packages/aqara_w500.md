@@ -12,6 +12,7 @@ version: 1.0.0
 
 <!-- START_IMAGE -->
 ![Package Diagram](../../../assets/images/packages/aqara_w500.png)
+![Package Diagram](../../../assets/images/dashboards/aqara_w500.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary
