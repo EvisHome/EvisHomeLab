@@ -17,7 +17,7 @@ This view contains entities managed by:
 * [Scenes](../../packages/scenes.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_main_kitchen.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_kitchen.png)
 
 ## Configuration
 ```yaml

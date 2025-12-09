@@ -17,7 +17,7 @@ This view contains entities managed by:
 * [Smart Notifications](../../packages/smart_notifications.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_home-access_fingerprints.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_fingerprints.png)
 
 ## Configuration
 ```yaml

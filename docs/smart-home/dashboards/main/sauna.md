@@ -12,7 +12,7 @@ tags:
 
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_main_sauna.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_sauna.png)
 
 ## Configuration
 ```yaml

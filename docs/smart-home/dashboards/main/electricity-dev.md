@@ -17,7 +17,7 @@ This view contains entities managed by:
 * [Nordpool Prices](../../packages/nordpool_prices.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_main_electricity-dev.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_electricity-dev.png)
 
 ## Configuration
 ```yaml

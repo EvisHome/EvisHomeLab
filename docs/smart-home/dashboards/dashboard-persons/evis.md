@@ -12,7 +12,7 @@ tags:
 
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_dashboard-persons_evis.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_evis.png)
 
 ## Configuration
 ```yaml

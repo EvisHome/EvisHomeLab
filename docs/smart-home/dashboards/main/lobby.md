@@ -12,7 +12,7 @@ tags:
 
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_main_lobby.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_lobby.png)
 
 ## Configuration
 ```yaml

@@ -16,7 +16,7 @@ This view contains entities managed by:
 * [Fingerprint Management](../../packages/fingerprint_management.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_main_mud_room.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_mud_room.png)
 
 ## Configuration
 ```yaml

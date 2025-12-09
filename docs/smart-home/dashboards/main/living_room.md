@@ -19,7 +19,7 @@ This view contains entities managed by:
 * [Smart Notifications](../../packages/smart_notifications.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_main_living_room.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_living_room.png)
 
 ## Configuration
 ```yaml

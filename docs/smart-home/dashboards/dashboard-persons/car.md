@@ -16,7 +16,7 @@ This view contains entities managed by:
 * [Car](../../packages/car.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_dashboard-persons_car.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_car.png)
 
 ## Configuration
 ```yaml
