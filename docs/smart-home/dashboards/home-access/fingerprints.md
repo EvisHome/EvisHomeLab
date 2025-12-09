@@ -8,9 +8,9 @@ tags:
 # Fingerprints
 
 **Dashboard:** Home Access  
-**Path:** `unknown`
+**Path:** `fingerprints`
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_home-access_unknown.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_home-access_fingerprints.png)
 
 ## Configuration
 ```yaml

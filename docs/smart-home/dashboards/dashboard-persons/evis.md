@@ -8,9 +8,9 @@ tags:
 # Evis
 
 **Dashboard:** Persons  
-**Path:** `unknown`
+**Path:** `evis`
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_dashboard-persons_unknown.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_dashboard-persons_evis.png)
 
 ## Configuration
 ```yaml

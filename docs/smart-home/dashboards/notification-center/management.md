@@ -8,9 +8,9 @@ tags:
 # Management
 
 **Dashboard:** Notification Center  
-**Path:** `unknown`
+**Path:** `management`
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_notification-center_unknown.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_notification-center_management.png)
 
 ## Configuration
 ```yaml

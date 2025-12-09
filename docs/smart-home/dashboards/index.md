@@ -34,7 +34,7 @@ This section contains the automated documentation for all Lovelace dashboards an
 ## Persons
 * [Map All](dashboard-persons/map-all.md)
 * [Guest 1](dashboard-persons/guest1.md)
-* [Evis](dashboard-persons/unknown.md)
+* [Evis](dashboard-persons/evis.md)
 * [Guest 3](dashboard-persons/guest3.md)
 * [Daughter](dashboard-persons/daughter.md)
 * [Guest 2](dashboard-persons/guest2.md)
@@ -46,11 +46,11 @@ This section contains the automated documentation for all Lovelace dashboards an
 * [CAR](dashboard-persons/car.md)
 
 ## Notification Center
-* [Management](notification-center/unknown.md)
+* [Management](notification-center/management.md)
 
 ## Room Management
-* [Settings](room-management/unknown.md)
+* [Settings](room-management/settings.md)
 
 ## Home Access
-* [Fingerprints](home-access/unknown.md)
+* [Fingerprints](home-access/fingerprints.md)
 

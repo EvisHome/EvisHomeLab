@@ -8,9 +8,9 @@ tags:
 # Settings
 
 **Dashboard:** Room Management  
-**Path:** `unknown`
+**Path:** `settings`
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_room-management_unknown.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_room-management_settings.png)
 
 ## Configuration
 ```yaml
