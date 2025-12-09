@@ -29,6 +29,16 @@ The Aqara W500 package manages the bathroom floor heating via a smart thermostat
 4.  **Manual Protection**: If you manually turn up the heat, a timer starts. Once the timer runs out, the temperature automatically resets to normal so you don't accidentally leave it running high all day.
 <!-- END_DETAILED -->
 
+## Dashboard Connections
+<!-- START_DASHBOARD -->
+This package powers the following dashboard views:
+
+* **[Bathroom](../dashboards/main/bathroom.md)** (Uses 5 entities)
+* **[Electricity Dev](../dashboards/main/electricity-dev.md)** (Uses 1 entities)
+* **[Electricity](../dashboards/main/electricity.md)** (Uses 2 entities)
+* **[Home](../dashboards/main/home.md)** (Uses 1 entities)
+<!-- END_DASHBOARD -->
+
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
 The system prioritizes comfort during active usage while strictly enforcing energy economy during idle periods or price spikes. When the `Bathroom FP2` sensor identifies continuous occupancy in the shower zone for 30 minutes, the automation triggers a 'Comfort Boost', raising the floor temperature, provided electricity prices are within acceptable limits. Conversely, if electricity prices surge above the defined threshold, the automation logic intercepts the state and throttles the heating back to the default 'Eco' temperature, overriding any manual increases to prevent billing shock.
@@ -257,13 +267,3 @@ automation:
 # ------------------------------------------------------------------------------
 
 ```
-
-## Dashboard Connections
-<!-- START_DASHBOARD -->
-This package powers the following dashboard views:
-
-* **[Bathroom](../dashboards/main/bathroom.md)** (Uses 5 entities)
-* **[Electricity Dev](../dashboards/main/electricity-dev.md)** (Uses 1 entities)
-* **[Electricity](../dashboards/main/electricity.md)** (Uses 2 entities)
-* **[Home](../dashboards/main/home.md)** (Uses 1 entities)
-<!-- END_DASHBOARD -->

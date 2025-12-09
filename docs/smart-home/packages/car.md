@@ -32,6 +32,14 @@ The Car package centralizes all logic for the Mercedes GLC, interfacing with the
 4.  **Critical Alerts**: The system watches for vehicle warnings. If brake fluid is low or coolant is needed, a critical alert is sent to your phone immediately.
 <!-- END_DETAILED -->
 
+## Dashboard Connections
+<!-- START_DASHBOARD -->
+This package powers the following dashboard views:
+
+* **[CAR](../dashboards/dashboard-persons/car.md)** (Uses 12 entities)
+* **[Home](../dashboards/main/home.md)** (Uses 8 entities)
+<!-- END_DASHBOARD -->
+
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
 The following diagram illustrates the flow from the vehicle API to the user. The `mbapi2020` integration polls the Mercedes Cloud service. The `Car Package` acts as a middle layer, normalizing this raw data into standard sensors (e.g., standardizing window '2' status to 'Closed'). When critical sensors like `low_brake_fluid` trigger, the automation layer evaluates the severity before dispatching either a standard info message or a critical alarm via `notify_smart_master`.
@@ -434,11 +442,3 @@ automation:
 # ------------------------------------------------------------------------------
 
 ```
-
-## Dashboard Connections
-<!-- START_DASHBOARD -->
-This package powers the following dashboard views:
-
-* **[CAR](../dashboards/dashboard-persons/car.md)** (Uses 12 entities)
-* **[Home](../dashboards/main/home.md)** (Uses 8 entities)
-<!-- END_DASHBOARD -->

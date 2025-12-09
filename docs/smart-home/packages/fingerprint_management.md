@@ -28,6 +28,16 @@ version: 2.5.1 (Variable Scope Fix & Debug)
 *No detailed non-technical description generated yet.*
 <!-- END_DETAILED -->
 
+## Dashboard Connections
+<!-- START_DASHBOARD -->
+This package powers the following dashboard views:
+
+* **[Fingerprints](../dashboards/home-access/fingerprints.md)** (Uses 4 entities)
+* **[Front Door](../dashboards/main/front-door.md)** (Uses 1 entities)
+* **[Home](../dashboards/main/home.md)** (Uses 1 entities)
+* **[Mud Room](../dashboards/main/mud_room.md)** (Uses 1 entities)
+<!-- END_DASHBOARD -->
+
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
 > ⚠️ **Update Required:** Analysis for v0.0.0. Code is v2.5.1 (Variable Scope Fix & Debug).
@@ -377,13 +387,3 @@ script:
                 ulp_id: "{{ state_attr(repeat.item.entity_id, 'ulp_id') }}"
                 current_user: "{{ repeat.item.state }}"
 ```
-
-## Dashboard Connections
-<!-- START_DASHBOARD -->
-This package powers the following dashboard views:
-
-* **[Fingerprints](../dashboards/home-access/fingerprints.md)** (Uses 4 entities)
-* **[Front Door](../dashboards/main/front-door.md)** (Uses 1 entities)
-* **[Home](../dashboards/main/home.md)** (Uses 1 entities)
-* **[Mud Room](../dashboards/main/mud_room.md)** (Uses 1 entities)
-<!-- END_DASHBOARD -->

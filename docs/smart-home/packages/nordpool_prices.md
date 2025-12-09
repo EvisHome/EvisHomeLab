@@ -28,6 +28,16 @@ version: 1.0.0
 *No detailed non-technical description generated yet.*
 <!-- END_DETAILED -->
 
+## Dashboard Connections
+<!-- START_DASHBOARD -->
+This package powers the following dashboard views:
+
+* **[Bathroom](../dashboards/main/bathroom.md)** (Uses 1 entities)
+* **[Electricity Dev](../dashboards/main/electricity-dev.md)** (Uses 1 entities)
+* **[Electricity](../dashboards/main/electricity.md)** (Uses 5 entities)
+* **[Home](../dashboards/main/home.md)** (Uses 2 entities)
+<!-- END_DASHBOARD -->
+
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
 > ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
@@ -437,13 +447,3 @@ template:
           {% endif %}
 
 ```
-
-## Dashboard Connections
-<!-- START_DASHBOARD -->
-This package powers the following dashboard views:
-
-* **[Bathroom](../dashboards/main/bathroom.md)** (Uses 1 entities)
-* **[Electricity Dev](../dashboards/main/electricity-dev.md)** (Uses 1 entities)
-* **[Electricity](../dashboards/main/electricity.md)** (Uses 5 entities)
-* **[Home](../dashboards/main/home.md)** (Uses 2 entities)
-<!-- END_DASHBOARD -->

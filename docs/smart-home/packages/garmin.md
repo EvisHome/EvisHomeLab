@@ -28,6 +28,11 @@ version: 1.0.0
 *No detailed non-technical description generated yet.*
 <!-- END_DETAILED -->
 
+## Dashboard Connections
+<!-- START_DASHBOARD -->
+*No specific entities detected to link.*
+<!-- END_DASHBOARD -->
+
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
 > ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
@@ -51,8 +56,3 @@ version: 1.0.0
 # ------------------------------------------------------------------------------
 
 ```
-
-## Dashboard Connections
-<!-- START_DASHBOARD -->
-*No specific entities detected to link.*
-<!-- END_DASHBOARD -->

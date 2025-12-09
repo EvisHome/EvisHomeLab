@@ -32,6 +32,16 @@ The system operates on a "Publish-Subscribe" model adapted for a smart home:
     *   **Platform**: It formats the message specifically for the user's defined device type (iOS vs Android), handling critical alerts and actionable notifications appropriate to the platform.
 <!-- END_DETAILED -->
 
+## Dashboard Connections
+<!-- START_DASHBOARD -->
+This package powers the following dashboard views:
+
+* **[Fingerprints](../dashboards/home-access/fingerprints.md)** (Uses 1 entities)
+* **[Living Room](../dashboards/main/living_room.md)** (Uses 1 entities)
+* **[Management](../dashboards/notification-center/management.md)** (Uses 9 entities)
+* **[Settings](../dashboards/room-management/settings.md)** (Uses 1 entities)
+<!-- END_DASHBOARD -->
+
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
 When a notification request triggers the `notify_smart_master` router, the system begins a parallel evaluation for every registered user. It retrieves the user's specific settings—checking if they have subscribed to the message's `category`, verifying if a 'Presence Check' is required, and determining their current device platform (iOS or Android). Only if the subscription is active and the presence criteria are met does the router format the payload (adjusting for platform-specifics like critical volume or click actions) and dispatch it to the specific mobile app service.
@@ -155,9 +165,9 @@ script:
     mode: single
     sequence:
       - variables:
-          # Get selected person name (e.g., "Jukka")
+          # Get selected person name (e.g., "Evis")
           user_name: "{{ states('input_select.notify_mgmt_person_select') }}"
-          # CRITICAL: Create slug (e.g., "Jukka" -> "jukka")
+          # CRITICAL: Create slug (e.g., "Evis" -> "Evis")
           user_slug: "{{ user_name | slugify }}"
           # Ensure we link back to the native HA person entity
           person_entity: "person.{{ user_name | slugify }}"
@@ -488,7 +498,7 @@ script:
             - variables:
                 user_slug: "{{ repeat.item }}"
                 # We need the user's friendly name to name the switch nicely.
-                # We can grab it from the existing 'notify_service' entity name (e.g. "Jukka Notify Service")
+                # We can grab it from the existing 'notify_service' entity name (e.g. "Evis Notify Service")
                 user_friendly_name: >-
                   {{ state_attr('text.notify_service_' ~ user_slug, 'friendly_name') | replace(' Notify Service', '') }}
 
@@ -693,13 +703,3 @@ automation:
           retain: true
 
 ```
-
-## Dashboard Connections
-<!-- START_DASHBOARD -->
-This package powers the following dashboard views:
-
-* **[Fingerprints](../dashboards/home-access/fingerprints.md)** (Uses 1 entities)
-* **[Living Room](../dashboards/main/living_room.md)** (Uses 1 entities)
-* **[Management](../dashboards/notification-center/management.md)** (Uses 9 entities)
-* **[Settings](../dashboards/room-management/settings.md)** (Uses 1 entities)
-<!-- END_DASHBOARD -->

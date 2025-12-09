@@ -24,6 +24,13 @@ version: 1.0.0
 *No detailed non-technical description generated yet.*
 <!-- END_DETAILED -->
 
+## Dashboard Connections
+<!-- START_DASHBOARD -->
+This package powers the following dashboard views:
+
+* **[Office](../dashboards/main/office.md)** (Uses 3 entities)
+<!-- END_DASHBOARD -->
+
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
 *No architecture explanation generated yet.*
@@ -108,10 +115,3 @@ switch:
         entity_id: button.officepc_sleep
 
 ```
-
-## Dashboard Connections
-<!-- START_DASHBOARD -->
-This package powers the following dashboard views:
-
-* **[Office](../dashboards/main/office.md)** (Uses 3 entities)
-<!-- END_DASHBOARD -->

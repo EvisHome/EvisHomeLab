@@ -30,6 +30,14 @@ The Dishwasher package provides comprehensive integration for LG ThinQ dishwashe
 4. **Leak Protection**: Just like the smart water valve, this package monitors a dedicated leak sensor under the dishwasher. If water is detected, a critical alarm is triggered to prevent damage.
 <!-- END_DETAILED -->
 
+## Dashboard Connections
+<!-- START_DASHBOARD -->
+This package powers the following dashboard views:
+
+* **[Home](../dashboards/main/home.md)** (Uses 2 entities)
+* **[Kitchen](../dashboards/main/kitchen.md)** (Uses 5 entities)
+<!-- END_DASHBOARD -->
+
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
 The system operates on an event-driven model. When the `LG Dishwasher` updates its Internal State, Home Assistant immediately normalizes this into a uniform `Dishwasher Active` binary sensor. If the cycle is 'Running', the system calculates the estimated completion time and notifies the users. A parallel logic stream monitors the `Leak Sensor` continuously; if water is detected, it bypasses the standard notification queue and triggers an immediate 'Critical Alarm' to the mobile app, ensuring rapid response to potential flooding.
@@ -302,11 +310,3 @@ automation:
 # ------------------------------------------------------------------------------
 
 ```
-
-## Dashboard Connections
-<!-- START_DASHBOARD -->
-This package powers the following dashboard views:
-
-* **[Home](../dashboards/main/home.md)** (Uses 2 entities)
-* **[Kitchen](../dashboards/main/kitchen.md)** (Uses 5 entities)
-<!-- END_DASHBOARD -->

@@ -28,6 +28,18 @@ version: 1.0.0
 *No detailed non-technical description generated yet.*
 <!-- END_DETAILED -->
 
+## Dashboard Connections
+<!-- START_DASHBOARD -->
+This package powers the following dashboard views:
+
+* **[Bedroom](../dashboards/main/bedroom.md)** (Uses 2 entities)
+* **[Hallway](../dashboards/main/hallway.md)** (Uses 1 entities)
+* **[Kitchen](../dashboards/main/kitchen.md)** (Uses 1 entities)
+* **[Living Room](../dashboards/main/living_room.md)** (Uses 2 entities)
+* **[Office](../dashboards/main/office.md)** (Uses 3 entities)
+* **[Stairs](../dashboards/main/stairs.md)** (Uses 1 entities)
+<!-- END_DASHBOARD -->
+
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
 > ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
@@ -307,9 +319,9 @@ scene:
         entity_only: true
 
   - id: "1665121007096"
-    name: Alisa Bed Dim
+    name: Daughter Bed Dim
     entities:
-      light.alisa_bed_light:
+      light.Daughter_bed_light:
         state: "on"
         brightness: 127
         color_mode: color_temp
@@ -319,9 +331,9 @@ scene:
         xy_color: [0.372, 0.35]
 
   - id: "1665121039862"
-    name: Alisa Bed Daylight
+    name: Daughter Bed Daylight
     entities:
-      light.alisa_bed_light:
+      light.Daughter_bed_light:
         state: "on"
         brightness: 255
         color_mode: color_temp
@@ -331,9 +343,9 @@ scene:
         xy_color: [0.326, 0.333]
 
   - id: "1665121075215"
-    name: Alisa Bed Pink
+    name: Daughter Bed Pink
     entities:
-      light.alisa_bed_light:
+      light.Daughter_bed_light:
         state: "on"
         brightness: 255
         color_mode: xy
@@ -342,9 +354,9 @@ scene:
         xy_color: [0.38, 0.17]
 
   - id: "1665121117806"
-    name: Alisa Bed Relax
+    name: Daughter Bed Relax
     entities:
-      light.alisa_bed_light:
+      light.Daughter_bed_light:
         state: "on"
         brightness: 51
         color_mode: xy
@@ -369,9 +381,9 @@ scene:
         xy_color: [0.372, 0.35]
 
   - id: "1666102359369"
-    name: Elias Dim
+    name: Grandpa Dim
     entities:
-      light.elias_ceiling_light:
+      light.Grandpa_ceiling_light:
         state: "on"
         brightness: 64
         color_mode: color_temp
@@ -380,13 +392,13 @@ scene:
         rgb_color: [255, 205, 166]
         xy_color: [0.421, 0.364]
     metadata:
-      light.elias_ceiling_light:
+      light.Grandpa_ceiling_light:
         entity_only: true
 
   - id: "1666102385906"
-    name: Elias Bright
+    name: Grandpa Bright
     entities:
-      light.elias_ceiling_light:
+      light.Grandpa_ceiling_light:
         state: "on"
         brightness: 255
         color_mode: color_temp
@@ -395,13 +407,13 @@ scene:
         rgb_color: [255, 205, 166]
         xy_color: [0.421, 0.364]
     metadata:
-      light.elias_ceiling_light:
+      light.Grandpa_ceiling_light:
         entity_only: true
 
   - id: "1666102425014"
-    name: Elias Night
+    name: Grandpa Night
     entities:
-      light.elias_ceiling_light:
+      light.Grandpa_ceiling_light:
         state: "on"
         brightness: 13
         color_mode: color_temp
@@ -410,19 +422,7 @@ scene:
         rgb_color: [255, 146, 39]
         xy_color: [0.579, 0.388]
     metadata:
-      light.elias_ceiling_light:
+      light.Grandpa_ceiling_light:
         entity_only: true
 
 ```
-
-## Dashboard Connections
-<!-- START_DASHBOARD -->
-This package powers the following dashboard views:
-
-* **[Bedroom](../dashboards/main/bedroom.md)** (Uses 2 entities)
-* **[Hallway](../dashboards/main/hallway.md)** (Uses 1 entities)
-* **[Kitchen](../dashboards/main/kitchen.md)** (Uses 1 entities)
-* **[Living Room](../dashboards/main/living_room.md)** (Uses 2 entities)
-* **[Office](../dashboards/main/office.md)** (Uses 3 entities)
-* **[Stairs](../dashboards/main/stairs.md)** (Uses 1 entities)
-<!-- END_DASHBOARD -->

@@ -28,6 +28,13 @@ version: 1.0.0
 *No detailed non-technical description generated yet.*
 <!-- END_DETAILED -->
 
+## Dashboard Connections
+<!-- START_DASHBOARD -->
+This package powers the following dashboard views:
+
+* **[Living Room](../dashboards/main/living_room.md)** (Uses 3 entities)
+<!-- END_DASHBOARD -->
+
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
 > ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
@@ -79,10 +86,3 @@ template:
           {{ value | round(1) }}
 
 ```
-
-## Dashboard Connections
-<!-- START_DASHBOARD -->
-This package powers the following dashboard views:
-
-* **[Living Room](../dashboards/main/living_room.md)** (Uses 3 entities)
-<!-- END_DASHBOARD -->
