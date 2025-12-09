@@ -10,41 +10,65 @@ version: 1.0.0
 **Version:** 1.0.0  
 **Description:** Manages temperature settings and schedules for the Bathroom Floor Heat (Aqara W500 Climate). Includes logic for high electricity price reduction and shower occupancy boost.
 
-
+<!-- START_IMAGE -->
 ![Package Diagram](../../../assets/images/packages/aqara_w500.png)
+<!-- END_IMAGE -->
 
 ## Executive Summary
-This package manages the Aqara W500 thermostat for the bathroom floor heating. It ensures comfort by boosting the temperature during showers (detected via `fp2_occupancy`) and optimizes costs by reducing the target temperature when electricity prices are high. It also features a manual override timer system that automatically resets the temperature to default after a user-defined duration.
+<!-- START_SUMMARY -->
+The Aqara W500 package manages the bathroom floor heating via a smart thermostat. It implements an advanced energy-saving strategy that balances comfort with cost. It features signal normalization for raw temperature data, an automated "Boost Mode" triggered by shower occupancy, and a "Peak Shaving" mechanism that reduces heating loads during high electricity price intervals.
+<!-- END_SUMMARY -->
 
-## Architecture
+## Process Description (Non-Technical)
+<!-- START_DETAILED -->
+### How It Works
+1.  **Smart Schedule**: The floor generally stays at a comfortable default temperature.
+2.  **Shower Boost**: If the presence sensor detects you have been in the shower area for more than 30 minutes, it automatically raises the temperature to dry the floor and keep you warm.
+3.  **Cost Protection**: If the electricity price spikes (goes above your set limit), the system will automatically lower the temperature to the default setting to save money, even if you had manually turned it up.
+4.  **Manual Protection**: If you manually turn up the heat, a timer starts. Once the timer runs out, the temperature automatically resets to normal so you don't accidentally leave it running high all day.
+<!-- END_DETAILED -->
+
+## Architecture Diagram
+<!-- START_MERMAID_DESC -->
+The system prioritizes comfort during active usage while strictly enforcing energy economy during idle periods or price spikes. When the `Bathroom FP2` sensor identifies continuous occupancy in the shower zone for 30 minutes, the automation triggers a 'Comfort Boost', raising the floor temperature, provided electricity prices are within acceptable limits. Conversely, if electricity prices surge above the defined threshold, the automation logic intercepts the state and throttles the heating back to the default 'Eco' temperature, overriding any manual increases to prevent billing shock.
+<!-- END_MERMAID_DESC -->
+
+<!-- START_MERMAID -->
 ```mermaid
 sequenceDiagram
-    participant Sensor as Sensors
-    participant Pkg as Package Logic
+    participant Sensor as FP2 Presence
+    participant Price as Electricity Price
+    participant HA as Automation Logic
     participant Thermostat as Aqara W500
-    participant Timer as Timer
 
-    Note over Sensor, Thermostat: 1. Shower Boost
-    Sensor->>Pkg: Bath Occupancy (30m+)
-    Pkg->>Pkg: Check Price < High Threshold
-    Pkg->>Thermostat: Set Target Temp (Boost)
+    rect rgb(20, 50, 20)
+    Note over HA: Shower Boost Logic
+    Sensor->>HA: Shower Occupied > 30m
+    HA->>Price: Check Price Level
+    alt Price Low
+        HA->>Thermostat: Set Temp (Target Boost)
+    else Price High
+        HA->>HA: Block Boost (Save Money)
+    end
+    end
 
-    Note over Thermostat, Timer: 2. Manual Override
-    Thermostat->>Pkg: Temp > Default
-    Pkg->>Timer: Start Override Timer
-    
-    Note over Timer, Thermostat: 3. Reset
-    Timer->>Pkg: Timer Finished
-    Pkg->>Thermostat: Reset to Default Temp
+    rect rgb(50, 20, 20)
+    Note over HA: Price Protection logic
+    Price->>HA: Price > Threshold
+    HA->>Thermostat: Force Reset to Default Temp
+    end
 
-    Note over Sensor, Thermostat: 4. Price Reduction
-    Sensor->>Pkg: Price > High Threshold
-    Pkg->>Pkg: Check Temp > Default
-    Pkg->>Thermostat: Reset to Default Temp
+    rect rgb(20, 20, 50)
+    Note over HA: Manual Override Logic
+    Thermostat->>HA: User Increased Temp
+    HA->>HA: Start Timer
+    HA->>HA: Timer Finished
+    HA->>Thermostat: Reset to Default Temp
+    end
 ```
+<!-- END_MERMAID -->
 
-
-## Configuration
+## Configuration (Source Code)
 ```yaml
 # ------------------------------------------------------------------------------
 # Package: Aqara W500 Floor Heating Control
@@ -233,8 +257,16 @@ automation:
 
 ```
 
-
-
 ## Dashboard Connections
-<!-- DASHBOARD_CONNECTIONS_SLOT -->
+<!-- START_DASHBOARD -->
+The following thermostat card is used in the Bathroom dashboard.
 
+```yaml
+type: thermostat
+entity: climate.aqara_w500
+name: Bathroom Floor
+show_current_as_primary: false
+features:
+  - type: climate-hvac-modes
+```
+<!-- END_DASHBOARD -->
