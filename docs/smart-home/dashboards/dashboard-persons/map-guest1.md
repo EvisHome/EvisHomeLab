@@ -10,6 +10,10 @@ tags:
 **Dashboard:** Persons  
 **Path:** `map-Guest 1`
 
+<!-- START_SUMMARY -->
+*No summary generated yet.*
+<!-- END_SUMMARY -->
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_map-guest1.png)
 
 

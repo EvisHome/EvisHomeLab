@@ -10,6 +10,10 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `front-door`
 
+<!-- START_SUMMARY -->
+*No summary generated yet.*
+<!-- END_SUMMARY -->
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_front-door.png)
 
 ## Related Packages

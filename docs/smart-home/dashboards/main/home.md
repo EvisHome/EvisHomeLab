@@ -10,6 +10,10 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `home`
 
+<!-- START_SUMMARY -->
+*No summary generated yet.*
+<!-- END_SUMMARY -->
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_home.png)
 
 ## Related Packages

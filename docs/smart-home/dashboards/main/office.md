@@ -10,6 +10,10 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `office`
 
+<!-- START_SUMMARY -->
+*No summary generated yet.*
+<!-- END_SUMMARY -->
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_office.png)
 
 ## Related Packages

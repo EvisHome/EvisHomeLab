@@ -10,6 +10,10 @@ tags:
 **Dashboard:** Home Access  
 **Path:** `fingerprints`
 
+<!-- START_SUMMARY -->
+*No summary generated yet.*
+<!-- END_SUMMARY -->
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_fingerprints.png)
 
 ## Related Packages

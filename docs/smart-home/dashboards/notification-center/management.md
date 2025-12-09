@@ -10,6 +10,10 @@ tags:
 **Dashboard:** Notification Center  
 **Path:** `management`
 
+<!-- START_SUMMARY -->
+*No summary generated yet.*
+<!-- END_SUMMARY -->
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_management.png)
 
 ## Related Packages

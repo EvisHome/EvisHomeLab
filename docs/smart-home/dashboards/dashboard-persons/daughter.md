@@ -10,6 +10,10 @@ tags:
 **Dashboard:** Persons  
 **Path:** `Daughter`
 
+<!-- START_SUMMARY -->
+*No summary generated yet.*
+<!-- END_SUMMARY -->
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_daughter.png)
 
 
