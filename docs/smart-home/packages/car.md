@@ -12,6 +12,7 @@ version: 2.0.3
 
 <!-- START_IMAGE -->
 ![Package Diagram](../../../assets/images/packages/car.png)
+![Package Diagram](../../../assets/images/dashboards/car.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary
