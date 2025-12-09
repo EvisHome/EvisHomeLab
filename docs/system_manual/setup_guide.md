@@ -107,9 +107,10 @@ Run these commands in order to keep everything synced.
 
 **Task: Deep Package Analysis (Intelligence Injection)**
 *Use this prompt AFTER running the Python script to fill the intelligent content slots.*
-> "Update the documentation for the **[PACKAGE_NAME]** package.
-
-> 1. Read `packages/[PACKAGE_NAME].yaml` and `docs_site/docs/smart-home/packages/[PACKAGE_NAME].md`.
+> "I am working on the package: **[PACKAGE_NAME]**.
+>
+> **Task:**
+> 1. **Locate Files:** Find the source YAML in `packages/` and the documentation Markdown in `docs_site/docs/smart-home/packages/` matching this name.
 > 2. **Guard Check:** If the Markdown contains `auto_update: false`, **ABORT**.
 > 3. **Smart Analysis:**
 >    - **Executive Summary:** Technical overview for admins.
@@ -126,7 +127,6 @@ Run these commands in order to keep everything synced.
 
 **Task: Update Architecture (Structure & Overview)**
 > "Update `docs_site/docs/smart-home/structure.md` AND `docs_site/docs/index.md`.
-
 > 1. **Structure:** Re-scan root. Update file tree.
 > 2. **Overview:** Update 'High Level Architecture' with new integrations."
 
