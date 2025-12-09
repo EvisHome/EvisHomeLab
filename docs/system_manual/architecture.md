@@ -9,7 +9,7 @@ tags:
 
 **Philosophy:** "Everything as Code"
 **Status:** Self-Validating & Modular
-**Version:** 2.0 (Modular Refactor)
+**Version:** 2.1 (Clarified Manual Steps)
 
 ## 1. The Core Concept
 Unlike traditional wikis where documentation is written manually and eventually goes stale, **EvisHomeLab** uses an **Agentic CMDB** approach.
@@ -73,6 +73,7 @@ A specialized tool for the Lovelace Dashboards.
 * **Intelligence:** * **State-Aware:** Preserves manually written summaries between runs.
     * **Auto-Link:** Scans package entities and links them to the dashboard view.
     * **Privacy:** Redacts personal names (e.g., Jukka -> Evis) using Regex.
+    * **Screenshots:** It generates the *Markdown Link* (e.g. `![View](...png)`) automatically, but **the actual screenshot must be taken manually** and placed in the assets folder.
 
 ### C. The Package Manager (`ag_update_package.py`)
 A hybrid tool for documenting YAML packages.
@@ -88,7 +89,7 @@ We do not edit `setup_guide.md` or the tool scripts directly. We edit the **Defi
 | :--- | :--- |
 | **Update Manual** | Edit `.ag_definitions/manual_parts/*.py` $\rightarrow$ Run `python ag_update_docs.py` |
 | **Update Privacy Rules** | Edit `.ag_definitions/ai_context.py` $\rightarrow$ Run `python ag_update_docs.py` |
-| **Update Dashboard Docs** | Run `python ag_regenerate_dashboards.py` |
+| **Update Dashboard Docs** | **1. Capture Screenshots** (Manual)<br>**2. Run:** `python ag_regenerate_dashboards.py` |
 | **New Package** | Run `python ag_update_package.py [name]` $\rightarrow$ Ask Agent to analyze. |
 
 ## 4. Safety Features

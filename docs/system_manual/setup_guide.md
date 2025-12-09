@@ -96,7 +96,8 @@ Run these commands in order to keep everything synced.
 > # Description: [Summary]
 > # Dependencies: [Entities used]
 > # ------------------------------------------------------------------------------
-> ```"
+> ```
+>"
 
 **Task: Update Package Boilerplate (Automation)**
 *Use this prompt first to ensure the documentation structure is correct and versioned.*
