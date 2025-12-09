@@ -32,7 +32,7 @@ The Dishwasher package provides comprehensive integration for LG ThinQ dishwashe
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-The following diagram illustrates the primary data flows: handling cycle callbacks, user notifications throughout the wash process, and the critical leak detection loop.
+The system operates on an event-driven model. When the `LG Dishwasher` updates its Internal State, Home Assistant immediately normalizes this into a uniform `Dishwasher Active` binary sensor. If the cycle is 'Running', the system calculates the estimated completion time and notifies the users. A parallel logic stream monitors the `Leak Sensor` continuously; if water is detected, it bypasses the standard notification queue and triggers an immediate 'Critical Alarm' to the mobile app, ensuring rapid response to potential flooding.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
