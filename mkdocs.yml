@@ -69,4 +69,4 @@ extra_css:
 plugins:
   - tags:
       tags_file: tags.md
-  - awesome-pages
+#  - awesome-pages
