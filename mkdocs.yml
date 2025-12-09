@@ -29,7 +29,8 @@ nav:
       - Overview: smart-home/index.md
       - Configuration & Structure: smart-home/structure.md
       - Automations: smart-home/automations.md
-      - Dashboards: smart-home/dashboards.md
+      - Dashboards:
+          - smart-home/dashboards/
       - Frigate NVR: smart-home/frigate_nvr.md
       - Packages:
           - Airthings: smart-home/packages/airthings.md
