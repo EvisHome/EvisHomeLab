@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `electricity`
 
+![View Screenshot](../../../assets/images/dashboards/dashboard_electricity.png)
+
 ## Related Packages
 This view contains entities managed by:
 
@@ -17,7 +19,13 @@ This view contains entities managed by:
 * [Nordpool Prices](../../packages/nordpool_prices.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_electricity.png)
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:apexcharts-card`
+* `custom:config-template-card`
+* `custom:mushroom-entity-card`
+
 
 ## Configuration
 ```yaml

@@ -10,9 +10,11 @@ tags:
 **Dashboard:** Persons  
 **Path:** `map-Evis`
 
-
-
 ![View Screenshot](../../../assets/images/dashboards/dashboard_map-evis.png)
+
+
+
+
 
 ## Configuration
 ```yaml

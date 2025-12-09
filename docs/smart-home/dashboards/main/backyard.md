@@ -10,9 +10,21 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `backyard`
 
-
-
 ![View Screenshot](../../../assets/images/dashboards/dashboard_backyard.png)
+
+
+
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:decluttering-card`
+* `custom:frigate-card`
+* `custom:mini-graph-card`
+* `custom:mushroom-entity-card`
+* `custom:mushroom-light-card`
+* `custom:mushroom-title-card`
+* `custom:scheduler-card`
+
 
 ## Configuration
 ```yaml

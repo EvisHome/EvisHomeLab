@@ -10,9 +10,15 @@ tags:
 **Dashboard:** Persons  
 **Path:** `Daughter`
 
-
-
 ![View Screenshot](../../../assets/images/dashboards/dashboard_daughter.png)
+
+
+
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:decluttering-card`
+
 
 ## Configuration
 ```yaml

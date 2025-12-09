@@ -10,9 +10,16 @@ tags:
 **Dashboard:** Persons  
 **Path:** `evis`
 
-
-
 ![View Screenshot](../../../assets/images/dashboards/dashboard_evis.png)
+
+
+
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:auto-entities`
+* `custom:decluttering-card`
+
 
 ## Configuration
 ```yaml

@@ -10,9 +10,19 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `Guest 2`
 
-
-
 ![View Screenshot](../../../assets/images/dashboards/dashboard_guest2.png)
+
+
+
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:decluttering-card`
+* `custom:mini-graph-card`
+* `custom:mushroom-light-card`
+* `custom:mushroom-title-card`
+* `custom:streamline-card`
+
 
 ## Configuration
 ```yaml

@@ -10,9 +10,18 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `sauna`
 
-
-
 ![View Screenshot](../../../assets/images/dashboards/dashboard_sauna.png)
+
+
+
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:decluttering-card`
+* `custom:mushroom-light-card`
+* `custom:mushroom-title-card`
+* `custom:streamline-card`
+
 
 ## Configuration
 ```yaml

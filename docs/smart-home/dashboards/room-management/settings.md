@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Room Management  
 **Path:** `settings`
 
+![View Screenshot](../../../assets/images/dashboards/dashboard_settings.png)
+
 ## Related Packages
 This view contains entities managed by:
 
@@ -17,7 +19,11 @@ This view contains entities managed by:
 * [Smart Notifications](../../packages/smart_notifications.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_settings.png)
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:auto-entities`
+
 
 ## Configuration
 ```yaml

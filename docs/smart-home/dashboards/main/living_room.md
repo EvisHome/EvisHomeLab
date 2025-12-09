@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `living_room`
 
+![View Screenshot](../../../assets/images/dashboards/dashboard_living_room.png)
+
 ## Related Packages
 This view contains entities managed by:
 
@@ -19,7 +21,20 @@ This view contains entities managed by:
 * [Smart Notifications](../../packages/smart_notifications.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_living_room.png)
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:auto-entities`
+* `custom:decluttering-card`
+* `custom:mini-graph-card`
+* `custom:mushroom-entity-card`
+* `custom:mushroom-fan-card`
+* `custom:mushroom-light-card`
+* `custom:mushroom-select-card`
+* `custom:mushroom-template-card`
+* `custom:mushroom-title-card`
+* `custom:streamline-card`
+
 
 ## Configuration
 ```yaml

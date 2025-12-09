@@ -10,9 +10,18 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `storage`
 
-
-
 ![View Screenshot](../../../assets/images/dashboards/dashboard_storage.png)
+
+
+
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:decluttering-card`
+* `custom:frigate-card`
+* `custom:mushroom-light-card`
+* `custom:mushroom-title-card`
+
 
 ## Configuration
 ```yaml

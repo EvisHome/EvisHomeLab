@@ -10,13 +10,26 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `bedroom`
 
+![View Screenshot](../../../assets/images/dashboards/dashboard_bedroom.png)
+
 ## Related Packages
 This view contains entities managed by:
 
 * [Scenes](../../packages/scenes.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_bedroom.png)
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:auto-entities`
+* `custom:decluttering-card`
+* `custom:mushroom-cover-card`
+* `custom:mushroom-light-card`
+* `custom:mushroom-template-card`
+* `custom:mushroom-title-card`
+* `custom:scheduler-card`
+* `custom:streamline-card`
+
 
 ## Configuration
 ```yaml

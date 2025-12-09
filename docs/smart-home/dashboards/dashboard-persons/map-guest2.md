@@ -10,9 +10,11 @@ tags:
 **Dashboard:** Persons  
 **Path:** `map-Guest 2`
 
-
-
 ![View Screenshot](../../../assets/images/dashboards/dashboard_map-guest2.png)
+
+
+
+
 
 ## Configuration
 ```yaml

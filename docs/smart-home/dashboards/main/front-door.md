@@ -10,13 +10,27 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `front-door`
 
+![View Screenshot](../../../assets/images/dashboards/dashboard_front-door.png)
+
 ## Related Packages
 This view contains entities managed by:
 
 * [Fingerprint Management](../../packages/fingerprint_management.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_front-door.png)
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:auto-entities`
+* `custom:decluttering-card`
+* `custom:frigate-card`
+* `custom:mushroom-alarm-control-panel-card`
+* `custom:mushroom-entity-card`
+* `custom:mushroom-light-card`
+* `custom:mushroom-lock-card`
+* `custom:mushroom-title-card`
+* `custom:scheduler-card`
+
 
 ## Configuration
 ```yaml

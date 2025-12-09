@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `bathroom`
 
+![View Screenshot](../../../assets/images/dashboards/dashboard_bathroom.png)
+
 ## Related Packages
 This view contains entities managed by:
 
@@ -17,7 +19,18 @@ This view contains entities managed by:
 * [Nordpool Prices](../../packages/nordpool_prices.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_bathroom.png)
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:decluttering-card`
+* `custom:mushroom-entity-card`
+* `custom:mushroom-light-card`
+* `custom:mushroom-number-card`
+* `custom:mushroom-title-card`
+* `custom:scheduler-card`
+* `custom:streamline-card`
+* `custom:timer-bar-card`
+
 
 ## Configuration
 ```yaml

@@ -10,9 +10,19 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `lobby`
 
-
-
 ![View Screenshot](../../../assets/images/dashboards/dashboard_lobby.png)
+
+
+
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:decluttering-card`
+* `custom:mushroom-light-card`
+* `custom:mushroom-title-card`
+* `custom:scheduler-card`
+* `custom:streamline-card`
+
 
 ## Configuration
 ```yaml

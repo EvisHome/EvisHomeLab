@@ -10,13 +10,21 @@ tags:
 **Dashboard:** Persons  
 **Path:** `car`
 
+![View Screenshot](../../../assets/images/dashboards/dashboard_car.png)
+
 ## Related Packages
 This view contains entities managed by:
 
 * [Car](../../packages/car.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_car.png)
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:button-card`
+* `custom:mushroom-template-card`
+* `custom:scheduler-card`
+
 
 ## Configuration
 ```yaml

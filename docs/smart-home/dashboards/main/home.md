@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `home`
 
+![View Screenshot](../../../assets/images/dashboards/dashboard_home.png)
+
 ## Related Packages
 This view contains entities managed by:
 
@@ -20,7 +22,20 @@ This view contains entities managed by:
 * [Nordpool Prices](../../packages/nordpool_prices.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_home.png)
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:apexcharts-card`
+* `custom:button-card`
+* `custom:calendar-card-pro`
+* `custom:config-template-card`
+* `custom:horizon-card`
+* `custom:mushroom-entity-card`
+* `custom:mushroom-template-card`
+* `custom:mushroom-title-card`
+* `custom:scheduler-card`
+* `custom:streamline-card`
+
 
 ## Configuration
 ```yaml

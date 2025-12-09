@@ -10,9 +10,11 @@ tags:
 **Dashboard:** Persons  
 **Path:** `map-Daughter`
 
-
-
 ![View Screenshot](../../../assets/images/dashboards/dashboard_map-daughter.png)
+
+
+
+
 
 ## Configuration
 ```yaml

@@ -10,13 +10,22 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `hallway`
 
+![View Screenshot](../../../assets/images/dashboards/dashboard_hallway.png)
+
 ## Related Packages
 This view contains entities managed by:
 
 * [Scenes](../../packages/scenes.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_hallway.png)
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:decluttering-card`
+* `custom:mushroom-light-card`
+* `custom:mushroom-title-card`
+* `custom:streamline-card`
+
 
 ## Configuration
 ```yaml

@@ -10,9 +10,11 @@ tags:
 **Dashboard:** Persons  
 **Path:** `map-all`
 
-
-
 ![View Screenshot](../../../assets/images/dashboards/dashboard_map-all.png)
+
+
+
+
 
 ## Configuration
 ```yaml

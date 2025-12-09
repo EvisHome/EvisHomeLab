@@ -10,9 +10,15 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `settings`
 
-
-
 ![View Screenshot](../../../assets/images/dashboards/dashboard_settings.png)
+
+
+
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:decluttering-card`
+
 
 ## Configuration
 ```yaml

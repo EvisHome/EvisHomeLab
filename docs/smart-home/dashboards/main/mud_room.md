@@ -10,13 +10,24 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `mud_room`
 
+![View Screenshot](../../../assets/images/dashboards/dashboard_mud_room.png)
+
 ## Related Packages
 This view contains entities managed by:
 
 * [Fingerprint Management](../../packages/fingerprint_management.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_mud_room.png)
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:decluttering-card`
+* `custom:mushroom-entity-card`
+* `custom:mushroom-light-card`
+* `custom:mushroom-title-card`
+* `custom:scheduler-card`
+* `custom:streamline-card`
+
 
 ## Configuration
 ```yaml

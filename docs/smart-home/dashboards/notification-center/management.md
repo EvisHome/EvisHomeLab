@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Notification Center  
 **Path:** `management`
 
+![View Screenshot](../../../assets/images/dashboards/dashboard_management.png)
+
 ## Related Packages
 This view contains entities managed by:
 
@@ -17,7 +19,12 @@ This view contains entities managed by:
 * [Smart Notifications](../../packages/smart_notifications.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_management.png)
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:auto-entities`
+* `custom:mushroom-title-card`
+
 
 ## Configuration
 ```yaml

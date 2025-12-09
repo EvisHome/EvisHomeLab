@@ -10,13 +10,24 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `stairs`
 
+![View Screenshot](../../../assets/images/dashboards/dashboard_stairs.png)
+
 ## Related Packages
 This view contains entities managed by:
 
 * [Scenes](../../packages/scenes.md)
 
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_stairs.png)
+## Dependencies (Custom Cards)
+Required HACS frontend resources:
+
+* `custom:decluttering-card`
+* `custom:mushroom-light-card`
+* `custom:mushroom-select-card`
+* `custom:mushroom-title-card`
+* `custom:scheduler-card`
+* `custom:streamline-card`
+
 
 ## Configuration
 ```yaml
