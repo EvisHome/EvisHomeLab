@@ -23,6 +23,7 @@ This view contains entities managed by:
 Required HACS frontend resources:
 
 * `custom:auto-entities`
+* `custom:card-mod`
 
 
 ## Configuration

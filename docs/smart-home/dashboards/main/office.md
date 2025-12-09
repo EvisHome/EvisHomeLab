@@ -24,6 +24,7 @@ Required HACS frontend resources:
 
 * `custom:apexcharts-card`
 * `custom:auto-entities`
+* `custom:card-mod`
 * `custom:decluttering-card`
 * `custom:mini-graph-card`
 * `custom:mushroom-cover-card`

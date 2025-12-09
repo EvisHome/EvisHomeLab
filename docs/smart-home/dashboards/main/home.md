@@ -28,6 +28,7 @@ Required HACS frontend resources:
 * `custom:apexcharts-card`
 * `custom:button-card`
 * `custom:calendar-card-pro`
+* `custom:card-mod`
 * `custom:config-template-card`
 * `custom:horizon-card`
 * `custom:mushroom-entity-card`

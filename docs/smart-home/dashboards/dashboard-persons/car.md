@@ -22,6 +22,7 @@ This view contains entities managed by:
 Required HACS frontend resources:
 
 * `custom:button-card`
+* `custom:card-mod`
 * `custom:mushroom-template-card`
 * `custom:scheduler-card`
 
