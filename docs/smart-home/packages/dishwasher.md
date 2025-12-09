@@ -16,21 +16,52 @@ version: 1.1.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-*No executive summary generated yet.*
+The Dishwasher package provides comprehensive integration for LG ThinQ dishwashers. It normalizes device states into user-friendly status messages (e.g., 'Running', 'Clean'), calculates human-readable remaining times, and manages maintenance schedules. Critical safety features include leak detection using an external sensor, triggering immediate alarms. This package ensures the dishwasher is not just a monitored appliance but an active participant in the smart home ecosystem.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-*No detailed non-technical description generated yet.*
+### How It Works
+1. **Activity Monitoring**: The system automatically detects when the dishwasher is powered on or running. It updates the status to "Active", making it visible on your dashboards.
+2. **Cycle Notifications**:
+    *   **Started**: When you start a cycle, you'll receive a notification on your phone estimating when the dishes will be ready.
+    *   **Finished**: Once the cycle is complete, a "Dishes are Clean" notification arrives, detailing how long the cycle took.
+3. **Maintenance Reminders**: The system tracks when a "Machine Clean" cycle is recommended by the manufacturer and flags it on your dashboard until you run the cleaning cycle.
+4. **Leak Protection**: Just like the smart water valve, this package monitors a dedicated leak sensor under the dishwasher. If water is detected, a critical alarm is triggered to prevent damage.
 <!-- END_DETAILED -->
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-*No architecture explanation generated yet.*
+The following diagram illustrates the primary data flows: handling cycle callbacks, user notifications throughout the wash process, and the critical leak detection loop.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-*No architecture diagram generated yet.*
+```mermaid
+sequenceDiagram
+    participant Dishwasher as LG Dishwasher
+    participant HA as Home Assistant
+    participant User as User (Mobile)
+    participant Leak as Leak Sensor
+
+    Dishwasher->>HA: Status Change (Initial -> Running)
+    HA->>HA: Normalize Status & Calculate Time
+    HA->>User: Notify "Dishwasher Started" (Est. Time)
+    
+    Dishwasher->>HA: Status Change (Running -> End)
+    HA->>User: Notify "Dishes are Clean" (Run Time)
+    
+    Dishwasher->>HA: Maintenance Signal (Machine Clean)
+    HA->>HA: Set Flag 'Dishwasher Needs Cleaning'
+    loop Until Cleaned
+        HA->>User: Dashboard Alert
+    end
+    
+    Dishwasher->>HA: Cycle 'Machine Clean' Started
+    HA->>HA: Clear Flag 'Dishwasher Needs Cleaning'
+    
+    Leak->>HA: Water Detected (On)
+    HA->>User: CRITICAL ALARM "Leak Detected!"
+```
 <!-- END_MERMAID -->
 
 ## Configuration (Source Code)
@@ -274,5 +305,25 @@ automation:
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
-*No dashboard connections analyzed yet.*
+The following Lovelace card is used to display the Dishwasher status. It uses a `custom:mushroom-entity-card` and is conditionally visible only when the dishwasher is active.
+
+```yaml
+type: custom:mushroom-entity-card
+entity: sensor.dishwasher_status_clean
+name: Dishwasher Status
+icon: mdi:dishwasher
+secondary_info: state
+grid_options:
+  columns: 12
+  rows: 1
+card_mod:
+  style: |
+    ha-card {
+      --card-mod-icon-color: var(--blue-color);
+    }
+visibility:
+  - condition: state
+    entity: binary_sensor.dishwasher_active
+    state: 'on'
+```
 <!-- END_DASHBOARD -->
