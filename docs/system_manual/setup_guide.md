@@ -127,6 +127,7 @@ Run these commands in order to keep everything synced.
 *Use this to populate the empty summaries in your generated dashboard docs.*
 
 > "Analyze the dashboard view: **[VIEW_PATH]** (e.g. `dashboards/main/car.md`).
+
 > 1. **Read** the Markdown file to see the embedded YAML configuration.
 > 2. **Analyze:** Understand what devices and controls are present (e.g., 'Thermostat control', 'Camera feed').
 > 3. **Write Summary:** Create a 1-2 sentence non-technical summary of what this view allows the user to do.
