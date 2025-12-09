@@ -49,6 +49,8 @@ nav:
           - Smart Notifications: smart-home/packages/smart_notifications.md
   - Home Lab: home-lab/index.md
   - Network: network/index.md
+  ---
+  - System Architecture: system_manual/architecture.md
   - System Manual: system_manual/setup_guide.md
 
 markdown_extensions:
