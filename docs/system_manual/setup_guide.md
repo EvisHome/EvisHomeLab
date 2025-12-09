@@ -110,6 +110,7 @@ Run these commands in order to keep everything synced.
 > "I am working on the package: **[PACKAGE_NAME]**.
 >
 > **Task:**
+
 > 1. **Locate Files:** Find the source YAML in `packages/` and the documentation Markdown in `docs_site/docs/smart-home/packages/` matching this name.
 > 2. **Guard Check:** If the Markdown contains `auto_update: false`, **ABORT**.
 > 3. **Smart Analysis:**
@@ -127,6 +128,7 @@ Run these commands in order to keep everything synced.
 
 **Task: Update Architecture (Structure & Overview)**
 > "Update `docs_site/docs/smart-home/structure.md` AND `docs_site/docs/index.md`.
+
 > 1. **Structure:** Re-scan root. Update file tree.
 > 2. **Overview:** Update 'High Level Architecture' with new integrations."
 

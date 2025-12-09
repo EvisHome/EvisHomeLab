@@ -6,7 +6,6 @@
     font-weight: bold;
 }
 
-/* Add separator line before System Manual in Sidebar */
 /* Make H1, H2, and H3 headers Orange (using the Accent color variable) */
 .md-typeset h1,
 .md-typeset h2,
@@ -15,11 +14,14 @@
     font-weight: bold;
 }
 
-/* Add separator line before System Manual in Sidebar */
-.md-nav__item a[href*='system_manual'] {
-    margin-top: 15px;
-    padding-top: 15px;
+/* Robust Separator for System Manual */
+.md-nav__item a[href*='system_manual'],
+.md-nav__item a[href*='setup_guide'] {
     border-top: 1px solid var(--md-default-fg-color--lightest);
+    margin-top: 12px !important;
+    padding-top: 12px !important;
+    display: block;
+    width: 100%;
 }
 
 /* Add separator line below Home in Sidebar */

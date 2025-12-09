@@ -10,44 +10,63 @@ version: 2.0.3
 **Version:** 2.0.3  
 **Description:** Unified logic for Mercedes GLC. Normalizes sensors (Windows/Doors), wrapper switches, and Status Notifications.
 
-![Package Image](../../../assets/images/packages/car.png)
-
-## Dashboard
-
-![Dashboard Image](../../../assets/images/dashboards/car.png)
+<!-- START_IMAGE -->
+![Package Diagram](../../../assets/images/packages/car.png)
+<!-- END_IMAGE -->
 
 ## Executive Summary
-This package creates a unified interface for the Mercedes GLC, normalizing data from the `mbapi2020` integration. It provides standardized sensors for windows, doors, and locks, and exposes switches for remote control (A/C, Windows, Locks). The package also includes a smart notification system that alerts on critical events like charging status, pre-conditioning, and vehicle warnings (Tire Pressure, Brake Fluid, etc.).
+<!-- START_SUMMARY -->
+The Car package centralizes all logic for the Mercedes GLC, interfacing with the `ReneNulschDE/mbapi2020` integration. It provides a standardized data layer by normalizing proprietary attributes (window states, door locks) into standard Home Assistant binary sensors. It includes API wrappers for common actions (locking, pre-heating) and a robust notification system for charging and critical alerts.
+<!-- END_SUMMARY -->
 
-## Architecture
+## Process Description (Non-Technical)
+<!-- START_DETAILED -->
+### How It Works
+1.  **Monitoring**: The house knows the status of your car windows, doors, and engine. You can see at a glance if the car is locked or if a window was left open.
+2.  **Remote Control**: You can start the "Pre-entry Climate" system directly from the dashboard to warm up or cool down the car before you leave.
+3.  **Charging**:
+    *   **Plugged In**: You get a confirmation notification when the cable is connected.
+    *   **Started**: When charging begins, you are notified of the current charging power (kW) and the estimated finish time.
+    *   **Finished**: You get an alert when the battery hits 100%.
+4.  **Critical Alerts**: The system watches for vehicle warnings. If brake fluid is low or coolant is needed, a critical alert is sent to your phone immediately.
+<!-- END_DETAILED -->
+
+## Architecture Diagram
+<!-- START_MERMAID_DESC -->
+The following diagram illustrates the flow from the vehicle API to the user. The `mbapi2020` integration polls the Mercedes Cloud service. The `Car Package` acts as a middle layer, normalizing this raw data into standard sensors (e.g., standardizing window '2' status to 'Closed'). When critical sensors like `low_brake_fluid` trigger, the automation layer evaluates the severity before dispatching either a standard info message or a critical alarm via `notify_smart_master`.
+<!-- END_MERMAID_DESC -->
+
+<!-- START_MERMAID -->
 ```mermaid
 sequenceDiagram
-    participant Car as Mercedes API
-    participant Pkg as Package Logic
-    participant HA as Home Assistant
-    participant User as User
+    participant Cloud as Mercedes Cloud
+    participant API as Integration (mbapi2020)
+    participant HA as Car Package
+    participant User as User (Mobile)
 
-    Note over Car, Pkg: Normalization
-    Car->>Pkg: Attributes (Windowstatus, Doorlock, etc.)
-    Pkg->>HA: binary_sensor.car_glc_window_*
-    Pkg->>HA: binary_sensor.car_glc_lock_*
-
-    Note over User, Car: Remote Control
-    User->>HA: Switch: Car Pre-entry A/C
-    HA->>Car: Service: mbapi2020.preheat_start
-
-    Note over Pkg, HA: Automations
-    rect rgb(20, 50, 20)
-        Car->>Pkg: Charging Started / Full
-        Pkg->>HA: Notify "Charging Status"
+    Cloud->>API: Poll Status
+    API->>HA: Update Attributes (Windows/Doors)
+    HA->>HA: Normalize to Binary Sensors
+    
+    rect rgb(20, 20, 20)
+    Note over HA: User Action
+    User->>HA: Toggle 'Pre-entry AC'
+    HA->>API: Service Call (preheat_start)
+    API->>Cloud: Command
     end
+    
     rect rgb(50, 20, 20)
-        Car->>Pkg: Warning (Tire, Brake Fluid)
-        Pkg->>HA: Notify "Critical Warning"
+    Note over HA: Critical Event
+    API->>HA: Sensor 'Low Brake Fluid' = On
+    HA->>User: CRITICAL ALERT (Notify Script)
     end
+    
+    API->>HA: Charging Started
+    HA->>User: Notify "Charging at 11kW" (Est. Time)
 ```
+<!-- END_MERMAID -->
 
-## Configuration
+## Configuration (Source Code)
 ```yaml
 # ------------------------------------------------------------------------------
 # Package: Car GLC
@@ -340,7 +359,7 @@ automation:
               {% endif %}
 
               {
-                "title": "⚡ Charging Started",
+                "title": "⚡ Car Charging Started",
                 "message": "Charging at {{ power }} kW. Ready by: {{ end_time }}",
                 "tag": "car_charging",
                 "critical": false
@@ -348,7 +367,7 @@ automation:
             {% elif trigger.id == 'charging_full' %}
               {% set range = states('sensor.xpb_358_range_electric') %}
               {
-                "title": "🔋 Fully Charged",
+                "title": "🔋 Car Fully Charged",
                 "message": "Battery is 100%. Range: {{ range }} km.",
                 "tag": "car_charging",
                 "critical": false
@@ -386,7 +405,7 @@ automation:
                 "title": "⚠️ Car Warning",
                 "message": "Low Coolant Level.",
                 "tag": "car_warning",
-                "critical": false
+                "critical": true
               }
             {% elif trigger.id == 'warn_wash_water' %}
               {
@@ -414,3 +433,48 @@ automation:
 # ------------------------------------------------------------------------------
 
 ```
+
+## Dashboard Connections
+<!-- START_DASHBOARD -->
+The following card is used in the main dashboard. It combines a visual representation of the car with quick actions for climate control and details for Fuel/EV battery levels.
+
+```yaml
+type: picture-elements
+image: local/car/Car-BG.png
+elements:
+  - type: custom:button-card
+    template: [area_base_overlay]
+    entity: switch.xpb_358_pre_entry_climate_control
+    tap_action:
+      action: navigate
+      navigation_path: /dashboard-persons/car
+    hold_action:
+      action: toggle
+    double_tap_action:
+      action: fire-dom-event
+      browser_mod:
+        service: browser_mod.popup
+        data:
+          title: CAR
+          content:
+            type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:mushroom-template-card
+                    entity: sensor.fuel_level
+                    primary: Fuel Level
+                    secondary: "{{ states('sensor.xpb_358_fuel_level') }}% | {{ states('sensor.xpb_358_range_liquid') }} km range"
+                    icon: mdi:gas-station
+                  - type: custom:mushroom-template-card
+                    entity: sensor.ev_battery_level
+                    primary: EV Charge
+                    secondary: "{{ states('sensor.xpb_358_state_of_charge') }}% | {{ states('sensor.xpb_358_range_electric') }} km range"
+                    icon: mdi:car-electric
+              - type: custom:scheduler-card
+                include: [switch.xpb_358_pre_entry_climate_control]
+              - type: map
+                entities: [person.car]
+                hours_to_show: 48
+```
+<!-- END_DASHBOARD -->
