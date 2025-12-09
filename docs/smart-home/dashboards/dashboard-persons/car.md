@@ -151,7 +151,7 @@ sections:
         z-index: 4
     - type: conditional
       conditions:
-      - entity: device_tracker.xbp_358_device_tracker
+      - entity: device_tracker.[LICENSE_PLATE]_device_tracker
         state: home
       elements:
       - type: image
@@ -164,7 +164,7 @@ sections:
           z-index: 2
     - type: conditional
       conditions:
-      - entity: device_tracker.xbp_358_device_tracker
+      - entity: device_tracker.[LICENSE_PLATE]_device_tracker
         state: not_home
       elements:
       - type: image
