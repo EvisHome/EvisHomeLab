@@ -52,7 +52,7 @@ Create `.antigravity/rules.md`:
 
 ### 1. Visual Assets Standard
 Images must be sorted into subfolders to keep the repo clean.
-* **Dashboards:** `docs/assets/images/dashboards/view_[path].png`
+* **Dashboards:** `docs/assets/images/dashboards/dashboard_[slug]_[view].png`
 * **Packages:** `docs/assets/images/packages/[name].png`
 * **Brand:** `docs/assets/images/brand/`
 
@@ -72,25 +72,23 @@ Use YAML frontmatter to categorize pages for the Tag Cloud.
 Run these commands in order to keep everything synced.
 
 1.  **Commit Config (Local Repo A):**
-    * `cd /; git add .; git commit -m "WIP: Config updates"`
+    * `git add .; git commit -m "WIP: Config updates"`
 2.  **Update Tools:**
-    * `cd /; python ag_update_docs.py` (Refreshes manual/scripts).
+    * `python ag_update_docs.py` (Refreshes manual/scripts from definitions).
 3.  **Regenerate Docs:**
-    * Dashboards: `cd /; python ag_regenerate_dashboards.py`
-    * Packages: `cd /; python ag_update_package.py --all`
+    * Dashboards: `python ag_regenerate_dashboards.py`
+    * Packages: `python ag_update_package.py --all`
 4.  **Publish Docs (Public Repo B):**
-    * `cd /docs_site; git add .; git commit -m "Routine update"; git push`
+    * `cd docs_site; git add .; git commit -m "Routine update"; git push`
 
 ### 2. The AI Architect Workflow
 **Start new chats with:** "I am resuming EvisHomeLab. Read `docs_site/AI_CONTEXT.md` and `docs_site/docs/system_manual/setup_guide.md`. Adopt the persona."
 
 ### 3. The Agent Prompts
 
-```markdown
-> **Task: Standardize Package Headers (Source Code Management)**
-> 
-> Scan `packages/`. Check headers. If missing/legacy, prepend:
-> 
+**Task: Standardize Package Headers (Source Code Management)**
+> "Scan `packages/`. Check headers. If missing/legacy, prepend:
+>
 > ```yaml
 > # ------------------------------------------------------------------------------
 > # Package: [Filename]
@@ -98,8 +96,7 @@ Run these commands in order to keep everything synced.
 > # Description: [Summary]
 > # Dependencies: [Entities used]
 > # ------------------------------------------------------------------------------
-> ```
-```
+> ```"
 
 **Task: Update Package Boilerplate (Automation)**
 *Use this prompt first to ensure the documentation structure is correct and versioned.*
@@ -116,7 +113,7 @@ Run these commands in order to keep everything synced.
 > 3. **Smart Analysis:**
 >    - **Executive Summary:** Technical overview for admins.
 >    - **Process Description:** Non-technical explanation for users (How it works).
->    - **Architecture:** Generate a `mermaid` sequence diagram. **CRITICAL:** Write a specific narrative paragraph explaining the logic flow shown in the diagram (e.g. 'When the sensor triggers, it evaluates Condition A before firing Script B'). **Do NOT** use generic captions like 'This diagram shows the flow'.
+>    - **Architecture:** Generate a `mermaid` sequence diagram. **CRITICAL:** Write a specific narrative paragraph explaining the logic flow shown in the diagram.
 > 4. **Update Documentation File:**
 >    - **Target:** Locate the specific HTML comment markers (slots).
 >    - **Action:** Replace the content *between* the markers.
@@ -125,6 +122,15 @@ Run these commands in order to keep everything synced.
 >      - `<!-- START_MERMAID_DESC -->` ... `<!-- END_MERMAID_DESC -->`
 >      - `<!-- START_MERMAID -->` ... `<!-- END_MERMAID -->`
 >    - **Dashboard Links:** Scan `.storage/lovelace_dashboards` and embed cards into `<!-- START_DASHBOARD -->`."
+
+**Task: Analyze Dashboard View (Intelligence Injection)**
+*Use this to populate the empty summaries in your generated dashboard docs.*
+
+> "Analyze the dashboard view: **[VIEW_PATH]** (e.g. `dashboards/main/car.md`).
+> 1. **Read** the Markdown file to see the embedded YAML configuration.
+> 2. **Analyze:** Understand what devices and controls are present (e.g., 'Thermostat control', 'Camera feed').
+> 3. **Write Summary:** Create a 1-2 sentence non-technical summary of what this view allows the user to do.
+> 4. **Inject:** Replace the content between `<!-- START_SUMMARY -->` and `<!-- END_SUMMARY -->` with your text."
 
 **Task: Update Architecture (Structure & Overview)**
 > "Update `docs_site/docs/smart-home/structure.md` AND `docs_site/docs/index.md`.
