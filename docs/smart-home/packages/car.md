@@ -36,8 +36,8 @@ The Car package centralizes all logic for the Mercedes GLC, interfacing with the
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
-* **[CAR](../dashboards/dashboard-persons/car.md)** (Uses 12 entities)
-* **[Home](../dashboards/main/home.md)** (Uses 8 entities)
+* **[CAR](../dashboards/dashboard-persons/car.md)**: *This view provides a comprehensive dashboard for monitoring and controlling the Mercedes-Benz car. It allows users to check fuel and battery levels, verify door and window status, control pre-entry climate, and track the vehicle's location.* (Uses 1 entities)
+* **[Home](../dashboards/main/home.md)** (Uses 1 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram
@@ -96,97 +96,97 @@ template:
         unique_id: car_glc_window_front_left
         device_class: window
         state: >
-          {{ state_attr('binary_sensor.xpb_358_windows_closed', 'Windowstatusfrontleft') != '2' }}
+          {{ state_attr('binary_sensor.[LICENSE_PLATE]_windows_closed', 'Windowstatusfrontleft') != '2' }}
 
       - name: "Car GLC Window Front Right"
         unique_id: car_glc_window_front_right
         device_class: window
         state: >
-          {{ state_attr('binary_sensor.xpb_358_windows_closed', 'Windowstatusfrontright') != '2' }}
+          {{ state_attr('binary_sensor.[LICENSE_PLATE]_windows_closed', 'Windowstatusfrontright') != '2' }}
 
       - name: "Car GLC Window Rear Left"
         unique_id: car_glc_window_rear_left
         device_class: window
         state: >
-          {{ state_attr('binary_sensor.xpb_358_windows_closed', 'Windowstatusrearleft') != '2' }}
+          {{ state_attr('binary_sensor.[LICENSE_PLATE]_windows_closed', 'Windowstatusrearleft') != '2' }}
 
       - name: "Car GLC Window Rear Right"
         unique_id: car_glc_window_rear_right
         device_class: window
         state: >
-          {{ state_attr('binary_sensor.xpb_358_windows_closed', 'Windowstatusrearright') != '2' }}
+          {{ state_attr('binary_sensor.[LICENSE_PLATE]_windows_closed', 'Windowstatusrearright') != '2' }}
 
       # --- Doors (Normalized from Attribute) ---
       - name: "Car GLC Door Front Left"
         unique_id: car_glc_door_front_left
         device_class: door
         state: >
-          {{ state_attr('sensor.xpb_358_lock', 'Door front left') != 'closed' }}
+          {{ state_attr('sensor.[LICENSE_PLATE]_lock', 'Door front left') != 'closed' }}
 
       - name: "Car GLC Door Front Right"
         unique_id: car_glc_door_front_right
         device_class: door
         state: >
-          {{ state_attr('sensor.xpb_358_lock', 'Door front right') != 'closed' }}
+          {{ state_attr('sensor.[LICENSE_PLATE]_lock', 'Door front right') != 'closed' }}
 
       - name: "Car GLC Door Rear Left"
         unique_id: car_glc_door_rear_left
         device_class: door
         state: >
-          {{ state_attr('sensor.xpb_358_lock', 'Door rear left') != 'closed' }}
+          {{ state_attr('sensor.[LICENSE_PLATE]_lock', 'Door rear left') != 'closed' }}
 
       - name: "Car GLC Door Rear Right"
         unique_id: car_glc_door_rear_right
         device_class: door
         state: >
-          {{ state_attr('sensor.xpb_358_lock', 'Door rear right') != 'closed' }}
+          {{ state_attr('sensor.[LICENSE_PLATE]_lock', 'Door rear right') != 'closed' }}
 
       - name: "Car GLC Deck Lid"
         unique_id: car_glc_deck_lid
         device_class: opening
         state: >
-          {{ state_attr('sensor.xpb_358_lock', 'Deck lid') != 'closed' }}
+          {{ state_attr('sensor.[LICENSE_PLATE]_lock', 'Deck lid') != 'closed' }}
 
       # --- Locks (Normalized from Attribute) ---
       - name: "Car GLC Lock Front Left"
         unique_id: car_glc_lock_front_left
         device_class: lock
         state: >
-          {{ state_attr('sensor.xpb_358_lock', 'Door lock front left') != 'locked' }}
+          {{ state_attr('sensor.[LICENSE_PLATE]_lock', 'Door lock front left') != 'locked' }}
 
       - name: "Car GLC Lock Front Right"
         unique_id: car_glc_lock_front_right
         device_class: lock
         state: >
-          {{ state_attr('sensor.xpb_358_lock', 'Door lock front right') != 'locked' }}
+          {{ state_attr('sensor.[LICENSE_PLATE]_lock', 'Door lock front right') != 'locked' }}
 
       - name: "Car GLC Lock Rear Left"
         unique_id: car_glc_lock_rear_left
         device_class: lock
         state: >
-          {{ state_attr('sensor.xpb_358_lock', 'Door lock rear left') != 'locked' }}
+          {{ state_attr('sensor.[LICENSE_PLATE]_lock', 'Door lock rear left') != 'locked' }}
 
       - name: "Car GLC Lock Rear Right"
         unique_id: car_glc_lock_rear_right
         device_class: lock
         state: >
-          {{ state_attr('sensor.xpb_358_lock', 'Door lock rear right') != 'locked' }}
+          {{ state_attr('sensor.[LICENSE_PLATE]_lock', 'Door lock rear right') != 'locked' }}
 
       - name: "Car GLC Gas Lock"
         unique_id: car_glc_gas_lock
         device_class: lock
         state: >
-          {{ state_attr('sensor.xpb_358_lock', 'Gas lock') != 'locked' }}
+          {{ state_attr('sensor.[LICENSE_PLATE]_lock', 'Gas lock') != 'locked' }}
 
       # --- Logic Sensors (Consolidated Status) ---
       - name: "Car Charge Plug"
         unique_id: car_charge_plug
         device_class: plug
         state: >
-          {% set value = state_attr('sensor.xpb_358_range_electric', 'chargingstatus') | float(0) %}
+          {% set value = state_attr('sensor.[LICENSE_PLATE]_range_electric', 'chargingstatus') | float(0) %}
           {{ value != 3 }}
         icon: >
-          {% set value = state_attr('sensor.xpb_358_range_electric', 'chargingstatus') | float(0) %}
+          {% set value = state_attr('sensor.[LICENSE_PLATE]_range_electric', 'chargingstatus') | float(0) %}
           {% if value == 3 %}
             mdi:power-plug-off
           {% else %}
@@ -197,10 +197,10 @@ template:
         unique_id: car_charging_active
         device_class: power
         state: >
-          {% set value = states('sensor.xpb_358_charging_power') | float(0) %}
+          {% set value = states('sensor.[LICENSE_PLATE]_charging_power') | float(0) %}
           {{ value != 0 }}
         icon: >
-          {% if states('sensor.xpb_358_charging_power') | float(0) == 0 %}
+          {% if states('sensor.[LICENSE_PLATE]_charging_power') | float(0) == 0 %}
             mdi:power-off
           {% else %}
             mdi:power-on
@@ -210,10 +210,10 @@ template:
         unique_id: car_engine_status
         device_class: running
         state: >
-          {% set value = states('sensor.xpb_358_ignition_state') | float(0) %}
+          {% set value = states('sensor.[LICENSE_PLATE]_ignition_state') | float(0) %}
           {{ value >= 2 }}
         icon: >
-          {% if states('sensor.xpb_358_ignition_state') | float(0) < 2 %}
+          {% if states('sensor.[LICENSE_PLATE]_ignition_state') | float(0) < 2 %}
             mdi:engine-off
           {% else %}
             mdi:engine
@@ -223,10 +223,10 @@ template:
         unique_id: car_doors_status
         device_class: door
         state: >
-          {% set value = state_attr('sensor.xpb_358_lock', 'doorStatusOverall') %}
+          {% set value = state_attr('sensor.[LICENSE_PLATE]_lock', 'doorStatusOverall') %}
           {{ value == 0 }}
         icon: >
-          {% if state_attr('sensor.xpb_358_lock', 'doorStatusOverall') == 0 %}
+          {% if state_attr('sensor.[LICENSE_PLATE]_lock', 'doorStatusOverall') == 0 %}
             mdi:car-door
           {% else %}
             mdi:car-door-lock
@@ -236,7 +236,7 @@ template:
       - name: "Car Charge Ready"
         unique_id: car_charge_ready_time
         state: >
-          {% set end = state_attr('sensor.xpb_358_range_electric', 'endofchargetime') %}
+          {% set end = state_attr('sensor.[LICENSE_PLATE]_range_electric', 'endofchargetime') %}
           {% if end %}
             {{ as_datetime(end).strftime('%H:%M') }}
           {% else %}
@@ -250,7 +250,7 @@ switch:
   - name: "Car Pre-entry A/C"
     unique_id: car_pre_entry_ac
     icon: mdi:air-conditioner
-    state: "{{ is_state_attr('sensor.xpb_358_range_electric', 'precondNow', 1) }}"
+    state: "{{ is_state_attr('sensor.[LICENSE_PLATE]_range_electric', 'precondNow', 1) }}"
     turn_on:
       service: mbapi2020.preheat_start
       data:
@@ -264,7 +264,7 @@ switch:
   - name: "Car Windows"
     unique_id: car_windows
     icon: mdi:car-door
-    state: "{{ is_state('binary_sensor.xpb_358_windows_closed', 'on') }}"
+    state: "{{ is_state('binary_sensor.[LICENSE_PLATE]_windows_closed', 'on') }}"
     turn_on:
       service: mbapi2020.windows_close
       data:
@@ -277,7 +277,7 @@ switch:
   - name: "Car Door Locks"
     unique_id: car_doors
     icon: mdi:car-door
-    state: "{{ is_state('sensor.xpb_358_lock', '2') }}"
+    state: "{{ is_state('sensor.[LICENSE_PLATE]_lock', '2') }}"
     turn_on:
       service: mbapi2020.doors_unlock
       data:
@@ -300,38 +300,38 @@ automation:
         to: "on"
         id: plug_in
         platform: state
-      - entity_id: binary_sensor.xpb_358_charging_active
+      - entity_id: binary_sensor.[LICENSE_PLATE]_charging_active
         from: "off"
         to: "on"
         id: charging_start
         platform: state
-      - entity_id: sensor.xpb_358_state_of_charge
+      - entity_id: sensor.[LICENSE_PLATE]_state_of_charge
         above: 99
         id: charging_full
         platform: numeric_state
-      - entity_id: binary_sensor.xpb_358_preclimate_status
+      - entity_id: binary_sensor.[LICENSE_PLATE]_preclimate_status
         from: "off"
         to: "on"
         id: climate_started
         platform: state
-      - entity_id: binary_sensor.xpb_358_preclimate_status
+      - entity_id: binary_sensor.[LICENSE_PLATE]_preclimate_status
         from: "on"
         to: "off"
         id: climate_stopped
         platform: state
-      - entity_id: binary_sensor.xpb_358_tire_warning
+      - entity_id: binary_sensor.[LICENSE_PLATE]_tire_warning
         to: "on"
         id: warn_tire
         platform: state
-      - entity_id: binary_sensor.xpb_358_low_brake_fluid_warning
+      - entity_id: binary_sensor.[LICENSE_PLATE]_low_brake_fluid_warning
         to: "on"
         id: warn_brake
         platform: state
-      - entity_id: binary_sensor.xpb_358_low_coolant_level_warning
+      - entity_id: binary_sensor.[LICENSE_PLATE]_low_coolant_level_warning
         to: "on"
         id: warn_coolant
         platform: state
-      - entity_id: binary_sensor.xpb_358_low_wash_water_warning
+      - entity_id: binary_sensor.[LICENSE_PLATE]_low_wash_water_warning
         to: "on"
         id: warn_wash_water
         platform: state
@@ -342,7 +342,7 @@ automation:
                 id: charging_start
             sequence:
               - wait_for_trigger:
-                  - entity_id: sensor.xpb_358_charging_power
+                  - entity_id: sensor.[LICENSE_PLATE]_charging_power
                     above: 0
                     platform: numeric_state
                 timeout: "00:02:00"
@@ -357,8 +357,8 @@ automation:
                 "critical": false
               }
             {% elif trigger.id == 'charging_start' %}
-              {% set power = states('sensor.xpb_358_charging_power') %}
-              {% set raw_end = state_attr('sensor.xpb_358_end_of_charge', 'original_value') %}
+              {% set power = states('sensor.[LICENSE_PLATE]_charging_power') %}
+              {% set raw_end = state_attr('sensor.[LICENSE_PLATE]_end_of_charge', 'original_value') %}
               
               {# Convert raw timestamp to HH:MM format (Local Time) #}
               {% if raw_end not in ['unknown', 'unavailable', None] %}
@@ -374,7 +374,7 @@ automation:
                 "critical": false
               }
             {% elif trigger.id == 'charging_full' %}
-              {% set range = states('sensor.xpb_358_range_electric') %}
+              {% set range = states('sensor.[LICENSE_PLATE]_range_electric') %}
               {
                 "title": "🔋 Car Fully Charged",
                 "message": "Battery is 100%. Range: {{ range }} km.",
