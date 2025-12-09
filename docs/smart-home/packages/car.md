@@ -437,45 +437,8 @@ automation:
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
-The following card is used in the main dashboard. It combines a visual representation of the car with quick actions for climate control and details for Fuel/EV battery levels.
+This package powers the following dashboard views:
 
-```yaml
-type: picture-elements
-image: local/car/Car-BG.png
-elements:
-  - type: custom:button-card
-    template: [area_base_overlay]
-    entity: switch.xpb_358_pre_entry_climate_control
-    tap_action:
-      action: navigate
-      navigation_path: /dashboard-persons/car
-    hold_action:
-      action: toggle
-    double_tap_action:
-      action: fire-dom-event
-      browser_mod:
-        service: browser_mod.popup
-        data:
-          title: CAR
-          content:
-            type: vertical-stack
-            cards:
-              - type: horizontal-stack
-                cards:
-                  - type: custom:mushroom-template-card
-                    entity: sensor.fuel_level
-                    primary: Fuel Level
-                    secondary: "{{ states('sensor.xpb_358_fuel_level') }}% | {{ states('sensor.xpb_358_range_liquid') }} km range"
-                    icon: mdi:gas-station
-                  - type: custom:mushroom-template-card
-                    entity: sensor.ev_battery_level
-                    primary: EV Charge
-                    secondary: "{{ states('sensor.xpb_358_state_of_charge') }}% | {{ states('sensor.xpb_358_range_electric') }} km range"
-                    icon: mdi:car-electric
-              - type: custom:scheduler-card
-                include: [switch.xpb_358_pre_entry_climate_control]
-              - type: map
-                entities: [person.car]
-                hours_to_show: 48
-```
+* **[CAR](../dashboards/dashboard-persons/car.md)** (Uses 12 entities)
+* **[Home](../dashboards/main/home.md)** (Uses 8 entities)
 <!-- END_DASHBOARD -->
