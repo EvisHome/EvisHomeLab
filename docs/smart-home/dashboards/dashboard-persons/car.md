@@ -11,7 +11,7 @@ tags:
 **Path:** `car`
 
 <!-- START_SUMMARY -->
-This view provides a comprehensive dashboard for monitoring and controlling the Mercedes-Benz car. It allows users to check fuel, EV battery, tire pressure, and lock status, verify door and window sensors, control pre-entry climate, and track the vehicle's location.
+The **Car Dashboard** provides a centralized command center for the Mercedes GLC, unifying vehicle health monitoring and remote control. It combines real-time data metrics (fuel, battery, tire pressure) with actionable controls (locks, climate pre-conditioning). The interface features a visual "Digital Twin" of the car to intuitively display status alerts, warning indicators (low fluids, unlocked doors), and charging progress, alongside a real-time location tracker.
 <!-- END_SUMMARY -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_car.png)
@@ -21,6 +21,22 @@ This view contains entities managed by:
 
 * [Car](../../packages/car.md)
 
+
+<!-- START_DETAILED -->
+### User Guide
+*   **Status Cards**:
+    *   **Fuel & Battery**: Large cards at the top show current levels. Color changes (Green $\to$ Yellow $\to$ Red) indicate if you need to refuel or recharge. The "Pre AC" card allows manual toggling of the climate control.
+    *   **Scheduler**: Use the list view to set automatic "Departure Times" for the climate control, ensuring a warm car on cold mornings.
+
+*   **Visual Car Status (Picture Elements)**:
+    *   **Tires**: Four tire icons positioned at the wheels display pressure status. A blinking **Orange** icon warns of low pressure.
+    *   **Locks**: A central lock icon indicates security. **Green** = Locked, **Blinking Red/Orange** = Unlocked.
+    *   **Fluids**: Icons for **Brake Fluid**, **Coolant**, and **Washer Fluid** appear at the top if levels are low.
+    *   **Charging**: A plug icon appears near the charging port when the cable is connected; it blinks blue when actively charging.
+    *   **Location**: The background changes to show "Home" (Garage) or "Road" depending on the car's tracker state.
+
+*   **Map**: The bottom section renders a live map trace of the car's location over the last 48 hours.
+<!-- END_DETAILED -->
 
 ## Dependencies (Custom Cards)
 Required HACS frontend resources:
@@ -32,7 +48,44 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml
+<!-- START_MERMAID_DESC -->
+The dashboard visualizes data aggregated by the `Car` package. The architecture organizes entities into logical layers: **Header Widgets** for high-level metrics (Fuel, Battery), a **Visual Layer** (Picture Elements) for spatial alerts (Tires, Locks), and a **Control Layer** for interacting with the vehicle (Climate, Scheduler). The `Browser Mod` integration allows for detailed pop-up interactions when cards are double-tapped.
+<!-- END_MERMAID_DESC -->
+
+<!-- START_MERMAID -->
+```mermaid
+graph TD
+    subgraph Data Sources
+        Fuel[Sensor: Fuel & Range]
+        EV[Sensor: Battery & Charge]
+        Tire[Binary Sensor: Tire Warning]
+        Lock[Sensor: Lock Status]
+        Climate[Switch: Pre-entry AC]
+        Track[Person: Car Location]
+    end
+
+    subgraph UI Layers
+        Header[Mushroom Cards: Fuel, EV, AC]
+        Visual[Picture Elements: Car Image]
+        Sched[Scheduler Card: Timers]
+        Map[Map Card: Location History]
+    end
+
+    Fuel --> Header
+    EV --> Header
+    Climate --> Header
+    Climate <--> Sched
+    
+    Tire --> Visual
+    Lock --> Visual
+    EV --> Visual
+    
+    Track --> Map
+
+    style Visual fill:#2d3436,stroke:#fab1a0,stroke-width:2px,color:white
+    style Header fill:#0984e3,stroke:#74b9ff,stroke-width:2px,color:white
+```
+<!-- END_MERMAID -->
 title: CAR
 badges: []
 cards: []
