@@ -14,18 +14,6 @@
     font-weight: bold;
 }
 
-/* Sidebar Separator - Persistent */
-.md-nav__item a[href*='system_manual'],
-.md-nav__item a[href*='setup_guide'],
-.md-nav__link--active[href*='system_manual'],
-.md-nav__link--active[href*='setup_guide'] {
-    border-top: 1px solid var(--md-default-fg-color--lightest) !important;
-    margin-top: 12px !important;
-    padding-top: 12px !important;
-    display: block;
-    width: 100%;
-}
-
 /* Add separator line below Home in Sidebar */
 .md-nav__item a[href^='index.md'],
 .md-nav__item a[href='.'] {
