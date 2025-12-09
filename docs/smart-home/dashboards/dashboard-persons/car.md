@@ -11,7 +11,7 @@ tags:
 **Path:** `car`
 
 <!-- START_SUMMARY -->
-This view provides a comprehensive dashboard for monitoring and controlling the Mercedes-Benz car (XPB 358). It allows users to check fuel and battery levels, verify door and window status, control pre-entry climate, and track the vehicle's location.
+This view provides a comprehensive dashboard for monitoring and controlling the Mercedes-Benz car. It allows users to check fuel and battery levels, verify door and window status, control pre-entry climate, and track the vehicle's location.
 <!-- END_SUMMARY -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_car.png)
