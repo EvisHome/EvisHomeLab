@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `lobby`
 
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_main_lobby.png)
 
 ## Configuration

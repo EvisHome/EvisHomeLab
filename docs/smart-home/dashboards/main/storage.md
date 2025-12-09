@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `storage`
 
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_main_storage.png)
 
 ## Configuration

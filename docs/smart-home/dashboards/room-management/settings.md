@@ -10,6 +10,13 @@ tags:
 **Dashboard:** Room Management  
 **Path:** `settings`
 
+## Related Packages
+This view contains entities managed by:
+
+* [Room Automation](../../packages/room_automation.md)
+* [Smart Notifications](../../packages/smart_notifications.md)
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_room-management_settings.png)
 
 ## Configuration

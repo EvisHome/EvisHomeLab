@@ -10,6 +10,12 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `bedroom`
 
+## Related Packages
+This view contains entities managed by:
+
+* [Scenes](../../packages/scenes.md)
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_main_bedroom.png)
 
 ## Configuration

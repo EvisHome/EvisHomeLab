@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `Daughter`
 
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_main_daughter.png)
 
 ## Configuration

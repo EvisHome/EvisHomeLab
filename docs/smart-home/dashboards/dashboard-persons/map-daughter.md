@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Persons  
 **Path:** `map-Daughter`
 
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_dashboard-persons_map-daughter.png)
 
 ## Configuration

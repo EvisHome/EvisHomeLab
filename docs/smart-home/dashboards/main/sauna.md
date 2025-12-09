@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `sauna`
 
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_main_sauna.png)
 
 ## Configuration

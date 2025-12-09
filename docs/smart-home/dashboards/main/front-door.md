@@ -10,6 +10,12 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `front-door`
 
+## Related Packages
+This view contains entities managed by:
+
+* [Fingerprint Management](../../packages/fingerprint_management.md)
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_main_front-door.png)
 
 ## Configuration

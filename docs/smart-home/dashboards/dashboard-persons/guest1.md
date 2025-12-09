@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Persons  
 **Path:** `Guest 1`
 
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_dashboard-persons_guest1.png)
 
 ## Configuration

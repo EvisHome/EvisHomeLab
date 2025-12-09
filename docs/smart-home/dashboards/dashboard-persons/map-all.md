@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Persons  
 **Path:** `map-all`
 
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_dashboard-persons_map-all.png)
 
 ## Configuration

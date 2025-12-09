@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Persons  
 **Path:** `Daughter`
 
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_dashboard-persons_daughter.png)
 
 ## Configuration

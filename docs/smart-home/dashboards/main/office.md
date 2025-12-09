@@ -10,6 +10,13 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `office`
 
+## Related Packages
+This view contains entities managed by:
+
+* [Office. Pc](../../packages/office._pc.md)
+* [Scenes](../../packages/scenes.md)
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_main_office.png)
 
 ## Configuration

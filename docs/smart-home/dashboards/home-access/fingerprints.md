@@ -10,6 +10,13 @@ tags:
 **Dashboard:** Home Access  
 **Path:** `fingerprints`
 
+## Related Packages
+This view contains entities managed by:
+
+* [Fingerprint Management](../../packages/fingerprint_management.md)
+* [Smart Notifications](../../packages/smart_notifications.md)
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_home-access_fingerprints.png)
 
 ## Configuration

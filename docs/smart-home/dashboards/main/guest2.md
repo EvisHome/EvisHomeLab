@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `Guest 2`
 
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_main_guest2.png)
 
 ## Configuration

@@ -10,6 +10,15 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `living_room`
 
+## Related Packages
+This view contains entities managed by:
+
+* [Airthings](../../packages/airthings.md)
+* [Room Automation](../../packages/room_automation.md)
+* [Scenes](../../packages/scenes.md)
+* [Smart Notifications](../../packages/smart_notifications.md)
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_main_living_room.png)
 
 ## Configuration

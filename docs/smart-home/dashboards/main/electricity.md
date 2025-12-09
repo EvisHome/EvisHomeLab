@@ -10,6 +10,13 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `electricity`
 
+## Related Packages
+This view contains entities managed by:
+
+* [Aqara W500](../../packages/aqara_w500.md)
+* [Nordpool Prices](../../packages/nordpool_prices.md)
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_main_electricity.png)
 
 ## Configuration

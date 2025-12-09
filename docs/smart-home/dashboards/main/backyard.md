@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `backyard`
 
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_main_backyard.png)
 
 ## Configuration

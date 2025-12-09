@@ -10,6 +10,16 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `home`
 
+## Related Packages
+This view contains entities managed by:
+
+* [Aqara W500](../../packages/aqara_w500.md)
+* [Car](../../packages/car.md)
+* [Dishwasher](../../packages/dishwasher.md)
+* [Fingerprint Management](../../packages/fingerprint_management.md)
+* [Nordpool Prices](../../packages/nordpool_prices.md)
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_main_home.png)
 
 ## Configuration

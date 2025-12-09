@@ -10,6 +10,8 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `toilet`
 
+
+
 ![View Screenshot](../../../assets/images/dashboards/dashboard_main_toilet.png)
 
 ## Configuration
