@@ -17,19 +17,17 @@ version: 2.0.3
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-The Car package centralizes all logic for the Mercedes GLC, interfacing with the `ReneNulschDE/mbapi2020` integration. It provides a standardized data layer by normalizing proprietary attributes (window states, door locks) into standard Home Assistant binary sensors. It includes API wrappers for common actions (locking, pre-heating) and a robust notification system for charging and critical alerts.
+The `Car` package provides a unified interface for the Mercedes GLC, leveraging the `mbapi2020` integration. It normalizes proprietary attribute data (e.g., window status codes, specific lock states) into standard Home Assistant binary sensors and device classes. The package includes a comprehensive automation suite (`notify_car_status_glc`) that monitors critical vehicle states—such as charging progress, pre-entry climate control, and fluid warnings—and dispatches actionable notifications via the `notify_smart_master` script.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
 ### How It Works
-1.  **Monitoring**: The house knows the status of your car windows, doors, and engine. You can see at a glance if the car is locked or if a window was left open.
-2.  **Remote Control**: You can start the "Pre-entry Climate" system directly from the dashboard to warm up or cool down the car before you leave.
-3.  **Charging**:
-    *   **Plugged In**: You get a confirmation notification when the cable is connected.
-    *   **Started**: When charging begins, you are notified of the current charging power (kW) and the estimated finish time.
-    *   **Finished**: You get an alert when the battery hits 100%.
-4.  **Critical Alerts**: The system watches for vehicle warnings. If brake fluid is low or coolant is needed, a critical alert is sent to your phone immediately.
+*   **Real-time Monitoring:** The system continuously checks the status of your car's doors, windows, and locks. You can instantly see if the car is secure or if the engine is running.
+*   **Remote Control:** You can lock or unlock the doors and close the windows directly from your dashboard. Additionally, the "Pre-entry A/C" switch allows you to heat or cool the car before you leave.
+*   **Smart Notifications:**
+    *   **Charging:** Receive alerts when the car is plugged in, when charging starts (with estimated completion time), and when the battery is full.
+    *   **Safety & Maintenance:** The system watches for warning signs like low tire pressure, low brake fluid, or low washer fluid and sends critical alerts to your phone if attention is needed.
 <!-- END_DETAILED -->
 
 ## Dashboard Connections
@@ -42,36 +40,33 @@ This package powers the following dashboard views:
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-The following diagram illustrates the flow from the vehicle API to the user. The `mbapi2020` integration polls the Mercedes Cloud service. The `Car Package` acts as a middle layer, normalizing this raw data into standard sensors (e.g., standardizing window '2' status to 'Closed'). When critical sensors like `low_brake_fluid` trigger, the automation layer evaluates the severity before dispatching either a standard info message or a critical alarm via `notify_smart_master`.
+The architecture relies on the `mbapi2020` integration to poll data from the Mercedes Cloud. The `Car` package acts as a transformation layer, converting complex attribute data (like raw status codes for windows and doors) into discrete, easy-to-use binary sensors. This normalized data feeds into a central automation (`notify_car_status_glc`), which evaluates state changes—such as a charging cable connection or a low fluid warning—and routes the appropriate message priority to the user through the `notify_smart_master` script.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
 ```mermaid
 sequenceDiagram
-    participant Cloud as Mercedes Cloud
-    participant API as Integration (mbapi2020)
-    participant HA as Car Package
-    participant User as User (Mobile)
+    participant Mercedes as Mercedes Cloud
+    participant Integration as HA Integration (mbapi2020)
+    participant Package as Car Package
+    participant User as User (Notification)
 
-    Cloud->>API: Poll Status
-    API->>HA: Update Attributes (Windows/Doors)
-    HA->>HA: Normalize to Binary Sensors
-    
-    rect rgb(20, 20, 20)
-    Note over HA: User Action
-    User->>HA: Toggle 'Pre-entry AC'
-    HA->>API: Service Call (preheat_start)
-    API->>Cloud: Command
+    Note over Arrow: Polling Cycle
+    Mercedes->>Integration: Vehicle Status Update
+    Integration->>Package: Update Entity Attributes (Windows, Locks, Odometer)
+    Package->>Package: Normalize Attributes to Binary Sensors
+
+    Note over Package: Automation Logic
+    alt Critical Warning (e.g., Low Brake Fluid)
+        Package->>User: 🚨 Critical Alert via script.notify_smart_master
+    else Standard Event (e.g., Charging Started)
+        Package->>User: ⚡ Info Notification (Power & Est. Time)
     end
-    
-    rect rgb(50, 20, 20)
-    Note over HA: Critical Event
-    API->>HA: Sensor 'Low Brake Fluid' = On
-    HA->>User: CRITICAL ALERT (Notify Script)
-    end
-    
-    API->>HA: Charging Started
-    HA->>User: Notify "Charging at 11kW" (Est. Time)
+
+    Note over User: User Action
+    User->>Package: Toggle "Pre-entry A/C"
+    Package->>Integration: Call Service (preheat_start)
+    Integration->>Mercedes: Send Command
 ```
 <!-- END_MERMAID -->
 
