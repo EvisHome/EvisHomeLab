@@ -36,7 +36,7 @@ The Car package centralizes all logic for the Mercedes GLC, interfacing with the
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
-* **[CAR](../dashboards/dashboard-persons/car.md)**: *This view provides a comprehensive dashboard for monitoring and controlling the Mercedes-Benz car. It allows users to check fuel and battery levels, verify door and window status, control pre-entry climate, and track the vehicle's location.* (Uses 1 entities)
+* **[CAR](../dashboards/dashboard-persons/car.md)**: *This view provides a comprehensive dashboard for monitoring and controlling the Mercedes-Benz car. It allows users to check fuel, EV battery, tire pressure, and lock status, verify door and window sensors, control pre-entry climate, and track the vehicle's location.* (Uses 1 entities)
 * **[Home](../dashboards/main/home.md)** (Uses 1 entities)
 <!-- END_DASHBOARD -->
 

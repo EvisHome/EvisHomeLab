@@ -37,5 +37,6 @@ cards:
   - entity: person.Daughter
   - entity: person.car
   hours_to_show: 2
+  theme_mode: auto
 
 ```

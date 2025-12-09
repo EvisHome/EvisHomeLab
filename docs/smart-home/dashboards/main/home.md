@@ -975,7 +975,7 @@ sections:
     - type: custom:button-card
       template:
       - area_base_overlay
-      entity: switch.xpb_358_pre_entry_climate_control
+      entity: switch.[LICENSE_PLATE]_pre_entry_climate_control
       tap_action:
         action: navigate
         navigation_path: /dashboard-persons/car
@@ -995,24 +995,25 @@ sections:
                 - type: custom:mushroom-template-card
                   entity: sensor.fuel_level
                   primary: Fuel Level
-                  secondary: '{{ states(''sensor.xpb_358_fuel_level'') }}% | {{ states(''sensor.xpb_358_range_liquid'')
-                    }} km range'
+                  secondary: '{{ states(''sensor.[LICENSE_PLATE]_fuel_level'') }}%
+                    | {{ states(''sensor.[LICENSE_PLATE]_range_liquid'') }} km range'
                   icon: mdi:gas-station
                   features_position: bottom
-                  color: "{% set fuel = states('sensor.xpb_358_fuel_level') | int\
-                    \ %} {% if fuel < 20 %}\n  darkred\n{% elif fuel < 50 %}\n  yellow\n\
-                    {% else %}\n  darkgreen\n{% endif %}\n"
+                  color: "{% set fuel = states('sensor.[LICENSE_PLATE]_fuel_level')\
+                    \ | int %} {% if fuel < 20 %}\n  darkred\n{% elif fuel < 50 %}\n\
+                    \  yellow\n{% else %}\n  darkgreen\n{% endif %}\n"
                   card_mod:
                     style: "ha-card {\n  background: linear-gradient(\n    to right,\n\
-                      \    orange {{ states('sensor.xpb_358_fuel_level') }}%,\n  \
-                      \  var(--card-background-color) {{ states('sensor.xpb_358_fuel_level')\
+                      \    orange {{ states('sensor.[LICENSE_PLATE]_fuel_level') }}%,\n\
+                      \    var(--card-background-color) {{ states('sensor.[LICENSE_PLATE]_fuel_level')\
                       \ }}%\n  );\n  );\n  background-size: 100% 100%;\n  background-repeat:\
                       \ no-repeat;\n  border-radius: 12px;\n}\n"
                 - type: custom:mushroom-template-card
                   entity: sensor.ev_battery_level
                   primary: EV Charge
-                  secondary: '{{ states(''sensor.xpb_358_state_of_charge'') }}% |
-                    {{ states(''sensor.xpb_358_range_electric'') }} km range
+                  secondary: '{{ states(''sensor.[LICENSE_PLATE]_state_of_charge'')
+                    }}% | {{ states(''sensor.[LICENSE_PLATE]_range_electric'') }}
+                    km range
 
                     '
                   icon: mdi:car-electric
@@ -1020,19 +1021,19 @@ sections:
                     action: more-info
                   hold_action:
                     action: more-info
-                  color: "{% set charge = states('sensor.xpb_358_state_of_charge')\
+                  color: "{% set charge = states('sensor.[LICENSE_PLATE]_state_of_charge')\
                     \ | int %} {% if charge < 20 %}\n  red\n{% elif charge < 50 %}\n\
                     \  yellow\n{% else %}\n  lightgreen\n{% endif %}\n"
                   features_position: bottom
                   card_mod:
-                    style: "ha-card {\n  --charge: {{ states('sensor.xpb_358_state_of_charge')\
+                    style: "ha-card {\n  --charge: {{ states('sensor.[LICENSE_PLATE]_state_of_charge')\
                       \ }}%;\n  background: linear-gradient(\n    to right,\n    green\
                       \ var(--charge),\n    var(--card-background-color) var(--charge)\n\
                       \  );\n  background-size: 100% 100%;\n  background-repeat: no-repeat;\n\
                       \  border-radius: 12px;\n}\n"
               - type: custom:scheduler-card
                 include:
-                - switch.xpb_358_pre_entry_climate_control
+                - switch.[LICENSE_PLATE]_pre_entry_climate_control
                 exclude: []
                 discover_existing: false
                 title: true
@@ -1067,8 +1068,8 @@ sections:
                 theme_mode: auto
       card_mod:
         style: "ha-card {\n  /* Moves border logic here from original for border display\
-          \ */\n  {% if is_state('sensor.xpb_358_ignition_state','4') %}\n    border:\
-          \ 3px solid rgba(36, 255, 0, 0.8);\n  {% elif is_state('sensor.xpb_358_ignition_state','2')\
+          \ */\n  {% if is_state('sensor.[LICENSE_PLATE]_ignition_state','4') %}\n\
+          \    border: 3px solid rgba(36, 255, 0, 0.8);\n  {% elif is_state('sensor.[LICENSE_PLATE]_ignition_state','2')\
           \ %}\n    border: 3px solid rgba(255, 163, 0, 0.8);\n  {% else %}\n    border:\
           \ 0px solid rgba(0, 0, 0, 0);\n  {% endif %}\n}\n"
       style:
@@ -1079,7 +1080,7 @@ sections:
         z-index: 4
     - type: conditional
       conditions:
-      - entity: device_tracker.xbp_358_device_tracker
+      - entity: device_tracker.[LICENSE_PLATE]_device_tracker
         state: home
       elements:
       - type: image
@@ -1092,7 +1093,7 @@ sections:
           z-index: 2
     - type: conditional
       conditions:
-      - entity: device_tracker.xbp_358_device_tracker
+      - entity: device_tracker.[LICENSE_PLATE]_device_tracker
         state: not_home
       elements:
       - type: image
@@ -1129,7 +1130,7 @@ sections:
         container-type: inline-size
     - type: custom:button-card
       template: area_text_element
-      entity: sensor.xpb_358_state_of_charge
+      entity: sensor.[LICENSE_PLATE]_state_of_charge
       show_name: false
       show_icon: false
       show_state: true
@@ -1157,7 +1158,7 @@ sections:
         styles:
           icon:
           - color: '#088CF8'
-          - animation: "[[[\n  if (states['binary_sensor.xpb_358_charging_active'].state\
+          - animation: "[[[\n  if (states['binary_sensor.[LICENSE_PLATE]_charging_active'].state\
               \ == 'on') {\n    return 'blink 1s ease infinite';\n  } else {\n   \
               \ return 'none';\n  }\n]]]\n"
       - operator: ==
@@ -1167,7 +1168,7 @@ sections:
           - display: none
     - type: custom:button-card
       template: area_status_indicator
-      entity: binary_sensor.xpb_358_park_brake_status
+      entity: binary_sensor.[LICENSE_PLATE]_park_brake_status
       layout: vertical
       style:
         top: 75%
@@ -1188,7 +1189,7 @@ sections:
           - display: none
     - type: custom:button-card
       template: area_status_indicator
-      entity: lock.xpb_358_lock
+      entity: lock.[LICENSE_PLATE]_lock
       icon: mdi:lock-open-variant
       layout: vertical
       style:
@@ -1211,7 +1212,7 @@ sections:
           - display: none
     - type: custom:button-card
       template: area_status_indicator
-      entity: binary_sensor.xpb_358_windows_closed
+      entity: binary_sensor.[LICENSE_PLATE]_windows_closed
       layout: vertical
       style:
         top: 75%
@@ -1233,7 +1234,7 @@ sections:
           - display: none
     - type: custom:button-card
       template: area_status_indicator
-      entity: binary_sensor.xpb_358_low_wash_water_warning
+      entity: binary_sensor.[LICENSE_PLATE]_low_wash_water_warning
       layout: vertical
       style:
         top: 75%
@@ -1258,7 +1259,7 @@ sections:
           \ %}\n}\n"
     - type: custom:button-card
       template: area_status_indicator
-      entity: binary_sensor.xpb_358_tire_warning
+      entity: binary_sensor.[LICENSE_PLATE]_tire_warning
       icon: mdi:tire
       layout: vertical
       style:
@@ -1281,7 +1282,7 @@ sections:
           - display: none
     - type: custom:button-card
       template: area_status_indicator
-      entity: switch.xpb_358_pre_entry_climate_control
+      entity: switch.[LICENSE_PLATE]_pre_entry_climate_control
       icon: mdi:fan
       layout: vertical
       style:
