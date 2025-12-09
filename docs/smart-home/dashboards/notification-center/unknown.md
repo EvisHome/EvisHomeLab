@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Notification Center  
 **Path:** `unknown`
 
-![View Screenshot](../../../assets/images/dashboards/view_notification-center_unknown.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_notification-center_unknown.png)
 
 ## Configuration
 ```yaml

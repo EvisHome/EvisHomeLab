@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `kitchen`
 
-![View Screenshot](../../../assets/images/dashboards/view_main_kitchen.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_main_kitchen.png)
 
 ## Configuration
 ```yaml

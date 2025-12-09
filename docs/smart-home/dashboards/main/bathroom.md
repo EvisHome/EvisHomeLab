@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `bathroom`
 
-![View Screenshot](../../../assets/images/dashboards/view_main_bathroom.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_main_bathroom.png)
 
 ## Configuration
 ```yaml

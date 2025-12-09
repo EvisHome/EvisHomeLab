@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `electricity-dev`
 
-![View Screenshot](../../../assets/images/dashboards/view_main_electricity-dev.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_main_electricity-dev.png)
 
 ## Configuration
 ```yaml

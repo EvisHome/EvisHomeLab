@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Persons  
 **Path:** `unknown`
 
-![View Screenshot](../../../assets/images/dashboards/view_dashboard-persons_unknown.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_dashboard-persons_unknown.png)
 
 ## Configuration
 ```yaml

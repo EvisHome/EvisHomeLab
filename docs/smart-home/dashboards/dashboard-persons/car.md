@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Persons  
 **Path:** `car`
 
-![View Screenshot](../../../assets/images/dashboards/view_dashboard-persons_car.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_dashboard-persons_car.png)
 
 ## Configuration
 ```yaml

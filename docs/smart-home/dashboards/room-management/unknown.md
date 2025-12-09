@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Room Management  
 **Path:** `unknown`
 
-![View Screenshot](../../../assets/images/dashboards/view_room-management_unknown.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_room-management_unknown.png)
 
 ## Configuration
 ```yaml

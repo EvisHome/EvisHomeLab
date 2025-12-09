@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `front-door`
 
-![View Screenshot](../../../assets/images/dashboards/view_main_front-door.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_main_front-door.png)
 
 ## Configuration
 ```yaml

@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `storage`
 
-![View Screenshot](../../../assets/images/dashboards/view_main_storage.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_main_storage.png)
 
 ## Configuration
 ```yaml

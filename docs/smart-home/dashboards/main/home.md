@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `home`
 
-![View Screenshot](../../../assets/images/dashboards/view_main_home.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_main_home.png)
 
 ## Configuration
 ```yaml

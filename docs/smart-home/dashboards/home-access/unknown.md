@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Home Access  
 **Path:** `unknown`
 
-![View Screenshot](../../../assets/images/dashboards/view_home-access_unknown.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_home-access_unknown.png)
 
 ## Configuration
 ```yaml

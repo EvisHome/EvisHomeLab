@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `hallway`
 
-![View Screenshot](../../../assets/images/dashboards/view_main_hallway.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_main_hallway.png)
 
 ## Configuration
 ```yaml

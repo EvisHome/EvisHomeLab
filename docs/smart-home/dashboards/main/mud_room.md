@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `mud_room`
 
-![View Screenshot](../../../assets/images/dashboards/view_main_mud_room.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_main_mud_room.png)
 
 ## Configuration
 ```yaml

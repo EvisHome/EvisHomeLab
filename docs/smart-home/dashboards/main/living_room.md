@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `living_room`
 
-![View Screenshot](../../../assets/images/dashboards/view_main_living_room.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_main_living_room.png)
 
 ## Configuration
 ```yaml

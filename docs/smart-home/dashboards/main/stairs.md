@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `stairs`
 
-![View Screenshot](../../../assets/images/dashboards/view_main_stairs.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_main_stairs.png)
 
 ## Configuration
 ```yaml

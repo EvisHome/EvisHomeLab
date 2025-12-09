@@ -10,7 +10,7 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `office`
 
-![View Screenshot](../../../assets/images/dashboards/view_main_office.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_main_office.png)
 
 ## Configuration
 ```yaml
