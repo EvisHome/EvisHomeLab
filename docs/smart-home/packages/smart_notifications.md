@@ -696,72 +696,10 @@ automation:
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
-### User Subscription Manager
-This `auto-entities` card automatically lists all registered users and their subscription toggles, grouped by user.
+This package powers the following dashboard views:
 
-```yaml
-type: custom:auto-entities
-show_empty: true
-card:
-  type: entities
-  title: Notification Subscriptions
-  show_header_toggle: false
-  card_mod:
-    style: |
-      /* hide the header row completely */
-      .card-header,
-      .card-header > .name,
-      .card-header > .menu,
-      .header {
-        display: none !important;
-      }
-filter:
-  template: |
-    {% set ns = namespace(cards=[]) %} 
-    {# 1. Find all switches that belong to the notification system #} 
-    {% set switches = states.switch 
-       | selectattr('entity_id', 'search', '_notification_') 
-       | selectattr('attributes.user_slug', 'defined') 
-       | list %}
-
-    {# 2. Extract unique users to create groups #} 
-    {% set users = switches | map(attribute='attributes.user_slug') | unique | sort | list %}
-    
-    {% for user in users %}
-      {# Filter switches for this specific user #}
-      {% set user_switches = switches | selectattr('attributes.user_slug', 'eq', user) | sort(attribute='name') | list %}
-      
-      {% if user_switches | length > 0 %}
-        {# 3. Add Section Header #}
-        {% set ns.cards = ns.cards + [{
-          'type': 'section', 
-          'label': user | capitalize ~ '\'s Subscriptions',
-          'card_mod': {
-            'style': ".label { color: orange !important; }"
-          }
-        }] %}
-        
-        {# 4. Add Switches #}
-        {% for sw in user_switches %}
-           {% set is_on = is_state(sw.entity_id, 'on') %}
-           {% set icon_color = 'green' if is_on else 'red' %}
-           {% set icon = 'mdi:email-check' if is_on else 'mdi:email-remove-outline' %}
-           {% set clean_name = sw.name | replace(' Notification', '') %}
-           
-           {% set ns.cards = ns.cards + [{
-             'entity': sw.entity_id,
-             'name': clean_name,
-             'secondary_info': 'last-changed',
-             'icon': icon,
-             'card_mod': {
-               'style': ":host { --card-mod-icon-color: " ~ icon_color ~ "; }"
-              }
-            }] %}
-        {% endfor %}
-      {% endif %}
-    {% endfor %}
-    {{ ns.cards | to_json }}
-sort:
-  method: none
-```
+* **[Fingerprints](../dashboards/home-access/fingerprints.md)** (Uses 1 entities)
+* **[Living Room](../dashboards/main/living_room.md)** (Uses 1 entities)
+* **[Management](../dashboards/notification-center/management.md)** (Uses 9 entities)
+* **[Settings](../dashboards/room-management/settings.md)** (Uses 1 entities)
 <!-- END_DASHBOARD -->

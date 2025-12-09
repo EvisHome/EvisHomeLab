@@ -1,63 +1,212 @@
+---
+tags:
+  - package
+  - automated
+version: 1.0.0
+---
+
 # Package: Home Time Modes
 
+**Version:** 1.0.0  
+**Description:** Parametric Time-of-Day Logic
+
+<!-- START_IMAGE -->
+![Package Diagram](../../../assets/images/packages/home_time_modes.png)
+<!-- END_IMAGE -->
+
 ## Executive Summary
-This package manages the "Mode" of the house (Morning, Day, Evening, Night) based on time of day and sun position. It uses `input_datetime` helpers to define boundaries (e.g., "Morning begins at 06:30") and automations to transition the `input_select.house_mode`.
+<!-- START_SUMMARY -->
+> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
 
-## Architecture
-```mermaid
-sequenceDiagram
-    participant Time as Time Trigger
-    participant Sun as Sun Elevation
-    participant Auto as Automation
-    participant Mode as input_select.house_mode
+*No executive summary generated yet.*
+<!-- END_SUMMARY -->
 
-    Time->>Auto: 06:30 AM Reached
-    Auto->>Mode: Set to 'Morning'
-    
-    Sun->>Auto: Sun below horizon
-    Auto->>Mode: Set to 'Evening'
-```
+## Process Description (Non-Technical)
+<!-- START_DETAILED -->
+> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
 
-## Backend Configuration
-*(Snippet)*
+*No detailed non-technical description generated yet.*
+<!-- END_DETAILED -->
+
+## Architecture Diagram
+<!-- START_MERMAID_DESC -->
+> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+
+*No architecture explanation generated yet.*
+<!-- END_MERMAID_DESC -->
+
+<!-- START_MERMAID -->
+> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+
+*No architecture diagram generated yet.*
+<!-- END_MERMAID -->
+
+## Configuration (Source Code)
 ```yaml
+# ------------------------------------------------------------------------------
+# Package: Home Time Modes
+# Version: 1.0.0
+# Description: Parametric Time-of-Day Logic
+# Dependencies: input_datetime, sun.sun
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# 1. SETTINGS (Editable from Dashboard)
+# ------------------------------------------------------------------------------
+input_datetime:
+  mode_time_morning:
+    name: "Morning Start Time"
+    has_date: false
+    has_time: true
+    initial: "06:30"
+
+  mode_time_day:
+    name: "Day Start Time"
+    has_date: false
+    has_time: true
+    initial: "09:00"
+
+  mode_time_evening_fixed:
+    name: "Evening Fixed Time"
+    has_date: false
+    has_time: true
+    initial: "18:00"
+
+  mode_time_night:
+    name: "Night Start Time"
+    has_date: false
+    has_time: true
+    initial: "23:00"
+
 input_select:
+  # RENAMED: Clearer distinction
   house_mode:
-    name: House Mode
+    name: "Home Time Mode"
+    icon: mdi:home-clock
     options:
       - Morning
       - Day
       - Evening
       - Night
-    icon: mdi:home-clock
 
-input_datetime:
-  morning_time:
-    name: Morning Start Time
-    has_date: false
-    has_time: true
+  mode_evening_strategy:
+    name: "Evening Strategy"
+    icon: mdi:weather-sunset
+    options:
+      - "Fixed Time"
+      - "Sunset + Offset"
+
+input_number:
+  mode_evening_sun_offset:
+    name: "Sunset Offset (Minutes)"
+    icon: mdi:timer-sand
+    min: -120
+    max: 120
+    step: 10
+    unit_of_measurement: min
+    mode: box
+
+# ------------------------------------------------------------------------------
+# 2. LOGIC
+# ------------------------------------------------------------------------------
+automation:
+  - alias: "System: Manager Home Time Modes"
+    id: system_manager_home_time_modes
+    mode: restart
+    trigger:
+      # Trigger on Time Inputs
+      - platform: time
+        at: input_datetime.mode_time_morning
+        id: "Morning"
+      - platform: time
+        at: input_datetime.mode_time_day
+        id: "Day"
+      - platform: time
+        at: input_datetime.mode_time_night
+        id: "Night"
+      - platform: time
+        at: input_datetime.mode_time_evening_fixed
+        id: "Evening_Fixed"
+
+      # Trigger on Sun
+      - platform: sun
+        event: sunset
+        id: "Evening_Sun"
+
+      # Failsafe
+      - platform: time_pattern
+        minutes: "/15"
+        id: "Heartbeat"
+
+    action:
+      - choose:
+          # --- MORNING ---
+          - conditions:
+              - condition: trigger
+                id: "Morning"
+            sequence:
+              - service: input_select.select_option
+                target:
+                  entity_id: input_select.house_mode
+                data: { option: "Morning" }
+
+          # --- DAY ---
+          - conditions:
+              - condition: trigger
+                id: "Day"
+            sequence:
+              - service: input_select.select_option
+                target:
+                  entity_id: input_select.house_mode
+                data: { option: "Day" }
+
+          # --- NIGHT ---
+          - conditions:
+              - condition: trigger
+                id: "Night"
+            sequence:
+              - service: input_select.select_option
+                target:
+                  entity_id: input_select.house_mode
+                data: { option: "Night" }
+
+          # --- EVENING (Complex Logic) ---
+          - conditions:
+              - condition: or
+                conditions:
+                  # Fixed Strategy
+                  - condition: and
+                    conditions:
+                      - condition: trigger
+                        id: "Evening_Fixed"
+                      - condition: state
+                        entity_id: input_select.mode_evening_strategy
+                        state: "Fixed Time"
+                  # Sun Strategy
+                  - condition: and
+                    conditions:
+                      - condition: trigger
+                        id: "Evening_Sun"
+                      - condition: state
+                        entity_id: input_select.mode_evening_strategy
+                        state: "Sunset + Offset"
+            sequence:
+              # Handle Offset
+              - if:
+                  - condition: state
+                    entity_id: input_select.mode_evening_strategy
+                    state: "Sunset + Offset"
+                then:
+                  - delay:
+                      minutes: "{{ states('input_number.mode_evening_sun_offset') | int(0) }}"
+
+              - service: input_select.select_option
+                target:
+                  entity_id: input_select.house_mode
+                data: { option: "Evening" }
+
 ```
 
-## Frontend Connection
-**Key Entities**:
-- `input_select.house_mode`
-- `input_datetime.morning_time`
-
-**Dashboard Usage**:
-No specific dashboard card configuration was found in the scan. These settings are likely managed in a "System" or "Settings" view that relies on auto-entities or Entity cards, or they are purely backend logic.
-
-### UI Simulation
-<div style="border: 1px solid #444; border-radius: 8px; padding: 16px; width: 300px; background: #222; color: white; font-family: sans-serif;">
-  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <span>🏠</span>
-      <span>House Mode</span>
-    </div>
-    <select style="background: #333; color: white; border: 1px solid #555; padding: 4px; border-radius: 4px;">
-      <option>Morning</option>
-      <option selected>Day</option>
-      <option>Evening</option>
-      <option>Night</option>
-    </select>
-  </div>
-</div>
+## Dashboard Connections
+<!-- START_DASHBOARD -->
+*No linked dashboard views found (Automatic Scan).*
+<!-- END_DASHBOARD -->

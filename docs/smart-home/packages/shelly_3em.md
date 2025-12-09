@@ -1,25 +1,54 @@
-# Package: Shelly 3EM
+---
+tags:
+  - package
+  - automated
+version: 1.0.0
+---
+
+# Package: Shelly 3Em
+
+**Version:** 1.0.0  
+**Description:** Power aggregation for Shelly 3EM (Total Power, Energy)
+
+<!-- START_IMAGE -->
+![Package Diagram](../../../assets/images/packages/shelly_3em.png)
+<!-- END_IMAGE -->
 
 ## Executive Summary
-This package aggregates data from the Shelly 3EM energy meter phases. It calculates the **Total Home Power** (W) and **Total Energy** (kWh) by summing the three individual phases. It also provides a 15-minute energy calculation, likely used for the electricity cost analysis in the Nordpool package.
+<!-- START_SUMMARY -->
+> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
 
-## Architecture
-```mermaid
-sequenceDiagram
-    participant PhaseA as sensor.channel_a
-    participant PhaseB as sensor.channel_b
-    participant PhaseC as sensor.channel_c
-    participant Template as HA Template
-    participant Total as sensor.home_total_power
+*No executive summary generated yet.*
+<!-- END_SUMMARY -->
 
-    PhaseA->>Template: Power Update
-    PhaseB->>Template: Power Update
-    PhaseC->>Template: Power Update
-    Template->>Total: Sum(A+B+C)
-```
+## Process Description (Non-Technical)
+<!-- START_DETAILED -->
+> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
 
-## Backend Configuration
+*No detailed non-technical description generated yet.*
+<!-- END_DETAILED -->
+
+## Architecture Diagram
+<!-- START_MERMAID_DESC -->
+> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+
+*No architecture explanation generated yet.*
+<!-- END_MERMAID_DESC -->
+
+<!-- START_MERMAID -->
+> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+
+*No architecture diagram generated yet.*
+<!-- END_MERMAID -->
+
+## Configuration (Source Code)
 ```yaml
+# ------------------------------------------------------------------------------
+# Package: Shelly 3EM
+# Version: 1.0.0
+# Description: Power aggregation for Shelly 3EM (Total Power, Energy)
+# Dependencies: sensor.home_energy_shelly_3em_*
+# ------------------------------------------------------------------------------
 template:
   - sensor:
       - name: "Home Total Power"
@@ -41,19 +70,22 @@ template:
           {{ states('sensor.home_energy_shelly_3em_channel_a_energy') | float(0)
             + states('sensor.home_energy_shelly_3em_channel_b_energy') | float(0)
             + states('sensor.home_energy_shelly_3em_channel_c_energy') | float(0) }}
+
+      - name: "Home Energy 15min"
+        unique_id: home_energy_15min
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
+        state: >
+          {% set power_a = states('sensor.shelly_3em_channel_a_power') | float(0) %}
+          {% set power_b = states('sensor.shelly_3em_channel_b_power') | float(0) %}
+          {% set power_c = states('sensor.shelly_3em_channel_c_power') | float(0) %}
+          {% set total_power = power_a + power_b + power_c %}
+          {{ ((total_power / 1000) * 0.25) | round(4) }}
+
 ```
 
-## Frontend Connection
-**Key Entities**:
-- `sensor.home_total_power`
-- `sensor.home_total_3em_energy`
-
-**Dashboard Usage**:
-These sensors are foundational for the Energy Dashboard and custom power graphs seen in `dashboard_demo` (alongside Nordpool data).
-
-### UI Simulation
-<div style="border: 1px solid #444; border-radius: 50%; width: 150px; height: 150px; background: #222; color: white; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; border: 4px solid #4caf50;">
-  <div style="font-size: 0.8em; color: #aaa;">Current Power</div>
-  <div style="font-size: 1.8em; font-weight: bold;">2.4 kW</div>
-  <div style="font-size: 0.8em; color: #aaa; margin-top: 4px;">12.5 kWh Today</div>
-</div>
+## Dashboard Connections
+<!-- START_DASHBOARD -->
+*No linked dashboard views found (Automatic Scan).*
+<!-- END_DASHBOARD -->

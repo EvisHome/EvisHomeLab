@@ -305,25 +305,8 @@ automation:
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
-The following Lovelace card is used to display the Dishwasher status. It uses a `custom:mushroom-entity-card` and is conditionally visible only when the dishwasher is active.
+This package powers the following dashboard views:
 
-```yaml
-type: custom:mushroom-entity-card
-entity: sensor.dishwasher_status_clean
-name: Dishwasher Status
-icon: mdi:dishwasher
-secondary_info: state
-grid_options:
-  columns: 12
-  rows: 1
-card_mod:
-  style: |
-    ha-card {
-      --card-mod-icon-color: var(--blue-color);
-    }
-visibility:
-  - condition: state
-    entity: binary_sensor.dishwasher_active
-    state: 'on'
-```
+* **[Home](../dashboards/main/home.md)** (Uses 2 entities)
+* **[Kitchen](../dashboards/main/kitchen.md)** (Uses 5 entities)
 <!-- END_DASHBOARD -->

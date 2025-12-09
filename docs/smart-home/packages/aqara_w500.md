@@ -260,14 +260,10 @@ automation:
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
-The following thermostat card is used in the Bathroom dashboard.
+This package powers the following dashboard views:
 
-```yaml
-type: thermostat
-entity: climate.aqara_w500
-name: Bathroom Floor
-show_current_as_primary: false
-features:
-  - type: climate-hvac-modes
-```
+* **[Bathroom](../dashboards/main/bathroom.md)** (Uses 5 entities)
+* **[Electricity Dev](../dashboards/main/electricity-dev.md)** (Uses 1 entities)
+* **[Electricity](../dashboards/main/electricity.md)** (Uses 2 entities)
+* **[Home](../dashboards/main/home.md)** (Uses 1 entities)
 <!-- END_DASHBOARD -->

@@ -1,22 +1,54 @@
-# Package: DNA TV Hub
+---
+tags:
+  - package
+  - automated
+version: 1.0.0
+---
+
+# Package: Dna Tv Hub
+
+**Version:** 1.0.0  
+**Description:** Template switch for DNA TV Hub remote control
+
+<!-- START_IMAGE -->
+![Package Diagram](../../../assets/images/packages/dna_tv_hub.png)
+<!-- END_IMAGE -->
 
 ## Executive Summary
-This package provides a simple switch mechanism to control the DNA TV Hub power state. It wraps the `remote.dna_tv_hubi` service calls into a toggleable switch entity for easier dashboard integration (e.g., standard toggle buttons).
+<!-- START_SUMMARY -->
+> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
 
-## Architecture
-```mermaid
-sequenceDiagram
-    participant UI as Dashboard Switch
-    participant Switch as switch.dna_tv_hub
-    participant Remote as remote.dna_tv_hubi
-    
-    UI->>Switch: Turn On
-    Switch->>Remote: Call Service (remote.turn_on)
-    Remote-->>Switch: State Update
-```
+*No executive summary generated yet.*
+<!-- END_SUMMARY -->
 
-## Backend Configuration
+## Process Description (Non-Technical)
+<!-- START_DETAILED -->
+> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+
+*No detailed non-technical description generated yet.*
+<!-- END_DETAILED -->
+
+## Architecture Diagram
+<!-- START_MERMAID_DESC -->
+> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+
+*No architecture explanation generated yet.*
+<!-- END_MERMAID_DESC -->
+
+<!-- START_MERMAID -->
+> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+
+*No architecture diagram generated yet.*
+<!-- END_MERMAID -->
+
+## Configuration (Source Code)
 ```yaml
+# ------------------------------------------------------------------------------
+# Package: DNA TV Hub
+# Version: 1.0.0
+# Description: Template switch for DNA TV Hub remote control
+# Dependencies: remote.dna_tv_hub
+# ------------------------------------------------------------------------------
 template:
   - switch:
       - name: "DNA TV HUB"
@@ -31,22 +63,10 @@ template:
           service: remote.turn_off
           target:
             entity_id: remote.dna_tv_hubi
+
 ```
 
-## Frontend Connection
-**Key Entities**:
-- `switch.dna_tv_hub`
-
-**Dashboard Usage**:
-No specific complex card configuration found. Likely used as a standard entity in an entities card or a button.
-
-### UI Simulation
-<div style="border: 1px solid #444; border-radius: 8px; padding: 12px; width: 250px; background: #222; color: white; font-family: sans-serif; display: flex; align-items: center; justify-content: space-between;">
-  <div style="display: flex; align-items: center; gap: 12px;">
-    <span style="font-size: 24px;">📺</span>
-    <span>DNA TV Hub</span>
-  </div>
-  <div style="width: 40px; height: 20px; background: #4caf50; border-radius: 10px; position: relative;">
-    <div style="width: 18px; height: 18px; background: white; border-radius: 50%; position: absolute; right: 1px; top: 1px;"></div>
-  </div>
-</div>
+## Dashboard Connections
+<!-- START_DASHBOARD -->
+*No specific entities detected to link.*
+<!-- END_DASHBOARD -->
