@@ -11,7 +11,7 @@ tags:
 **Path:** `car`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Centralized command center for the Mercedes GLC featuring fuel monitoring, climate control, and location tracking.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_car.png)

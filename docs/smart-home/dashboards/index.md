@@ -19,7 +19,7 @@ Welcome to the Home Lab Dashboards overview. The list below contains automatical
 -   **[Bedroom](./main/bedroom.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[CAR](./dashboard-persons/car.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
+    <br> :material-arrow-right-bottom: *Centralized command center for the Mercedes GLC featuring fuel monitoring, climate control, and location tracking.*
 -   **[Daughter](./dashboard-persons/daughter.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Daughter](./main/daughter.md)**
