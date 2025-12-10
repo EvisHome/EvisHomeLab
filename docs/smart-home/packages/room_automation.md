@@ -80,7 +80,7 @@ sequenceDiagram
 ```yaml
 # ------------------------------------------------------------------------------
 # Package: Room Automation Management
-# Version: 1.0.0
+# Version: 1.0.1
 # Description: Dynamic creation of room lighting settings via MQTT
 # Dependencies: MQTT, input_text.room_mgmt_name, automation.system_populate_room_list
 # ------------------------------------------------------------------------------
@@ -170,6 +170,7 @@ script:
               retain: true
               topic: "room/{{ room_slug }}/mode/state"
               payload: "presence-control"
+      - delay: "00:00:00.050"
 
       # 2. Create Idle Time Slider (Number)
       - service: mqtt.publish
@@ -180,7 +181,8 @@ script:
             {
               "name": "{{ room_name }} Presence Idle Time",
               "object_id": "room_{{ room_slug }}_presence_idle_time",
-              "unique_id": "room_number_{{ room_slug }}_idle_v4",
+              "unique_id": "room_number_{{ room_slug }}_idle_v5",
+              "device_class": "duration",
               "icon": "mdi:timer-sand",
               "min": 0,
               "max": 1800,
@@ -189,7 +191,7 @@ script:
               "command_topic": "room/{{ room_slug }}/idle/set",
               "state_topic": "room/{{ room_slug }}/idle/state",
               "availability_topic": "room/{{ room_slug }}/availability",
-              "device": { "identifiers": ["room_settings_{{ room_slug }}"], "via_device": "room_settings_{{ room_slug }}" }
+              "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
             }
       # Default Value
       - if:
@@ -201,6 +203,7 @@ script:
               retain: true
               topic: "room/{{ room_slug }}/idle/state"
               payload: "15"
+      - delay: "00:00:00.050"
 
       # 3. Create Delay Time (Number)
       - service: mqtt.publish
@@ -211,16 +214,17 @@ script:
             {
               "name": "{{ room_name }} Lights Presence Delay",
               "object_id": "room_{{ room_slug }}_lights_presence_delay",
-              "unique_id": "room_number_{{ room_slug }}_delay_v4",
+              "unique_id": "room_number_{{ room_slug }}_delay_v5",
+              "device_class": "duration",
               "icon": "mdi:lightbulb-clock",
               "min": 0,
-              "max": 100000,
+              "max": 3600,
               "step": 1,
               "unit_of_measurement": "s",
               "command_topic": "room/{{ room_slug }}/delay/set",
               "state_topic": "room/{{ room_slug }}/delay/state",
               "availability_topic": "room/{{ room_slug }}/availability",
-              "device": { "identifiers": ["room_settings_{{ room_slug }}"], "via_device": "room_settings_{{ room_slug }}" }
+              "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
             }
       - if:
           - condition: template
@@ -231,6 +235,7 @@ script:
               retain: true
               topic: "room/{{ room_slug }}/delay/state"
               payload: "120"
+      - delay: "00:00:00.050"
 
       # 4. Create Timer Display (Timestamp Sensor)
       - service: mqtt.publish
@@ -249,6 +254,7 @@ script:
               "availability_topic": "room/{{ room_slug }}/availability",
               "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
             }
+      - delay: "00:00:00.050"
 
       # 5. Create Room State (Select)
       - service: mqtt.publish
@@ -273,6 +279,7 @@ script:
           retain: true
           topic: "room/{{ room_slug }}/state/state"
           payload: "Absence"
+      - delay: "00:00:00.050"
 
       # 6. Create Occupancy (Binary Sensor)
       - service: mqtt.publish
@@ -298,6 +305,7 @@ script:
           retain: true
           topic: "room/{{ room_slug }}/occupancy/state"
           payload: "OFF"
+      - delay: "00:00:00.050"
 
       # 7. Create Lux Sensor Input (Text)
       - service: mqtt.publish
@@ -315,6 +323,7 @@ script:
               "availability_topic": "room/{{ room_slug }}/availability",
               "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
             }
+      - delay: "00:00:00.050"
 
       # 8. Create Lux Threshold (Number)
       - service: mqtt.publish
@@ -345,6 +354,7 @@ script:
               retain: true
               topic: "room/{{ room_slug }}/lux_threshold/state"
               payload: "50"
+      - delay: "00:00:00.050"
 
       # 9. Create Bed Sensor (Text)
       - service: mqtt.publish
@@ -362,6 +372,7 @@ script:
               "availability_topic": "room/{{ room_slug }}/availability",
               "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
             }
+      - delay: "00:00:00.050"
 
       # 10. Create Sleep Entry Delay (Number)
       - service: mqtt.publish
@@ -389,6 +400,7 @@ script:
               retain: true
               topic: "room/{{ room_slug }}/sleep_entry_delay/state"
               payload: "300"
+      - delay: "00:00:00.050"
 
       # 11. Create Sleep Exit Delay (Number)
       - service: mqtt.publish
@@ -416,6 +428,7 @@ script:
               retain: true
               topic: "room/{{ room_slug }}/sleep_exit_delay/state"
               payload: "60"
+      - delay: "00:00:00.050"
 
       # 12. Set Online & Refresh Lists
       - service: mqtt.publish
@@ -643,5 +656,4 @@ automation:
                {% set ns.rooms = ns.rooms + [slug] %}
             {% endfor %}
             {{ (ns.rooms + ['unknown']) | unique | sort }}
-
-```
+`````

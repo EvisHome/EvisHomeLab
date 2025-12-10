@@ -145,13 +145,7 @@ sections:
         \ %}\n  {% endif %}\n\n  {# Occupancy #}\n  {% set occ_sensor = 'binary_sensor.room_'\
         \ ~ slug ~ '_occupancy' %}\n  {% if states[occ_sensor] is defined %}\n   \
         \ {% set ns.cards = ns.cards + [{'entity': occ_sensor, 'name': 'Occupancy'}]\
-        \ %}\n  {% endif %}\n  \n  {# Idle Time #}\n  {% set idle_entity = 'number.'\
-        \ ~ slug ~ '_presence_idle_time' %}\n  {% if states[idle_entity] is defined\
-        \ %}\n    {% set ns.cards = ns.cards + [{'entity': idle_entity, 'name': 'Idle\
-        \ Time (sec)'}] %}\n  {% endif %}\n  \n  {# Off Delay #}\n  {% set delay_entity\
-        \ = 'number.' ~ slug ~ '_lights_presence_delay' %}\n  {% if states[delay_entity]\
-        \ is defined %}\n    {% set ns.cards = ns.cards + [{'entity': delay_entity,\
-        \ 'name': 'Off Delay (sec)'}] %}\n  {% endif %}\n  \n  {# Lux Sensor #}\n\
+        \ %}\n  {% endif %}\n  \n  {# Idle Time #}\n  {% set idle_entity = 'number.room_' ~ slug ~ '_presence_idle_time' %}\n  {% if states[idle_entity] is defined %}\n    {% set ns.cards = ns.cards + [{'entity': idle_entity, 'name': 'Idle Time (sec)'}] %}\n  {% endif %}\n  \n  {# Off Delay #}\n  {% set delay_entity = 'number.room_' ~ slug ~ '_lights_presence_delay' %}\n  {% if states[delay_entity] is defined %}\n    {% set ns.cards = ns.cards + [{'entity': delay_entity, 'name': 'Off Delay (sec)'}] %}\n  {% endif %}\n  \n  {# Lux Sensor #}\n\
         \  {% set lux_s = 'text.room_' ~ slug ~ '_lux_sensor' %}\n  {% if states[lux_s]\
         \ is defined %}\n    {% set ns.cards = ns.cards + [{'entity': lux_s, 'name':\
         \ 'Lux Sensor ID'}] %}\n  {% endif %}\n  \n  {# Lux Threshold #}\n  {% set\
