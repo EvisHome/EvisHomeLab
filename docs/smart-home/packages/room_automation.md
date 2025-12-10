@@ -16,16 +16,18 @@ version: 1.0.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No executive summary generated yet.*
+The **Room Automation** package provides a standardized, scalable framework for managing room states (e.g., Occupied, Idle, Sleep) and automation parameters (e.g., lighting delays, lux thresholds) dynamically. It utilizes **MQTT discovery** to generate entities for each room on-the-fly, allowing for decentralized configuration without restarting Home Assistant. Admin users can "initialize" a room from a dashboard, which triggers scripts to publish MQTT configuration payloads, creating a suite of helpers (timers, selects, sensors) specific to that room. It effectively acts as a "factory" for room controllers.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No detailed non-technical description generated yet.*
+This system allows you to turn any "Area" in your home into a Smart Room without writing code. 
+1.  **Creation:** You select a room (like "Kitchen") from a list in the Settings Dashboard. 
+2.  **Generation:** The system instantly creates a set of controls for that room, including:
+    *   **Mode Selector:** Choose how the room behaves (e.g., "Presence Control" vs. "Manual").
+    *   **Timers:** Set how long lights stay on after you leave.
+    *   **Sensors:** Link motion sensors and light sensors to the room.
+3.  **Operation:** Once created, these controls appear in your dashboards, letting you tweak settings like "turn off lights after 5 minutes" individually for every room.
 <!-- END_DETAILED -->
 
 ## Dashboard Connections
@@ -33,21 +35,45 @@ version: 1.0.0
 This package powers the following dashboard views:
 
 * **[Living Room](../dashboards/main/living_room.md)** (Uses 1 entities)
-* **[Management](../dashboards/notification-center/management.md)** (Uses 1 entities)
+* **[Management](../dashboards/notification-center/management.md)**: *This dashboard acts as the administrative backend for the Smart Notification System. It is divided into four key sections: **User Management** for onboarding and offboarding notification recipients; **Category Management** for creating and deleting system-wide notification channels; **Delivery Settings** for defining global rules (e.g., presence-based delivery); and **Subscription Management**, allowing individual users to toggle their subscriptions to specific notification categories. Additionally, it provides an overview of all automations tagged with notification labels.* (Uses 1 entities)
 * **[Settings](../dashboards/room-management/settings.md)** (Uses 4 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No architecture explanation generated yet.*
+The sequence diagram below illustrates the "Room Initialization" process. When a user selects a room (e.g., "Kitchen") and clicks "Initialize", the `create_room_settings` script is triggered. This script iterates through a predefined list of required entities (Mode Select, Idle Timer, Occupancy Sensor, etc.) and publishes **MQTT Configuration Payloads** to the `homeassistant/` discovery topic. Home Assistant's MQTT integration detects these payloads and dynamically duplicates the "Room Controller" entity structure for the new room. Finally, the script sets default values (e.g., 120s delay) via retained MQTT messages, ensuring the room is ready for immediate use.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+```mermaid
+sequenceDiagram
+    participant Admin as 👤 Admin
+    participant Dash as 📱 Dashboard (Settings)
+    participant Script as 📜 Script: create_room_settings
+    participant MQTT as 📡 MQTT Broker
+    participant HA as 🏠 Home Assistant (Discovery)
 
-*No architecture diagram generated yet.*
+    Admin->>Dash: Selects "Kitchen" & Clicks Initialize
+    Dash->>Script: Run(room_slug="kitchen")
+    
+    rect rgb(20, 20, 20)
+    note right of Script: Entity Generation Loop
+    Script->>MQTT: Publish config: select.room_kitchen_mode
+    MQTT-->>HA: Discovery: New Entity (select.room_kitchen_mode)
+    Script->>MQTT: Publish config: number.room_kitchen_idle
+    MQTT-->>HA: Discovery: New Entity (number.room_kitchen_idle)
+    Script->>MQTT: Publish config: binary_sensor.room_kitchen_occupancy
+    MQTT-->>HA: Discovery: New Entity (binary_sensor...occupancy)
+    end
+
+    rect rgb(30, 30, 50)
+    note right of Script: Default Values
+    Script->>MQTT: Publish state: mode = "presence-control"
+    Script->>MQTT: Publish state: delay = 120s
+    end
+    
+    HA-->>Dash: UI Updates with new Kitchen Controls
+```
 <!-- END_MERMAID -->
 
 ## Configuration (Source Code)
