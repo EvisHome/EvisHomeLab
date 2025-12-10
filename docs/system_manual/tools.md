@@ -5,7 +5,7 @@ tags:
   - reference
 ---
 
-# Documentation Operations
+# Tools Reference
 
 **Version:** 2.0 (Modularized)
 **Philosophy:** Agentic CMDB
