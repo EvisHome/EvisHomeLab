@@ -36,7 +36,7 @@ Run these commands in order to keep everything synced.
 
 1.  **Commit Config (Local Repo A):**
 ```
-cd /;git add .; git commit -m "WIP: Config updates
+cd /; git add .; git commit -m "WIP: Config updates"
 ```
 2.  **Update Code (Git Pull):**
 ```
@@ -105,8 +105,10 @@ cd docs_site; git add .; git commit -m "Routine update"; git push
 > "Analyze the dashboard view: **[VIEW_PATH]** (e.g. `dashboards/main/car.md`).
 > 1. **Read** the Markdown file to see the embedded YAML configuration.
 > 2. **Analyze:** Understand what devices and controls are present (e.g., 'Thermostat control', 'Camera feed').
-> 3. **Write Summary:** Create a 1-4 sentence non-technical summary of what this view allows the user to do.
-> 4. **Inject:** Replace the content between `<!-- START_SUMMARY -->` and `<!-- END_SUMMARY -->` with your text."
+> 3. **Write Short Description:** Create a 1-sentence *very brief* description for the Index Page (e.g. "Main control interface for living room lights and AC.").
+>    - **Inject:** Replace content between `<!-- START_DESCRIPTION -->` and `<!-- END_DESCRIPTION -->`.
+> 4. **Write Detailed Summary:** Create a paragraph explaining the view in detail.
+>    - **Inject:** Replace content between `<!-- START_SUMMARY -->` and `<!-- END_SUMMARY -->`.
 
 **Task: Update Architecture (Structure & Overview)**
 > "Update `docs_site/docs/smart-home/structure.md` AND `docs_site/docs/index.md`.

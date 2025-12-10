@@ -10,11 +10,16 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `electricity`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_electricity.png)
+
+## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_electricity.png)
 
 ## Related Packages
 This view contains entities managed by:

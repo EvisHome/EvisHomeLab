@@ -10,11 +10,16 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `bedroom`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_bedroom.png)
+
+## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_bedroom.png)
 
 ## Related Packages
 This view contains entities managed by:
@@ -67,7 +72,7 @@ sections:
       indicator_3_entity: input_boolean.bed_Evis_occupancy
       indicator_3_icon: mdi:bed
       indicator_3_state: 'on'
-      indicator_4_entity: input_boolean.bed_Grandma_occupancy
+      indicator_4_entity: input_boolean.bed_Guest-1_occupancy
       indicator_4_icon: mdi:bed
       indicator_4_state: 'on'
       indicator_4_active_color: '#FF44C4'
@@ -249,7 +254,7 @@ sections:
         double_tap_action:
           action: none
       - type: custom:mushroom-template-card
-        primary: "Grandma {% set status = states(entity) %}\n{% if status == 'on'\
+        primary: "Guest-1 {% set status = states(entity) %}\n{% if status == 'on'\
           \ %}\n  in Bed\n{% else %}\n  not in Bed\n{% endif %}"
         secondary: ''
         icon: "{% set status = states(entity) %}\n{% if status == 'on' %}\n  mdi:bed\n\
@@ -290,11 +295,11 @@ sections:
           name: Pressure
           icon: mdi:bed-outline
           state_color: true
-        - entity: binary_sensor.bedroom_bed_Grandma_fp2_occupancy
+        - entity: binary_sensor.bedroom_bed_Guest-1_fp2_occupancy
           name: Bed FP2
           icon: mdi:bed
           state_color: true
-        - entity: binary_sensor.bedroom_bedside_Grandma_fp2_sensor
+        - entity: binary_sensor.bedroom_bedside_Guest-1_fp2_sensor
           name: Bedside
           icon: mdi:walk
           state_color: true

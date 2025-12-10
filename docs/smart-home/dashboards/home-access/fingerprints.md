@@ -10,11 +10,16 @@ tags:
 **Dashboard:** Home Access  
 **Path:** `fingerprints`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_fingerprints.png)
+
+## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_fingerprints.png)
 
 ## Related Packages
 This view contains entities managed by:

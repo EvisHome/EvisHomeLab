@@ -10,11 +10,16 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `home`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_home.png)
+
+## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_home.png)
 
 ## Related Packages
 This view contains entities managed by:
@@ -780,7 +785,7 @@ sections:
       indicator_3_entity: input_boolean.bed_Evis_occupancy
       indicator_3_icon: mdi:bed
       indicator_3_state: 'on'
-      indicator_4_entity: input_boolean.bed_Grandma_occupancy
+      indicator_4_entity: input_boolean.bed_Guest-1_occupancy
       indicator_4_icon: mdi:bed
       indicator_4_state: 'on'
       indicator_4_active_color: '#FF44C4'
@@ -790,14 +795,14 @@ sections:
   - type: custom:streamline-card
     template: area_card
     variables:
-      area_name: Grandpa
+      area_name: Guest-2
       area_title: E Room
       temperature_sensor: sensor.airthings_wave_temperature
-      indicator_3_entity: binary_sensor.Grandpa_bed_fp2_presence_sensor
+      indicator_3_entity: binary_sensor.Guest-2_bed_fp2_presence_sensor
       indicator_3_icon: mdi:bed
       indicator_3_state: 'on'
       indicator_3_active_color: lightgreen
-      indicator_4_entity: binary_sensor.Grandpa_desk_fp2_presence_sensor
+      indicator_4_entity: binary_sensor.Guest-2_desk_fp2_presence_sensor
       indicator_4_icon: mdi:chair-rolling
       indicator_4_state: 'on'
       indicator_4_active_color: '#088CF8'
@@ -806,15 +811,15 @@ sections:
   - type: custom:streamline-card
     template: area_card
     variables:
-      area_name: Guest
+      area_name: Guest-3
       area_title: A Room
       temperature_sensor: sensor.airthings_wave_temperature
-      temp_sensor_entity: sensor.Guest_temperature
-      indicator_3_entity: binary_sensor.Guest_bed_fp2_presence_sensor
+      temp_sensor_entity: sensor.Guest-3_temperature
+      indicator_3_entity: binary_sensor.Guest-3_bed_fp2_presence_sensor
       indicator_3_icon: mdi:bed
       indicator_3_state: 'on'
       indicator_3_active_color: lightgreen
-      indicator_4_entity: binary_sensor.Guest_desk_fp2_presence_sensor
+      indicator_4_entity: binary_sensor.Guest-3_desk_fp2_presence_sensor
       indicator_4_icon: mdi:chair-rolling
       indicator_4_state: 'on'
       indicator_4_active_color: '#088CF8'

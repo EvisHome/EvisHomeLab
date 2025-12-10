@@ -10,11 +10,16 @@ tags:
 **Dashboard:** Persons  
 **Path:** `car`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_car.png)
+
+## Summary
 <!-- START_SUMMARY -->
 The **Car Dashboard** provides a centralized command center for the Mercedes GLC, unifying vehicle health monitoring and remote control. It combines real-time data metrics (fuel, battery, tire pressure) with actionable controls (locks, climate pre-conditioning). The interface features a visual "Digital Twin" of the car to intuitively display status alerts, warning indicators (low fluids, unlocked doors), and charging progress, alongside a real-time location tracker.
 <!-- END_SUMMARY -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_car.png)
 
 ## Related Packages
 This view contains entities managed by:

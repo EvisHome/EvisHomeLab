@@ -5,16 +5,16 @@ tags:
   - automated
 ---
 
-# Map Daughter
+# Map Guest-2
 
 **Dashboard:** Persons  
-**Path:** `map-Daughter`
+**Path:** `map-Guest-2`
 
 <!-- START_DESCRIPTION -->
 No description provided.
 <!-- END_DESCRIPTION -->
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_map-daughter.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_map-guest-2.png)
 
 ## Summary
 <!-- START_SUMMARY -->
@@ -28,15 +28,15 @@ No description provided.
 ## Configuration
 ```yaml
 theme: Backend-selected
-title: Map Daughter
-path: map-Daughter
+title: Map Guest-2
+path: map-Guest-2
 type: panel
 subview: true
 badges: []
 cards:
 - type: map
   entities:
-  - entity: person.Daughter
+  - entity: person.Guest-2
   hours_to_show: 48
 
 ```

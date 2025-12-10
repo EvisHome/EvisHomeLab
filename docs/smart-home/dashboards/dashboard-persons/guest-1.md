@@ -5,16 +5,16 @@ tags:
   - automated
 ---
 
-# Evis
+# Guest-1
 
 **Dashboard:** Persons  
-**Path:** `evis`
+**Path:** `Guest-1`
 
 <!-- START_DESCRIPTION -->
 No description provided.
 <!-- END_DESCRIPTION -->
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_evis.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_guest-1.png)
 
 ## Summary
 <!-- START_SUMMARY -->
@@ -33,20 +33,23 @@ Required HACS frontend resources:
 ## Configuration
 ```yaml
 theme: Backend-selected
-title: Evis
+title: Guest-1
+path: Guest-1
 badges: []
 cards: []
 type: sections
 sections:
 - type: grid
   cards:
+  - type: heading
+    heading: New section
   - type: custom:decluttering-card
     template: family_member_card
     variables:
-    - person: Evis
-    - device: sm_f966b
-    - background: background_2
-    - color: '#dddddd'
+    - person: Guest-1
+    - device: SM_S721B_Guest-1
+    - background: background_3
+    - color: '#ddd'
   - type: custom:auto-entities
     card:
       type: entities
@@ -54,7 +57,7 @@ sections:
       show_header_toggle: false
       icon: mdi:bell-cog
     filter:
-      template: "{% set user_slug = 'Evis' %} {# <--- CHANGE THIS to the person's\
+      template: "{% set user_slug = 'Guest-1' %} {# <--- CHANGE THIS to the person's\
         \ slug #}\n{% set ns = namespace(switches=[]) %}\n\n{% for state in states.switch\
         \ %}\n  {# Find switches ending with _notification_[user_slug] #}\n  {% if\
         \ state.entity_id.endswith('_notification_' ~ user_slug) %}\n    {# Extract\
@@ -66,5 +69,6 @@ sections:
         \ | to_json }}\n"
     sort:
       method: name
+max_columns: 4
 
 ```
