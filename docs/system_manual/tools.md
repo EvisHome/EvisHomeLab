@@ -105,7 +105,7 @@ cd docs_site; git add .; git commit -m "Routine update"; git push
 > "Analyze the dashboard view: **[VIEW_PATH]** (e.g. `dashboards/main/car.md`).
 > 1. **Read** the Markdown file to see the embedded YAML configuration.
 > 2. **Analyze:** Understand what devices and controls are present (e.g., 'Thermostat control', 'Camera feed').
-> 3. **Write Short Description:** Create a 1-sentence *very brief* description for the Index Page (e.g. "Main control interface for living room lights and AC.").
+> 3. **Write Short Description:** Create a 1-2 sentence *very brief* description for the Index Page (e.g. "Main control interface for living room lights and AC.").
 >    - **Inject:** Replace content between `<!-- START_DESCRIPTION -->` and `<!-- END_DESCRIPTION -->`.
 > 4. **Write Detailed Summary:** Create a paragraph explaining the view in detail.
 >    - **Inject:** Replace content between `<!-- START_SUMMARY -->` and `<!-- END_SUMMARY -->`.
