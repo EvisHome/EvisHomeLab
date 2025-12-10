@@ -84,6 +84,7 @@ cd docs_site; git add .; git commit -m "Routine update"; git push
 > "I am working on the package: **[PACKAGE_NAME]**.
 >
 > **Task:**
+
 > 1. **Locate Files:** Find the source YAML in `packages/` and the documentation Markdown in `docs_site/docs/smart-home/packages/` matching this name.
 > 2. **Guard Check:** If the Markdown contains `auto_update: false`, **ABORT**.
 > 3. **Smart Analysis:**
@@ -103,6 +104,7 @@ cd docs_site; git add .; git commit -m "Routine update"; git push
 *Use this to populate the empty summaries in your generated dashboard docs.*
 
 > "Analyze the dashboard view: **[VIEW_PATH]** (e.g. `dashboards/main/car.md`).
+
 > 1. **Read** the Markdown file to see the embedded YAML configuration.
 > 2. **Analyze:** Understand what devices and controls are present (e.g., 'Thermostat control', 'Camera feed').
 > 3. **Write Short Description:** Create a 1-2 sentence *very brief* description for the Index Page (e.g. "Main control interface for living room lights and AC.").
