@@ -96,11 +96,11 @@ sections:
   - type: custom:decluttering-card
     template: presence_settings
     variables:
-    - area: Guest 2
+    - area: Grandpa
   - type: custom:decluttering-card
     template: presence_settings
     variables:
-    - area: Guest 3
+    - area: Guest
 - type: grid
   cards:
   - type: custom:decluttering-card

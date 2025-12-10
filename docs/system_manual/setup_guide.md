@@ -1,14 +1,20 @@
-<!-- VALIDATION_CHECKLIST: ["## PART A", "## PART B", "## PART C", "## PART D", "## PART E", "## PART F", "Visual Assets Standard", "Task: Standardize Package Headers"] -->
-# EvisHomeLab: Documentation System Manual
+<!-- VALIDATION_CHECKLIST: ["## PART A", "## PART B", "Visual Assets Standard", "Task: Standardize Package Headers"] -->
+# Setup Guide
 
 **Version:** 8.1 (Modularized)
+
 **Philosophy:** Agentic CMDB (Configuration Management Database)
+
 **Strategy:** "Detached Docs" (Private Config -> Public Documentation)
 
 ## 1. Executive Summary
 This project automates the documentation of a Home Assistant Smart Home and Home Lab. Instead of writing documentation manually, we use an **AI Agent (Google Antigravity)** to scan the live configuration files and generate a static website (**MkDocs**).
 
+For daily operations, workflows, and tool references, please see:
+[**📄 Documentation Operations Manual**](tools.md)
+
 ---
+
 ## PART A: One-Time Initialization (The Genesis)
 
 **⚠️ STOP:** Only perform these steps if setting up from scratch.
@@ -24,7 +30,8 @@ Create `.antigravity/rules.md`:
 * Consult `AI_CONTEXT.md` before writing.
 
 ### 3. Bootstrap Helper Tools
-* Run `python ag_update_docs.py` to generate the tooling (`ag_regenerate_dashboards.py`, `ag_update_package.py`) and context files.
+* Ensure `.ag_scripts/` exists (Git Pull).
+* Run `python ag_v2_update.py` to verify the system works.
 
 ### 4. Scaffold Documentation Site
 * Use Agent to create `docs_site/` with MkDocs Material theme.
@@ -32,6 +39,7 @@ Create `.antigravity/rules.md`:
 * Initialize Git in `docs_site/` and push to GitHub (`gh-pages`).
 
 ---
+
 ## PART B: Workstation Setup (Adding Laptops)
 
 **✅ START HERE:** If the system is already running and you are on a new computer.
@@ -48,121 +56,4 @@ Create `.antigravity/rules.md`:
 * **Trust Git:** Terminal > `git config --global --add safe.directory '*'`.
 
 ---
-## PART C: Core Concepts & Standards
-
-### 1. Visual Assets Standard
-Images must be sorted into subfolders to keep the repo clean.
-* **Dashboards:** `docs/assets/images/dashboards/dashboard_[slug]_[view].png`
-* **Packages:** `docs/assets/images/packages/[name].png`
-* **Brand:** `docs/assets/images/brand/`
-
-### 2. Locking Files (Prevent Overwrite)
-To protect a manually written page from the Agent:
-* Add `auto_update: false` to the YAML frontmatter at the top of the Markdown file.
-
-### 3. Tagging Strategy
-Use YAML frontmatter to categorize pages for the Tag Cloud.
-* **Standard Tags:** `package`, `dashboard`, `network`, `automated`, `manual`.
-
----
-
-## PART D: Daily Operations (The Workflow)
-
-### 1. The Full Maintenance Cycle (Recommended)
-Run these commands in order to keep everything synced.
-
-1.  **Commit Config (Local Repo A):**
-    * `git add .; git commit -m "WIP: Config updates"`
-2.  **Update Tools:**
-    * `python ag_update_docs.py` (Refreshes manual/scripts from definitions).
-3.  **Regenerate Docs:**
-    * Dashboards: `python ag_regenerate_dashboards.py`
-    * Packages: `python ag_update_package.py --all`
-4.  **Publish Docs (Public Repo B):**
-    * `cd docs_site; git add .; git commit -m "Routine update"; git push`
-
-### 2. The AI Architect Workflow
-**Start new chats with:** "I am resuming EvisHomeLab. Read `docs_site/AI_CONTEXT.md` and `docs_site/docs/system_manual/setup_guide.md`. Adopt the persona."
-
-### 3. The Agent Prompts
-
-**Task: Standardize Package Headers (Source Code Management)**
-> "Scan `packages/`. Check headers. If missing/legacy, prepend:
->
-> ```yaml
-> # ------------------------------------------------------------------------------
-> # Package: [Filename]
-> # Version: 1.0.0
-> # Description: [Summary]
-> # Dependencies: [Entities used]
-> # ------------------------------------------------------------------------------
-> ```
->"
-
-**Task: Update Package Boilerplate (Automation)**
-*Use this prompt first to ensure the documentation structure is correct and versioned.*
-> "Run `cd /; python ag_update_package.py [package_name]`."
-
-**Task: Deep Package Analysis (Intelligence Injection)**
-*Use this prompt AFTER running the Python script to fill the intelligent content slots.*
-> "I am working on the package: **[PACKAGE_NAME]**.
->
-> **Task:**
-
-> 1. **Locate Files:** Find the source YAML in `packages/` and the documentation Markdown in `docs_site/docs/smart-home/packages/` matching this name.
-> 2. **Guard Check:** If the Markdown contains `auto_update: false`, **ABORT**.
-> 3. **Smart Analysis:**
->    - **Executive Summary:** Technical overview for admins.
->    - **Process Description:** Non-technical explanation for users (How it works).
->    - **Architecture:** Generate a `mermaid` sequence diagram. **CRITICAL:** Write a specific narrative paragraph explaining the logic flow shown in the diagram.
-> 4. **Update Documentation File:**
->    - **Target:** Locate the specific HTML comment markers (slots).
->    - **Action:** Replace the content *between* the markers.
->      - `<!-- START_SUMMARY -->` ... `<!-- END_SUMMARY -->`
->      - `<!-- START_DETAILED -->` ... `<!-- END_DETAILED -->`
->      - `<!-- START_MERMAID_DESC -->` ... `<!-- END_MERMAID_DESC -->`
->      - `<!-- START_MERMAID -->` ... `<!-- END_MERMAID -->`
->    - **Dashboard Links:** Scan `.storage/lovelace_dashboards` and embed cards into `<!-- START_DASHBOARD -->`."
-
-**Task: Analyze Dashboard View (Intelligence Injection)**
-*Use this to populate the empty summaries in your generated dashboard docs.*
-
-> "Analyze the dashboard view: **[VIEW_PATH]** (e.g. `dashboards/main/car.md`).
-
-> 1. **Read** the Markdown file to see the embedded YAML configuration.
-> 2. **Analyze:** Understand what devices and controls are present (e.g., 'Thermostat control', 'Camera feed').
-> 3. **Write Summary:** Create a 1-2 sentence non-technical summary of what this view allows the user to do.
-> 4. **Inject:** Replace the content between `<!-- START_SUMMARY -->` and `<!-- END_SUMMARY -->` with your text."
-
-**Task: Update Architecture (Structure & Overview)**
-> "Update `docs_site/docs/smart-home/structure.md` AND `docs_site/docs/index.md`.
-
-> 1. **Structure:** Re-scan root. Update file tree.
-> 2. **Overview:** Update 'High Level Architecture' with new integrations."
-
-**Task: Web Design & Image Management**
-> "Scan `assets/images/`. Update Markdown files to replace placeholder text with actual image links. If asking for CSS changes, edit `assets/css/custom.css`."
-
-**Task: Generate All Package Documentation**
-> "Deep scan `packages/`. Create Markdown for all files with: Frontmatter tags, Summary, Architecture Diagram, Redacted Code, Dashboard connections, and Visuals."
-
-**Task: Convert Dashboard to YAML**
-> "Run `python ag_regenerate_dashboards.py`."
-
----
-## PART E: Tool Reference
-
-### 1. `ag_update_docs.py`
-The Master Orchestrator. Imports content from `.ag_definitions/`, validates it, performs backups, and overwrites the documentation files.
-
-### 2. `ag_regenerate_dashboards.py`
-The Privacy Engine. Reads `.storage/lovelace_dashboards`, performs regex-based name redaction (Jukka->Evis), and outputs clean YAML blocks.
-
-### 3. `ag_update_package.py`
-The Package Doc Generator. Reads a specific package YAML, extracts header metadata (Version/Desc), and updates the specific Markdown file.
-
----
-## PART F: Troubleshooting
-* **Red Squiggles in `mkdocs.yml`:** False positive, ignore.
-* **Unsafe Repo Error:** Run `git config --global --add safe.directory '*'`.
-* **404 Error:** Check GitHub Pages settings -> Branch must be `gh-pages`, Folder `/`.
+*End of Setup Guide. Proceed to [Documentation Operations](tools.md).*

@@ -12,88 +12,142 @@ tags:
 **Version:** 2.1 (Clarified Manual Steps)
 
 ## 1. The Core Concept
-Unlike traditional wikis where documentation is written manually and eventually goes stale, **EvisHomeLab** uses an **Agentic CMDB** approach.
+Unlike traditional wikis where documentation is written manually and eventually goes stale, **EvisHomeLab** uses an **Agentic Documentation System** approach.
 
 The documentation is not just text; it is the output of an **Orchestration Engine**. We treat documentation updates exactly like software deployments: **Source -> Build -> Deploy**.
 
-### The "Russian Doll" Architecture
-To prevent data loss and ensure consistency, we separate **Logic** from **Content**.
+### The "Modular Package" Architecture
+To prevent data loss and ensure maintainability, we use a standard Python package structure (`.ag_scripts`).
 
 ```mermaid
 graph TD
-    subgraph Hidden Source [The Source of Truth]
-        Def[/.ag_definitions/]
-        Man[system_manual.py]
-        Ctx[ai_context.py]
-        Tools[dashboard_script.py]
-        PkgTools[package_script.py]
-        
-        subgraph Manual Parts
-             Header[header.py]
-             PartA[part_a.py]
-             PartB[part_b.py]
-             PartC[part_c.py]
-             PartD[part_d.py]
-        end
-        
-        Man --> Header & PartA & PartB & PartC & PartD
+    subgraph Core Logic [.ag_scripts]
+        Common[common/]
+        Dash[dashboard_manager/]
+        Pkg[package_manager/]
+        Orch[orchestrator/]
+        Agent[agent/]
     end
 
-    subgraph The Orchestrator [The Builder]
-        Upd[ag_update_docs.py]
-        Audit{Integrity Audit}
-        Backup[/.ag_backups/]
+    subgraph Shims [Root Interfaces]
+        V2_Dash[ag_v2_dashboard.py]
+        V2_Pkg[ag_v2_package.py]
+        V2_Upd[ag_v2_update.py]
     end
 
-    subgraph The Output [The Living System]
-        MD[docs/*.md]
-        LiveTools[ag_*.py Scripts]
-        Web[GitHub Pages]
+    subgraph Output [Documentation Site]
+        MD_Dash[docs/.../dashboards/*.md]
+        MD_Pkg[docs/.../packages/*.md]
     end
 
-    Def --> Upd
-    Upd --> Audit
-    Audit -- Fail --> Backup
-    Audit -- Pass --> MD
-    Audit -- Pass --> LiveTools
-    MD --> Web
+    V2_Dash --> Dash
+    V2_Pkg --> Pkg
+    V2_Upd --> Orch
+    
+    Orch --> Dash & Pkg
+    Dash -->|Reads|.storage/lovelace
+    Pkg -->|Reads|packages/*.yaml
+    
+    Dash -->|Generates| MD_Dash
+    Pkg -->|Generates| MD_Pkg
+    
+    Common -.-> Dash & Pkg & Orch
 ```
 
-## 2. The Toolchain
+## 2. The Toolchain (V2)
 
-### A. The Orchestrator (`ag_update_docs.py`)
-This is the master script located in the root.
-* **Function:** It reads the blueprints from `.ag_definitions/`, validates content integrity (checking for missing sections), creates a timestamped backup in `.ag_backups/`, and then overwrites the live files.
-* **Modular Import:** It dynamically adds the hidden definition folder to the system path to load the content modules.
+### A. The Directory Structure
+The system is organized to keep logic (`.ag_scripts`) separate from content (`packages/`, `docs/`).
 
-### B. The Privacy Engine (`ag_regenerate_dashboards.py`)
-A specialized tool for the Lovelace Dashboards.
-* **Source:** `.storage/lovelace` (Main) and `.storage/lovelace_dashboards` (Extra).
-* **Output:** Creates a folder structure `docs/smart-home/dashboards/[slug]/[view].md`.
-* **Intelligence:** * **State-Aware:** Preserves manually written summaries between runs.
-    * **Auto-Link:** Scans package entities and links them to the dashboard view.
-    * **Privacy:** Redacts personal names (e.g., Jukka -> Evis) using Regex.
-    * **Screenshots:** It generates the *Markdown Link* (e.g. `![View](...png)`) automatically, but **the actual screenshot must be taken manually** and placed in the assets folder.
+```text
+/config
+├── .ag_scripts/            # [NEW] The Brain (Python Logic)
+│   ├── common/             # Shared Utils & Privacy Map
+│   ├── dashboard_manager/  # Dashboard Logic
+│   ├── package_manager/    # Package Logic
+│   └── orchestrator/       # Update Logic
+├── ag_v2_dashboard.py      # Shim Script
+├── ag_v2_package.py        # Shim Script
+├── ag_v2_update.py         # Shim Script
+├── packages/               # Source: YAML Packages
+├── .storage/               # Source: JSON Dashboards (Hidden)
+└── docs_site/              # Output: The Documentation Web Site
+    ├── docs/
+    └── mkdocs.yml
+```
 
-### C. The Package Manager (`ag_update_package.py`)
-A hybrid tool for documenting YAML packages.
-* **Phase 1 (The Stamper):** Reads the YAML file, extracts `# Version:` and `# Description:` headers, and creates the Markdown file structure with specific **Intelligence Slots**.
-* **Phase 2 (The Agent):** The AI Architect fills these slots (`<!-- PACKAGE_SUMMARY_SLOT -->`) with deep analysis and diagrams.
-* **Auto-Link:** It scans dashboard documentation to find where the package's entities are used and creates back-links.
+### B. The Orchestrator (`ag_v2_update.py`)
+The master controller.
+* **Function:** Calls the specialized modules to update the entire system.
+* **Architecture:** Just a shim that calls `.ag_scripts.orchestrator.update_all`.
+
+### B. Dashboard Manager (`ag_v2_dashboard.py`)
+* **Source:** `.ag_scripts/dashboard_manager/`
+* **Input:** `.storage/lovelace` (Main) & `.storage/lovelace_dashboards`.
+* **Output:** `docs/smart-home/dashboards/[slug]/[view].md`.
+* **Features:**
+    * **Preservation:** Keeps manually written summaries.
+    * **Linking:** Auto-links packages.
+    * **Privacy:** Redacts names via `common/privacy.py`.
+
+### C. Package Manager (`ag_v2_package.py`)
+* **Source:** `.ag_scripts/package_manager/`
+* **Input:** `packages/*.yaml`.
+* **Output:** `docs/smart-home/packages/*.md`.
+* **Features:**
+    * **Stale Detection:** Warns if documentation version < code version.
+    * **Injection:** Fills slots (`<!-- START_SUMMARY -->`) with content.
+
+### D. AI Agent Helper (`ag_v2_agent.py`)
+* **Function:** Generates prompts for the IDE AI to write documentation.
+* **Context:** Reads YAML and MD to give the AI full context.
 
 ## 3. The Workflow (How we work)
 
-We do not edit `setup_guide.md` or the tool scripts directly. We edit the **Definition**.
+We edit the **Python Modules** in `.ag_scripts/`.
 
 | Goal | Action |
 | :--- | :--- |
-| **Update Manual** | Edit `.ag_definitions/manual_parts/*.py` $\rightarrow$ Run `python ag_update_docs.py` |
-| **Update Privacy Rules** | Edit `.ag_definitions/ai_context.py` $\rightarrow$ Run `python ag_update_docs.py` |
-| **Update Dashboard Docs** | **1. Capture Screenshots** (Manual)<br>**2. Run:** `python ag_regenerate_dashboards.py` |
-| **New Package** | Run `python ag_update_package.py [name]` $\rightarrow$ Ask Agent to analyze. |
+| **Update Logic** | Edit `.ag_scripts/[module]/*.py` |
+| **Update Privacy** | Edit `.ag_scripts/common/privacy.py` |
+| **Update Dashboards** | `python ag_v2_dashboard.py` |
+| **Update Packages** | `python ag_v2_package.py --all` |
+| **Full Update** | `python ag_v2_update.py` |
 
 ## 4. Safety Features
 
-1.  **Hidden Definitions:** The actual content lives in `.ag_definitions/` (hidden), keeping the root directory clean.
-2.  **Backups:** Every time the Orchestrator runs, it saves the old version to `.ag_backups/filename.timestamp.bak`. It keeps a rolling history of the last 5 versions.
-3.  **Self-Validation:** The Orchestrator scans its own input for a `VALIDATION_CHECKLIST`. If the input is missing critical sections (like "Troubleshooting"), it refuses to build.
+1.  **Modular Isolation:** Logic is separated into modules (Python Packages) rather than monolithic scripts, preventing side-effects.
+2.  **Git-Backed:** We rely on Git for versioning and backups.
+3.  **Preservation:** The Dashboard Manager specifically reads existing Markdown to preserve manual summaries before regenerating the structure.
+
+## 5. How to Use (Quick Start)
+
+Here is how you actually run the tools in your daily workflow.
+
+### Scenario 1: I just updated a package
+You changed `packages/car.yaml` and want to see the docs update.
+```powershell
+python ag_v2_package.py car
+```
+*   **What it does:** Reads `car.yaml`, updates `docs/smart-home/packages/car.md`.
+
+### Scenario 2: I added a new view to my dashboard
+You edited the dashboard in the UI. Now you want the docs to match.
+```powershell
+python ag_v2_dashboard.py
+```
+*   **What it does:** Scans your Lovelace config, anonymizes names, and rebuilds the dashboard docs.
+
+### Scenario 3: I want the AI to analyze my code
+You want the AI (in VS Code) to write a summary for you.
+```powershell
+python ag_v2_agent.py car
+```
+*   **What it does:** Generates a "Prompt" that you can copy-paste to your AI Assistant to get a perfect analysis.
+
+### Scenario 4: I want to update EVERYTHING
+You are done for the day and want to sync up.
+```powershell
+python ag_v2_update.py
+```
+*   **What it does:** Runs all of the above in sequence.

@@ -43,6 +43,6 @@ cards:
   - type: custom:decluttering-card
     template: family_member_notifications
     variables:
-    - person: Guest 2
+    - person: Grandpa
 
 ```

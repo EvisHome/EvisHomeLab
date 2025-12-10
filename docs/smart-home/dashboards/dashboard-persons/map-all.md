@@ -30,10 +30,10 @@ badges: []
 cards:
 - type: map
   entities:
-  - entity: person.Guest 3
-  - entity: person.Guest 2
+  - entity: person.Guest
+  - entity: person.Grandpa
   - entity: person.Evis
-  - entity: person.Guest 1
+  - entity: person.Grandma
   - entity: person.Daughter
   - entity: person.car
   hours_to_show: 2
