@@ -16,39 +16,38 @@ version: 1.1.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-This package provides a comprehensive, unified access control system for the UniFi G4 Doorbell Pro, integrating both Fingerprint and NFC authentication. It abstracts physical credentials (fingerprints/tags) into a single "Unified User" identity, allowing centralized management. Key features include granular access control (enabling/disabling specific credentials per user), a unified weekly schedule for guest access, real-time logging to the cloud entity for security auditing, and automated "auto-learn" functionality for on-boarding new credentials.
+The **Unifi Access** package provides a centralized, unified access control system for the UniFi G4 Doorbell Pro. It abstracts the physical credentials (fingerprint and NFC) into a single "Unified User" identity. This allows you to assign a person once, and then enable or disable their specific access methods (Fingerprint or NFC) individually. It includes a unified weekly schedule for Guest access, auto-learning for new credentials, and comprehensive logging to the cloud entity.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-1.  **Credential Scan**: When a user scans a fingerprint or NFC tag, the system captures the unique ID (`ulp_id`).
-2.  **Identity Resolution**: The system looks up the "Unified User" assigned to that ID.
-    *   **New ID**: If unknown, it's automatically added to the system as "Unknown" for easy assignment later.
+1.  **Credential Scan**: When a fingerprint or NFC tag is scanned at the doorbell, the system captures the unique ID (`ulp_id`).
+2.  **Identity Resolution**: The system resolves this ID to a "Unified User".
+    *   **New ID**: If the ID is unknown, it is automatically added as "Unknown" for easy assignment.
     *   **Known User**: The system checks the specific access switch for that method (e.g., "FP Access: Dad" or "NFC Access: Mom").
-3.  **Authorization**:
-    *   **Standard Users**: Access is granted if their specific switch is ON.
-    *   **Guests**: Access is granted ONLY if their switch is ON **AND** the current time/day matches the allowed Guest Schedule.
+3.  **Authorization Check**:
+    *   **Standard Users**: Access is granted if their specific access switch is ON.
+    *   **Guests**: Access is granted ONLY if their switch is ON **and** the current time matches the Guest Schedule.
 4.  **Action**: If authorized, the door unlocks, a snapshot is taken, and the event is logged. If denied, a notification is sent.
 <!-- END_DETAILED -->
 
 ## Integration Dependencies
 <!-- START_DEPENDENCIES -->
-*   **UniFi Protect**: Required for G4 Doorbell Pro fingerprint (`event.front_door_fingerprint`) and NFC (`event.front_door_nfc`) events.
-*   **MQTT**: Used for persistent state management of User/Access switches (`unifi_access/...` topics).
-*   **Yale Access**: Provides the physical lock control (`lock.front_door_lock`) and cloud logging entity (`lock.front_door_lock_cloud`).
+*   **UniFi Protect**: Required for hardware events (`event.front_door_fingerprint`, `event.front_door_nfc`).
+*   **MQTT**: Uses the definition `unifi_access/...` for state persistence and discovery.
+*   **Yale Access**: Controls the physical lock (`lock.front_door_lock`).
+*   **Mobile App**: Targeted for notifications via the `notify.smart_master` script.
 <!-- END_DEPENDENCIES -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
-This package powers the following dashboard views:
-
-* **[Home Access](../dashboards/home-access/home-access-center.md)**: The primary interface for managing users, assignments, and schedules.
-* **[Front Door](../dashboards/main/front-door.md)**: Displays the access log and live camera feeds.
+*   **[Home Access Center](../dashboards/home-access/home_access_center.md)**: The main management interface for assigning users and schedules.
+*   **[Front Door](../dashboards/main/front_door.md)**: Live view and manual lock control.
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-The diagram illustrates the unified access flow. When a physical credential (fingerprint or NFC) is presented at the G4 Doorbell, an event is triggered in Home Assistant. The `unifi_access` package processes this event by resolving the unique ID (`ulp_id`) to a "Unified User". It then evaluates permissions: checking the specific method's access switch (e.g., NFC Access) and, for "Guest" users, validating the request against the unified weekly schedule. If authorized, the system commands the physical lock to open and logs the entry to the Cloud logging entity for persistent tracking. Both successful entries and denied attempts utilize the `notify.smart_master` service to alert administrators.
+The diagram below illustrates the unified access flow. When a physical credential (Fingerprint or NFC) is scanned, it triggers a Hardware Event. The logic resolves this UUID to a shared "Unified User" identity via MQTT persistence. The system then checks the specific permission switch for that method (FP vs NFC). If the user is a "Guest", it additionally validates against the global Guest Schedule. Authorized attempts command the Z-Wave lock to open and log to the cloud entity; unauthorized attempts trigger security notifications.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
@@ -59,8 +58,7 @@ sequenceDiagram
     participant HA as Home Assistant
     participant Logic as Access Logic
     participant MQTT as MQTT Broker
-    participant Lock as Physical Lock
-    participant Log as Cloud Log
+    participant Lock as Yale Lock
     participant Notify as Notification Svc
 
     User->>G4: Scans Fingerprint / NFC
@@ -86,10 +84,8 @@ sequenceDiagram
             
             alt Access Granted
                 Logic->>Lock: Unlock Command
-                Logic->>Log: Log Entry (User + Method)
                 Logic->>Notify: Send "Unlocked" Snapshot
             else Access Denied
-                Logic->>Log: Log Denial Reason
                 Logic->>Notify: Send Critical Alert
             end
         end
