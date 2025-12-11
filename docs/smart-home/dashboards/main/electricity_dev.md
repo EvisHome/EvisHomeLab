@@ -14,7 +14,7 @@ tags:
 No description provided.
 <!-- END_DESCRIPTION -->
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_electricity-dev.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_electricity_dev.png)
 
 ## Summary
 <!-- START_SUMMARY -->

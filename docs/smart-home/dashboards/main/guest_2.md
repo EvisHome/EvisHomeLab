@@ -5,16 +5,21 @@ tags:
   - automated
 ---
 
-# Guest 3
+# Guest-2
 
 **Dashboard:** Main Dashboard  
-**Path:** `Guest 3`
+**Path:** `Guest-2`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_guest_2.png)
+
+## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_guest3.png)
 
 
 
@@ -22,19 +27,20 @@ tags:
 Required HACS frontend resources:
 
 * `custom:decluttering-card`
+* `custom:mini-graph-card`
 * `custom:mushroom-light-card`
 * `custom:mushroom-title-card`
 * `custom:streamline-card`
 
 
 ## Configuration
-```yaml+jinja
+```yaml
 theme: Backend-selected
-title: Guest 3
-path: Guest 3
+title: Guest-2
+path: Guest-2
 type: sections
 layout:
-  max_cols: 4
+  max_cols: 5
 subview: true
 badges: []
 cards: []
@@ -44,53 +50,44 @@ sections:
   - type: custom:streamline-card
     template: area_card
     variables:
-      area_name: Guest 3
-      area_title: A Room
+      area_name: Guest-2
+      area_title: E Room
       temperature_sensor: sensor.airthings_wave_temperature
-      temp_sensor_entity: sensor.Guest 3_temperature
-      indicator_3_entity: binary_sensor.Guest 3_bed_fp2_presence_sensor
+      indicator_3_entity: binary_sensor.Guest-2_bed_fp2_presence_sensor
       indicator_3_icon: mdi:bed
       indicator_3_state: 'on'
       indicator_3_active_color: lightgreen
-      indicator_4_entity: binary_sensor.Guest 3_desk_fp2_presence_sensor
+      indicator_4_entity: binary_sensor.Guest-2_desk_fp2_presence_sensor
       indicator_4_icon: mdi:chair-rolling
       indicator_4_state: 'on'
       indicator_4_active_color: '#088CF8'
-  - type: vertical-stack
-    cards:
-    - square: false
-      type: grid
-      cards:
-      - type: custom:decluttering-card
-        template: minigraph_co2
-        variables:
-        - sensor: sensor.Guest 3_carbon_dioxide
-      - type: custom:decluttering-card
-        template: minigraph_temperature
-        variables:
-        - sensor: sensor.Guest 3_temperature
-      - type: custom:decluttering-card
-        template: minigraph_humidity
-        variables:
-        - sensor: sensor.Guest 3_humidity
-      columns: 3
   - type: vertical-stack
     cards:
     - type: custom:mushroom-title-card
       title: ''
       subtitle: LIGHTS
       alignment: center
+    - type: custom:mushroom-light-card
+      entity: light.Guest-2_ceiling_light
+      use_light_color: false
+      show_brightness_control: true
+      show_color_temp_control: true
+      collapsible_controls: false
+      layout: horizontal
+  - type: vertical-stack
+    cards:
+    - type: custom:mushroom-title-card
+      title: ''
+      subtitle: POWER
+      alignment: center
     - square: false
-      columns: 2
       type: grid
       cards:
-      - type: custom:mushroom-light-card
-        entity: light.Guest 3_ceiling_light
-        show_brightness_control: true
-        show_color_temp_control: false
-      - type: custom:mushroom-light-card
-        entity: light.Guest 3_window_light
-        fill_container: true
+      - type: custom:mini-graph-card
+        entities:
+        - entity: sensor.Guest-2_window_outlet_power
+          name: Energy
+      columns: 2
 - type: grid
   cards:
   - type: custom:mushroom-title-card
@@ -100,8 +97,8 @@ sections:
   - type: custom:decluttering-card
     template: area_occupancy_settings
     variables:
-    - area: Guest 3
-    - area_name: Guest 3
+    - area: Guest-2
+    - area_name: Guest-2
 max_columns: 4
 
 ```

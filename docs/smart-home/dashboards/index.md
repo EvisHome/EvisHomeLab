@@ -16,12 +16,12 @@ Welcome to the Home Lab Dashboards overview. Below is a structured list of all a
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Evis](./dashboard-persons/evis.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
--   **[Guest-1](./dashboard-persons/guest-1.md)**
+-   **[Guest-1](./dashboard-persons/guest_1.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
 
 ## 📱 Home Access
--   **[Home Access Center](./home-access/home-access-center.md)**
-    <br> :material-arrow-right-bottom: *Centralized management interface for the Unifi G4 Doorbell Pro access system. Allows granular control of Fingerprint and NFC users, guest scheduling, and reviewing detailed access logs.*
+-   **[Home Access Center](./home-access/home_access_center.md)**
+    <br> :material-arrow-right-bottom: *No description provided.*
 
 ## 📱 Main
 -   **[Backyard](./main/backyard.md)**
@@ -32,24 +32,16 @@ Welcome to the Home Lab Dashboards overview. Below is a structured list of all a
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Daughter](./main/daughter.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
--   **[Electricity Dev](./main/electricity-dev.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Electricity](./main/electricity.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
--   **[Front Door](./main/front-door.md)**
+-   **[Electricity Dev](./main/electricity_dev.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
--   **[Grandpa](./main/grandpa.md)**
-    <br> :material-arrow-right-bottom: *No short description provided.*
--   **[Guest-2](./main/guest-2.md)**
+-   **[Front Door](./main/front_door.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
--   **[Guest-3](./main/guest-3.md)**
+-   **[Guest-2](./main/guest_2.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
--   **[Guest](./main/guest.md)**
-    <br> :material-arrow-right-bottom: *No short description provided.*
--   **[Guest 2](./main/guest2.md)**
-    <br> :material-arrow-right-bottom: *No short description provided.*
--   **[Guest 3](./main/guest3.md)**
-    <br> :material-arrow-right-bottom: *No short description provided.*
+-   **[Guest-3](./main/guest_3.md)**
+    <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Hallway](./main/hallway.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Home](./main/home.md)**
@@ -76,8 +68,8 @@ Welcome to the Home Lab Dashboards overview. Below is a structured list of all a
     <br> :material-arrow-right-bottom: *No description provided.*
 
 ## 📱 Notification Center
--   **[Notifications Management](./notification-center/notifications-management.md)**
-    <br> :material-arrow-right-bottom: *A comprehensive administrative interface for the Smart Notification system, allowing management of users, devices, notification categories, subscriptions, and global delivery rules.*
+-   **[Notifications Management](./notification-center/notifications_management.md)**
+    <br> :material-arrow-right-bottom: *No description provided.*
 
 ## 📱 Room Management
 -   **[Settings](./room-management/settings.md)**

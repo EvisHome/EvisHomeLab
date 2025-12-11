@@ -128,10 +128,10 @@ sections:
     icon: mdi:dishwasher
     fill_container: true
   - type: custom:mushroom-entity-card
-    entity: sensor.dishwasher_current_status
+    entity: sensor.dishwasher_current_cycle
     layout: vertical
-    name: Dishwasher Status
-    icon: mdi:dishwasher
+    name: Dishwasher Cycle
+    icon: mdi:recycle
     fill_container: true
   - type: custom:mushroom-entity-card
     entity: sensor.dishwasher_remaining_time

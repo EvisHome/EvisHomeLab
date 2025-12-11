@@ -14,7 +14,7 @@ tags:
 No description provided.
 <!-- END_DESCRIPTION -->
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_guest-1.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_guest_1.png)
 
 ## Summary
 <!-- START_SUMMARY -->

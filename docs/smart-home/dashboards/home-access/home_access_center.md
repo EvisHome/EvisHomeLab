@@ -11,14 +11,14 @@ tags:
 **Path:** `home-access-center`
 
 <!-- START_DESCRIPTION -->
-Centralized management interface for the Unifi G4 Doorbell Pro access system. Allows granular control of Fingerprint and NFC users, guest scheduling, and reviewing detailed access logs.
+No description provided.
 <!-- END_DESCRIPTION -->
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_home-access-center.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_home_access_center.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-The Home Access Center serves as the administrative hub for the unified access control system. It features a User Registry for viewing all assigned identities with real-time status indicators, and separate control panels for globally managing Fingerprint and NFC permissions. The dashboard also includes a comprehensive Guest Schedule configurator and a detailed Access Log that tracks both cloud-based access events and physical lock operations, providing complete visibility into door entry activity.
+*No summary generated yet.*
 <!-- END_SUMMARY -->
 
 ## Related Packages
