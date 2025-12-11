@@ -11,7 +11,7 @@ Welcome to the Home Lab Dashboards overview. Below is a structured list of all a
 !!! info "Auto-Generated"
     This catalog is automatically maintained by the Documentation Agent.
 
-## 📱 Dashboard Persons
+## 📱 Persons
 -   **[CAR](./dashboard-persons/car.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Evis](./dashboard-persons/evis.md)**
