@@ -44,7 +44,7 @@ git pull
 ```
 3.  **Regenerate Docs (The V2 Shim):**
 ```
-cd /; python ag_v2_update.py
+cd /; python .ag_scripts/orchestrator/update_all.py
 ```
 4.  **Publish Docs (Public Repo B):**
 ```
@@ -77,7 +77,7 @@ cd docs_site; git add .; git commit -m "Routine update"; git push
 
 **Task: Update Package Boilerplate (Automation)**
 *Use this prompt first to ensure the documentation structure is correct and versioned.*
-> "Run `cd /; python ag_v2_package.py [package_name]`."
+> "Run `python .ag_scripts/package_manager/main.py [package_name]`."
 
 **Task: Deep Package Analysis (Intelligence Injection)**
 *Use this prompt AFTER running the Python script to fill the intelligent content slots.*
@@ -129,14 +129,23 @@ cd docs_site; git add .; git commit -m "Routine update"; git push
 
 ## 3. Tool Reference
 
-### `ag_v2_update.py`
-The Master Orchestrator. Calls the other tools to update packages and dashboards in one go.
+### `.ag_scripts/orchestrator/update_all.py`
+The Master Orchestrator. Coordinates the update of all documentation components (Packages, Dashboards, Structure, Indices).
+*   **Command:** `python .ag_scripts/orchestrator/update_all.py [optional_package_name]`
 
-### `ag_v2_dashboard.py`
-The Privacy Engine. Reads `.storage/lovelace_dashboards`, performs regex-based name redaction (Jukka->Evis), and outputs clean YAML blocks. Logic lives in `.ag_scripts/dashboard_manager`.
+### `.ag_scripts/dashboard_manager/main.py`
+The Dashboard Engine. Reads `.storage/lovelace_dashboards`, performs name redaction (Jukka->Evis), and generates dashboard documentation.
+*   **Command:** `python .ag_scripts/dashboard_manager/main.py [optional_dashboard_slug]`
 
-### `ag_v2_package.py`
-The Package Doc Generator. Reads a specific package YAML, extracts header metadata (Version/Desc), and updates the specific Markdown file. Logic lives in `.ag_scripts/package_manager`.
+### `.ag_scripts/package_manager/main.py`
+The Package Engine. Reads specific package YAML files, extracts metadata, and ensures the markdown skeleton exists.
+*   **Command:** `python .ag_scripts/package_manager/main.py [package_name]`
+
+### Structure & Index Generators
+New tools to keep the site structure automated.
+*   **Structure:** `.ag_scripts/structure_manager/generate_structure.py` (Maintains `structure.md`)
+*   **Automations:** `.ag_scripts/structure_manager/generate_automations_doc.py` (Maintains `automations.md` for UI logic)
+*   **Package Index:** `.ag_scripts/package_manager/generate_index.py` (Maintains `packages/index.md`)
 
 ---
 
