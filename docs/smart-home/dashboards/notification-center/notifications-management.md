@@ -11,14 +11,14 @@ tags:
 **Path:** `notifications-management`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+A comprehensive administrative interface for the Smart Notification system, allowing management of users, devices, notification categories, subscriptions, and global delivery rules.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_notifications-management.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This dashboard serves as the central control panel for the Smart Notification routing engine. It is divided into five logical sections: **User Management** for onboarding new family members and linking their devices; **Category Management** for dynamically creating system-wide alert channels (e.g., "Security", "Chores"); **Delivery Settings** for defining global routing logic (e.g., suppressing specific categories when users are away); **Subscription Management**, which provides a matrix view of every user's opt-in preferences; and **Notifications List**, which auto-discovers and displays the status of all automations tagged for the notification system.
 <!-- END_SUMMARY -->
 
 ## Related Packages
