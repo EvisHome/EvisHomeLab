@@ -16,31 +16,78 @@ version: 1.1.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-*No executive summary generated yet.*
+This package provides a comprehensive, unified access control system for the UniFi G4 Doorbell Pro, integrating both Fingerprint and NFC authentication. It abstracts physical credentials (fingerprints/tags) into a single "Unified User" identity, allowing centralized management. Key features include granular access control (enabling/disabling specific credentials per user), a unified weekly schedule for guest access, real-time logging to the cloud entity for security auditing, and automated "auto-learn" functionality for on-boarding new credentials.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-*No detailed non-technical description generated yet.*
+1.  **Credential Scan**: When a user scans a fingerprint or NFC tag, the system captures the unique ID (`ulp_id`).
+2.  **Identity Resolution**: The system looks up the "Unified User" assigned to that ID.
+    *   **New ID**: If unknown, it's automatically added to the system as "Unknown" for easy assignment later.
+    *   **Known User**: The system checks the specific access switch for that method (e.g., "FP Access: Dad" or "NFC Access: Mom").
+3.  **Authorization**:
+    *   **Standard Users**: Access is granted if their specific switch is ON.
+    *   **Guests**: Access is granted ONLY if their switch is ON **AND** the current time/day matches the allowed Guest Schedule.
+4.  **Action**: If authorized, the door unlocks, a snapshot is taken, and the event is logged. If denied, a notification is sent.
 <!-- END_DETAILED -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
-* **[Fingerprints](../dashboards/home-access/fingerprints.md)** (Uses 1 entities)
-* **[Front Door](../dashboards/main/front-door.md)** (Uses 1 entities)
-* **[Home](../dashboards/main/home.md)** (Uses 1 entities)
-* **[Mud Room](../dashboards/main/mud_room.md)** (Uses 1 entities)
+* **[Home Access](../dashboards/home-access/index.md)**: The primary interface for managing users, assignments, and schedules.
+* **[Security](../dashboards/security/index.md)**: Displays the access log and live camera feeds.
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-*No architecture explanation generated yet.*
+The diagram illustrates the unified access flow. When a physical credential (fingerprint or NFC) is presented at the G4 Doorbell, an event is triggered in Home Assistant. The `unifi_access` package processes this event by resolving the unique ID (`ulp_id`) to a "Unified User". It then evaluates permissions: checking the specific method's access switch (e.g., NFC Access) and, for "Guest" users, validating the request against the unified weekly schedule. If authorized, the system commands the physical lock to open and logs the entry to the Cloud logging entity for persistent tracking. Both successful entries and denied attempts utilize the `notify.smart_master` service to alert administrators.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-*No architecture diagram generated yet.*
+```mermaid
+sequenceDiagram
+    participant User
+    participant G4 as G4 Doorbell Pro
+    participant HA as Home Assistant
+    participant Logic as Access Logic
+    participant MQTT as MQTT Broker
+    participant Lock as Physical Lock
+    participant Log as Cloud Log
+    participant Notify as Notification Svc
+
+    User->>G4: Scans Fingerprint / NFC
+    G4->>HA: Event (ulp_id)
+    HA->>Logic: Trigger Automation
+    
+    rect rgb(240, 240, 240)
+        Note over Logic: Identity Resolution
+        Logic->>MQTT: Query User for ulp_id
+        MQTT-->>Logic: Returns "Unified User"
+    end
+
+    rect rgb(230, 245, 255)
+        Note over Logic: Authorization Check
+        alt is Unknown ID
+            Logic->>Logic: Auto-Learn (Create "Unknown")
+            Logic->>Notify: Alert "New ID Found"
+        else is Known User
+            Logic->>Logic: Check Access Switch (FP/NFC)
+            opt is Guest
+                Logic->>Logic: Validate Schedule (Time/Day)
+            end
+            
+            alt Access Granted
+                Logic->>Lock: Unlock Command
+                Logic->>Log: Log Entry (User + Method)
+                Logic->>Notify: Send "Unlocked" Snapshot
+            else Access Denied
+                Logic->>Log: Log Denial Reason
+                Logic->>Notify: Send Critical Alert
+            end
+        end
+    end
+```
 <!-- END_MERMAID -->
 
 ## Configuration (Source Code)
