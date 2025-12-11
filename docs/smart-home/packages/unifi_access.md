@@ -35,8 +35,8 @@ This package provides a comprehensive, unified access control system for the Uni
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
-* **[Home Access](../dashboards/home-access/index.md)**: The primary interface for managing users, assignments, and schedules.
-* **[Security](../dashboards/security/index.md)**: Displays the access log and live camera feeds.
+* **[Home Access](../dashboards/home-access/home-access-center.md)**: The primary interface for managing users, assignments, and schedules.
+* **[Front Door](../dashboards/main/front-door.md)**: Displays the access log and live camera feeds.
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram
