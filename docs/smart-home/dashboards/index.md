@@ -4,12 +4,12 @@ tags:
   - index
 ---
 
-# Home Lab Dashboards
+# Dashboard Catalog
 
 Welcome to the Home Lab Dashboards overview. Below is a structured list of all available dashboard views, grouped by their respective dashboards.
 
 !!! info "Auto-Generated"
-    This index is automatically maintained by the Documentation Agent.
+    This catalog is automatically maintained by the Documentation Agent.
 
 ## 📱 Dashboard Persons
 -   **[CAR](./dashboard-persons/car.md)**
