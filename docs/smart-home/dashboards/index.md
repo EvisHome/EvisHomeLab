@@ -13,41 +13,11 @@ Welcome to the Home Lab Dashboards overview. Below is a structured list of all a
 
 ## 📱 Dashboard Persons
 -   **[CAR](./dashboard-persons/car.md)**
-    <br> :material-arrow-right-bottom: *A high-fidelity "Digital Twin" interface for the Mercedes GLC, unifying real-time vehicle telemetry, remote climate control, and location tracking into a single command center.*
--   **[Daughter](./dashboard-persons/daughter.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Evis](./dashboard-persons/evis.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Guest-1](./dashboard-persons/guest-1.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
--   **[Guest-2](./dashboard-persons/guest-2.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
--   **[Guest-3](./dashboard-persons/guest-3.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
--   **[Guest 1](./dashboard-persons/guest1.md)**
-    <br> :material-arrow-right-bottom: *No short description provided.*
--   **[Guest 2](./dashboard-persons/guest2.md)**
-    <br> :material-arrow-right-bottom: *No short description provided.*
--   **[Guest 3](./dashboard-persons/guest3.md)**
-    <br> :material-arrow-right-bottom: *No short description provided.*
--   **[Map All](./dashboard-persons/map-all.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
--   **[Map Daughter](./dashboard-persons/map-daughter.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
--   **[Map Evis](./dashboard-persons/map-evis.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
--   **[Map Guest-1](./dashboard-persons/map-guest-1.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
--   **[Map Guest-2](./dashboard-persons/map-guest-2.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
--   **[Map Guest-3](./dashboard-persons/map-guest-3.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
--   **[Map Guest 1](./dashboard-persons/map-guest1.md)**
-    <br> :material-arrow-right-bottom: *No short description provided.*
--   **[Map Guest 2](./dashboard-persons/map-guest2.md)**
-    <br> :material-arrow-right-bottom: *No short description provided.*
--   **[Map Guest 3](./dashboard-persons/map-guest3.md)**
-    <br> :material-arrow-right-bottom: *No short description provided.*
 
 ## 📱 Home Access
 -   **[Home Access Center](./home-access/home-access-center.md)**
