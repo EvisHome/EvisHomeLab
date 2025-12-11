@@ -45,3 +45,4 @@ plugins:
   - tags:
       tags_file: tags.md
   - awesome-pages
+  - glightbox
