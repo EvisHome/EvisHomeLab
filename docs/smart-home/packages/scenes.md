@@ -319,9 +319,9 @@ scene:
         entity_only: true
 
   - id: "1665121007096"
-    name: Guest 1 Bed Dim
+    name: Daughter Bed Dim
     entities:
-      light.Guest 1_bed_light:
+      light.Daughter_bed_light:
         state: "on"
         brightness: 127
         color_mode: color_temp
@@ -331,9 +331,9 @@ scene:
         xy_color: [0.372, 0.35]
 
   - id: "1665121039862"
-    name: Guest 1 Bed Daylight
+    name: Daughter Bed Daylight
     entities:
-      light.Guest 1_bed_light:
+      light.Daughter_bed_light:
         state: "on"
         brightness: 255
         color_mode: color_temp
@@ -343,9 +343,9 @@ scene:
         xy_color: [0.326, 0.333]
 
   - id: "1665121075215"
-    name: Guest 1 Bed Pink
+    name: Daughter Bed Pink
     entities:
-      light.Guest 1_bed_light:
+      light.Daughter_bed_light:
         state: "on"
         brightness: 255
         color_mode: xy
@@ -354,9 +354,9 @@ scene:
         xy_color: [0.38, 0.17]
 
   - id: "1665121117806"
-    name: Guest 1 Bed Relax
+    name: Daughter Bed Relax
     entities:
-      light.Guest 1_bed_light:
+      light.Daughter_bed_light:
         state: "on"
         brightness: 51
         color_mode: xy
@@ -381,9 +381,9 @@ scene:
         xy_color: [0.372, 0.35]
 
   - id: "1666102359369"
-    name: Guest 3 Dim
+    name: Guest-2 Dim
     entities:
-      light.Guest 3_ceiling_light:
+      light.Guest-2_ceiling_light:
         state: "on"
         brightness: 64
         color_mode: color_temp
@@ -392,13 +392,13 @@ scene:
         rgb_color: [255, 205, 166]
         xy_color: [0.421, 0.364]
     metadata:
-      light.Guest 3_ceiling_light:
+      light.Guest-2_ceiling_light:
         entity_only: true
 
   - id: "1666102385906"
-    name: Guest 3 Bright
+    name: Guest-2 Bright
     entities:
-      light.Guest 3_ceiling_light:
+      light.Guest-2_ceiling_light:
         state: "on"
         brightness: 255
         color_mode: color_temp
@@ -407,13 +407,13 @@ scene:
         rgb_color: [255, 205, 166]
         xy_color: [0.421, 0.364]
     metadata:
-      light.Guest 3_ceiling_light:
+      light.Guest-2_ceiling_light:
         entity_only: true
 
   - id: "1666102425014"
-    name: Guest 3 Night
+    name: Guest-2 Night
     entities:
-      light.Guest 3_ceiling_light:
+      light.Guest-2_ceiling_light:
         state: "on"
         brightness: 13
         color_mode: color_temp
@@ -422,7 +422,7 @@ scene:
         rgb_color: [255, 146, 39]
         xy_color: [0.579, 0.388]
     metadata:
-      light.Guest 3_ceiling_light:
+      light.Guest-2_ceiling_light:
         entity_only: true
 
 ```

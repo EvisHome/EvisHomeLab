@@ -7,7 +7,7 @@ version: 2.0.3
 
 # Package: Car
 
-**Version:** 2.0.4  
+**Version:** 2.0.3  
 **Description:** Unified logic for Mercedes GLC. Normalizes sensors (Windows/Doors), wrapper switches, and Status Notifications.
 
 <!-- START_IMAGE -->
@@ -33,7 +33,7 @@ The `Car` package provides a unified interface for the Mercedes GLC, leveraging 
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
-* **[CAR](../dashboards/dashboard-persons/car.md)**: *This view provides a comprehensive dashboard for monitoring and controlling the Mercedes-Benz car. It allows users to check fuel, EV battery, tire pressure, and lock status, verify door and window sensors, control pre-entry climate, and track the vehicle's location.* (Uses 1 entities)
+* **[CAR](../dashboards/dashboard-persons/car.md)**: *The **Car Dashboard** provides a centralized command center for the Mercedes GLC, unifying vehicle health monitoring and remote control. It combines real-time data metrics (fuel, battery, tire pressure) with actionable controls (locks, climate pre-conditioning). The interface features a visual "Digital Twin" of the car to intuitively display status alerts, warning indicators (low fluids, unlocked doors), and charging progress, alongside a real-time location tracker.* (Uses 1 entities)
 * **[Home](../dashboards/main/home.md)** (Uses 1 entities)
 <!-- END_DASHBOARD -->
 

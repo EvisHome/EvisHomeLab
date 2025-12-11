@@ -38,7 +38,7 @@ This package powers the following dashboard views:
 
 * **[Fingerprints](../dashboards/home-access/fingerprints.md)** (Uses 1 entities)
 * **[Living Room](../dashboards/main/living_room.md)** (Uses 1 entities)
-* **[Management](../dashboards/notification-center/management.md)** (Uses 9 entities)
+* **[Management](../dashboards/notification-center/management.md)**: *This dashboard acts as the administrative backend for the Smart Notification System. It is divided into four key sections: **User Management** for onboarding and offboarding notification recipients; **Category Management** for creating and deleting system-wide notification channels; **Delivery Settings** for defining global rules (e.g., presence-based delivery); and **Subscription Management**, allowing individual users to toggle their subscriptions to specific notification categories. Additionally, it provides an overview of all automations tagged with notification labels.* (Uses 9 entities)
 * **[Settings](../dashboards/room-management/settings.md)** (Uses 1 entities)
 <!-- END_DASHBOARD -->
 

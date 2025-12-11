@@ -10,11 +10,16 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `electricity`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_electricity.png)
+
+## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_electricity.png)
 
 ## Related Packages
 This view contains entities managed by:
@@ -32,7 +37,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml+jinja
+```yaml
 type: sections
 max_columns: 4
 title: Electricity
@@ -158,10 +163,8 @@ sections:
             extremas: true
             in_header: true
             header_color_threshold: true
-          data_generator: |-
-            return entity.attributes.data.map(entry => {
-              return [new Date(entry.start).getTime(), entry.price];
-            });
+          data_generator: "return entity.attributes.data.map(entry => {\n  return\
+            \ [new Date(entry.start).getTime(), entry.price];\n});\n"
           color_threshold:
           - value: -10
             color: lightgreen
@@ -309,10 +312,9 @@ sections:
             extremas: true
             in_header: raw
             header_color_threshold: true
-          data_generator: |-
-            return entity.attributes.raw_today.map((start, index) => {
-              return [new Date(start["start"]).getTime(), entity.attributes.raw_today[index]["value"]];
-            });
+          data_generator: "return entity.attributes.raw_today.map((start, index) =>\
+            \ {\n  return [new Date(start[\"start\"]).getTime(), entity.attributes.raw_today[index][\"\
+            value\"]];\n});\n"
           color_threshold:
           - value: -10
             color: lightgreen
@@ -440,14 +442,10 @@ sections:
           extremas: true
           in_header: raw
           header_color_threshold: true
-        data_generator: |-
-          const tomorrow = new Date();
-          tomorrow.setHours(0, 0, 0, 0);
-          tomorrow.setDate(tomorrow.getDate() + 1);
-
-          return entity.attributes.data
-            .filter(entry => new Date(entry.start) >= tomorrow)
-            .map(entry => [new Date(entry.start).getTime(), entry.price]);
+        data_generator: "const tomorrow = new Date();\ntomorrow.setHours(0, 0, 0,\
+          \ 0);\ntomorrow.setDate(tomorrow.getDate() + 1);\n\nreturn entity.attributes.data\n\
+          \  .filter(entry => new Date(entry.start) >= tomorrow)\n  .map(entry =>\
+          \ [new Date(entry.start).getTime(), entry.price]);\n"
         color_threshold:
         - value: -10
           color: lightgreen
@@ -676,10 +674,8 @@ sections:
             extremas: true
             in_header: raw
             header_color_threshold: true
-          data_generator: |-
-            return entity.attributes.data.map(entry => {
-              return [new Date(entry.start).getTime(), entry.price];
-            });
+          data_generator: "return entity.attributes.data.map(entry => {\n  return\
+            \ [new Date(entry.start).getTime(), entry.price];\n});\n"
           color_threshold:
           - value: -10
             color: lightgreen
@@ -811,14 +807,10 @@ sections:
           extremas: true
           in_header: raw
           header_color_threshold: true
-        data_generator: |-
-          const tomorrow = new Date();
-          tomorrow.setHours(0, 0, 0, 0);
-          tomorrow.setDate(tomorrow.getDate() + 1);
-
-          return entity.attributes.data
-            .filter(entry => new Date(entry.start) >= tomorrow)
-            .map(entry => [new Date(entry.start).getTime(), entry.price]);
+        data_generator: "const tomorrow = new Date();\ntomorrow.setHours(0, 0, 0,\
+          \ 0);\ntomorrow.setDate(tomorrow.getDate() + 1);\n\nreturn entity.attributes.data\n\
+          \  .filter(entry => new Date(entry.start) >= tomorrow)\n  .map(entry =>\
+          \ [new Date(entry.start).getTime(), entry.price]);\n"
         color_threshold:
         - value: -10
           color: lightgreen
@@ -928,19 +920,12 @@ sections:
         extremas: true
         in_header: raw
         header_color_threshold: true
-      data_generator: |-
-        if (!entity.attributes.data) return [];
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1);
-
-        return entity.attributes.data
-          .filter(entry => {
-            const start = new Date(entry.start);
-            return start >= today && start < tomorrow;
-          })
-          .map(entry => [new Date(entry.start).getTime(), entry.price]);
+      data_generator: "if (!entity.attributes.data) return [];\nconst today = new\
+        \ Date();\ntoday.setHours(0, 0, 0, 0);\nconst tomorrow = new Date(today);\n\
+        tomorrow.setDate(today.getDate() + 1);\n\nreturn entity.attributes.data\n\
+        \  .filter(entry => {\n    const start = new Date(entry.start);\n    return\
+        \ start >= today && start < tomorrow;\n  })\n  .map(entry => [new Date(entry.start).getTime(),\
+        \ entry.price]);\n"
       color_threshold:
       - value: -10
         color: lightgreen
@@ -1094,19 +1079,12 @@ sections:
         extremas: true
         in_header: raw
         header_color_threshold: true
-      data_generator: |-
-        if (!entity.attributes.data) return [];
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1);
-
-        return entity.attributes.data
-          .filter(entry => {
-            const start = new Date(entry.start);
-            return start >= today && start < tomorrow;
-          })
-          .map(entry => [new Date(entry.start).getTime(), entry.price]);
+      data_generator: "if (!entity.attributes.data) return [];\nconst today = new\
+        \ Date();\ntoday.setHours(0, 0, 0, 0);\nconst tomorrow = new Date(today);\n\
+        tomorrow.setDate(today.getDate() + 1);\n\nreturn entity.attributes.data\n\
+        \  .filter(entry => {\n    const start = new Date(entry.start);\n    return\
+        \ start >= today && start < tomorrow;\n  })\n  .map(entry => [new Date(entry.start).getTime(),\
+        \ entry.price]);\n"
       color_threshold:
       - value: 10
         color: lightgreen

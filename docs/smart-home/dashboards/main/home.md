@@ -10,11 +10,16 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `home`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_home.png)
+
+## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_home.png)
 
 ## Related Packages
 This view contains entities managed by:
@@ -22,8 +27,8 @@ This view contains entities managed by:
 * [Aqara W500](../../packages/aqara_w500.md)
 * [Car](../../packages/car.md)
 * [Dishwasher](../../packages/dishwasher.md)
-* [Fingerprint Management](../../packages/fingerprint_management.md)
 * [Nordpool Prices](../../packages/nordpool_prices.md)
+* [Unifi Access](../../packages/unifi_access.md)
 
 
 ## Dependencies (Custom Cards)
@@ -43,7 +48,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml+jinja
+```yaml
 title: Home
 path: home
 cards: []
@@ -160,9 +165,11 @@ sections:
       action: none
   - type: custom:mushroom-template-card
     entity: sensor.nord_pool_fi_current_price
-    secondary: |-
-      c/kWh
+    secondary: 'c/kWh
+
       NOW
+
+      '
     icon: mdi:currency-eur
     badge_icon: ''
     badge_color: ''
@@ -172,28 +179,24 @@ sections:
       action: none
     double_tap_action:
       action: none
-    color: |-
-      {% set high = states('sensor.electricity_today_32nd_highest_price') | float(0) %} {% set low = states('sensor.electricity_today_32nd_lowest_price') | float(0) %} {% set price = states(entity) | float(0) %}
-      {% if price > high %}
-        red
-      {% elif price < low %}
-        green
-      {% else %}
-        orange
-      {% endif %}
+    color: "{% set high = states('sensor.electricity_today_32nd_highest_price') |\
+      \ float(0) %} {% set low = states('sensor.electricity_today_32nd_lowest_price')\
+      \ | float(0) %} {% set price = states(entity) | float(0) %}\n{% if price > high\
+      \ %}\n  red\n{% elif price < low %}\n  green\n{% else %}\n  orange\n{% endif\
+      \ %}"
     vertical: true
     features_position: bottom
     grid_options:
       columns: 4
       rows: 2
     multiline_secondary: true
-    primary: '{{ (states(entity) | float(0) * 100) | round(1) }}'
+    primary: '{{ (states(entity) | float(0) * 100) | round(1) }} '
   - type: custom:mushroom-template-card
     entity: sensor.electricity_daily_average_cents
     primary: '{{ (states(entity) | float(0)) | round(1) }}'
-    secondary: |-
-      c/kWh
-      Average
+    secondary: 'c/kWh
+
+      Average'
     icon: mdi:equal
     badge_icon: ''
     badge_color: ''
@@ -203,15 +206,11 @@ sections:
       action: none
     double_tap_action:
       action: none
-    color: |-
-      {% set high = states('sensor.electricity_today_32nd_highest_price') | float(0) %} {% set low = states('sensor.electricity_today_32nd_lowest_price') | float(0) %} {% set price = states(entity) | float(0) %}
-      {% if price > high %}
-        red
-      {% elif price < low %}
-        green
-      {% else %}
-        orange
-      {% endif %}
+    color: "{% set high = states('sensor.electricity_today_32nd_highest_price') |\
+      \ float(0) %} {% set low = states('sensor.electricity_today_32nd_lowest_price')\
+      \ | float(0) %} {% set price = states(entity) | float(0) %}\n{% if price > high\
+      \ %}\n  red\n{% elif price < low %}\n  green\n{% else %}\n  orange\n{% endif\
+      \ %}"
     vertical: true
     features_position: bottom
     grid_options:
@@ -246,10 +245,7 @@ sections:
       columns: 12
       rows: 1
     card_mod:
-      style: |-
-        ha-card {
-          --card-mod-icon-color: var(--blue-color);
-        }
+      style: "ha-card {\n  --card-mod-icon-color: var(--blue-color);\n}\n"
     visibility:
     - condition: state
       entity: binary_sensor.dishwasher_active
@@ -392,10 +388,8 @@ sections:
           extremas: true
           in_header: true
           header_color_threshold: true
-        data_generator: |-
-          return entity.attributes.data.map(entry => {
-            return [new Date(entry.start).getTime(), entry.price];
-          });
+        data_generator: "return entity.attributes.data.map(entry => {\n  return [new\
+          \ Date(entry.start).getTime(), entry.price];\n});\n"
         color_threshold:
         - value: -10
           color: lightgreen
@@ -537,14 +531,10 @@ sections:
           extremas: true
           in_header: raw
           header_color_threshold: true
-        data_generator: |-
-          const tomorrow = new Date();
-          tomorrow.setHours(0, 0, 0, 0);
-          tomorrow.setDate(tomorrow.getDate() + 1);
-
-          return entity.attributes.data
-            .filter(entry => new Date(entry.start) >= tomorrow)
-            .map(entry => [new Date(entry.start).getTime(), entry.price]);
+        data_generator: "const tomorrow = new Date();\ntomorrow.setHours(0, 0, 0,\
+          \ 0);\ntomorrow.setDate(tomorrow.getDate() + 1);\n\nreturn entity.attributes.data\n\
+          \  .filter(entry => new Date(entry.start) >= tomorrow)\n  .map(entry =>\
+          \ [new Date(entry.start).getTime(), entry.price]);\n"
         color_threshold:
         - value: -10
           color: lightgreen
@@ -578,9 +568,9 @@ sections:
   - type: custom:mushroom-template-card
     entity: sensor.electricity_daily_average_cents
     primary: '{{ (states(entity) | float(0)) | round(1) }}'
-    secondary: |-
-      c/kWh
-      Average
+    secondary: 'c/kWh
+
+      Average'
     icon: mdi:arrow-up-circle
     badge_icon: ''
     badge_color: ''
@@ -590,15 +580,11 @@ sections:
       action: none
     double_tap_action:
       action: none
-    color: |-
-      {% set high = states('sensor.electricity_today_32nd_highest_price') | float(0) %} {% set low = states('sensor.electricity_today_32nd_lowest_price') | float(0) %} {% set price = states(entity) | float(0) %}
-      {% if price > high %}
-        red
-      {% elif price < low %}
-        green
-      {% else %}
-        orange
-      {% endif %}
+    color: "{% set high = states('sensor.electricity_today_32nd_highest_price') |\
+      \ float(0) %} {% set low = states('sensor.electricity_today_32nd_lowest_price')\
+      \ | float(0) %} {% set price = states(entity) | float(0) %}\n{% if price > high\
+      \ %}\n  red\n{% elif price < low %}\n  green\n{% else %}\n  orange\n{% endif\
+      \ %}"
     vertical: true
     features_position: bottom
     grid_options:
@@ -635,12 +621,12 @@ sections:
       indicator_2_state: unlocked
       indicator_2_active_color: '#FF4444'
       indicator_2_animation_on: blink 1s ease infinite
-      indicator_3_entity: binary_sensor.front_door_lock_door
+      indicator_3_entity: binary_sensor.front_door_lock_cloud
       indicator_3_icon: mdi:door-open
       indicator_3_state: 'on'
       indicator_3_active_color: '#FF4444'
       indicator_3_animation_on: blink 1s ease infinite
-      indicator_4_entity: sensor.front_door_lock_battery
+      indicator_4_entity: sensor.front_door_lock_bt_battery
       indicator_4_icon: mdi:battery-alert
       indicator_4_state: '20'
       indicator_4_active_color: orange
@@ -665,12 +651,12 @@ sections:
       indicator_2_state: unlocked
       indicator_2_active_color: '#FF4444'
       indicator_2_animation_on: blink 1s ease infinite
-      indicator_3_entity: binary_sensor.front_door_lock_door
+      indicator_3_entity: binary_sensor.front_door_lock_cloud
       indicator_3_icon: mdi:door-open
       indicator_3_state: 'on'
       indicator_3_active_color: '#FF4444'
       indicator_3_animation_on: blink 1s ease infinite
-      indicator_4_entity: sensor.front_door_lock_battery
+      indicator_4_entity: sensor.front_door_lock_bt_battery
       indicator_4_icon: mdi:battery-alert
       indicator_4_state: '20'
       indicator_4_active_color: orange
@@ -799,7 +785,7 @@ sections:
       indicator_3_entity: input_boolean.bed_Evis_occupancy
       indicator_3_icon: mdi:bed
       indicator_3_state: 'on'
-      indicator_4_entity: input_boolean.bed_Guest 1_occupancy
+      indicator_4_entity: input_boolean.bed_Guest-1_occupancy
       indicator_4_icon: mdi:bed
       indicator_4_state: 'on'
       indicator_4_active_color: '#FF44C4'
@@ -809,14 +795,14 @@ sections:
   - type: custom:streamline-card
     template: area_card
     variables:
-      area_name: Guest 2
+      area_name: Guest-2
       area_title: E Room
       temperature_sensor: sensor.airthings_wave_temperature
-      indicator_3_entity: binary_sensor.Guest 2_bed_fp2_presence_sensor
+      indicator_3_entity: binary_sensor.Guest-2_bed_fp2_presence_sensor
       indicator_3_icon: mdi:bed
       indicator_3_state: 'on'
       indicator_3_active_color: lightgreen
-      indicator_4_entity: binary_sensor.Guest 2_desk_fp2_presence_sensor
+      indicator_4_entity: binary_sensor.Guest-2_desk_fp2_presence_sensor
       indicator_4_icon: mdi:chair-rolling
       indicator_4_state: 'on'
       indicator_4_active_color: '#088CF8'
@@ -825,15 +811,15 @@ sections:
   - type: custom:streamline-card
     template: area_card
     variables:
-      area_name: Guest 3
+      area_name: Guest-3
       area_title: A Room
       temperature_sensor: sensor.airthings_wave_temperature
-      temp_sensor_entity: sensor.Guest 3_temperature
-      indicator_3_entity: binary_sensor.Guest 3_bed_fp2_presence_sensor
+      temp_sensor_entity: sensor.Guest-3_temperature
+      indicator_3_entity: binary_sensor.Guest-3_bed_fp2_presence_sensor
       indicator_3_icon: mdi:bed
       indicator_3_state: 'on'
       indicator_3_active_color: lightgreen
-      indicator_4_entity: binary_sensor.Guest 3_desk_fp2_presence_sensor
+      indicator_4_entity: binary_sensor.Guest-3_desk_fp2_presence_sensor
       indicator_4_icon: mdi:chair-rolling
       indicator_4_state: 'on'
       indicator_4_active_color: '#088CF8'
@@ -1018,60 +1004,38 @@ sections:
                     | {{ states(''sensor.[LICENSE_PLATE]_range_liquid'') }} km range'
                   icon: mdi:gas-station
                   features_position: bottom
-                  color: |-
-                    {% set fuel = states('sensor.[LICENSE_PLATE]_fuel_level') | int %} {% if fuel < 20 %}
-                      darkred
-                    {% elif fuel < 50 %}
-                      yellow
-                    {% else %}
-                      darkgreen
-                    {% endif %}
+                  color: "{% set fuel = states('sensor.[LICENSE_PLATE]_fuel_level')\
+                    \ | int %} {% if fuel < 20 %}\n  darkred\n{% elif fuel < 50 %}\n\
+                    \  yellow\n{% else %}\n  darkgreen\n{% endif %}\n"
                   card_mod:
-                    style: |-
-                      ha-card {
-                        background: linear-gradient(
-                          to right,
-                          orange {{ states('sensor.[LICENSE_PLATE]_fuel_level') }}%,
-                          var(--card-background-color) {{ states('sensor.[LICENSE_PLATE]_fuel_level') }}%
-                        );
-                        );
-                        background-size: 100% 100%;
-                        background-repeat: no-repeat;
-                        border-radius: 12px;
-                      }
+                    style: "ha-card {\n  background: linear-gradient(\n    to right,\n\
+                      \    orange {{ states('sensor.[LICENSE_PLATE]_fuel_level') }}%,\n\
+                      \    var(--card-background-color) {{ states('sensor.[LICENSE_PLATE]_fuel_level')\
+                      \ }}%\n  );\n  );\n  background-size: 100% 100%;\n  background-repeat:\
+                      \ no-repeat;\n  border-radius: 12px;\n}\n"
                 - type: custom:mushroom-template-card
                   entity: sensor.ev_battery_level
                   primary: EV Charge
                   secondary: '{{ states(''sensor.[LICENSE_PLATE]_state_of_charge'')
                     }}% | {{ states(''sensor.[LICENSE_PLATE]_range_electric'') }}
-                    km range'
+                    km range
+
+                    '
                   icon: mdi:car-electric
                   tap_action:
                     action: more-info
                   hold_action:
                     action: more-info
-                  color: |-
-                    {% set charge = states('sensor.[LICENSE_PLATE]_state_of_charge') | int %} {% if charge < 20 %}
-                      red
-                    {% elif charge < 50 %}
-                      yellow
-                    {% else %}
-                      lightgreen
-                    {% endif %}
+                  color: "{% set charge = states('sensor.[LICENSE_PLATE]_state_of_charge')\
+                    \ | int %} {% if charge < 20 %}\n  red\n{% elif charge < 50 %}\n\
+                    \  yellow\n{% else %}\n  lightgreen\n{% endif %}\n"
                   features_position: bottom
                   card_mod:
-                    style: |-
-                      ha-card {
-                        --charge: {{ states('sensor.[LICENSE_PLATE]_state_of_charge') }}%;
-                        background: linear-gradient(
-                          to right,
-                          green var(--charge),
-                          var(--card-background-color) var(--charge)
-                        );
-                        background-size: 100% 100%;
-                        background-repeat: no-repeat;
-                        border-radius: 12px;
-                      }
+                    style: "ha-card {\n  --charge: {{ states('sensor.[LICENSE_PLATE]_state_of_charge')\
+                      \ }}%;\n  background: linear-gradient(\n    to right,\n    green\
+                      \ var(--charge),\n    var(--card-background-color) var(--charge)\n\
+                      \  );\n  background-size: 100% 100%;\n  background-repeat: no-repeat;\n\
+                      \  border-radius: 12px;\n}\n"
               - type: custom:scheduler-card
                 include:
                 - switch.[LICENSE_PLATE]_pre_entry_climate_control
@@ -1094,21 +1058,12 @@ sections:
                 - Car
                 exclude_tags: []
                 card_mod:
-                  style: |-
-                    ha-card {
-                      border-radius: 12px;
-                      box-shadow: var(--ha-card-box-shadow);
-                      background-color: var(--card-background-color);
-                      font-family: var(--mush-font-family, "Roboto", sans-serif);
-                    }
-                    .card-header {
-                      font-size: 1.2em;
-                      font-weight: 500;
-                      padding-bottom: 8px;
-                    }
-                    .schedule-row {
-                      border-bottom: 1px solid var(--divider-color);
-                    }
+                  style: "ha-card {\n  border-radius: 12px;\n  box-shadow: var(--ha-card-box-shadow);\n\
+                    \  background-color: var(--card-background-color);\n  font-family:\
+                    \ var(--mush-font-family, \"Roboto\", sans-serif);\n}\n.card-header\
+                    \ {\n  font-size: 1.2em;\n  font-weight: 500;\n  padding-bottom:\
+                    \ 8px;\n}\n.schedule-row {\n  border-bottom: 1px solid var(--divider-color);\n\
+                    }\n"
               - type: map
                 entities:
                 - entity: person.car
@@ -1117,17 +1072,11 @@ sections:
                 default_zoom: 15
                 theme_mode: auto
       card_mod:
-        style: |-
-          ha-card {
-            /* Moves border logic here from original for border display */
-            {% if is_state('sensor.[LICENSE_PLATE]_ignition_state','4') %}
-              border: 3px solid rgba(36, 255, 0, 0.8);
-            {% elif is_state('sensor.[LICENSE_PLATE]_ignition_state','2') %}
-              border: 3px solid rgba(255, 163, 0, 0.8);
-            {% else %}
-              border: 0px solid rgba(0, 0, 0, 0);
-            {% endif %}
-          }
+        style: "ha-card {\n  /* Moves border logic here from original for border display\
+          \ */\n  {% if is_state('sensor.[LICENSE_PLATE]_ignition_state','4') %}\n\
+          \    border: 3px solid rgba(36, 255, 0, 0.8);\n  {% elif is_state('sensor.[LICENSE_PLATE]_ignition_state','2')\
+          \ %}\n    border: 3px solid rgba(255, 163, 0, 0.8);\n  {% else %}\n    border:\
+          \ 0px solid rgba(0, 0, 0, 0);\n  {% endif %}\n}\n"
       style:
         top: 50%
         left: 50%
@@ -1214,14 +1163,9 @@ sections:
         styles:
           icon:
           - color: '#088CF8'
-          - animation: |-
-              [[[
-                if (states['binary_sensor.[LICENSE_PLATE]_charging_active'].state == 'on') {
-                  return 'blink 1s ease infinite';
-                } else {
-                  return 'none';
-                }
-              ]]]
+          - animation: "[[[\n  if (states['binary_sensor.[LICENSE_PLATE]_charging_active'].state\
+              \ == 'on') {\n    return 'blink 1s ease infinite';\n  } else {\n   \
+              \ return 'none';\n  }\n]]]\n"
       - operator: ==
         value: 'off'
         styles:
@@ -1316,12 +1260,8 @@ sections:
           card:
           - display: none
       card_mod:
-        style: |-
-          :host {
-            {% if '[[entity]]' == '' %}
-              display: none;
-            {% endif %}
-          }
+        style: ":host {\n  {% if '[[entity]]' == '' %}\n    display: none;\n  {% endif\
+          \ %}\n}\n"
     - type: custom:button-card
       template: area_status_indicator
       entity: binary_sensor.[LICENSE_PLATE]_tire_warning
@@ -1422,53 +1362,23 @@ sections:
     layout: vertical
   - type: custom:mushroom-template-card
     primary: Home Occupancy
-    secondary: |-
-      {% set status = states(entity) %}
-      {% if status == 'on' %}
-        Occupied
-      {% else %}
-        Unoccupied
-      {% endif %}
-    icon: |-
-      {% set status = states(entity) %}
-      {% if status == 'on' %}
-        mdi:home-account
-      {% else %}
-        mdi:home-outline
-      {% endif %}
-    icon_color: |-
-      {% set status = states(entity) %}
-      {% if status == 'on' %}
-        green
-      {% else %}
-        orange
-      {% endif %}
+    secondary: "{% set status = states(entity) %}\n{% if status == 'on' %}\n  Occupied\n\
+      {% else %}\n  Unoccupied\n{% endif %}"
+    icon: "{% set status = states(entity) %}\n{% if status == 'on' %}\n  mdi:home-account\n\
+      {% else %}\n  mdi:home-outline\n{% endif %}"
+    icon_color: "{% set status = states(entity) %}\n{% if status == 'on' %}\n  green\n\
+      {% else %}\n  orange\n{% endif %}"
     entity: input_boolean.home_occupancy
     layout: vertical
   - type: custom:mushroom-template-card
     primary: Home Occupancy State
     secondary: '{{ states(entity) }}'
-    icon: |-
-      {% set status = states(entity) %}
-      {% if status == 'on' %}
-        mdi:home-account
-      {% else %}
-        mdi:home-outline
-      {% endif %}
+    icon: "{% set status = states(entity) %}\n{% if status == 'on' %}\n  mdi:home-account\n\
+      {% else %}\n  mdi:home-outline\n{% endif %}"
     entity: input_select.home_occupancy_state
-    color: |-
-      {% set status = states(entity) %}
-      {% if status == 'sleeping' %}
-        blue
-      {% elif status == 'away' %}
-        orange
-      {% elif status == 'home' %}
-        green
-      {% elif status == 'simulated' %}
-        purple
-      {% else %}
-        gray
-      {% endif %}
+    color: "{% set status = states(entity) %}\n{% if status == 'sleeping' %}\n  blue\n\
+      {% elif status == 'away' %}\n  orange\n{% elif status == 'home' %}\n  green\n\
+      {% elif status == 'simulated' %}\n  purple\n{% else %}\n  gray\n{% endif %}"
     vertical: true
     features_position: bottom
   - type: custom:mushroom-title-card
@@ -1511,34 +1421,15 @@ sections:
         - color: rgb(255, 255, 255, 1)
         - text-shadow: 0px 0px 5px rgb(0,0,0,1)
     card_mod:
-      style: |-
-        @keyframes blink {
-          {% if is_state('sensor.car_charging','on') %}
-            50% { opacity: 0; }
-          {% else %}
-            50% { opacity: 100; }
-          {% endif %}
-        }
-        @keyframes pulse {
-          50% { opacity: 0.33; }
-        }
-        ha-card {
-          border-top-left-radius: 8px;
-          border-top-right-radius: 8px;
-          border-bottom-left-radius: 8px;
-          border-bottom-right-radius: 8px;
-          background: rgb(0,0,0);
-          z-index:0;
-          height: 100%
-          container-type: inline-size
-          {% if is_state('select.backyard_presence','presence') %}
-            border: 3px solid rgba(36, 255, 0, 0.8);
-          {% elif is_state('select.backyard_presence','idle') %}
-            border: 3px solid rgba(255, 163, 0, 0.8);
-          {% else %}
-            border: 0px solid rgba(0, 0, 0, 0);
-          {% endif %}
-        }
+      style: "@keyframes blink {\n  {% if is_state('sensor.car_charging','on') %}\n\
+        \    50% { opacity: 0; }\n  {% else %}\n    50% { opacity: 100; }\n  {% endif\
+        \ %}\n}\n@keyframes pulse {\n  50% { opacity: 0.33; }\n}\nha-card {\n  border-top-left-radius:\
+        \ 8px;\n  border-top-right-radius: 8px;\n  border-bottom-left-radius: 8px;\n\
+        \  border-bottom-right-radius: 8px;\n  background: rgb(0,0,0);\n  z-index:0;\n\
+        \  height: 100%\n  container-type: inline-size\n  {% if is_state('select.backyard_presence','presence')\
+        \ %}\n    border: 3px solid rgba(36, 255, 0, 0.8);\n  {% elif is_state('select.backyard_presence','idle')\
+        \ %}\n    border: 3px solid rgba(255, 163, 0, 0.8);\n  {% else %}\n    border:\
+        \ 0px solid rgba(0, 0, 0, 0);\n  {% endif %}\n}\n"
     layout_options:
       grid_columns: 2
   - type: picture-elements
@@ -1573,34 +1464,15 @@ sections:
         - color: rgb(255, 255, 255, 1)
         - text-shadow: 0px 0px 5px rgb(0,0,0,1)
     card_mod:
-      style: |-
-        @keyframes blink {
-          {% if is_state('sensor.car_charging','on') %}
-            50% { opacity: 0; }
-          {% else %}
-            50% { opacity: 100; }
-          {% endif %}
-        }
-        @keyframes pulse {
-          50% { opacity: 0.33; }
-        }
-        ha-card {
-          border-top-left-radius: 8px;
-          border-top-right-radius: 8px;
-          border-bottom-left-radius: 8px;
-          border-bottom-right-radius: 8px;
-          background: rgb(0,0,0);
-          z-index:0;
-          height: 100%
-          container-type: inline-size
-          {% if is_state('select.backyard_presence','presence') %}
-            border: 3px solid rgba(36, 255, 0, 0.8);
-          {% elif is_state('select.backyard_presence','idle') %}
-            border: 3px solid rgba(255, 163, 0, 0.8);
-          {% else %}
-            border: 0px solid rgba(0, 0, 0, 0);
-          {% endif %}
-        }
+      style: "@keyframes blink {\n  {% if is_state('sensor.car_charging','on') %}\n\
+        \    50% { opacity: 0; }\n  {% else %}\n    50% { opacity: 100; }\n  {% endif\
+        \ %}\n}\n@keyframes pulse {\n  50% { opacity: 0.33; }\n}\nha-card {\n  border-top-left-radius:\
+        \ 8px;\n  border-top-right-radius: 8px;\n  border-bottom-left-radius: 8px;\n\
+        \  border-bottom-right-radius: 8px;\n  background: rgb(0,0,0);\n  z-index:0;\n\
+        \  height: 100%\n  container-type: inline-size\n  {% if is_state('select.backyard_presence','presence')\
+        \ %}\n    border: 3px solid rgba(36, 255, 0, 0.8);\n  {% elif is_state('select.backyard_presence','idle')\
+        \ %}\n    border: 3px solid rgba(255, 163, 0, 0.8);\n  {% else %}\n    border:\
+        \ 0px solid rgba(0, 0, 0, 0);\n  {% endif %}\n}\n"
     layout_options:
       grid_columns: 2
   - type: picture-elements
@@ -1635,34 +1507,15 @@ sections:
         - color: rgb(255, 255, 255, 1)
         - text-shadow: 0px 0px 5px rgb(0,0,0,1)
     card_mod:
-      style: |-
-        @keyframes blink {
-          {% if is_state('sensor.car_charging','on') %}
-            50% { opacity: 0; }
-          {% else %}
-            50% { opacity: 100; }
-          {% endif %}
-        }
-        @keyframes pulse {
-          50% { opacity: 0.33; }
-        }
-        ha-card {
-          border-top-left-radius: 8px;
-          border-top-right-radius: 8px;
-          border-bottom-left-radius: 8px;
-          border-bottom-right-radius: 8px;
-          background: rgb(0,0,0);
-          z-index:0;
-          height: 100%
-          container-type: inline-size
-          {% if is_state('select.backyard_presence','presence') %}
-            border: 3px solid rgba(36, 255, 0, 0.8);
-          {% elif is_state('select.backyard_presence','idle') %}
-            border: 3px solid rgba(255, 163, 0, 0.8);
-          {% else %}
-            border: 0px solid rgba(0, 0, 0, 0);
-          {% endif %}
-        }
+      style: "@keyframes blink {\n  {% if is_state('sensor.car_charging','on') %}\n\
+        \    50% { opacity: 0; }\n  {% else %}\n    50% { opacity: 100; }\n  {% endif\
+        \ %}\n}\n@keyframes pulse {\n  50% { opacity: 0.33; }\n}\nha-card {\n  border-top-left-radius:\
+        \ 8px;\n  border-top-right-radius: 8px;\n  border-bottom-left-radius: 8px;\n\
+        \  border-bottom-right-radius: 8px;\n  background: rgb(0,0,0);\n  z-index:0;\n\
+        \  height: 100%\n  container-type: inline-size\n  {% if is_state('select.backyard_presence','presence')\
+        \ %}\n    border: 3px solid rgba(36, 255, 0, 0.8);\n  {% elif is_state('select.backyard_presence','idle')\
+        \ %}\n    border: 3px solid rgba(255, 163, 0, 0.8);\n  {% else %}\n    border:\
+        \ 0px solid rgba(0, 0, 0, 0);\n  {% endif %}\n}\n"
     layout_options:
       grid_columns: 2
 max_columns: 4

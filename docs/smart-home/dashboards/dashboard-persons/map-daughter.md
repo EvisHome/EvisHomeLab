@@ -10,18 +10,23 @@ tags:
 **Dashboard:** Persons  
 **Path:** `map-Daughter`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_map-daughter.png)
+
+## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_map-daughter.png)
 
 
 
 
 
 ## Configuration
-```yaml+jinja
+```yaml
 theme: Backend-selected
 title: Map Daughter
 path: map-Daughter

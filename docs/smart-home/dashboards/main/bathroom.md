@@ -10,11 +10,16 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `bathroom`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_bathroom.png)
+
+## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_bathroom.png)
 
 ## Related Packages
 This view contains entities managed by:
@@ -37,7 +42,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml+jinja
+```yaml
 theme: Backend-selected
 title: Bathroom
 path: bathroom
@@ -123,7 +128,7 @@ sections:
     show_names: true
     entities:
     - entity: sensor.aqara_w500_state
-      name: ''
+      name: ' '
     - entity: climate.aqara_w500
     - entity: sensor.aqara_w500_temperature_smoothed
     hours_to_show: 24
@@ -169,12 +174,14 @@ sections:
     - relative-time
     show_header_toggle: false
   - type: markdown
-    content: |-
-      *Default Temperature* is the heating base temperature.
+    content: '*Default Temperature* is the heating base temperature.
 
-      If the thermostate is turned higher than the default, the *Heating Timer* will keep this new temperature until the timer runs out.
 
-      The *Heating Timer* tells how long the heating will still run
+      If the thermostate is turned higher than the default, the *Heating Timer* will
+      keep this new temperature until the timer runs out.
+
+
+      The *Heating Timer* tells how long the heating will still run'
   - type: custom:timer-bar-card
     entity: timer.bathroom_floor_heating_timer
   - type: custom:mushroom-number-card

@@ -10,16 +10,21 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `front-door`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_front-door.png)
+
+## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_front-door.png)
-
 ## Related Packages
 This view contains entities managed by:
 
-* [Fingerprint Management](../../packages/fingerprint_management.md)
+* [Unifi Access](../../packages/unifi_access.md)
 
 
 ## Dependencies (Custom Cards)
@@ -37,7 +42,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml+jinja
+```yaml
 title: Front Door
 path: front-door
 type: sections

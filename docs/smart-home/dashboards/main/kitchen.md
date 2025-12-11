@@ -10,11 +10,16 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `kitchen`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_kitchen.png)
+
+## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_kitchen.png)
 
 ## Related Packages
 This view contains entities managed by:
@@ -37,7 +42,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml+jinja
+```yaml
 title: Kitchen
 path: kitchen
 type: sections
@@ -146,45 +151,27 @@ sections:
     alignment: center
   - type: custom:mushroom-template-card
     primary: Fridge Door
-    secondary: |-
-      {% set status = states(entity) %}
-      {% if status == 'off' %}
-        Closed
-      {% else %}
-        Open
-      {% endif %}
+    secondary: "{% set status = states(entity) %}\n{% if status == 'off' %}\n  Closed\n\
+      {% else %}\n  Open\n{% endif %}"
     icon: mdi:fridge
     entity: binary_sensor.kitchen_fridge_door_contact
     fill_container: true
     layout: vertical
-    icon_color: |-
-      {% set status = states(entity) %}
-      {% if status == 'off' %}
-        green
-      {% else %}
-        red
-      {% endif %}
+    icon_color: "{% set status = states(entity) %}\n{% if status == 'off' %}\n  green\n\
+      {% else %}\n  red\n{% endif %}"
   - type: custom:mushroom-template-card
     primary: Coffee Machine
     secondary_info: last-changed
-    secondary: |-
-      {% set status = states(entity) %}
-      {% if status == 'Running' %}
-        Running
-      {% else %}
-        {{ (as_timestamp(now()) - as_timestamp(states.sensor.coffee_machine_state.last_changed | default(0)) | int ) | timestamp_custom("%Hh %Mm", false) }} ago
-      {% endif %}
+    secondary: "{% set status = states(entity) %}\n{% if status == 'Running' %}\n\
+      \  Running\n{% else %}\n  {{ (as_timestamp(now()) - as_timestamp(states.sensor.coffee_machine_state.last_changed\
+      \ | default(0)) | int ) | timestamp_custom(\"%Hh %Mm\", false) }} ago\n{% endif\
+      \ %}"
     icon: mdi:coffee
     entity: sensor.coffee_machine_state
     fill_container: true
     layout: vertical
-    icon_color: |-
-      {% set status = states(entity) %}
-      {% if status == 'Running' %}
-        red
-      {% else %}
-        green
-      {% endif %}
+    icon_color: "{% set status = states(entity) %}\n{% if status == 'Running' %}\n\
+      \  red\n{% else %}\n  green\n{% endif %}"
   - type: custom:mushroom-title-card
     title: ''
     subtitle: POWER

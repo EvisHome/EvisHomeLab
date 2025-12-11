@@ -10,11 +10,16 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `living_room`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_living_room.png)
+
+## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_living_room.png)
 
 ## Related Packages
 This view contains entities managed by:
@@ -42,7 +47,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml+jinja
+```yaml
 theme: Backend-selected
 title: Living Room
 type: sections
@@ -126,25 +131,13 @@ sections:
         - value: 2000
           color: '#FF535B'
         card_mod:
-          style: |-
-            .header.flex .icon {
-            {% set sensor = states('sensor.airthings_wave_living_room_voc')|float %}
-              {% if sensor > 2000 %}
-                color: red;
-              {% elif sensor > 500  %}
-                color: orange;
-              {% else  %}
-                color: lightgreen;
-              {% endif %} }
-            ha-card {
-              {% if sensor > 2000 %}
-                --ha-card-background: rgba(255, 83, 91,0.05);
-              {% elif sensor > 500  %}
-                --ha-card-background: rgba(255, 152, 0,0.05);
-              {% else  %}
-                --ha-card-background: rgba(95, 231, 135,0.05);
-              {% endif %} }
-            }
+          style: ".header.flex .icon {\n{% set sensor = states('sensor.airthings_wave_living_room_voc')|float\
+            \ %}\n  {% if sensor > 2000 %}\n    color: red;\n  {% elif sensor > 500\
+            \  %}\n    color: orange;\n  {% else  %}\n    color: lightgreen;\n  {%\
+            \ endif %} }\nha-card {\n  {% if sensor > 2000 %}\n    --ha-card-background:\
+            \ rgba(255, 83, 91,0.05);\n  {% elif sensor > 500  %}\n    --ha-card-background:\
+            \ rgba(255, 152, 0,0.05);\n  {% else  %}\n    --ha-card-background: rgba(95,\
+            \ 231, 135,0.05);\n  {% endif %} }\n}\n"
       - type: custom:mini-graph-card
         entities:
         - entity: sensor.airthings_wave_living_room_radon_1_day_average
@@ -165,26 +158,13 @@ sections:
         - value: 200
           color: '#FF535B'
         card_mod:
-          style: |-
-            .header.flex .icon {
-              {% set sensor =
-            states('sensor.airthings_wave_living_room_radon_1_day_average')|float %}
-              {% if sensor > 150 %}
-                color: red;
-              {% elif sensor > 100  %}
-                color: orange;
-              {% else  %}
-                color: lightgreen;
-              {% endif %}
-            } ha-card {
-              {% if sensor > 200 %}
-                --ha-card-background: rgba(255, 83, 91,0.05);
-              {% elif sensor > 150  %}
-                --ha-card-background: rgba(255, 152, 0,0.05);
-              {% else  %}
-                --ha-card-background: rgba(95, 231, 135,0.05);
-              {% endif %} }
-            }
+          style: ".header.flex .icon {\n  {% set sensor =\nstates('sensor.airthings_wave_living_room_radon_1_day_average')|float\
+            \ %}\n  {% if sensor > 150 %}\n    color: red;\n  {% elif sensor > 100\
+            \  %}\n    color: orange;\n  {% else  %}\n    color: lightgreen;\n  {%\
+            \ endif %} \n} ha-card {\n  {% if sensor > 200 %}\n    --ha-card-background:\
+            \ rgba(255, 83, 91,0.05);\n  {% elif sensor > 150  %}\n    --ha-card-background:\
+            \ rgba(255, 152, 0,0.05);\n  {% else  %}\n    --ha-card-background: rgba(95,\
+            \ 231, 135,0.05);\n  {% endif %} }\n}\n"
       - type: custom:mini-graph-card
         entities:
         - entity: sensor.airthings_wave_living_room_radon_longterm_average
@@ -205,26 +185,13 @@ sections:
         - value: 200
           color: '#FF535B'
         card_mod:
-          style: |-
-            .header.flex .icon {
-              {% set sensor =
-              states('sensor.airthings_wave_living_room_radon_longterm_average')|float %}
-              {% if sensor > 150 %}
-                color: red;
-              {% elif sensor > 100  %}
-                color: orange;
-              {% else  %}
-                color: lightgreen;
-              {% endif %}
-            } ha-card {
-              {% if sensor > 200 %}
-                --ha-card-background: rgba(255, 83, 91,0.05);
-              {% elif sensor > 150  %}
-                --ha-card-background: rgba(255, 152, 0,0.05);
-              {% else  %}
-                --ha-card-background: rgba(95, 231, 135,0.05);
-              {% endif %} }
-            }
+          style: ".header.flex .icon {\n  {% set sensor =\n  states('sensor.airthings_wave_living_room_radon_longterm_average')|float\
+            \ %}\n  {% if sensor > 150 %}\n    color: red;\n  {% elif sensor > 100\
+            \  %}\n    color: orange;\n  {% else  %}\n    color: lightgreen;\n  {%\
+            \ endif %}\n} ha-card {\n  {% if sensor > 200 %}\n    --ha-card-background:\
+            \ rgba(255, 83, 91,0.05);\n  {% elif sensor > 150  %}\n    --ha-card-background:\
+            \ rgba(255, 152, 0,0.05);\n  {% else  %}\n    --ha-card-background: rgba(95,\
+            \ 231, 135,0.05);\n  {% endif %} }\n}\n"
   - type: vertical-stack
     cards:
     - type: custom:mushroom-title-card
@@ -295,11 +262,8 @@ sections:
         double_tap_action:
           action: none
         card_mod:
-          style: |-
-            ha-card {
-              border-bottom-right-radius: 0px;
-              border-bottom-left-radius: 0px;
-            }
+          style: "ha-card {\n  border-bottom-right-radius: 0px;\n  border-bottom-left-radius:\
+            \ 0px;\n}\n"
       - square: false
         columns: 4
         type: grid
@@ -310,18 +274,10 @@ sections:
           secondary: ''
           icon: mdi:fan
           layout: vertical
-          icon_color: |-
-            {% set status = states(entity) %}
-            {% if status == 'on' %}
-            {% set mode = state_attr(entity,'preset_mode') %}
-            {% if mode == 'auto' %}
-              blue
-            {% else %}
-              disabled
-            {% endif %}
-            {% else %}
-              disabled
-            {% endif %}
+          icon_color: "{% set status = states(entity) %}\n{% if status == 'on' %}\n\
+            {% set mode = state_attr(entity,'preset_mode') %}\n{% if mode == 'auto'\
+            \ %}\n  blue\n{% else %}\n  disabled\n{% endif %}\n{% else %}\n  disabled\n\
+            {% endif %}\n"
           tap_action:
             action: call-service
             service: fan.set_preset_mode
@@ -332,61 +288,29 @@ sections:
           card_mod:
             style:
               mushroom-shape-icon:
-                $: |-
-                  .shape ha-icon
-                    {
-                      {% set status = states(config.entity) %}
-                      {% if status == 'on' %}
-                      {% set mode = state_attr(config.entity,'preset_mode') %}
-                      {% if mode == 'auto' %}
-                      {% set speed = state_attr(config.entity,'percentage') | int %}
-                      {% if speed < 60 %}
-                      --icon-animation: rotation 2s linear infinite;
-                      {% elif speed < 80 %}
-                      --icon-animation: rotation 1s linear infinite;
-                      {% elif speed < 100 %}
-                      --icon-animation: rotation 0.6s linear infinite;
-                      {% else %}
-                      --icon-animation: rotation 0.3s linear infinite;
-                      {% endif %}
-                      {% endif %}
-                      {% endif %}
-                    }
-                    @keyframes rotation {
-                      0% {
-                        transform: rotate(0deg);
-                      }
-                      100% {
-                        transform: rotate(360deg);
-                      }
-                    }
-                .: |-
-                  ha-card {
-                    border-radius: 0px;
-                    box-shadow: 0px 0px;
-                    background-color: rgba(0,0,0,0);
-                    border: 5px solid #222;
-                  }
-                  :host {
-                  }
+                $: ".shape ha-icon\n  {\n    {% set status = states(config.entity)\
+                  \ %}\n    {% if status == 'on' %}\n    {% set mode = state_attr(config.entity,'preset_mode')\
+                  \ %}\n    {% if mode == 'auto' %}\n    {% set speed = state_attr(config.entity,'percentage')\
+                  \ | int %}\n    {% if speed < 60 %}\n    --icon-animation: rotation\
+                  \ 2s linear infinite;\n    {% elif speed < 80 %}\n    --icon-animation:\
+                  \ rotation 1s linear infinite;\n    {% elif speed < 100 %}\n   \
+                  \ --icon-animation: rotation 0.6s linear infinite;\n    {% else\
+                  \ %}\n    --icon-animation: rotation 0.3s linear infinite;\n   \
+                  \ {% endif %}\n    {% endif %}\n    {% endif %}\n  }\n  @keyframes\
+                  \ rotation {\n    0% {\n      transform: rotate(0deg);\n    }\n\
+                  \    100% {\n      transform: rotate(360deg);\n    }\n  }\n"
+                .: "ha-card {\n  border-radius: 0px;\n  box-shadow: 0px 0px;\n  background-color:\
+                  \ rgba(0,0,0,0);\n  border: 5px solid #222;\n}\n:host {\n}\n"
         - type: custom:mushroom-template-card
           entity: fan.philips_air_purifier
           primary: Allergen
           secondary: ''
           icon: mdi:fan
           layout: vertical
-          icon_color: |-
-            {% set status = states(entity) %}
-            {% if status == 'on' %}
-            {% set mode = state_attr(entity,'preset_mode') %}
-            {% if mode == 'allergen' %}
-              blue
-            {% else %}
-              disabled
-            {% endif %}
-            {% else %}
-              disabled
-            {% endif %}
+          icon_color: "{% set status = states(entity) %}\n{% if status == 'on' %}\n\
+            {% set mode = state_attr(entity,'preset_mode') %}\n{% if mode == 'allergen'\
+            \ %}\n  blue\n{% else %}\n  disabled\n{% endif %}\n{% else %}\n  disabled\n\
+            {% endif %}\n"
           tap_action:
             action: call-service
             service: fan.set_preset_mode
@@ -397,61 +321,29 @@ sections:
           card_mod:
             style:
               mushroom-shape-icon:
-                $: |-
-                  .shape ha-icon
-                    {
-                      {% set status = states(config.entity) %}
-                      {% if status == 'on' %}
-                      {% set mode = state_attr(config.entity,'preset_mode') %}
-                      {% if mode == 'allergen' %}
-                      {% set speed = state_attr(config.entity,'percentage') | int %}
-                      {% if speed < 60 %}
-                      --icon-animation: rotation 2s linear infinite;
-                      {% elif speed < 80 %}
-                      --icon-animation: rotation 1s linear infinite;
-                      {% elif speed < 100 %}
-                      --icon-animation: rotation 0.6s linear infinite;
-                      {% else %}
-                      --icon-animation: rotation 0.3s linear infinite;
-                      {% endif %}
-                      {% endif %}
-                      {% endif %}
-                    }
-                    @keyframes rotation {
-                      0% {
-                        transform: rotate(0deg);
-                      }
-                      100% {
-                        transform: rotate(360deg);
-                      }
-                    }
-                .: |-
-                  ha-card {
-                    border-radius: 0px;
-                    box-shadow: 0px 0px;
-                    background-color: rgba(0,0,0,0);
-                    border: 5px solid #222;
-                  }
-                  :host {
-                  }
+                $: ".shape ha-icon\n  {\n    {% set status = states(config.entity)\
+                  \ %}\n    {% if status == 'on' %}\n    {% set mode = state_attr(config.entity,'preset_mode')\
+                  \ %}\n    {% if mode == 'allergen' %}\n    {% set speed = state_attr(config.entity,'percentage')\
+                  \ | int %}\n    {% if speed < 60 %}\n    --icon-animation: rotation\
+                  \ 2s linear infinite;\n    {% elif speed < 80 %}\n    --icon-animation:\
+                  \ rotation 1s linear infinite;\n    {% elif speed < 100 %}\n   \
+                  \ --icon-animation: rotation 0.6s linear infinite;\n    {% else\
+                  \ %}\n    --icon-animation: rotation 0.3s linear infinite;\n   \
+                  \ {% endif %}\n    {% endif %}\n    {% endif %}\n  }\n  @keyframes\
+                  \ rotation {\n    0% {\n      transform: rotate(0deg);\n    }\n\
+                  \    100% {\n      transform: rotate(360deg);\n    }\n  }\n"
+                .: "ha-card {\n  border-radius: 0px;\n  box-shadow: 0px 0px;\n  background-color:\
+                  \ rgba(0,0,0,0);\n  border: 5px solid #222;\n}\n:host {\n}\n"
         - type: custom:mushroom-template-card
           entity: fan.philips_air_purifier
           primary: Night
           secondary: ''
           icon: mdi:fan
           layout: vertical
-          icon_color: |-
-            {% set status = states(entity) %}
-            {% if status == 'on' %}
-            {% set mode = state_attr(entity,'preset_mode') %}
-            {% if mode == 'night' %}
-              blue
-            {% else %}
-              disabled
-            {% endif %}
-            {% else %}
-              disabled
-            {% endif %}
+          icon_color: "{% set status = states(entity) %}\n{% if status == 'on' %}\n\
+            {% set mode = state_attr(entity,'preset_mode') %}\n{% if mode == 'night'\
+            \ %}\n  blue\n{% else %}\n  disabled\n{% endif %}\n{% else %}\n  disabled\n\
+            {% endif %}\n"
           tap_action:
             action: call-service
             service: fan.set_preset_mode
@@ -462,61 +354,29 @@ sections:
           card_mod:
             style:
               mushroom-shape-icon:
-                $: |-
-                  .shape ha-icon
-                    {
-                      {% set status = states(config.entity) %}
-                      {% if status == 'on' %}
-                      {% set mode = state_attr(config.entity,'preset_mode') %}
-                      {% if mode == 'night' %}
-                      {% set speed = state_attr(config.entity,'percentage') | int %}
-                      {% if speed < 60 %}
-                      --icon-animation: rotation 2s linear infinite;
-                      {% elif speed < 80 %}
-                      --icon-animation: rotation 1s linear infinite;
-                      {% elif speed < 100 %}
-                      --icon-animation: rotation 0.6s linear infinite;
-                      {% else %}
-                      --icon-animation: rotation 0.3s linear infinite;
-                      {% endif %}
-                      {% endif %}
-                      {% endif %}
-                    }
-                    @keyframes rotation {
-                      0% {
-                        transform: rotate(0deg);
-                      }
-                      100% {
-                        transform: rotate(360deg);
-                      }
-                    }
-                .: |-
-                  ha-card {
-                    border-radius: 0px;
-                    box-shadow: 0px 0px;
-                    background-color: rgba(0,0,0,0);
-                    border: 5px solid #222;
-                  }
-                  :host {
-                  }
+                $: ".shape ha-icon\n  {\n    {% set status = states(config.entity)\
+                  \ %}\n    {% if status == 'on' %}\n    {% set mode = state_attr(config.entity,'preset_mode')\
+                  \ %}\n    {% if mode == 'night' %}\n    {% set speed = state_attr(config.entity,'percentage')\
+                  \ | int %}\n    {% if speed < 60 %}\n    --icon-animation: rotation\
+                  \ 2s linear infinite;\n    {% elif speed < 80 %}\n    --icon-animation:\
+                  \ rotation 1s linear infinite;\n    {% elif speed < 100 %}\n   \
+                  \ --icon-animation: rotation 0.6s linear infinite;\n    {% else\
+                  \ %}\n    --icon-animation: rotation 0.3s linear infinite;\n   \
+                  \ {% endif %}\n    {% endif %}\n    {% endif %}\n  }\n  @keyframes\
+                  \ rotation {\n    0% {\n      transform: rotate(0deg);\n    }\n\
+                  \    100% {\n      transform: rotate(360deg);\n    }\n  }\n"
+                .: "ha-card {\n  border-radius: 0px;\n  box-shadow: 0px 0px;\n  background-color:\
+                  \ rgba(0,0,0,0);\n  border: 5px solid #222;\n}\n:host {\n}\n"
         - type: custom:mushroom-template-card
           entity: fan.philips_air_purifier
           primary: Manual
           secondary: ''
           icon: mdi:fan
           layout: vertical
-          icon_color: |-
-            {% set status = states(entity) %}
-            {% if status == 'on' %}
-            {% set mode = state_attr(entity,'preset_mode') %}
-            {% if mode == 'manual' %}
-              blue
-            {% else %}
-              disabled
-            {% endif %}
-            {% else %}
-              disabled
-            {% endif %}
+          icon_color: "{% set status = states(entity) %}\n{% if status == 'on' %}\n\
+            {% set mode = state_attr(entity,'preset_mode') %}\n{% if mode == 'manual'\
+            \ %}\n  blue\n{% else %}\n  disabled\n{% endif %}\n{% else %}\n  disabled\n\
+            {% endif %}\n"
           tap_action:
             action: call-service
             service: fan.set_preset_mode
@@ -527,43 +387,19 @@ sections:
           card_mod:
             style:
               mushroom-shape-icon:
-                $: |-
-                  .shape ha-icon
-                    {
-                      {% set status = states(config.entity) %}
-                      {% if status == 'on' %}
-                      {% set mode = state_attr(config.entity,'preset_mode') %}
-                      {% if mode == 'manual' %}
-                      {% set speed = state_attr(config.entity,'percentage') | int %}
-                      {% if speed < 60 %}
-                      --icon-animation: rotation 2s linear infinite;
-                      {% elif speed < 80 %}
-                      --icon-animation: rotation 1s linear infinite;
-                      {% elif speed < 100 %}
-                      --icon-animation: rotation 0.6s linear infinite;
-                      {% else %}
-                      --icon-animation: rotation 0.3s linear infinite;
-                      {% endif %}
-                      {% endif %}
-                      {% endif %}
-                    }
-                    @keyframes rotation {
-                      0% {
-                        transform: rotate(0deg);
-                      }
-                      100% {
-                        transform: rotate(360deg);
-                      }
-                    }
-                .: |-
-                  ha-card {
-                    border-radius: 0px;
-                    box-shadow: 0px 0px;
-                    background-color: rgba(0,0,0,0);
-                    border: 5px solid #222;
-                  }
-                  :host {
-                  }
+                $: ".shape ha-icon\n  {\n    {% set status = states(config.entity)\
+                  \ %}\n    {% if status == 'on' %}\n    {% set mode = state_attr(config.entity,'preset_mode')\
+                  \ %}\n    {% if mode == 'manual' %}\n    {% set speed = state_attr(config.entity,'percentage')\
+                  \ | int %}\n    {% if speed < 60 %}\n    --icon-animation: rotation\
+                  \ 2s linear infinite;\n    {% elif speed < 80 %}\n    --icon-animation:\
+                  \ rotation 1s linear infinite;\n    {% elif speed < 100 %}\n   \
+                  \ --icon-animation: rotation 0.6s linear infinite;\n    {% else\
+                  \ %}\n    --icon-animation: rotation 0.3s linear infinite;\n   \
+                  \ {% endif %}\n    {% endif %}\n    {% endif %}\n  }\n  @keyframes\
+                  \ rotation {\n    0% {\n      transform: rotate(0deg);\n    }\n\
+                  \    100% {\n      transform: rotate(360deg);\n    }\n  }\n"
+                .: "ha-card {\n  border-radius: 0px;\n  box-shadow: 0px 0px;\n  background-color:\
+                  \ rgba(0,0,0,0);\n  border: 5px solid #222;\n}\n:host {\n}\n"
       - square: false
         columns: 3
         type: grid
@@ -573,16 +409,9 @@ sections:
           primary: Pre-filter
           secondary: '{{ states(entity) }} hours'
           icon: mdi:air-filter
-          icon_color: |-
-            {% set value = states(entity) | int
-            %}
-            {% if value < 2 %}
-              red
-            {% elif value < 168 %}
-              orange
-            {% else %}
-              green
-            {% endif %}
+          icon_color: "{% set value = states(entity) | int\n%}\n{% if value < 2 %}\n\
+            \  red\n{% elif value < 168 %}\n  orange\n{% else %}\n  green\n{% endif\
+            \ %}\n"
           tap_action:
             action: none
           hold_action:
@@ -590,43 +419,20 @@ sections:
           double_tap_action:
             action: none
           card_mod:
-            style: |-
-              :host { display:
-                {% set filter = states(config.entity) | int
-              %}
-                {% if filter > 168 %}
-                  inline;
-                {% else %}
-                  inline;
-                {% endif %}
-              }
-              @keyframes blink {
-                50% { opacity: 0; }
-              }
-              ha-card {
-                --mush-chip-border-radius: 0px;
-                {% set filter = states(config.entity) |
-                int %}
-                {% if filter == 0 %}
-                animation: blinks 1s ease infinite;
-                {% endif %}
-                border-radius: 0px;
-              }
+            style: ":host { display:\n  {% set filter = states(config.entity) | int\n\
+              %}\n  {% if filter > 168 %}\n    inline;\n  {% else %}\n    inline;\n\
+              \  {% endif %}\n}\n@keyframes blink {\n  50% { opacity: 0; }\n}\nha-card\
+              \ {\n  --mush-chip-border-radius: 0px;\n  {% set filter = states(config.entity)\
+              \ |\n  int %}\n  {% if filter == 0 %}\n  animation: blinks 1s ease infinite;\n\
+              \  {% endif %}\n  border-radius: 0px;\n}\n"
         - type: custom:mushroom-template-card
           entity: sensor.philips_air_purifier_hepa_filter
           primary: Hepa
           secondary: '{{ states(entity) }} hours'
           icon: mdi:air-filter
-          icon_color: |-
-            {% set value = states(entity) | int
-            %}
-            {% if value < 2 %}
-              red
-            {% elif value < 168 %}
-              orange
-            {% else %}
-              green
-            {% endif %}
+          icon_color: "{% set value = states(entity) | int\n%}\n{% if value < 2 %}\n\
+            \  red\n{% elif value < 168 %}\n  orange\n{% else %}\n  green\n{% endif\
+            \ %}\n"
           tap_action:
             action: none
           hold_action:
@@ -634,43 +440,20 @@ sections:
           double_tap_action:
             action: none
           card_mod:
-            style: |-
-              :host { display:
-                {% set filter = states(config.entity) | int
-              %}
-                {% if filter < 168 %}
-                  inline;
-                {% else %}
-                  inline;
-                {% endif %}
-              }
-              @keyframes blink {
-                50% { opacity: 0; }
-              }
-              ha-card {
-                --mush-chip-border-radius: 0px;
-                {% set filter = states(config.entity) |
-                int %}
-                {% if filter == 0 %}
-                animation: blinks 1s ease infinite;
-                {% endif %}
-                border-radius: 0px;
-              }
+            style: ":host { display:\n  {% set filter = states(config.entity) | int\n\
+              %}\n  {% if filter < 168 %}\n    inline;\n  {% else %}\n    inline;\n\
+              \  {% endif %}\n}\n@keyframes blink {\n  50% { opacity: 0; }\n}\nha-card\
+              \ {\n  --mush-chip-border-radius: 0px;\n  {% set filter = states(config.entity)\
+              \ |\n  int %}\n  {% if filter == 0 %}\n  animation: blinks 1s ease infinite;\n\
+              \  {% endif %}\n  border-radius: 0px;\n}\n"
         - type: custom:mushroom-template-card
           entity: sensor.philips_air_purifier_carbon_filter
           primary: Carbon
           secondary: '{{ states(entity) }} hours'
           icon: mdi:air-filter
-          icon_color: |-
-            {% set value = states(entity) | int
-            %}
-            {% if value < 2 %}
-              red
-            {% elif value < 168 %}
-              orange
-            {% else %}
-              green
-            {% endif %}
+          icon_color: "{% set value = states(entity) | int\n%}\n{% if value < 2 %}\n\
+            \  red\n{% elif value < 168 %}\n  orange\n{% else %}\n  green\n{% endif\
+            \ %}\n"
           tap_action:
             action: none
           hold_action:
@@ -678,28 +461,12 @@ sections:
           double_tap_action:
             action: none
           card_mod:
-            style: |-
-              :host { display:
-                {% set filter = states(config.entity) | int
-              %}
-                {% if filter < 168 %}
-                  inline;
-                {% else %}
-                  inline;
-                {% endif %}
-              }
-              @keyframes blink {
-                50% { opacity: 0; }
-              }
-              ha-card {
-                --mush-chip-border-radius: 0px;
-                {% set filter = states(config.entity) |
-                int %}
-                {% if filter == 0 %}
-                animation: blinks 1s ease infinite;
-                {% endif %}
-                border-radius: 0px;
-              }
+            style: ":host { display:\n  {% set filter = states(config.entity) | int\n\
+              %}\n  {% if filter < 168 %}\n    inline;\n  {% else %}\n    inline;\n\
+              \  {% endif %}\n}\n@keyframes blink {\n  50% { opacity: 0; }\n}\nha-card\
+              \ {\n  --mush-chip-border-radius: 0px;\n  {% set filter = states(config.entity)\
+              \ |\n  int %}\n  {% if filter == 0 %}\n  animation: blinks 1s ease infinite;\n\
+              \  {% endif %}\n  border-radius: 0px;\n}\n"
       - square: false
         columns: 1
         type: grid
@@ -710,11 +477,8 @@ sections:
           icon: ''
           entity: fan.philips_air_purifier
           card_mod:
-            style: |-
-              ha-card {
-                border-top-right-radius: 0px;
-                border-top-left-radius: 0px;
-              }
+            style: "ha-card {\n  border-top-right-radius: 0px;\n  border-top-left-radius:\
+              \ 0px;\n}\n"
   - type: vertical-stack
     cards:
     - type: custom:mushroom-title-card

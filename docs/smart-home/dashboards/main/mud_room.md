@@ -10,16 +10,21 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `mud_room`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_mud_room.png)
+
+## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_mud_room.png)
-
 ## Related Packages
 This view contains entities managed by:
 
-* [Fingerprint Management](../../packages/fingerprint_management.md)
+* [Unifi Access](../../packages/unifi_access.md)
 
 
 ## Dependencies (Custom Cards)
@@ -34,7 +39,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml+jinja
+```yaml
 theme: Backend-selected
 title: Mud Room
 path: mud_room

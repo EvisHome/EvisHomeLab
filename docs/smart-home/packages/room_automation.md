@@ -80,7 +80,7 @@ sequenceDiagram
 ```yaml
 # ------------------------------------------------------------------------------
 # Package: Room Automation Management
-# Version: 1.0.1
+# Version: 1.0.0
 # Description: Dynamic creation of room lighting settings via MQTT
 # Dependencies: MQTT, input_text.room_mgmt_name, automation.system_populate_room_list
 # ------------------------------------------------------------------------------
@@ -255,7 +255,6 @@ script:
               "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
             }
       - delay: "00:00:00.050"
-
       # 5. Create Room State (Select)
       - service: mqtt.publish
         data:
@@ -324,7 +323,6 @@ script:
               "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
             }
       - delay: "00:00:00.050"
-
       # 8. Create Lux Threshold (Number)
       - service: mqtt.publish
         data:
@@ -373,7 +371,6 @@ script:
               "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
             }
       - delay: "00:00:00.050"
-
       # 10. Create Sleep Entry Delay (Number)
       - service: mqtt.publish
         data:
@@ -656,4 +653,5 @@ automation:
                {% set ns.rooms = ns.rooms + [slug] %}
             {% endfor %}
             {{ (ns.rooms + ['unknown']) | unique | sort }}
-`````
+
+```

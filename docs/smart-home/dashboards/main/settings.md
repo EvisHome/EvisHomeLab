@@ -10,11 +10,16 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `settings`
 
+<!-- START_DESCRIPTION -->
+No description provided.
+<!-- END_DESCRIPTION -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_settings.png)
+
+## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_settings.png)
 
 
 
@@ -25,7 +30,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml+jinja
+```yaml
 title: Settings
 path: settings
 cards: []
@@ -96,11 +101,11 @@ sections:
   - type: custom:decluttering-card
     template: presence_settings
     variables:
-    - area: Guest 2
+    - area: Guest-2
   - type: custom:decluttering-card
     template: presence_settings
     variables:
-    - area: Guest 3
+    - area: Guest-3
 - type: grid
   cards:
   - type: custom:decluttering-card
