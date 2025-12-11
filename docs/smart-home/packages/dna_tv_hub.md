@@ -16,17 +16,20 @@ version: 1.0.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No executive summary generated yet.*
+This package creates a simplified "Master Switch" for the DNA TV Hub, wrapping the underlying remote control commands into a single boolean entity. This allows the TV Hub to be treated like a standard appliance (On/Off) in dashboards and voice commands, abstrating the complexity of the remote service calls.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No detailed non-technical description generated yet.*
+1.  **Switch Action**: When you toggle the "DNA TV HUB" switch on the dashboard.
+2.  **Service Call**: The system translates this into a `remote.turn_on` or `remote.turn_off` command sent to the specific hub device.
+3.  **State Feedback**: The switch icon lights up based on the actual state reported by the device, establishing a two-way sync.
 <!-- END_DETAILED -->
+
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **Android TV / Google Cast**: The underlying integration providing the `remote` entity for the Hub.
+<!-- END_DEPENDENCIES -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
@@ -35,15 +38,23 @@ version: 1.0.0
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No architecture explanation generated yet.*
+The architecture is a simple wrapper pattern. The Template Switch sits between the User and the Remote entity. It intercepts the On/Off intent and routes it to the correct service call, while simultaneously reflecting the Remote's state back to the UI.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+```mermaid
+sequenceDiagram
+    participant User as Dashboard
+    participant Switch as Template Switch
+    participant Remote as Remote Service
+    participant Device as DNA TV Hub
 
-*No architecture diagram generated yet.*
+    User->>Switch: Toggle ON
+    Switch->>Remote: Call remote.turn_on
+    Remote->>Device: Send IR/IP Command
+    Device-->>Remote: Report State "On"
+    Remote-->>Switch: Update State "On"
+```
 <!-- END_MERMAID -->
 
 ## Configuration (Source Code)

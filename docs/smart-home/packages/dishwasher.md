@@ -30,6 +30,12 @@ The Dishwasher package provides comprehensive integration for LG ThinQ dishwashe
 4. **Leak Protection**: Just like the smart water valve, this package monitors a dedicated leak sensor under the dishwasher. If water is detected, a critical alarm is triggered to prevent damage.
 <!-- END_DETAILED -->
 
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **LG ThinQ**: SmartThinQ LGE integration for dishwasher status and control.
+*   **Leak Sensor**: External binary sensor (`binary_sensor.kitchen_dishwasher_leak_sensor_water_leak`).
+<!-- END_DEPENDENCIES -->
+
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:

@@ -29,6 +29,11 @@ The `Car` package provides a unified interface for the Mercedes GLC, leveraging 
     *   **Safety & Maintenance:** The system watches for warning signs like low tire pressure, low brake fluid, or low washer fluid and sends critical alerts to your phone if attention is needed.
 <!-- END_DETAILED -->
 
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **Mercedes Me 2020 (mbapi2020)**: Provides connection to the Mercedes Cloud for vehicle status and control.
+<!-- END_DEPENDENCIES -->
+
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:

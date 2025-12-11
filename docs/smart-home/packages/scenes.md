@@ -16,17 +16,20 @@ version: 1.0.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No executive summary generated yet.*
+The **Scenes** package serves as the centralized library for lighting presets across the home. It defines specific, reproducible states (brightness, color, and temperature) for groups of lights, enabling standardized "moods" like "Daylight", "Night", "TV", and "Relax" to be activated by dashboards or automations.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No detailed non-technical description generated yet.*
+Think of this package as a "Recipe Book" for your lights. Instead of manually adjusting five different bulbs to get the perfect movie lighting, you define a "TV Scene" once.
+1.  **Definition**: Contains the exact settings (color, brightness) for every light in a room for a specific activity.
+2.  **Activation**: When you tap a button or a motion sensor triggers, Home Assistant simply looks up the "Recipe" and tells all the lights to match it instantly.
 <!-- END_DETAILED -->
+
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **None**: Relies on standard Home Assistant core `light` and `scene` domains.
+<!-- END_DEPENDENCIES -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
@@ -42,15 +45,26 @@ This package powers the following dashboard views:
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No architecture explanation generated yet.*
+The diagram below depicts the straightforward execution of a scene. Whether triggered by a user on a dashboard or by an automation (e.g., sunset), the `scene.turn_on` service is called. Home Assistant then retrieves the pre-defined state dictionary for that scene and issues parallel control commands to the target entities.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+```mermaid
+sequenceDiagram
+    participant User as 👤 User/Automation
+    participant HA as 🏠 Home Assistant
+    participant Scene as 🎭 Scene Registry
+    participant Lights as 💡 Target Lights
 
-*No architecture diagram generated yet.*
+    User->>HA: Call service: scene.turn_on(scene_id)
+    HA->>Scene: Lookup Entity States (e.g., "TV Scene")
+    Scene-->>HA: Return {Light A: 20%, Light B: Off}
+    
+    par Parallel Execution
+        HA->>Lights: Set Light A to 20%
+        HA->>Lights: Turn Light B Off
+    end
+```
 <!-- END_MERMAID -->
 
 ## Configuration (Source Code)

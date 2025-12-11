@@ -29,6 +29,12 @@ The Aqara W500 package manages the bathroom floor heating via a smart thermostat
 4.  **Manual Protection**: If you manually turn up the heat, a timer starts. Once the timer runs out, the temperature automatically resets to normal so you don't accidentally leave it running high all day.
 <!-- END_DETAILED -->
 
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **Aqara (Xiaomi Miot/Matter)**: Controls the W500 Thermostat (`climate.aqara_w500`) and FP2 Presence Sensor.
+*   **Electricity Prices**: External price sensor (`sensor.electricity_price_cents`) for cost logic.
+<!-- END_DEPENDENCIES -->
+
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:

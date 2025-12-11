@@ -32,6 +32,12 @@ The system operates on a "Publish-Subscribe" model adapted for a smart home:
     *   **Platform**: It formats the message specifically for the user's defined device type (iOS vs Android), handling critical alerts and actionable notifications appropriate to the platform.
 <!-- END_DETAILED -->
 
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **MQTT**: Used for persistent storage of user preferences and category definitions (retained messages).
+*   **Mobile App**: The target service for module operations (`notify.mobile_app_*`).
+<!-- END_DEPENDENCIES -->
+
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:

@@ -16,17 +16,20 @@ version: 1.0.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No executive summary generated yet.*
+This package enhances the integration of the Philips Air Purifier by extracting hidden attributes from the main fan entity. It creates individual sensors for PM2.5 levels, Allergen Index, and the remaining life of Pre/Carbon/HEPA filters. This "Flattening" of attributes makes it significantly easier to display these metrics on dashboards or use them as triggers for other automations (e.g., "Order new filter").
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No detailed non-technical description generated yet.*
+1.  **Listen**: The system watches the main Air Purifier connection.
+2.  **Extract**: When the purifier reports "PM2.5: 14", this package copies that number to a new standalone sensor `sensor.purifier_pm_2_5`.
+3.  **Display**: This allows you to drag-and-drop the PM2.5 value onto a graph card, which isn't possible when it's hidden inside the fan's settings.
 <!-- END_DETAILED -->
+
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **Philips AirPurifier (CoAP/Miot)**: The base integration providing the `fan` entity.
+<!-- END_DEPENDENCIES -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
@@ -35,15 +38,21 @@ version: 1.0.0
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No architecture explanation generated yet.*
+This is a pure data transformation layer. The `fan.philips_air_purifier` entity acts as a complex object containing multiple data points. The Template Sensors defined here subscribe to state changes of that parent object and map specific attributes (`pm25`, `hepa_filter`) to the state of new, single-purpose entities.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+```mermaid
+sequenceDiagram
+    participant Device as Air Purifier
+    participant Parent as Fan Entity
+    participant Sensor as Template Sensor
 
-*No architecture diagram generated yet.*
+    Device->>Parent: Update State (PM2.5=12, HEPA=4000h)
+    Parent->>Sensor: Attribute Change Detected
+    Sensor->>Sensor: Extract 'pm25'
+    Sensor->>Dashboard: Update "Purifier PM2.5" to 12
+```
 <!-- END_MERMAID -->
 
 ## Configuration (Source Code)

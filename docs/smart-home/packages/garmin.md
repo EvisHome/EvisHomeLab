@@ -16,17 +16,18 @@ version: 1.0.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No executive summary generated yet.*
+This package is currently a placeholder for future Garmin wearable integration. It is intended to bridge health and activity data (e.g., Body Battery, Sleep Score) into Home Assistant for use in morning routines and "Well-being" dashboards.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No detailed non-technical description generated yet.*
+*No active logic is currently implemented.*
 <!-- END_DETAILED -->
+
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **Garmin Connect** (Planned): Will provide API access to health metrics.
+<!-- END_DEPENDENCIES -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
@@ -35,15 +36,11 @@ version: 1.0.0
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No architecture explanation generated yet.*
+*Architecture pending implementation.*
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No architecture diagram generated yet.*
+*No diagram available.*
 <!-- END_MERMAID -->
 
 ## Configuration (Source Code)

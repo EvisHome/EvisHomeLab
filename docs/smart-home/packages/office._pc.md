@@ -16,13 +16,21 @@ version: 1.0.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-*No executive summary generated yet.*
+This package provides a control interface for the Office PC, enabling "Smart Wake" capabilities and peripheral management. It uses Wake-on-LAN to power on the machine and a set of helper switches to control audio output (Headphones vs. Speakers), mute status, and monitor power. These switches trigger button presses on the local PC via an agent (IoT Link).
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-*No detailed non-technical description generated yet.*
+1.  **Power On**: usage of the 'Power' switch sends a magic packet (WoL) to turn on the PC.
+2.  **Audio Control**: Toggling the "Audio Device" switch sends a command to the PC to swap the default playback device between Speakers and Headphones.
+3.  **Monitors**: The "Displays" switch allows you to remotely wake up or put the monitors to sleep without touching the mouse/keyboard.
 <!-- END_DETAILED -->
+
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **IoT Link**: A Windows agent running on the PC to execute commands (button presses).
+*   **Wake-on-LAN**: Standard network integration to boot the PC.
+<!-- END_DEPENDENCIES -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
@@ -33,11 +41,26 @@ This package powers the following dashboard views:
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-*No architecture explanation generated yet.*
+The architecture bridges Home Assistant with the Windows OS. Commands initiated in the Dashboard (e.g., "Toggle Audio") flip a Template Switch in HA. This switch calls a `button.press` service, which talks to the MQTT-connected IoT Link agent installed on the PC. The agent then executes the local script/command to change the audio device or monitor state. State feedback travels back via MQTT sensors to update the Dashboard icon.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-*No architecture diagram generated yet.*
+```mermaid
+sequenceDiagram
+    participant User as Dashboard
+    participant HA as Home Assistant
+    participant MQTT as MQTT Broker
+    participant Agent as IoT Link (PC)
+    participant OS as Windows OS
+
+    User->>HA: Turn "Audio Device" ON
+    HA->>MQTT: Publish command (button.press)
+    MQTT->>Agent: Receive Command
+    Agent->>OS: Execute "Set Audio to Speakers"
+    OS-->>Agent: Confirm Change
+    Agent-->>MQTT: Update Sensor State
+    MQTT-->>HA: Update Switch State
+```
 <!-- END_MERMAID -->
 
 ## Configuration (Source Code)

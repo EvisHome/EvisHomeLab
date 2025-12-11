@@ -16,17 +16,22 @@ version: 1.0.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No executive summary generated yet.*
+This package handles the complex financial logic for electricity monitoring. It retrieves raw spot prices from Nordpool, applies configurable "Transfers Costs," "Taxes," and "VAT," and produces a "Final Real Cost" per kWh. It also synchronizes price data with energy usage (kWh) to calculate precise 15-minute cost blocks, enabling accurate daily cost tracking that matches the utility bill. It includes forecasting logic to confirm if tomorrow's price data is valid and sufficiently complete (32nd lowest/highest prices).
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No detailed non-technical description generated yet.*
+1.  **Get Price**: Every hour, the system checks the current stock market price for electricity.
+2.  **Add Fees**: It adds your specific transfer fees and taxes (configurable in dashboard) to get the "Plug Price."
+3.  **Match Usage**: Every 15 minutes, it takes your home energy meter reading and multiplies it by the *exact* price for that 15-minute window.
+4.  **Forecast**: It analyzes tomorrow's prices to find the cheapest windows, useful for scheduling the washing machine or car charging.
 <!-- END_DETAILED -->
+
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **Nordpool**: Custom Component for fetching market data.
+*   **Shelly (Energy)**: Source of `sensor.shelly_home_energy_15min` for consumption data.
+<!-- END_DEPENDENCIES -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
@@ -40,15 +45,24 @@ This package powers the following dashboard views:
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No architecture explanation generated yet.*
+The data flow is heavy on Template Sensors. The `nordpool` service fetches raw data. A Template Sensor (`electricity_prices`) enriches this with tax/fees. A crucial synchronous logical step happens every 15 minutes: The `Energy Cost Final` sensor triggers on energy meter resets, looks up the *historical* price for the just-finished block (15-min alignment), and computes the cost. This ensures that energy used at 13:59 is charged at the 13:00 price, not the 14:00 price.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+```mermaid
+sequenceDiagram
+    participant Cloud as Nordpool API
+    participant HA as Home Assistant
+    participant Meter as Shelly Energy
+    participant DB as Cost Database
 
-*No architecture diagram generated yet.*
+    Cloud->>HA: Raw Prices (c/kWh)
+    HA->>HA: Apply Tax & Transfer Config
+    Meter->>HA: Report 15min Usage (kWh)
+    HA->>HA: Smart Lookback (Find Price for 13:45-14:00)
+    HA->>HA: Calculate Cost (Price * Usage)
+    HA->>DB: Record Cost Block
+```
 <!-- END_MERMAID -->
 
 ## Configuration (Source Code)

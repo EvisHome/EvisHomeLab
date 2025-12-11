@@ -16,17 +16,21 @@ version: 1.0.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No executive summary generated yet.*
+The **Shelly 3EM** package is a critical energy monitoring abstraction layer. It aggregates data from the three individual phases of the physical Shelly 3EM device into unified "Whole Home" metrics. It calculates real-time total power (Watts) and cumulative energy consumption (kWh), providing the foundational data for energy dashboards and cost calculations.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No detailed non-technical description generated yet.*
+Your home connects to the grid via three separate power lines (phases). The Shelly 3EM measures each one individually. This package combines them:
+1.  **Summing**: It adds Phase A + Phase B + Phase C to give you one simple number: "Total House Power."
+2.  **Standardization**: It ensures units are correct so the Energy Dashboard can read them.
+3.  **Special calculations**: It creates a "15-minute energy" tracker, useful for seeing short-term consumption spikes.
 <!-- END_DETAILED -->
+
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **Shelly**: Required for the physical device entities (`sensor.home_energy_shelly_3em_channel_*`).
+<!-- END_DEPENDENCIES -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
@@ -35,15 +39,32 @@ version: 1.0.0
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No architecture explanation generated yet.*
+The diagram below shows the data aggregation flow. The physical Shelly 3EM device provides three separate data streams (one per phase). The Template Sensors defined in this package subscribe to state changes on all three channels. Whenever a change is detected, the template logic executes, summing the values (A+B+C) and updating the single "Home Total" entity effectively in real-time.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+```mermaid
+graph LR
+    subgraph Physical Device
+    A[Phase A Power]
+    B[Phase B Power]
+    C[Phase C Power]
+    end
+    
+    subgraph Template Logic
+    Sum((Σ Sum))
+    Start[Phase A + B + C]
+    end
+    
+    subgraph Output Entities
+    Total[Home Total Power<br>(Watts)]
+    Energy[Home Total Energy<br>(kWh)]
+    end
 
-*No architecture diagram generated yet.*
+    A & B & C --> Start --> Sum
+    Sum --> Total
+    Sum --> Energy
+```
 <!-- END_MERMAID -->
 
 ## Configuration (Source Code)

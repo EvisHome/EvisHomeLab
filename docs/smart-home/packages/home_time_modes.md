@@ -16,17 +16,22 @@ version: 1.0.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No executive summary generated yet.*
+This package implements a robust "State Machine" for the home's time-of-day logic. Unlike simple time triggers, it defines discrete modes (Morning, Day, Evening, Night) and transitions between them based on a configurable mix of fixed times and dynamic solar events (Sunset). This central "Home Mode" is then used by all other automations (Lighting, Healing, Security) to determine behavior, ensuring synchronization across the entire smart home.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No detailed non-technical description generated yet.*
+1.  **Triggers**: The system watches the clock and the sun position.
+2.  **Logic Check**:
+    *   **Morning/Day/Night**: Switches at specific times you set in the dashboard (e.g., 06:30, 09:00, 23:00).
+    *   **Evening**: Can be set to a fixed time (e.g., 18:00) OR dynamically follow the sunset (e.g., "Sunset minus 30 minutes" to draw blinds before it gets dark).
+3.  **Action**: Updates the global "Home Time Mode" setting, which effectively tells the rest of the house what "phase" of the day it is.
 <!-- END_DETAILED -->
+
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **Sun**: Standard integration used for sunset calculations.
+<!-- END_DEPENDENCIES -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
@@ -35,15 +40,31 @@ version: 1.0.0
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No architecture explanation generated yet.*
+The core component is a single automation (`system_manager_home_time_modes`) acting as a central controller. It subscribes to multiple triggers (Time, Sun). When triggered, it evaluates a `Choose` block to determine the correct target state. The unique feature is the "Evening Strategy" logic, which branches to handle either fixed formatting or solar calculations with offsets before committing the state change to the `input_select.house_mode` entity.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+```mermaid
+sequenceDiagram
+    participant Clock
+    participant Sun
+    participant Automation as Logic Manager
+    participant State as Input Select (House Mode)
 
-*No architecture diagram generated yet.*
+    rect rgb(240, 248, 255)
+    Note over Clock, State: Fixed Transitions
+    Clock->>Automation: Trigger 06:30
+    Automation->>State: Set "Morning"
+    end
+
+    rect rgb(255, 250, 240)
+    Note over Clock, State: Dynamic Transitions
+    Sun->>Automation: Sunset Event
+    Automation->>Automation: Check Strategy (Sunset + Offset?)
+    Automation->>Automation: Apply Delay (-30min)
+    Automation->>State: Set "Evening"
+    end
+```
 <!-- END_MERMAID -->
 
 ## Configuration (Source Code)

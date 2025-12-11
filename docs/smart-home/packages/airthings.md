@@ -16,17 +16,20 @@ version: 1.0.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No executive summary generated yet.*
+This package standardizes environmental data from the Airthings Wave sensor located in the living room. It takes raw source sensors (typically providing data with excess precision or varying attributes) and normalizes them into clean, rounded Template Sensors for Temperature, Humidity, and CO2, ensuring consistent display across dashboards.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No detailed non-technical description generated yet.*
+1.  **Read**: The system reads the raw data from the Airthings integration (e.g., `sensor.airthings_wave_living_room_temperature`).
+2.  **Process**: It rounds the numbers to 1 decimal place for readability (e.g., 21.564°C becomes 21.6°C).
+3.  **Publish**: It creates new "clean" sensors that are used in the Living Room dashboard.
 <!-- END_DETAILED -->
+
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **Airthings Wave**: The source integration providing the physical sensor data.
+<!-- END_DEPENDENCIES -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
@@ -37,15 +40,20 @@ This package powers the following dashboard views:
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
-
-*No architecture explanation generated yet.*
+Data flows unidirectionally from the physical Airthings device to Home Assistant. The raw sensor data is intercepted by the Template engine, which applies rounding logic. The resulting "Normalized Sensors" are the final output, providing clean data for the UI.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-> ⚠️ **Update Required:** Analysis for v0.0.0. Code is v1.0.0.
+```mermaid
+sequenceDiagram
+    participant Device as Airthings Wave
+    participant HA as Home Assistant
+    participant UI as Dashboard
 
-*No architecture diagram generated yet.*
+    Device->>HA: Report Raw Data (21.564°C)
+    HA->>HA: Template Logic (Round to 21.6°C)
+    HA->>UI: Update "Airthings Wave Temperature"
+```
 <!-- END_MERMAID -->
 
 ## Configuration (Source Code)

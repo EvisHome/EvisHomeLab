@@ -30,6 +30,11 @@ This system allows you to turn any "Area" in your home into a Smart Room without
 3.  **Operation:** Once created, these controls appear in your dashboards, letting you tweak settings like "turn off lights after 5 minutes" individually for every room.
 <!-- END_DETAILED -->
 
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **MQTT**: Critical for the "discovery" and state management of all generated room entities (`homeassistant/` and `room/` headers).
+<!-- END_DEPENDENCIES -->
+
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
