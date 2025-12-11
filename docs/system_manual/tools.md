@@ -53,6 +53,7 @@ cd docs_site; git add .; git commit -m "Routine update"; git push
 
 ### The AI Architect Workflow
 **Start new chats with:** "I am resuming EvisHomeLab. Read:
+
 * `docs_site/docs/system_manual/architecture.md`
 * `docs_site/docs/system_manual/tools.md`
 * `docs_site/AI_CONTEXT.md`. Adopt the persona."
