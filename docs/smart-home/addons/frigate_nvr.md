@@ -9,7 +9,8 @@ tags:
 version: 1.0.1
 ---
 
-# Frigate NVR System Documentation
+# Frigate NVR
+## System Documentation
 
 **Version:** 1.0.4 (Unifi Source and Device Details Added)
 **Source:** External `config.yml` running on Unraid.
