@@ -31,6 +31,13 @@ This package provides a comprehensive, unified access control system for the Uni
 4.  **Action**: If authorized, the door unlocks, a snapshot is taken, and the event is logged. If denied, a notification is sent.
 <!-- END_DETAILED -->
 
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **UniFi Protect**: Required for G4 Doorbell Pro fingerprint (`event.front_door_fingerprint`) and NFC (`event.front_door_nfc`) events.
+*   **MQTT**: Used for persistent state management of User/Access switches (`unifi_access/...` topics).
+*   **Yale Access**: Provides the physical lock control (`lock.front_door_lock`) and cloud logging entity (`lock.front_door_lock_cloud`).
+<!-- END_DEPENDENCIES -->
+
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
