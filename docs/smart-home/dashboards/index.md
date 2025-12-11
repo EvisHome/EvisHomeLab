@@ -30,8 +30,6 @@ Welcome to the Home Lab Dashboards overview. The list below contains automatical
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Evis](./dashboard-persons/evis.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
--   **[Fingerprints](./home-access/fingerprints.md)**
-    <br> :material-arrow-right-bottom: *No short description provided.*
 -   **[Front Door](./main/front-door.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Grandpa](./main/grandpa.md)**
@@ -61,7 +59,7 @@ Welcome to the Home Lab Dashboards overview. The list below contains automatical
 -   **[Hallway](./main/hallway.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Home Access Center](./home-access/home-access-center.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
+    <br> :material-arrow-right-bottom: *Centralized management interface for the Unifi G4 Doorbell Pro access system. Allows granular control of Fingerprint and NFC users, guest scheduling, and reviewing detailed access logs.*
 -   **[Home](./main/home.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Kitchen](./main/kitchen.md)**
@@ -70,8 +68,6 @@ Welcome to the Home Lab Dashboards overview. The list below contains automatical
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Lobby](./main/lobby.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
--   **[Management](./notification-center/management.md)**
-    <br> :material-arrow-right-bottom: *No short description provided.*
 -   **[Map All](./dashboard-persons/map-all.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Map Daughter](./dashboard-persons/map-daughter.md)**
@@ -93,7 +89,7 @@ Welcome to the Home Lab Dashboards overview. The list below contains automatical
 -   **[Mud Room](./main/mud_room.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Notifications Management](./notification-center/notifications-management.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
+    <br> :material-arrow-right-bottom: *A comprehensive administrative interface for the Smart Notification system, allowing management of users, devices, notification categories, subscriptions, and global delivery rules.*
 -   **[Office](./main/office.md)**
     <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Sauna](./main/sauna.md)**

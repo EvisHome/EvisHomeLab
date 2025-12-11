@@ -11,14 +11,14 @@ tags:
 **Path:** `car`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+A high-fidelity "Digital Twin" interface for the Mercedes GLC, unifying real-time vehicle telemetry, remote climate control, and location tracking into a single command center.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_car.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-The **Car Dashboard** provides a centralized command center for the Mercedes GLC, unifying vehicle health monitoring and remote control. It combines real-time data metrics (fuel, battery, tire pressure) with actionable controls (locks, climate pre-conditioning). The interface features a visual "Digital Twin" of the car to intuitively display status alerts, warning indicators (low fluids, unlocked doors), and charging progress, alongside a real-time location tracker.
+This detailed dashboard view acts as a "Digital Twin" for the Mercedes GLC. It features a rich, graphical representation of the vehicle's state, dynamically updating to reflect whether the car is parked at home, away, or currently driving. Key functional elements include a dedicated **Climate Control** section with a weekly scheduler for pre-conditioning, and a comprehensive **Health Monitor** that tracks individualized tire pressures, fluid levels (washer, brake, coolant), and lock status. Real-time telemetry widgets display fuel/battery mix and estimated range, whilst a live map card provides instant location tracking.
 <!-- END_SUMMARY -->
 
 ## Related Packages
