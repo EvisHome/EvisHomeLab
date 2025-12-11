@@ -90,12 +90,14 @@ cd docs_site; git add .; git commit -m "Routine update"; git push
 > 3. **Smart Analysis:**
 >    - **Executive Summary:** Technical overview for admins.
 >    - **Process Description:** Non-technical explanation for users (How it works).
+>    - **Integration Dependencies:** List *only* external integrations (e.g., UniFi, MQTT, Yale). **Exclude** standard Home Assistant components (Scripts, Input Helpers, Logbook).
 >    - **Architecture:** Generate a `mermaid` sequence diagram. **CRITICAL:** Write a specific narrative paragraph explaining the logic flow shown in the diagram.
 > 4. **Update Documentation File:**
 >    - **Target:** Locate the specific HTML comment markers (slots).
 >    - **Action:** Replace the content *between* the markers.
 >      - `<!-- START_SUMMARY -->` ... `<!-- END_SUMMARY -->`
 >      - `<!-- START_DETAILED -->` ... `<!-- END_DETAILED -->`
+>      - `<!-- START_DEPENDENCIES -->` ... `<!-- END_DEPENDENCIES -->`
 >      - `<!-- START_MERMAID_DESC -->` ... `<!-- END_MERMAID_DESC -->`
 >      - `<!-- START_MERMAID -->` ... `<!-- END_MERMAID -->`
 >    - **Dashboard Links:** Scan `.storage/lovelace_dashboards` and embed cards into `<!-- START_DASHBOARD -->`."
