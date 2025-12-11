@@ -10,23 +10,18 @@ tags:
 **Dashboard:** Persons  
 **Path:** `map-Evis`
 
-<!-- START_DESCRIPTION -->
-No description provided.
-<!-- END_DESCRIPTION -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_map-evis.png)
-
-## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_map-evis.png)
 
 
 
 
 
 ## Configuration
-```yaml
+```yaml+jinja
 theme: Backend-selected
 subview: true
 title: Map Evis

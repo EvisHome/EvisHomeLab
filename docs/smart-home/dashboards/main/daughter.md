@@ -10,16 +10,11 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `Daughter`
 
-<!-- START_DESCRIPTION -->
-No description provided.
-<!-- END_DESCRIPTION -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_daughter.png)
-
-## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_daughter.png)
 
 
 
@@ -34,7 +29,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml
+```yaml+jinja
 theme: Backend-selected
 title: Daughter
 path: Daughter

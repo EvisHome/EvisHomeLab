@@ -10,16 +10,11 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `office`
 
-<!-- START_DESCRIPTION -->
-No description provided.
-<!-- END_DESCRIPTION -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_office.png)
-
-## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_office.png)
 
 ## Related Packages
 This view contains entities managed by:
@@ -48,7 +43,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml
+```yaml+jinja
 theme: Backend-selected
 title: Office
 type: sections
@@ -178,16 +173,31 @@ sections:
       cards:
       - type: custom:mushroom-template-card
         primary: Audio Device
-        secondary: "{% set status = states(entity) %}\n{% if status == 'on' %}\n \
-          \ Speakers\n{% else %}\n  Headset\n{% endif %}"
-        icon: "{% set status = states(entity) %}\n{% if status == 'on' %}\n  mdi:speaker-multiple\n\
-          {% else %}\n  mdi:headphones\n{% endif %}"
+        secondary: |-
+          {% set status = states(entity) %}
+          {% if status == 'on' %}
+            Speakers
+          {% else %}
+            Headset
+          {% endif %}
+        icon: |-
+          {% set status = states(entity) %}
+          {% if status == 'on' %}
+            mdi:speaker-multiple
+          {% else %}
+            mdi:headphones
+          {% endif %}
         layout: vertical
         entity: switch.officepc_audio_device
         tap_action:
           action: toggle
-        icon_color: "{% set status = states(entity) %}\n{% if status == 'on' %}\n\
-          \  green\n{% else %}\n  orange\n{% endif %}"
+        icon_color: |-
+          {% set status = states(entity) %}
+          {% if status == 'on' %}
+            green
+          {% else %}
+            orange
+          {% endif %}
       - type: custom:mushroom-entity-card
         entity: button.officepc_mediaplaypause
         name: Play | Pause
@@ -204,17 +214,31 @@ sections:
           data: {}
       - type: custom:mushroom-template-card
         primary: Audio Mute
-        secondary: "{% set status = states(entity) %}\n{% if status == 'on' %}\n \
-          \ Muted\n{% else %}\n Volume {{ states('sensor.officepc_audio_default_device_volume')\
-          \ }}\n{% endif %}"
-        icon: "{% set status = states(entity) %}\n{% if status == 'on' %}\n  mdi:volume-mute\n\
-          {% else %}\n  mdi:volume-high\n{% endif %}"
+        secondary: |-
+          {% set status = states(entity) %}
+          {% if status == 'on' %}
+            Muted
+          {% else %}
+           Volume {{ states('sensor.officepc_audio_default_device_volume') }}
+          {% endif %}
+        icon: |-
+          {% set status = states(entity) %}
+          {% if status == 'on' %}
+            mdi:volume-mute
+          {% else %}
+            mdi:volume-high
+          {% endif %}
         layout: vertical
         entity: switch.officepc_audio_mute
         tap_action:
           action: toggle
-        icon_color: "{% set status = states(entity) %}\n{% if status == 'on' %}\n\
-          \  red\n{% else %}\n  green\n{% endif %}"
+        icon_color: |-
+          {% set status = states(entity) %}
+          {% if status == 'on' %}
+            red
+          {% else %}
+            green
+          {% endif %}
   - type: custom:mushroom-entity-card
     entity: switch.office_pc_power
     layout: vertical
@@ -227,21 +251,36 @@ sections:
     name: PC Power
   - type: custom:mushroom-template-card
     primary: Displays
-    secondary: "{% set status = states(entity) %}\n{% if status == 'on' %}\n  On\n\
-      {% else %}\n Off\n{% endif %}"
-    icon: "{% set status = states(entity) %}\n{% if status == 'on' %}\n  mdi:monitor\n\
-      {% else %}\n  mdi:monitor-off\n{% endif %}"
+    secondary: |-
+      {% set status = states(entity) %}
+      {% if status == 'on' %}
+        On
+      {% else %}
+       Off
+      {% endif %}
+    icon: |-
+      {% set status = states(entity) %}
+      {% if status == 'on' %}
+        mdi:monitor
+      {% else %}
+        mdi:monitor-off
+      {% endif %}
     layout: vertical
     entity: switch.officepc_displays
     tap_action:
       action: toggle
-    icon_color: "{% set status = states(entity) %}\n{% if status == 'on' %}\n  green\n\
-      {% else %}\n  red\n{% endif %}"
+    icon_color: |-
+      {% set status = states(entity) %}
+      {% if status == 'on' %}
+        green
+      {% else %}
+        red
+      {% endif %}
     fill_container: true
   - type: history-graph
     entities:
     - entity: switch.office_pc_power
-      name: ' '
+      name: ''
   - type: custom:apexcharts-card
     graph_span: 12h
     show:
@@ -291,7 +330,10 @@ sections:
       show:
         legend_value: false
     card_mod:
-      style: "ha-card {\n  padding-top: 12px;\n}\n"
+      style: |-
+        ha-card {
+          padding-top: 12px;
+        }
   - type: vertical-stack
     cards:
     - type: custom:mushroom-title-card
@@ -396,7 +438,10 @@ sections:
           show:
             in_chart: false
         card_mod:
-          style: "ha-card {\n  padding-bottom: 20px;\n}\n"
+          style: |-
+            ha-card {
+              padding-bottom: 20px;
+            }
       - type: custom:apexcharts-card
         graph_span: 48h
         show:
@@ -430,7 +475,10 @@ sections:
           show:
             in_chart: false
         card_mod:
-          style: "ha-card {\n  padding-bottom: 20px;\n}\n"
+          style: |-
+            ha-card {
+              padding-bottom: 20px;
+            }
       columns: 2
   - type: vertical-stack
     cards:
@@ -545,19 +593,14 @@ sections:
         - entity_id: sensor.office*battery*
         exclude: []
   - type: markdown
-    content: '**Automation Modes**
+    content: |-
+      **Automation Modes**
 
+      _Presence Control:_ Lights are automatically controlled by the occupancy state of the room.
 
-      _Presence Control:_ Lights are automatically controlled by the occupancy state
-      of the room.
+      _Absence Detection:_ When room is no longer occupied, lights will be turned off after a the absence delay time.
 
-
-      _Absence Detection:_ When room is no longer occupied, lights will be turned
-      off after a the absence delay time.
-
-
-      _Schedule Mode:_ Light schedules are working as set in the Scheduler. (schedule-mode
-      condition)'
+      _Schedule Mode:_ Light schedules are working as set in the Scheduler. (schedule-mode condition)
   - type: custom:scheduler-card
     include:
     - input_select.living_room_automation_mode

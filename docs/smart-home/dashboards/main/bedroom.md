@@ -10,16 +10,11 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `bedroom`
 
-<!-- START_DESCRIPTION -->
-No description provided.
-<!-- END_DESCRIPTION -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_bedroom.png)
-
-## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_bedroom.png)
 
 ## Related Packages
 This view contains entities managed by:
@@ -41,7 +36,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml
+```yaml+jinja
 theme: Backend-selected
 title: Bedroom
 path: bedroom
@@ -72,7 +67,7 @@ sections:
       indicator_3_entity: input_boolean.bed_Evis_occupancy
       indicator_3_icon: mdi:bed
       indicator_3_state: 'on'
-      indicator_4_entity: input_boolean.bed_Guest-1_occupancy
+      indicator_4_entity: input_boolean.bed_Guest 1_occupancy
       indicator_4_icon: mdi:bed
       indicator_4_state: 'on'
       indicator_4_active_color: '#FF44C4'
@@ -217,15 +212,30 @@ sections:
       subtitle: Bed Occupancy
       alignment: center
     - type: custom:mushroom-template-card
-      primary: "Bed {% set status = states(entity) %}\n{% if status == 'on' %}\n \
-        \ Occupied\n{% else %}\n  Unoccupied\n{% endif %}"
+      primary: |-
+        Bed {% set status = states(entity) %}
+        {% if status == 'on' %}
+          Occupied
+        {% else %}
+          Unoccupied
+        {% endif %}
       secondary: ''
-      icon: "{% set status = states(entity) %}\n{% if status == 'on' %}\n  mdi:bed-king\n\
-        {% else %}\n  mdi:bed-king-outline\n{% endif %}"
+      icon: |-
+        {% set status = states(entity) %}
+        {% if status == 'on' %}
+          mdi:bed-king
+        {% else %}
+          mdi:bed-king-outline
+        {% endif %}
       layout: vertical
       entity: input_boolean.bedroom_bed_occupancy
-      icon_color: "{% set status = states(entity) %}\n{% if status == 'on' %}\n green\n\
-        {% else %}\n  white\n{% endif %}"
+      icon_color: |-
+        {% set status = states(entity) %}
+        {% if status == 'on' %}
+         green
+        {% else %}
+          white
+        {% endif %}
       fill_container: true
       tap_action:
         action: none
@@ -237,15 +247,30 @@ sections:
       type: grid
       cards:
       - type: custom:mushroom-template-card
-        primary: "Evis {% set status = states(entity) %}\n{% if status == 'on' %}\n\
-          \  in Bed\n{% else %}\n  not in Bed\n{% endif %}"
+        primary: |-
+          Evis {% set status = states(entity) %}
+          {% if status == 'on' %}
+            in Bed
+          {% else %}
+            not in Bed
+          {% endif %}
         secondary: ''
-        icon: "{% set status = states(entity) %}\n{% if status == 'on' %}\n  mdi:bed\n\
-          {% else %}\n  mdi:bed-empty\n{% endif %}"
+        icon: |-
+          {% set status = states(entity) %}
+          {% if status == 'on' %}
+            mdi:bed
+          {% else %}
+            mdi:bed-empty
+          {% endif %}
         layout: vertical
         entity: binary_sensor.master_bed_sensor_master_bed_occupancy_left
-        icon_color: "{% set status = states(entity) %}\n{% if status == 'on' %}\n\
-          \  blue\n{% else %}\n  white\n{% endif %}"
+        icon_color: |-
+          {% set status = states(entity) %}
+          {% if status == 'on' %}
+            blue
+          {% else %}
+            white
+          {% endif %}
         fill_container: true
         tap_action:
           action: none
@@ -254,15 +279,30 @@ sections:
         double_tap_action:
           action: none
       - type: custom:mushroom-template-card
-        primary: "Guest-1 {% set status = states(entity) %}\n{% if status == 'on'\
-          \ %}\n  in Bed\n{% else %}\n  not in Bed\n{% endif %}"
+        primary: |-
+          Guest 1 {% set status = states(entity) %}
+          {% if status == 'on' %}
+            in Bed
+          {% else %}
+            not in Bed
+          {% endif %}
         secondary: ''
-        icon: "{% set status = states(entity) %}\n{% if status == 'on' %}\n  mdi:bed\n\
-          {% else %}\n  mdi:bed-empty\n{% endif %}"
+        icon: |-
+          {% set status = states(entity) %}
+          {% if status == 'on' %}
+            mdi:bed
+          {% else %}
+            mdi:bed-empty
+          {% endif %}
         layout: vertical
         entity: binary_sensor.master_bed_sensor_master_bed_occupancy_right
-        icon_color: "{% set status = states(entity) %}\n{% if status == 'on' %}\n\
-          \  red\n{% else %}\n  white\n{% endif %}"
+        icon_color: |-
+          {% set status = states(entity) %}
+          {% if status == 'on' %}
+            red
+          {% else %}
+            white
+          {% endif %}
         fill_container: true
         tap_action:
           action: none
@@ -295,11 +335,11 @@ sections:
           name: Pressure
           icon: mdi:bed-outline
           state_color: true
-        - entity: binary_sensor.bedroom_bed_Guest-1_fp2_occupancy
+        - entity: binary_sensor.bedroom_bed_Guest 1_fp2_occupancy
           name: Bed FP2
           icon: mdi:bed
           state_color: true
-        - entity: binary_sensor.bedroom_bedside_Guest-1_fp2_sensor
+        - entity: binary_sensor.bedroom_bedside_Guest 1_fp2_sensor
           name: Bedside
           icon: mdi:walk
           state_color: true

@@ -28,7 +28,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml
+```yaml+jinja
 theme: Backend-selected
 title: Guest 3
 path: Guest 3

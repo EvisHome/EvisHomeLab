@@ -5,16 +5,16 @@ tags:
   - automated
 ---
 
-# Daughter
+# Guest 2
 
 **Dashboard:** Persons  
-**Path:** `Daughter`
+**Path:** `Guest 2`
 
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
 
-![View Screenshot](../../../assets/images/dashboards/dashboard_daughter.png)
+![View Screenshot](../../../assets/images/dashboards/dashboard_guest2.png)
 
 
 
@@ -27,8 +27,8 @@ Required HACS frontend resources:
 ## Configuration
 ```yaml+jinja
 theme: Backend-selected
-title: Daughter
-path: Daughter
+title: Guest 2
+path: Guest 2
 badges: []
 cards:
 - type: vertical-stack
@@ -36,8 +36,8 @@ cards:
   - type: custom:decluttering-card
     template: family_member_card
     variables:
-    - person: Daughter
-    - device: Daughter_mobile
+    - person: Guest 2
+    - device: mobile_Guest 2
     - background: background_3
     - color: '#dddddd'
   - type: custom:decluttering-card

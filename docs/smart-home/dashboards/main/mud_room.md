@@ -10,16 +10,11 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `mud_room`
 
-<!-- START_DESCRIPTION -->
-No description provided.
-<!-- END_DESCRIPTION -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_mud_room.png)
-
-## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_mud_room.png)
 
 ## Related Packages
 This view contains entities managed by:
@@ -39,7 +34,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml
+```yaml+jinja
 theme: Backend-selected
 title: Mud Room
 path: mud_room

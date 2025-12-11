@@ -31,7 +31,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml
+```yaml+jinja
 title: Settings
 icon: mdi:home-cog
 type: sections

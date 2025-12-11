@@ -10,16 +10,11 @@ tags:
 **Dashboard:** Main Dashboard  
 **Path:** `electricity-dev`
 
-<!-- START_DESCRIPTION -->
-No description provided.
-<!-- END_DESCRIPTION -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_electricity-dev.png)
-
-## Summary
 <!-- START_SUMMARY -->
 *No summary generated yet.*
 <!-- END_SUMMARY -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_electricity-dev.png)
 
 ## Related Packages
 This view contains entities managed by:
@@ -36,7 +31,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml
+```yaml+jinja
 type: panel
 path: electricity-dev
 title: Electricity Dev
@@ -149,8 +144,10 @@ cards:
           extremas: true
           in_header: true
           header_color_threshold: true
-        data_generator: "return entity.attributes.data.map(entry => {\n  return [new\
-          \ Date(entry.start).getTime(), entry.price];\n});\n"
+        data_generator: |-
+          return entity.attributes.data.map(entry => {
+            return [new Date(entry.start).getTime(), entry.price];
+          });
         color_threshold:
         - value: -10
           color: lightgreen

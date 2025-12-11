@@ -10,16 +10,11 @@ tags:
 **Dashboard:** Persons  
 **Path:** `car`
 
-<!-- START_DESCRIPTION -->
-Centralized command center for the Mercedes GLC featuring fuel monitoring, climate control, and location tracking.
-<!-- END_DESCRIPTION -->
-
-![View Screenshot](../../../assets/images/dashboards/dashboard_car.png)
-
-## Summary
 <!-- START_SUMMARY -->
 The **Car Dashboard** provides a centralized command center for the Mercedes GLC, unifying vehicle health monitoring and remote control. It combines real-time data metrics (fuel, battery, tire pressure) with actionable controls (locks, climate pre-conditioning). The interface features a visual "Digital Twin" of the car to intuitively display status alerts, warning indicators (low fluids, unlocked doors), and charging progress, alongside a real-time location tracker.
 <!-- END_SUMMARY -->
+
+![View Screenshot](../../../assets/images/dashboards/dashboard_car.png)
 
 ## Related Packages
 This view contains entities managed by:
@@ -37,7 +32,7 @@ Required HACS frontend resources:
 
 
 ## Configuration
-```yaml
+```yaml+jinja
 title: CAR
 badges: []
 cards: []
@@ -75,38 +70,60 @@ sections:
                     | {{ states(''sensor.[LICENSE_PLATE]_range_liquid'') }} km range'
                   icon: mdi:gas-station
                   features_position: bottom
-                  color: "{% set fuel = states('sensor.[LICENSE_PLATE]_fuel_level')\
-                    \ | int %} {% if fuel < 20 %}\n  darkred\n{% elif fuel < 50 %}\n\
-                    \  yellow\n{% else %}\n  darkgreen\n{% endif %}\n"
+                  color: |-
+                    {% set fuel = states('sensor.[LICENSE_PLATE]_fuel_level') | int %} {% if fuel < 20 %}
+                      darkred
+                    {% elif fuel < 50 %}
+                      yellow
+                    {% else %}
+                      darkgreen
+                    {% endif %}
                   card_mod:
-                    style: "ha-card {\n  background: linear-gradient(\n    to right,\n\
-                      \    orange {{ states('sensor.[LICENSE_PLATE]_fuel_level') }}%,\n\
-                      \    var(--card-background-color) {{ states('sensor.[LICENSE_PLATE]_fuel_level')\
-                      \ }}%\n  );\n  );\n  background-size: 100% 100%;\n  background-repeat:\
-                      \ no-repeat;\n  border-radius: 12px;\n}\n"
+                    style: |-
+                      ha-card {
+                        background: linear-gradient(
+                          to right,
+                          orange {{ states('sensor.[LICENSE_PLATE]_fuel_level') }}%,
+                          var(--card-background-color) {{ states('sensor.[LICENSE_PLATE]_fuel_level') }}%
+                        );
+                        );
+                        background-size: 100% 100%;
+                        background-repeat: no-repeat;
+                        border-radius: 12px;
+                      }
                 - type: custom:mushroom-template-card
                   entity: sensor.ev_battery_level
                   primary: EV Charge
                   secondary: '{{ states(''sensor.[LICENSE_PLATE]_state_of_charge'')
                     }}% | {{ states(''sensor.[LICENSE_PLATE]_range_electric'') }}
-                    km range
-
-                    '
+                    km range'
                   icon: mdi:car-electric
                   tap_action:
                     action: more-info
                   hold_action:
                     action: more-info
-                  color: "{% set charge = states('sensor.[LICENSE_PLATE]_state_of_charge')\
-                    \ | int %} {% if charge < 20 %}\n  red\n{% elif charge < 50 %}\n\
-                    \  yellow\n{% else %}\n  lightgreen\n{% endif %}\n"
+                  color: |-
+                    {% set charge = states('sensor.[LICENSE_PLATE]_state_of_charge') | int %} {% if charge < 20 %}
+                      red
+                    {% elif charge < 50 %}
+                      yellow
+                    {% else %}
+                      lightgreen
+                    {% endif %}
                   features_position: bottom
                   card_mod:
-                    style: "ha-card {\n  --charge: {{ states('sensor.[LICENSE_PLATE]_state_of_charge')\
-                      \ }}%;\n  background: linear-gradient(\n    to right,\n    green\
-                      \ var(--charge),\n    var(--card-background-color) var(--charge)\n\
-                      \  );\n  background-size: 100% 100%;\n  background-repeat: no-repeat;\n\
-                      \  border-radius: 12px;\n}\n"
+                    style: |-
+                      ha-card {
+                        --charge: {{ states('sensor.[LICENSE_PLATE]_state_of_charge') }}%;
+                        background: linear-gradient(
+                          to right,
+                          green var(--charge),
+                          var(--card-background-color) var(--charge)
+                        );
+                        background-size: 100% 100%;
+                        background-repeat: no-repeat;
+                        border-radius: 12px;
+                      }
               - type: custom:scheduler-card
                 include:
                 - switch.[LICENSE_PLATE]_pre_entry_climate_control
@@ -129,12 +146,21 @@ sections:
                 - Car
                 exclude_tags: []
                 card_mod:
-                  style: "ha-card {\n  border-radius: 12px;\n  box-shadow: var(--ha-card-box-shadow);\n\
-                    \  background-color: var(--card-background-color);\n  font-family:\
-                    \ var(--mush-font-family, \"Roboto\", sans-serif);\n}\n.card-header\
-                    \ {\n  font-size: 1.2em;\n  font-weight: 500;\n  padding-bottom:\
-                    \ 8px;\n}\n.schedule-row {\n  border-bottom: 1px solid var(--divider-color);\n\
-                    }\n"
+                  style: |-
+                    ha-card {
+                      border-radius: 12px;
+                      box-shadow: var(--ha-card-box-shadow);
+                      background-color: var(--card-background-color);
+                      font-family: var(--mush-font-family, "Roboto", sans-serif);
+                    }
+                    .card-header {
+                      font-size: 1.2em;
+                      font-weight: 500;
+                      padding-bottom: 8px;
+                    }
+                    .schedule-row {
+                      border-bottom: 1px solid var(--divider-color);
+                    }
               - type: map
                 entities:
                 - entity: person.car
@@ -143,11 +169,17 @@ sections:
                 default_zoom: 15
                 theme_mode: auto
       card_mod:
-        style: "ha-card {\n  /* Moves border logic here from original for border display\
-          \ */\n  {% if is_state('sensor.[LICENSE_PLATE]_ignition_state','4') %}\n\
-          \    border: 3px solid rgba(36, 255, 0, 0.8);\n  {% elif is_state('sensor.[LICENSE_PLATE]_ignition_state','2')\
-          \ %}\n    border: 3px solid rgba(255, 163, 0, 0.8);\n  {% else %}\n    border:\
-          \ 0px solid rgba(0, 0, 0, 0);\n  {% endif %}\n}\n"
+        style: |-
+          ha-card {
+            /* Moves border logic here from original for border display */
+            {% if is_state('sensor.[LICENSE_PLATE]_ignition_state','4') %}
+              border: 3px solid rgba(36, 255, 0, 0.8);
+            {% elif is_state('sensor.[LICENSE_PLATE]_ignition_state','2') %}
+              border: 3px solid rgba(255, 163, 0, 0.8);
+            {% else %}
+              border: 0px solid rgba(0, 0, 0, 0);
+            {% endif %}
+          }
       style:
         top: 50%
         left: 50%
@@ -234,9 +266,14 @@ sections:
         styles:
           icon:
           - color: '#088CF8'
-          - animation: "[[[\n  if (states['binary_sensor.[LICENSE_PLATE]_charging_active'].state\
-              \ == 'on') {\n    return 'blink 1s ease infinite';\n  } else {\n   \
-              \ return 'none';\n  }\n]]]\n"
+          - animation: |-
+              [[[
+                if (states['binary_sensor.[LICENSE_PLATE]_charging_active'].state == 'on') {
+                  return 'blink 1s ease infinite';
+                } else {
+                  return 'none';
+                }
+              ]]]
       - operator: ==
         value: 'off'
         styles:
@@ -331,8 +368,12 @@ sections:
           card:
           - display: none
       card_mod:
-        style: ":host {\n  {% if '[[entity]]' == '' %}\n    display: none;\n  {% endif\
-          \ %}\n}\n"
+        style: |-
+          :host {
+            {% if '[[entity]]' == '' %}
+              display: none;
+            {% endif %}
+          }
     - type: custom:button-card
       template: area_status_indicator
       entity: binary_sensor.[LICENSE_PLATE]_tire_warning
@@ -408,39 +449,68 @@ sections:
       }} km range'
     icon: mdi:gas-station
     features_position: bottom
-    color: "{% set fuel = states('sensor.[LICENSE_PLATE]_fuel_level') | int %} {%\
-      \ if fuel < 20 %}\n  darkred\n{% elif fuel < 50 %}\n  yellow\n{% else %}\n \
-      \ darkgreen\n{% endif %}\n"
+    color: |-
+      {% set fuel = states('sensor.[LICENSE_PLATE]_fuel_level') | int %} {% if fuel < 20 %}
+        darkred
+      {% elif fuel < 50 %}
+        yellow
+      {% else %}
+        darkgreen
+      {% endif %}
     card_mod:
-      style: "ha-card {\n  background: linear-gradient(\n    to right,\n    orange\
-        \ {{ states('sensor.[LICENSE_PLATE]_fuel_level') }}%,\n    var(--card-background-color)\
-        \ {{ states('sensor.[LICENSE_PLATE]_fuel_level') }}%\n  );\n  );\n  background-size:\
-        \ 100% 100%;\n  background-repeat: no-repeat;\n  border-radius: 12px;\n}\n"
+      style: |-
+        ha-card {
+          background: linear-gradient(
+            to right,
+            orange {{ states('sensor.[LICENSE_PLATE]_fuel_level') }}%,
+            var(--card-background-color) {{ states('sensor.[LICENSE_PLATE]_fuel_level') }}%
+          );
+          );
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          border-radius: 12px;
+        }
   - type: custom:mushroom-template-card
     entity: sensor.ev_battery_level
     primary: EV Charge
     secondary: '{{ states(''sensor.[LICENSE_PLATE]_state_of_charge'') }}% | {{ states(''sensor.[LICENSE_PLATE]_range_electric'')
-      }} km range
-
-      '
+      }} km range'
     icon: mdi:car-electric
     tap_action:
       action: more-info
     hold_action:
       action: more-info
-    color: "{% set charge = states('sensor.[LICENSE_PLATE]_state_of_charge') | int\
-      \ %} {% if charge < 20 %}\n  red\n{% elif charge < 50 %}\n  yellow\n{% else\
-      \ %}\n  lightgreen\n{% endif %}\n"
+    color: |-
+      {% set charge = states('sensor.[LICENSE_PLATE]_state_of_charge') | int %} {% if charge < 20 %}
+        red
+      {% elif charge < 50 %}
+        yellow
+      {% else %}
+        lightgreen
+      {% endif %}
     features_position: bottom
     card_mod:
-      style: "ha-card {\n  --charge: {{ states('sensor.[LICENSE_PLATE]_state_of_charge')\
-        \ }}%;\n  background: linear-gradient(\n    to right,\n    green var(--charge),\n\
-        \    var(--card-background-color) var(--charge)\n  );\n  background-size:\
-        \ 100% 100%;\n  background-repeat: no-repeat;\n  border-radius: 12px;\n}\n"
+      style: |-
+        ha-card {
+          --charge: {{ states('sensor.[LICENSE_PLATE]_state_of_charge') }}%;
+          background: linear-gradient(
+            to right,
+            green var(--charge),
+            var(--card-background-color) var(--charge)
+          );
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          border-radius: 12px;
+        }
   - type: custom:mushroom-template-card
     primary: Doors
-    secondary: "{% set status = states(entity) %}\n{% if status == 'open' %}\n  Open\n\
-      {% else %}\n  Closed\n{% endif %}"
+    secondary: |-
+      {% set status = states(entity) %}
+      {% if status == 'open' %}
+        Open
+      {% else %}
+        Closed
+      {% endif %}
     icon: mdi:car-door
     tap_action:
       action: more-info
@@ -449,12 +519,27 @@ sections:
     hold_action:
       action: more-info
     entity: binary_sensor.car_doors
-    badge_color: "{% set status = states('switch.car_doors') %}\n{% if status == 'off'\
-      \ %}\n  red\n{% else %}\n  green\n{% endif %}"
-    badge_icon: "{% set status = states('switch.car_doors') %}\n{% if status == 'off'\
-      \ %}\n  mdi:lock-off-outline\n{% else %}\n  mdi:lock\n{% endif %}"
-    color: "{% set status = states(entity) %}\n{% if status == 'open' %}\n  red\n\
-      {% else %}\n  disabled\n{% endif %}"
+    badge_color: |-
+      {% set status = states('switch.car_doors') %}
+      {% if status == 'off' %}
+        red
+      {% else %}
+        green
+      {% endif %}
+    badge_icon: |-
+      {% set status = states('switch.car_doors') %}
+      {% if status == 'off' %}
+        mdi:lock-off-outline
+      {% else %}
+        mdi:lock
+      {% endif %}
+    color: |-
+      {% set status = states(entity) %}
+      {% if status == 'open' %}
+        red
+      {% else %}
+        disabled
+      {% endif %}
     features_position: bottom
     grid_options:
       columns: 4
@@ -462,8 +547,13 @@ sections:
     vertical: true
   - type: custom:mushroom-template-card
     primary: Windows
-    secondary: "{% set status = states(entity) %}\n{% if status == 'off' %}\n  Open\n\
-      {% else %}\n  Closed\n{% endif %}"
+    secondary: |-
+      {% set status = states(entity) %}
+      {% if status == 'off' %}
+        Open
+      {% else %}
+        Closed
+      {% endif %}
     icon: mdi:car-door
     tap_action:
       action: more-info
@@ -474,8 +564,13 @@ sections:
     badge_color: ''
     hold_action:
       action: more-info
-    color: "{% set status = states(entity) %}\n{% if status == 'off' %}\n  red\n{%\
-      \ else %}\n  disabled\n{% endif %}"
+    color: |-
+      {% set status = states(entity) %}
+      {% if status == 'off' %}
+        red
+      {% else %}
+        disabled
+      {% endif %}
     features_position: bottom
     grid_options:
       columns: 4
@@ -486,8 +581,13 @@ sections:
   - type: custom:mushroom-template-card
     entity: switch.[LICENSE_PLATE]_pre_entry_climate_control
     primary: Pre AC
-    secondary: "{% set status = states(entity) %}\n{% if status == 'off' %}\n  Off\n\
-      {% else %}\n  On\n{% endif %}"
+    secondary: |-
+      {% set status = states(entity) %}
+      {% if status == 'off' %}
+        Off
+      {% else %}
+        On
+      {% endif %}
     icon: mdi:air-conditioner
     tap_action:
       action: more-info
@@ -497,8 +597,13 @@ sections:
       action: more-info
     badge_icon: ''
     badge_color: ''
-    color: "{% set status = states(entity) %}\n{% if status == 'off' %}\n  disabled\n\
-      {% else %}\n  green\n{% endif %}"
+    color: |-
+      {% set status = states(entity) %}
+      {% if status == 'off' %}
+        disabled
+      {% else %}
+        green
+      {% endif %}
     features_position: bottom
     grid_options:
       columns: 4
@@ -528,11 +633,21 @@ sections:
     exclude_tags: []
     type: custom:scheduler-card
     card_mod:
-      style: "ha-card {\n  border-radius: 12px;\n  box-shadow: var(--ha-card-box-shadow);\n\
-        \  background-color: var(--card-background-color);\n  font-family: var(--mush-font-family,\
-        \ \"Roboto\", sans-serif);\n}\n.card-header {\n  font-size: 1.2em;\n  font-weight:\
-        \ 500;\n  padding-bottom: 8px;\n}\n.schedule-row {\n  border-bottom: 1px solid\
-        \ var(--divider-color);\n}\n"
+      style: |-
+        ha-card {
+          border-radius: 12px;
+          box-shadow: var(--ha-card-box-shadow);
+          background-color: var(--card-background-color);
+          font-family: var(--mush-font-family, "Roboto", sans-serif);
+        }
+        .card-header {
+          font-size: 1.2em;
+          font-weight: 500;
+          padding-bottom: 8px;
+        }
+        .schedule-row {
+          border-bottom: 1px solid var(--divider-color);
+        }
   - type: map
     entities:
     - entity: person.car
@@ -840,9 +955,14 @@ sections:
           icon:
           - color: orange
           - transform: scaleX(1) rotate(90deg)
-          - animation: "[[[\n  if (states['binary_sensor.car_glc_door_front_right'].state\
-              \ == 'off') {\n    return 'blink 1s ease infinite';\n  } else {\n  \
-              \  return 'none';\n  }\n]]]\n"
+          - animation: |-
+              [[[
+                if (states['binary_sensor.car_glc_door_front_right'].state == 'off') {
+                  return 'blink 1s ease infinite';
+                } else {
+                  return 'none';
+                }
+              ]]]
       - operator: ==
         value: 'on'
         styles:
@@ -866,9 +986,14 @@ sections:
           icon:
           - color: orange
           - transform: scaleX(-1) rotate(-90deg)
-          - animation: "[[[\n  if (states['binary_sensor.car_glc_door_rear_left'].state\
-              \ == 'off') {\n    return 'blink 1s ease infinite';\n  } else {\n  \
-              \  return 'none';\n  }\n]]]\n"
+          - animation: |-
+              [[[
+                if (states['binary_sensor.car_glc_door_rear_left'].state == 'off') {
+                  return 'blink 1s ease infinite';
+                } else {
+                  return 'none';
+                }
+              ]]]
       - operator: ==
         value: 'on'
         styles:
@@ -892,9 +1017,14 @@ sections:
           icon:
           - color: orange
           - transform: scaleX(-1) rotate(90deg)
-          - animation: "[[[\n  if (states['binary_sensor.car_glc_door_front_left'].state\
-              \ == 'off') {\n    return 'blink 1s ease infinite';\n  } else {\n  \
-              \  return 'none';\n  }\n]]]\n"
+          - animation: |-
+              [[[
+                if (states['binary_sensor.car_glc_door_front_left'].state == 'off') {
+                  return 'blink 1s ease infinite';
+                } else {
+                  return 'none';
+                }
+              ]]]
       - operator: ==
         value: 'on'
         styles:
@@ -918,9 +1048,14 @@ sections:
           icon:
           - color: orange
           - transform: scaleX(1) rotate(-90deg)
-          - animation: "[[[\n  if (states['binary_sensor.car_glc_door_rear_right'].state\
-              \ == 'off') {\n    return 'blink 1s ease infinite';\n  } else {\n  \
-              \  return 'none';\n  }\n]]]\n"
+          - animation: |-
+              [[[
+                if (states['binary_sensor.car_glc_door_rear_right'].state == 'off') {
+                  return 'blink 1s ease infinite';
+                } else {
+                  return 'none';
+                }
+              ]]]
       - operator: ==
         value: 'on'
         styles:
@@ -943,9 +1078,14 @@ sections:
         styles:
           icon:
           - color: '#088CF8'
-          - animation: "[[[\n  if (states['binary_sensor.[LICENSE_PLATE]_charging_active'].state\
-              \ == 'on') {\n    return 'blink 1s ease infinite';\n  } else {\n   \
-              \ return 'none';\n  }\n]]]\n"
+          - animation: |-
+              [[[
+                if (states['binary_sensor.[LICENSE_PLATE]_charging_active'].state == 'on') {
+                  return 'blink 1s ease infinite';
+                } else {
+                  return 'none';
+                }
+              ]]]
       - operator: ==
         value: 'off'
         icon: mdi:ev-plug-type2
@@ -969,10 +1109,18 @@ sections:
         - font-size: 13cqw
           color: '#088CF8'
         card:
-        - display: "[[[\n  // Get the state of the power sensor\n  var power = states['sensor.[LICENSE_PLATE]_charging_power'].state;\n\
-            \n  // Hide if power is 0 OR if the main entity is 0\n  if (parseFloat(power)\
-            \ == 0 || entity.state == '0') {\n    return 'none';\n  } else {\n   \
-            \ return 'block'; // Show the card\n  }\n]]]\n"
+        - display: |-
+            [[[
+              // Get the state of the power sensor
+              var power = states['sensor.[LICENSE_PLATE]_charging_power'].state;
+
+              // Hide if power is 0 OR if the main entity is 0
+              if (parseFloat(power) == 0 || entity.state == '0') {
+                return 'none';
+              } else {
+                return 'block'; // Show the card
+              }
+            ]]]
     - type: custom:button-card
       template: area_status_indicator
       entity: sensor.[LICENSE_PLATE]_charging_power
@@ -992,10 +1140,18 @@ sections:
         - font-size: 13cqw
           color: '#088CF8'
         card:
-        - display: "[[[\n  // Get the state of the power sensor\n  var power = states['sensor.[LICENSE_PLATE]_charging_power'].state;\n\
-            \n  // Hide if power is 0 OR if the main entity is 0\n  if (parseFloat(power)\
-            \ == 0 || entity.state == '0') {\n    return 'none';\n  } else {\n   \
-            \ return 'block'; // Show the card\n  }\n]]]\n"
+        - display: |-
+            [[[
+              // Get the state of the power sensor
+              var power = states['sensor.[LICENSE_PLATE]_charging_power'].state;
+
+              // Hide if power is 0 OR if the main entity is 0
+              if (parseFloat(power) == 0 || entity.state == '0') {
+                return 'none';
+              } else {
+                return 'block'; // Show the card
+              }
+            ]]]
     - type: custom:button-card
       template: area_status_indicator
       entity: sensor.car_charge_ready
@@ -1013,10 +1169,18 @@ sections:
         - font-size: 13cqw
           color: '#088CF8'
         card:
-        - display: "[[[\n  // Get the state of the power sensor\n  var power = states['sensor.[LICENSE_PLATE]_charging_power'].state;\n\
-            \n  // Hide if power is 0 OR if the main entity is 0\n  if (parseFloat(power)\
-            \ == 0 || entity.state == '0') {\n    return 'none';\n  } else {\n   \
-            \ return 'block'; // Show the card\n  }\n]]]\n"
+        - display: |-
+            [[[
+              // Get the state of the power sensor
+              var power = states['sensor.[LICENSE_PLATE]_charging_power'].state;
+
+              // Hide if power is 0 OR if the main entity is 0
+              if (parseFloat(power) == 0 || entity.state == '0') {
+                return 'none';
+              } else {
+                return 'block'; // Show the card
+              }
+            ]]]
     - type: custom:button-card
       template: area_status_indicator
       entity: binary_sensor.car_charge_plug
@@ -1031,18 +1195,38 @@ sections:
       state:
       - operator: ==
         value: 'off'
-        icon: "[[[\n  var soc = states['sensor.[LICENSE_PLATE]_state_of_charge'].state;\n\
-          \  if (soc > 75) {\n    return 'mdi:battery-charging-high';\n  } else if\
-          \ (soc > 25) {\n    return 'mdi:battery-charging-medium';\n  } else {\n\
-          \    return 'mdi:battery-charging-low';\n  }\n]]]\n"
+        icon: |-
+          [[[
+            var soc = states['sensor.[LICENSE_PLATE]_state_of_charge'].state;
+            if (soc > 75) {
+              return 'mdi:battery-charging-high';
+            } else if (soc > 25) {
+              return 'mdi:battery-charging-medium';
+            } else {
+              return 'mdi:battery-charging-low';
+            }
+          ]]]
         styles:
           icon:
-          - color: "[[[\n  var soc = states['sensor.[LICENSE_PLATE]_state_of_charge'].state;\n\
-              \  if (soc > 75) {\n    return 'lightgreen';\n  } else if (soc > 25)\
-              \ {\n    return 'orange';\n  } else {\n    return 'red';\n  }\n]]]\n"
-          - animation: "[[[\n  if (states['binary_sensor.[LICENSE_PLATE]_charging_active'].state\
-              \ == 'on') {\n    return 'blink 1s ease infinite';\n  } else {\n   \
-              \ return 'none';\n  }\n]]]\n"
+          - color: |-
+              [[[
+                var soc = states['sensor.[LICENSE_PLATE]_state_of_charge'].state;
+                if (soc > 75) {
+                  return 'lightgreen';
+                } else if (soc > 25) {
+                  return 'orange';
+                } else {
+                  return 'red';
+                }
+              ]]]
+          - animation: |-
+              [[[
+                if (states['binary_sensor.[LICENSE_PLATE]_charging_active'].state == 'on') {
+                  return 'blink 1s ease infinite';
+                } else {
+                  return 'none';
+                }
+              ]]]
       - operator: ==
         value: 'on'
         styles:
