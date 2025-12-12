@@ -132,7 +132,7 @@ sections:
             %H:%M'') }}'
           icon: '{% set user_slug = states(config.entity) | slugify %} {% set fp =
             is_state(''switch.fp_access_'' ~ user_slug, ''on'') %} {% set nfc = is_state(''switch.nfc_access_''
-            ~ user_slug, ''on'') %} {{ ''mdi:check-circle'' if (fp and nfc) else ''mdi:alert-circle''
+            ~ user_slug, ''on'') %} {{ ''mdi:check-circle'' if (fp or nfc) else ''mdi:alert-circle''
             }}'
           card_mod:
             style: ":host::before {\n  content: \"\";\n  display: block;\n  height:\
@@ -140,8 +140,9 @@ sections:
               \ 10px;\n  margin-bottom: 10px;\n}\nstate-badge {\n  color: {% set user_slug\
               \ = states(config.entity) | slugify %}\n         {% set fp = is_state('switch.fp_access_'\
               \ ~ user_slug, 'on') %}\n         {% set nfc = is_state('switch.nfc_access_'\
-              \ ~ user_slug, 'on') %}\n         {{ 'lightgreen' if (fp and nfc) else\
-              \ '#FB6464' }} !important;\n}\n"
+              \ ~ user_slug, 'on') %}\n         {% if fp and nfc %}\n           lightgreen\n\
+              \         {% elif fp or nfc %}\n           orange\n         {% else %}\n\
+              \           #FB6464\n         {% endif %} !important;\n}\n"
       exclude: []
     sort:
       method: name

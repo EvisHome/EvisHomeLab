@@ -127,49 +127,84 @@ sections:
       type: entities
       show_header_toggle: false
     filter:
-      template: "{% set ns = namespace(rows=[]) %} {% set mode_selectors = states.select\
-        \ | selectattr('entity_id','search','automation_mode') | list %}\n{% for sel\
-        \ in mode_selectors %}\n  {# Extract base id and normalize to room_key #}\n\
-        \  {% set raw_id = sel.entity_id.split('.')[1] %}\n  {% set base = raw_id.replace('_automation_mode','')\
-        \ %}\n  {% if base.startswith('room_') %}\n    {% set room_key = base[5:]\
-        \ %}\n  {% else %}\n    {% set room_key = base %}\n  {% endif %}\n  {% set\
-        \ name = room_key.replace('_',' ') | title %}\n\n  {# Compose downstream entity\
-        \ ids with exactly one room_ prefix #}\n  {% set state_select = 'select.room_'\
-        \ ~ room_key ~ '_state' %}\n  {% set occ_sensor   = 'binary_sensor.room_'\
-        \ ~ room_key ~ '_occupancy' %}\n  {% set idle_entity  = 'number.room_' ~ room_key\
-        \ ~ '_presence_idle_time' %}\n  {% set delay_entity = 'number.room_' ~ room_key\
-        \ ~ '_lights_presence_delay' %}\n  {% set lux_s        = 'text.room_' ~ room_key\
-        \ ~ '_lux_sensor' %}\n  {% set lux_t        = 'number.room_' ~ room_key ~\
-        \ '_lux_threshold' %}\n  {% set bed_s        = 'text.room_' ~ room_key ~ '_bed_sensor'\
-        \ %}\n  {% set sleep_entry  = 'number.room_' ~ room_key ~ '_sleep_entry_delay'\
-        \ %}\n  {% set sleep_exit   = 'number.room_' ~ room_key ~ '_sleep_exit_delay'\
-        \ %}\n\n  {# Build the collapsible group's entity list, conditionally #}\n\
-        \  {% set entities = [] %}\n  {% set entities = entities + [{'entity': sel.entity_id,\
-        \ 'name': 'Mode'}] %}\n\n  {% if states[state_select] is defined %}\n    {%\
-        \ set entities = entities + [{'entity': state_select, 'name': 'Current State'}]\
-        \ %}\n  {% endif %}\n  {% if states[occ_sensor] is defined %}\n    {% set\
-        \ entities = entities + [{'entity': occ_sensor, 'name': 'Occupancy'}] %}\n\
-        \  {% endif %}\n  {% if states[idle_entity] is defined %}\n    {% set entities\
-        \ = entities + [{'entity': idle_entity, 'name': 'Idle Time (sec)'}] %}\n \
-        \ {% endif %}\n  {% if states[delay_entity] is defined %}\n    {% set entities\
-        \ = entities + [{'entity': delay_entity, 'name': 'Off Delay (sec)'}] %}\n\
-        \  {% endif %}\n  {% if states[lux_s] is defined %}\n    {% set entities =\
-        \ entities + [{'entity': lux_s, 'name': 'Lux Sensor ID'}] %}\n  {% endif %}\n\
-        \  {% if states[lux_t] is defined %}\n    {% set entities = entities + [{'entity':\
-        \ lux_t, 'name': 'Lux Threshold (lx)'}] %}\n  {% endif %}\n\n  {# Bed sensor\
-        \ and sleep timers only if bed sensor has a usable value #}\n  {% if states[bed_s]\
-        \ is defined %}\n    {% set entities = entities + [{'entity': bed_s, 'name':\
-        \ 'Bed Sensor ID'}] %}\n    {% set bed_val = states(bed_s) | lower %}\n  \
-        \  {% if bed_val not in ['unknown','unavailable','','none'] %}\n      {% if\
-        \ states[sleep_entry] is defined %}\n        {% set entities = entities +\
-        \ [{'entity': sleep_entry, 'name': 'Sleep Entry Delay (sec)'}] %}\n      {%\
-        \ endif %}\n      {% if states[sleep_exit] is defined %}\n        {% set entities\
-        \ = entities + [{'entity': sleep_exit, 'name': 'Sleep Exit Delay (sec)'}]\
-        \ %}\n      {% endif %}\n    {% endif %}\n  {% endif %}\n\n  {# Only add the\
-        \ group if it has rows (it always has at least Mode) #}\n  {% set group =\
-        \ {\n    'type': 'custom:fold-entity-row',\n    'head': {'type':'section','label':\
-        \ name},\n    'entities': entities\n  } %}\n  {% set ns.rows = ns.rows + [group]\
-        \ %}\n{% endfor %}\n{{ ns.rows | to_json }}\n"
+      template: >
+        {% set ns = namespace(rows=[]) %}
+        {% set mode_selectors = states.select | selectattr('entity_id','search','automation_mode') | list %}
+
+        {% for sel in mode_selectors %}
+          {# Extract base id and normalize to room_key #}
+          {% set raw_id = sel.entity_id.split('.')[1] %}
+          {% set base = raw_id.replace('_automation_mode','') %}
+          {% if base.startswith('room_') %}
+            {% set room_key = base[5:] %}
+          {% else %}
+            {% set room_key = base %}
+          {% endif %}
+          {% set name = room_key.replace('_',' ') | title %}
+
+          {# Compose downstream entity ids with exactly one room_ prefix #}
+          {% set state_select = 'select.room_' ~ room_key ~ '_state' %}
+          {% set occ_sensor   = 'binary_sensor.room_' ~ room_key ~ '_occupancy' %}
+          {% set idle_entity  = 'number.room_' ~ room_key ~ '_presence_idle_time' %}
+          {% set delay_entity = 'number.room_' ~ room_key ~ '_lights_presence_delay' %}
+          {% set bed_s        = 'text.room_' ~ room_key ~ '_bed_sensor' %}
+          {% set sleep_entry  = 'number.room_' ~ room_key ~ '_sleep_entry_delay' %}
+          {% set sleep_exit   = 'number.room_' ~ room_key ~ '_sleep_exit_delay' %}
+          {% set occ_source   = 'select.room_' ~ room_key ~ '_occupancy_source' %}
+
+          {# Build the collapsible group's entity list, conditionally #}
+          {% set entities = [] %}
+          {% set entities = entities + [{'entity': sel.entity_id, 'name': 'Mode'}] %}
+
+          {% if states[state_select] is defined %}
+            {% set entities = entities + [{'entity': state_select, 'name': 'Current State'}] %}
+          {% endif %}
+          {% if states[occ_sensor] is defined %}
+            {% set entities = entities + [{'entity': occ_sensor, 'name': 'Occupancy'}] %}
+          {% endif %}
+          {% if states[occ_source] is defined %}
+            {% set entities = entities + [{'entity': occ_source, 'name': 'Occupancy Sensor'}] %}
+          {% endif %}
+          {% if states[light_target] is defined %}
+            {% set entities = entities + [{'entity': light_target, 'name': 'Light Group'}] %}
+          {% endif %}
+          {% if states[idle_entity] is defined %}
+            {% set entities = entities + [{'entity': idle_entity, 'name': 'Idle Time (sec)'}] %}
+          {% endif %}
+          {% if states[delay_entity] is defined %}
+            {% set entities = entities + [{'entity': delay_entity, 'name': 'Off Delay (sec)'}] %}
+          {% endif %}
+          {% if states[lux_s] is defined %}
+            {% set entities = entities + [{'entity': lux_s, 'name': 'Lux Sensor ID'}] %}
+          {% endif %}
+          {% if states[lux_t] is defined %}
+            {% set entities = entities + [{'entity': lux_t, 'name': 'Lux Threshold (lx)'}] %}
+          {% endif %}
+
+          {# Bed sensor and sleep timers only if bed sensor has a usable value #}
+          {% if states[bed_s] is defined %}
+            {% set entities = entities + [{'entity': bed_s, 'name': 'Bed Sensor ID'}] %}
+            {% set bed_val = states(bed_s) | lower %}
+            {% if bed_val not in ['unknown','unavailable','','none'] %}
+              {% if states[sleep_entry] is defined %}
+                {% set entities = entities + [{'entity': sleep_entry, 'name': 'Sleep Entry Delay (sec)'}] %}
+              {% endif %}
+              {% if states[sleep_exit] is defined %}
+                {% set entities = entities + [{'entity': sleep_exit, 'name': 'Sleep Exit Delay (sec)'}] %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+          {# Only add the group if it has rows (it always has at least Mode) #}
+          {% set group = {
+            'type': 'custom:fold-entity-row',
+            'head': {'type':'section','label': name},
+            'entities': entities
+          } %}
+          {% set ns.rows = ns.rows + [group] %}
+        {% endfor %}
+
+        {{ ns.rows | to_json }}
     sort:
       method: none
 - type: grid
@@ -208,15 +243,9 @@ sections:
         \ (sec)'}] %}\n  {% endif %}\n  \n  {# Off Delay #}\n  {% set delay_entity\
         \ = 'number.room_' ~ slug ~ '_lights_presence_delay' %}\n  {% if states[delay_entity]\
         \ is defined %}\n    {% set ns.cards = ns.cards + [{'entity': delay_entity,\
-        \ 'name': 'Off Delay (sec)'}] %}\n  {% endif %}\n  \n  {# Lux Sensor #}\n\
-        \  {% set lux_s = 'text.room_' ~ slug ~ '_lux_sensor' %}\n  {% if states[lux_s]\
-        \ is defined %}\n    {% set ns.cards = ns.cards + [{'entity': lux_s, 'name':\
-        \ 'Lux Sensor ID'}] %}\n  {% endif %}\n  \n  {# Lux Threshold #}\n  {% set\
-        \ lux_t = 'number.room_' ~ slug ~ '_lux_threshold' %}\n  {% if states[lux_t]\
-        \ is defined %}\n     {% set ns.cards = ns.cards + [{'entity': lux_t, 'name':\
-        \ 'Lux Threshold (lx)'}] %}\n  {% endif %}\n  \n  {# Bed Sensor #}\n  {% set\
-        \ bed_s = 'text.room_' ~ slug ~ '_bed_sensor' %}\n  {% if states[bed_s] is\
-        \ defined %}\n    {% set ns.cards = ns.cards + [{'entity': bed_s, 'name':\
+        \ 'name': 'Off Delay (sec)'}] %}\n  {% endif %}\n  \n  {# Bed Sensor #}\n\
+        \  {% set bed_s = 'text.room_' ~ slug ~ '_bed_sensor' %}\n  {% if states[bed_s]\
+        \ is defined %}\n    {% set ns.cards = ns.cards + [{'entity': bed_s, 'name':\
         \ 'Bed Sensor ID'}] %}\n  \n    {# Only show sleep timers if a bed sensor\
         \ ID is entered #}\n    {% if states(bed_s) not in ['unknown', 'unavailable',\
         \ '', 'none'] %}\n       {% set sleep_entry = 'number.room_' ~ slug ~ '_sleep_entry_delay'\
