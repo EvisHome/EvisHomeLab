@@ -32,20 +32,14 @@ The system operates on a "Publish-Subscribe" model adapted for a smart home:
     *   **Platform**: It formats the message specifically for the user's defined device type (iOS vs Android), handling critical alerts and actionable notifications appropriate to the platform.
 <!-- END_DETAILED -->
 
-## Integration Dependencies
-<!-- START_DEPENDENCIES -->
-*   **MQTT**: Used for persistent storage of user preferences and category definitions (retained messages).
-*   **Mobile App**: The target service for module operations (`notify.mobile_app_*`).
-<!-- END_DEPENDENCIES -->
-
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
-* **[Fingerprints](../dashboards/home-access/fingerprints.md)** (Uses 1 entities)
-* **[Living Room](../dashboards/main/living_room.md)** (Uses 1 entities)
-* **[Management](../dashboards/notification-center/management.md)**: *This dashboard acts as the administrative backend for the Smart Notification System. It is divided into four key sections: **User Management** for onboarding and offboarding notification recipients; **Category Management** for creating and deleting system-wide notification channels; **Delivery Settings** for defining global rules (e.g., presence-based delivery); and **Subscription Management**, allowing individual users to toggle their subscriptions to specific notification categories. Additionally, it provides an overview of all automations tagged with notification labels.* (Uses 9 entities)
-* **[Settings](../dashboards/room-management/settings.md)** (Uses 1 entities)
+* **[Living Room](../dashboards/main/living_room.md)**: *The Living Room dashboard is a media and comfort hub. It features in-depth environmental monitoring (Radon, VOCs, CO2) via Airthings Wave, displaying historical trends. Entertainment controls are central, with remotes for the TV and Soundbar, plus power management for the media wall. The view also includes specific controls for the fireplace, air purifier modes, and various lighting scenes, alongside standard occupancy settings.* (Uses 1 entities)
+* **[Notifications Management](../dashboards/notification-center/notifications_management.md)**: *The Notification Center dashboard provides a comprehensive interface for managing the smart home's notification system. Administrators can add or remove users for mobile app notifications and define notification categories (e.g., 'Garage', 'Electricity'). The view allows for granular control over subscriptions, enabling individual users to opt-in or out of specific notification types, and includes tools to map and monitor notification-related automations.* (Uses 9 entities)
+* **[Room Management](../dashboards/room-management/room_management.md)** (Uses 1 entities)
+* **[Settings](../dashboards/room-management/settings.md)**: *This dashboard allows for the dynamic creation and configuration of 'Rooms' within the automation system. It uses 'Home Assistant Areas' as a base to generate helper entities. Users can initialize new rooms or delete existing configs. The view also lists all configured rooms, providing detailed settings for automation modes, occupancy timeouts (idle/off delay), lux thresholds, and bed presence triggers.* (Uses 1 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram

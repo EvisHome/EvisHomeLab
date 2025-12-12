@@ -29,17 +29,12 @@ The `Car` package provides a unified interface for the Mercedes GLC, leveraging 
     *   **Safety & Maintenance:** The system watches for warning signs like low tire pressure, low brake fluid, or low washer fluid and sends critical alerts to your phone if attention is needed.
 <!-- END_DETAILED -->
 
-## Integration Dependencies
-<!-- START_DEPENDENCIES -->
-*   **Mercedes Me 2020 (mbapi2020)**: Provides connection to the Mercedes Cloud for vehicle status and control.
-<!-- END_DEPENDENCIES -->
-
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
-* **[CAR](../dashboards/dashboard-persons/car.md)**: *The **Car Dashboard** provides a centralized command center for the Mercedes GLC, unifying vehicle health monitoring and remote control. It combines real-time data metrics (fuel, battery, tire pressure) with actionable controls (locks, climate pre-conditioning). The interface features a visual "Digital Twin" of the car to intuitively display status alerts, warning indicators (low fluids, unlocked doors), and charging progress, alongside a real-time location tracker.* (Uses 1 entities)
-* **[Home](../dashboards/main/home.md)** (Uses 1 entities)
+* **[CAR](../dashboards/dashboard-persons/car.md)** (Uses 1 entities)
+* **[Home](../dashboards/main/home.md)**: *The Home dashboard serves as the central information hub. It features a large clock and family calendars, alongside detailed weather forecasts. Key home stats are highlighted, including real-time energy prices, power usage, and the status of major appliances like the dishwasher and washing machine. The view also provides a high-level overview of the entire house, displaying camera feeds and status summaries for all key rooms (Sauna, Bathroom, Bedroom, etc.) using 'Streamline' area cards.* (Uses 1 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram
@@ -242,49 +237,49 @@ template:
             unknown
           {% endif %}
 
-# ==============================================================================
-# 2. SWITCHES (Wrappers for API Calls)
-# ==============================================================================
-switch:
-  - name: "Car Pre-entry A/C"
-    unique_id: car_pre_entry_ac
-    icon: mdi:air-conditioner
-    state: "{{ is_state_attr('sensor.[LICENSE_PLATE]_range_electric', 'precondNow', 1) }}"
-    turn_on:
-      service: mbapi2020.preheat_start
-      data:
-        type: "0"
-        vin: !secret [REDACTED]
-    turn_off:
-      service: mbapi2020.preheat_stop
-      data:
-        vin: !secret [REDACTED]
+  # ==============================================================================
+  # 2. SWITCHES (Wrappers for API Calls)
+  # ==============================================================================
+  - switch:
+      - name: "Car Pre-entry A/C"
+        unique_id: car_pre_entry_ac
+        icon: mdi:air-conditioner
+        state: "{{ is_state_attr('sensor.[LICENSE_PLATE]_range_electric', 'precondNow', 1) }}"
+        turn_on:
+          service: mbapi2020.preheat_start
+          data:
+            type: "0"
+            vin: !secret [REDACTED]
+        turn_off:
+          service: mbapi2020.preheat_stop
+          data:
+            vin: !secret [REDACTED]
 
-  - name: "Car Windows"
-    unique_id: car_windows
-    icon: mdi:car-door
-    state: "{{ is_state('binary_sensor.[LICENSE_PLATE]_windows_closed', 'on') }}"
-    turn_on:
-      service: mbapi2020.windows_close
-      data:
-        vin: !secret [REDACTED]
-    turn_off:
-      service: mbapi2020.windows_open
-      data:
-        vin: !secret [REDACTED]
+      - name: "Car Windows"
+        unique_id: car_windows
+        icon: mdi:car-door
+        state: "{{ is_state('binary_sensor.[LICENSE_PLATE]_windows_closed', 'on') }}"
+        turn_on:
+          service: mbapi2020.windows_close
+          data:
+            vin: !secret [REDACTED]
+        turn_off:
+          service: mbapi2020.windows_open
+          data:
+            vin: !secret [REDACTED]
 
-  - name: "Car Door Locks"
-    unique_id: car_doors
-    icon: mdi:car-door
-    state: "{{ is_state('sensor.[LICENSE_PLATE]_lock', '2') }}"
-    turn_on:
-      service: mbapi2020.doors_unlock
-      data:
-        vin: !secret [REDACTED]
-    turn_off:
-      service: mbapi2020.doors_lock
-      data:
-        vin: !secret [REDACTED]
+      - name: "Car Door Locks"
+        unique_id: car_doors
+        icon: mdi:car-door
+        state: "{{ is_state('sensor.[LICENSE_PLATE]_lock', '2') }}"
+        turn_on:
+          service: mbapi2020.doors_unlock
+          data:
+            vin: !secret [REDACTED]
+        turn_off:
+          service: mbapi2020.doors_lock
+          data:
+            vin: !secret [REDACTED]
 
 # ==============================================================================
 # 3. AUTOMATION (Notifications)

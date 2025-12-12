@@ -24,11 +24,6 @@ This package is currently a placeholder for future Garmin wearable integration. 
 *No active logic is currently implemented.*
 <!-- END_DETAILED -->
 
-## Integration Dependencies
-<!-- START_DEPENDENCIES -->
-*   **Garmin Connect** (Planned): Will provide API access to health metrics.
-<!-- END_DEPENDENCIES -->
-
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 *No specific entities detected to link.*

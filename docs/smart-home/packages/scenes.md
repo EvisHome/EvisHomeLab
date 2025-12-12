@@ -26,21 +26,16 @@ Think of this package as a "Recipe Book" for your lights. Instead of manually ad
 2.  **Activation**: When you tap a button or a motion sensor triggers, Home Assistant simply looks up the "Recipe" and tells all the lights to match it instantly.
 <!-- END_DETAILED -->
 
-## Integration Dependencies
-<!-- START_DEPENDENCIES -->
-*   **None**: Relies on standard Home Assistant core `light` and `scene` domains.
-<!-- END_DEPENDENCIES -->
-
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
-* **[Bedroom](../dashboards/main/bedroom.md)** (Uses 2 entities)
-* **[Hallway](../dashboards/main/hallway.md)** (Uses 1 entities)
-* **[Kitchen](../dashboards/main/kitchen.md)** (Uses 1 entities)
-* **[Living Room](../dashboards/main/living_room.md)** (Uses 2 entities)
-* **[Office](../dashboards/main/office.md)** (Uses 3 entities)
-* **[Stairs](../dashboards/main/stairs.md)** (Uses 1 entities)
+* **[Bedroom](../dashboards/main/bedroom.md)**: *The Bedroom dashboard focuses on comfort and sleep tracking. It provides controls for the ceiling and bed lights, as well as both window blinds and roller covers. Environmental health is monitored via CO2, temperature, and humidity graphs. A specialized section covers 'Bed Occupancy', aggregating data from pressure sensors and mmWave (FP2) sensors to accurately detect presence in bed for both sides, enabling advanced sleep automations.* (Uses 2 entities)
+* **[Hallway](../dashboards/main/hallway.md)**: *This view manages the Hallway area. It provides simple controls for the ceiling and stair lights. The dashboard also visualizes presence data from multiple FP2 sensors (Hallway and Downstairs) and includes standard occupancy and scheduling settings.* (Uses 1 entities)
+* **[Kitchen](../dashboards/main/kitchen.md)**: *This view offers comprehensive control over the Kitchen. It monitors critical appliances, showing the status of the fridge (door/leak), coffee machine, and detailed cycle information for the dishwasher. Lighting controls allow for general switching or individual bulb adjustments. A key feature is the visualization of zoned presence detection (Entrance, Table, Cooking) using FP2 sensors, enabling highly granular kitchen automations.* (Uses 1 entities)
+* **[Living Room](../dashboards/main/living_room.md)**: *The Living Room dashboard is a media and comfort hub. It features in-depth environmental monitoring (Radon, VOCs, CO2) via Airthings Wave, displaying historical trends. Entertainment controls are central, with remotes for the TV and Soundbar, plus power management for the media wall. The view also includes specific controls for the fireplace, air purifier modes, and various lighting scenes, alongside standard occupancy settings.* (Uses 2 entities)
+* **[Office](../dashboards/main/office.md)**: *The Office dashboard handles both workspace environment and IT infrastructure. It offers detailed environmental tracking (Airthings Wave) and lighting prompts. Key features include remote PC control (Audio, Power, Displays) and extensive server monitoring (Proxmox, Home Assistant OS stats, SSD usage). It also manages potential window covers and detailed power consumption for office equipment.* (Uses 3 entities)
+* **[Stairs](../dashboards/main/stairs.md)**: *This view manages the Stairs area. It features specific control for the WLED strip lighting on the stairs, allowing users to toggle power, adjust brightness, and select WLED presets/effects. Standard occupancy settings and scheduling options are also available.* (Uses 1 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram

@@ -8,7 +8,7 @@ version: 1.0.0
 # Package: Washing Machine
 
 **Version:** 1.0.0  
-**Description:** Logic for Washing Machine state tracking, run time calculation, and smart notifications based on power usage.
+**Description:** Logic for Washing Machine state tracking, run time calculation, and notifications.
 
 <!-- START_IMAGE -->
 ![Package Diagram](../../../assets/images/packages/washing_machine.png)
@@ -30,17 +30,11 @@ The Washing Machine package provides intelligent state tracking for any washing 
 4.  **Continuous Status**: The system maintains a live "Run Time" sensor, so you can always see how long the current load has been washing.
 <!-- END_DETAILED -->
 
-## Integration Dependencies
-<!-- START_DEPENDENCIES -->
-*   **Smart Plug**: Requires a smart plug with power metering (Entity: `sensor.washing_machine_plug_power`).
-*   **Helpers**: Uses `input_select` for status and `input_datetime` for start time tracking.
-<!-- END_DEPENDENCIES -->
-
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
-*   **[Bathroom](../dashboards/main/bathroom.md)**
-*   **[Home](../dashboards/main/home.md)**
+
+* **[Home](../dashboards/main/home.md)**: *The Home dashboard serves as the central information hub. It features a large clock and family calendars, alongside detailed weather forecasts. Key home stats are highlighted, including real-time energy prices, power usage, and the status of major appliances like the dishwasher and washing machine. The view also provides a high-level overview of the entire house, displaying camera feeds and status summaries for all key rooms (Sauna, Bathroom, Bedroom, etc.) using 'Streamline' area cards.* (Uses 1 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram
@@ -82,7 +76,7 @@ sequenceDiagram
 # Package: Washing Machine
 # Version: 1.0.0
 # Description: Logic for Washing Machine state tracking, run time calculation, and notifications.
-# Dependencies: 
+# Dependencies:
 #   - Sensor: sensor.washing_machine_plug_power
 #   - Script: script.notify_smart_master
 # ------------------------------------------------------------------------------
@@ -141,7 +135,7 @@ automation:
     condition:
       - condition: state
         entity_id: input_select.washing_machine_status
-        state: 
+        state:
           - "Idle"
           - "Clean"
     action:
@@ -182,7 +176,7 @@ automation:
           entity_id: input_select.washing_machine_status
         data:
           option: "Clean"
-      
+
       # Calculate Final Duration
       - variables:
           start_time: "{{ states('input_datetime.washing_machine_start_time') | as_datetime }}"
@@ -203,6 +197,18 @@ automation:
     mode: single
 
   # --- RESET TO IDLE ---
+  # Optional: Reset to Idle manually or when power drops after door opening/unloading logic (if sensor avail).
+  # For now, we auto-reset to Idle if power stays low for a long time OR if it restarts.
+  # Simplest approach: "Clean" transitions back to "Running" if power spikes (handled above if we remove condition),
+  # OR we add a manual reset / auto-reset after X hours.
+  # Let's add a simple "Reset to Idle" if it stays "Clean" for 15 mins (assuming unloaded?)
+  # OR just let the next Start trigger reset it?
+  # BETTER: The "Start" automation requires state to be "Idle".
+  # So we need a transition Clean -> Idle.
+  # Transition: If Clean AND Power < 1W for 15 mins?
+  # Or just allow Start to trigger from "Clean" too?
+  # Let's Modify Start automation to NOT block on "Idle".
+
   - alias: "System: Washing Machine Reset"
     id: system_washing_machine_reset
     trigger:
@@ -218,4 +224,11 @@ automation:
         data:
           option: "Idle"
     mode: single
+# ------------------------------------------------------------------------------
+# 4. OVERRIDES
+# ------------------------------------------------------------------------------
+# Allow "Start" to trigger even if status is "Clean" (forgot to unload)
+# See modification in Automation 1 Check: currently checks for "Idle".
+# Let's change Automation 1 condition to be status != Running.
+
 ```

@@ -26,16 +26,11 @@ This package standardizes environmental data from the Airthings Wave sensor loca
 3.  **Publish**: It creates new "clean" sensors that are used in the Living Room dashboard.
 <!-- END_DETAILED -->
 
-## Integration Dependencies
-<!-- START_DEPENDENCIES -->
-*   **Airthings Wave**: The source integration providing the physical sensor data.
-<!-- END_DEPENDENCIES -->
-
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
-* **[Living Room](../dashboards/main/living_room.md)** (Uses 3 entities)
+* **[Living Room](../dashboards/main/living_room.md)**: *The Living Room dashboard is a media and comfort hub. It features in-depth environmental monitoring (Radon, VOCs, CO2) via Airthings Wave, displaying historical trends. Entertainment controls are central, with remotes for the TV and Soundbar, plus power management for the media wall. The view also includes specific controls for the fireplace, air purifier modes, and various lighting scenes, alongside standard occupancy settings.* (Uses 3 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram

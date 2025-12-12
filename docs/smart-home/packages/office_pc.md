@@ -5,7 +5,7 @@ tags:
 version: 1.0.0
 ---
 
-# Package: Office. Pc
+# Package: Office Pc
 
 **Version:** 1.0.0  
 **Description:** Office PC control (Audio, Displays, Power)
@@ -26,17 +26,11 @@ This package provides a control interface for the Office PC, enabling "Smart Wak
 3.  **Monitors**: The "Displays" switch allows you to remotely wake up or put the monitors to sleep without touching the mouse/keyboard.
 <!-- END_DETAILED -->
 
-## Integration Dependencies
-<!-- START_DEPENDENCIES -->
-*   **IoT Link**: A Windows agent running on the PC to execute commands (button presses).
-*   **Wake-on-LAN**: Standard network integration to boot the PC.
-<!-- END_DEPENDENCIES -->
-
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
-* **[Office](../dashboards/main/office.md)** (Uses 3 entities)
+* **[Office](../dashboards/main/office.md)**: *The Office dashboard handles both workspace environment and IT infrastructure. It offers detailed environmental tracking (Airthings Wave) and lighting prompts. Key features include remote PC control (Audio, Power, Displays) and extensive server monitoring (Proxmox, Home Assistant OS stats, SSD usage). It also manages potential window covers and detailed power consumption for office equipment.* (Uses 3 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram

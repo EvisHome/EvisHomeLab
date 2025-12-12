@@ -28,11 +28,6 @@ This package implements a robust "State Machine" for the home's time-of-day logi
 3.  **Action**: Updates the global "Home Time Mode" setting, which effectively tells the rest of the house what "phase" of the day it is.
 <!-- END_DETAILED -->
 
-## Integration Dependencies
-<!-- START_DEPENDENCIES -->
-*   **Sun**: Standard integration used for sunset calculations.
-<!-- END_DEPENDENCIES -->
-
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 *No linked dashboard views found (Automatic Scan).*

@@ -11,14 +11,16 @@ tags:
 **Path:** `home-access-center`
 
 <!-- START_DESCRIPTION -->
-Comprehensive access control system for Unifi users and guests.
+Centralized management interface for Unifi Access users, credentials, and guest schedules.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_home_access_center.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-The Home Access Center monitors and manages physical entry to the home. It integrates with Unifi Access to display user statuses for both NFC and Fingerprint methods. The dashboard allows for separate control of these credentials, management of guest access schedules (days/times), and review of detailed access logs and registered User IDs.
+The **Home Access Center** serves as the central administrative hub for managing physical security and entry credentials. Its primary function is to maintain a unified user registry where distinct hardware identifiers—such as Fingerprints and NFC tags—are mapped to specific individuals. This abstraction allows homeowners to easily enroll new keys, assign them to family members or guests, and instantly revoke permissions if a credential is lost or compromised.
+
+In day-to-day use, this dashboard provides granular control over access logic. Administrators can toggle specific access methods on or off per user (e.g., disabling NFC while keeping Fingerprint active) and configure a strict **Guest Access Schedule** to limit entry to specific days and hours. Real-time audit logs provide immediate feedback on entry attempts, differentiating between successful unlocks, denied attempts due to schedule restrictions, and disabled credentials, ensuring complete visibility into the home's security status.
 <!-- END_SUMMARY -->
 
 ## Related Packages
@@ -71,24 +73,43 @@ sections:
       entities:
       - type: custom:hui-element
         card_type: markdown
-        content: '**How it works:**
+        content: '## UniFi Configuration
 
-          1. **Assign Once**: Users are assigned to a generic `Unifi ID`. This applies
-          to both their **Fingerprint** and **NFC Tag**.
+          1. Create User: Ensure a local user exists in the UniFi Console (e.g., "Guest").
 
-          2. **Control Separately**: You can disable a user''s *NFC Access* (e.g.
-          lost card) while keeping their *Fingerprint Access* active.
+
+          2. Enroll: Go to G4 Doorbell Settings > NFC/Fingerprints > Add New. Scan
+          your finger or card and assign it to the UniFi user.
+
+
+          3. Test: Scan the credential at the doorbell to verify it is accepted.
+
+          ---
+
+          ## Home Assistant Setup
+
+          * New Credentials: Wait for the "New NFC ID" notification. Open Home Access
+          Center and map the new ID to a Home Assistant user to enable permissions.
+
+
+          * Existing Credentials: No action required; the credential will immediately
+          inherit the user''s existing access rules.
 
 
           ---
 
 
-          ### 🟢 / 🔴 Status Meaning
+          ### Access Status
 
-          - **Switch ON**: Access Granted.
 
-          - **Switch OFF**: Access Denied (Even if ID is valid).
+          * 🟢 Green: Access Granted (Fingerprint AND NFC enabled).
 
+          * 🟠 Orange: Partial Access (Fingerprint OR NFC enabled) - "Access still
+          granted".
+
+          * 🔴 Red: Access Denied (Fingerprint AND NFC disabled).
+
+          ---
 
           ### 👤 Guest Access
 
@@ -141,8 +162,8 @@ sections:
               \ = states(config.entity) | slugify %}\n         {% set fp = is_state('switch.fp_access_'\
               \ ~ user_slug, 'on') %}\n         {% set nfc = is_state('switch.nfc_access_'\
               \ ~ user_slug, 'on') %}\n         {% if fp and nfc %}\n           lightgreen\n\
-              \         {% elif fp or nfc %}\n           orange\n         {% else %}\n\
-              \           #FB6464\n         {% endif %} !important;\n}\n"
+              \         {% elif fp or nfc %}\n           orange\n         {% else\
+              \ %}\n           #FB6464\n         {% endif %} !important;\n}\n"
       exclude: []
     sort:
       method: name

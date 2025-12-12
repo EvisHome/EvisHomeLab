@@ -29,20 +29,14 @@ The Aqara W500 package manages the bathroom floor heating via a smart thermostat
 4.  **Manual Protection**: If you manually turn up the heat, a timer starts. Once the timer runs out, the temperature automatically resets to normal so you don't accidentally leave it running high all day.
 <!-- END_DETAILED -->
 
-## Integration Dependencies
-<!-- START_DEPENDENCIES -->
-*   **Aqara (Xiaomi Miot/Matter)**: Controls the W500 Thermostat (`climate.aqara_w500`) and FP2 Presence Sensor.
-*   **Electricity Prices**: External price sensor (`sensor.electricity_price_cents`) for cost logic.
-<!-- END_DEPENDENCIES -->
-
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
-* **[Bathroom](../dashboards/main/bathroom.md)** (Uses 5 entities)
-* **[Electricity Dev](../dashboards/main/electricity-dev.md)** (Uses 1 entities)
-* **[Electricity](../dashboards/main/electricity.md)** (Uses 2 entities)
-* **[Home](../dashboards/main/home.md)** (Uses 1 entities)
+* **[Bathroom](../dashboards/main/bathroom.md)**: *This view manages the bathroom environment. It features a 'Streamline' header card summarizing key states (temperature, washing machine status, occupancy). Lighting controls allow separate adjustments for the sauna, table, and ceiling. A major focus is the smart floor heating system (Aqara W500), which includes a thermostat control, historical temperature graphs, and a dedicated timer automation for overriding default heating schedules.* (Uses 5 entities)
+* **[Electricity](../dashboards/main/electricity.md)**: *The Electricity dashboard is a detailed analytics hub for home energy. It features sophisticated charts tracking today's and tomorrow's hourly electricity prices (Nordpool), dynamically color-coded based on daily highs and lows. It also monitors daily energy consumption and real-time power usage via Shelly 3EM, providing cost estimates and historical usage trends.* (Uses 2 entities)
+* **[Electricity Dev](../dashboards/main/electricity_dev.md)**: *This is a development view for the main Electricity dashboard, used for testing new chart configurations and layouts (Panel mode). It replicates the core pricing and usage visualizations but may contain experimental features or alternative display styles like vertical stacks.* (Uses 1 entities)
+* **[Home](../dashboards/main/home.md)**: *The Home dashboard serves as the central information hub. It features a large clock and family calendars, alongside detailed weather forecasts. Key home stats are highlighted, including real-time energy prices, power usage, and the status of major appliances like the dishwasher and washing machine. The view also provides a high-level overview of the entire house, displaying camera feeds and status summaries for all key rooms (Sauna, Bathroom, Bedroom, etc.) using 'Streamline' area cards.* (Uses 1 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram

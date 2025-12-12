@@ -27,20 +27,14 @@ This package handles the complex financial logic for electricity monitoring. It 
 4.  **Forecast**: It analyzes tomorrow's prices to find the cheapest windows, useful for scheduling the washing machine or car charging.
 <!-- END_DETAILED -->
 
-## Integration Dependencies
-<!-- START_DEPENDENCIES -->
-*   **Nordpool**: Custom Component for fetching market data.
-*   **Shelly (Energy)**: Source of `sensor.shelly_home_energy_15min` for consumption data.
-<!-- END_DEPENDENCIES -->
-
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
-* **[Bathroom](../dashboards/main/bathroom.md)** (Uses 1 entities)
-* **[Electricity Dev](../dashboards/main/electricity-dev.md)** (Uses 1 entities)
-* **[Electricity](../dashboards/main/electricity.md)** (Uses 5 entities)
-* **[Home](../dashboards/main/home.md)** (Uses 2 entities)
+* **[Bathroom](../dashboards/main/bathroom.md)**: *This view manages the bathroom environment. It features a 'Streamline' header card summarizing key states (temperature, washing machine status, occupancy). Lighting controls allow separate adjustments for the sauna, table, and ceiling. A major focus is the smart floor heating system (Aqara W500), which includes a thermostat control, historical temperature graphs, and a dedicated timer automation for overriding default heating schedules.* (Uses 1 entities)
+* **[Electricity](../dashboards/main/electricity.md)**: *The Electricity dashboard is a detailed analytics hub for home energy. It features sophisticated charts tracking today's and tomorrow's hourly electricity prices (Nordpool), dynamically color-coded based on daily highs and lows. It also monitors daily energy consumption and real-time power usage via Shelly 3EM, providing cost estimates and historical usage trends.* (Uses 5 entities)
+* **[Electricity Dev](../dashboards/main/electricity_dev.md)**: *This is a development view for the main Electricity dashboard, used for testing new chart configurations and layouts (Panel mode). It replicates the core pricing and usage visualizations but may contain experimental features or alternative display styles like vertical stacks.* (Uses 1 entities)
+* **[Home](../dashboards/main/home.md)**: *The Home dashboard serves as the central information hub. It features a large clock and family calendars, alongside detailed weather forecasts. Key home stats are highlighted, including real-time energy prices, power usage, and the status of major appliances like the dishwasher and washing machine. The view also provides a high-level overview of the entire house, displaying camera feeds and status summaries for all key rooms (Sauna, Bathroom, Bedroom, etc.) using 'Streamline' area cards.* (Uses 2 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram

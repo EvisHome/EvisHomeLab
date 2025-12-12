@@ -26,11 +26,6 @@ This package creates a simplified "Master Switch" for the DNA TV Hub, wrapping t
 3.  **State Feedback**: The switch icon lights up based on the actual state reported by the device, establishing a two-way sync.
 <!-- END_DETAILED -->
 
-## Integration Dependencies
-<!-- START_DEPENDENCIES -->
-*   **Android TV / Google Cast**: The underlying integration providing the `remote` entity for the Hub.
-<!-- END_DEPENDENCIES -->
-
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 *No specific entities detected to link.*

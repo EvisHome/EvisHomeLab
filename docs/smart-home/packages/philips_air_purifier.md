@@ -26,11 +26,6 @@ This package enhances the integration of the Philips Air Purifier by extracting 
 3.  **Display**: This allows you to drag-and-drop the PM2.5 value onto a graph card, which isn't possible when it's hidden inside the fan's settings.
 <!-- END_DETAILED -->
 
-## Integration Dependencies
-<!-- START_DEPENDENCIES -->
-*   **Philips AirPurifier (CoAP/Miot)**: The base integration providing the `fan` entity.
-<!-- END_DEPENDENCIES -->
-
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 *No specific entities detected to link.*

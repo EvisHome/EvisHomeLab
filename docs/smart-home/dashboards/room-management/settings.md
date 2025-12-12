@@ -129,7 +129,7 @@ sections:
     filter:
       template: >
         {% set ns = namespace(rows=[]) %}
-        {% set mode_selectors = states.select | selectattr('entity_id','search','automation_mode') | list %}
+        {% set mode_selectors = states.select | selectattr('entity_id','search','automation_mode') | sort(attribute='entity_id') | list %}
 
         {% for sel in mode_selectors %}
           {# Extract base id and normalize to room_key #}
@@ -165,20 +165,12 @@ sections:
           {% if states[occ_source] is defined %}
             {% set entities = entities + [{'entity': occ_source, 'name': 'Occupancy Sensor'}] %}
           {% endif %}
-          {% if states[light_target] is defined %}
-            {% set entities = entities + [{'entity': light_target, 'name': 'Light Group'}] %}
-          {% endif %}
+
           {% if states[idle_entity] is defined %}
             {% set entities = entities + [{'entity': idle_entity, 'name': 'Idle Time (sec)'}] %}
           {% endif %}
           {% if states[delay_entity] is defined %}
             {% set entities = entities + [{'entity': delay_entity, 'name': 'Off Delay (sec)'}] %}
-          {% endif %}
-          {% if states[lux_s] is defined %}
-            {% set entities = entities + [{'entity': lux_s, 'name': 'Lux Sensor ID'}] %}
-          {% endif %}
-          {% if states[lux_t] is defined %}
-            {% set entities = entities + [{'entity': lux_t, 'name': 'Lux Threshold (lx)'}] %}
           {% endif %}
 
           {# Bed sensor and sleep timers only if bed sensor has a usable value #}
@@ -221,7 +213,8 @@ sections:
     filter:
       template: "{% set ns = namespace(cards=[]) %}\n{# Broader search for any select\
         \ entity with 'automation_mode' in the ID #}\n{% set mode_selectors = states.select\
-        \ | selectattr('entity_id', 'search', 'automation_mode') | list %}\n\n{% for\
+        \ | selectattr('entity_id', 'search', 'automation_mode') | sort(attribute='entity_id')\
+        \ | list %}\n\n{% for\
         \ sel in mode_selectors %}\n  {# Extract slug. Handles \"select.bathroom_automation_mode\"\
         \ or \"select.room_bathroom_automation_mode\" #}\n{% set raw_id = sel.entity_id.split('.')[1]\
         \ %}\n{% if raw_id.startswith('room_') %}\n   {% set slug = raw_id[5:] | replace('_automation_mode','')\

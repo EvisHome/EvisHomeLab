@@ -16,38 +16,32 @@ version: 1.1.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-The **Unifi Access** package provides a centralized, unified access control system for the UniFi G4 Doorbell Pro. It abstracts the physical credentials (fingerprint and NFC) into a single "Unified User" identity. This allows you to assign a person once, and then enable or disable their specific access methods (Fingerprint or NFC) individually. It includes a unified weekly schedule for Guest access, auto-learning for new credentials, and comprehensive logging to the cloud entity.
+The **Unifi Access** package implements a unified access control layer on top of the Ubiquiti G4 Doorbell Pro. It abstracts distinct hardware events (NFC, Fingerprint) into a single logical "Unified User" entity backed by MQTT discovery. The system provides granular, per-credential access management (switches), a centralized Guest Schedule (input_helpers), and "Fail-Closed" authorization logic. State persistence is handled via MQTT Retain to ensure reliability across reboots.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-1.  **Credential Scan**: When a fingerprint or NFC tag is scanned at the doorbell, the system captures the unique ID (`ulp_id`).
-2.  **Identity Resolution**: The system resolves this ID to a "Unified User".
-    *   **New ID**: If the ID is unknown, it is automatically added as "Unknown" for easy assignment.
-    *   **Known User**: The system checks the specific access switch for that method (e.g., "FP Access: Dad" or "NFC Access: Mom").
-3.  **Authorization Check**:
-    *   **Standard Users**: Access is granted if their specific access switch is ON.
-    *   **Guests**: Access is granted ONLY if their switch is ON **and** the current time matches the Guest Schedule.
-4.  **Action**: If authorized, the door unlocks, a snapshot is taken, and the event is logged. If denied, a notification is sent.
+1.  **Scan**: A user scans their fingerprint or NFC tag at the doorbell.
+2.  **Identify**: The system instantly recognizes the person (e.g., "Dad" or "Guest").
+3.  **Check Permissions**:
+    *   **Family**: Checks if their specific access (Fingerprint or Card) is currently switched ON.
+    *   **Guests**: Checks if they are allowed today **AND** if it is currently within the "Guest Hours".
+4.  **Unlock**: If valid, the door unlocks and a snapshot is sent to your phone. If denied, a security alert is triggered.
 <!-- END_DETAILED -->
-
-## Integration Dependencies
-<!-- START_DEPENDENCIES -->
-*   **UniFi Protect**: Required for hardware events (`event.front_door_fingerprint`, `event.front_door_nfc`).
-*   **MQTT**: Uses the definition `unifi_access/...` for state persistence and discovery.
-*   **Yale Access**: Controls the physical lock (`lock.front_door_lock`).
-*   **Mobile App**: Targeted for notifications via the `notify.smart_master` script.
-<!-- END_DEPENDENCIES -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
-*   **[Home Access Center](../dashboards/home-access/home_access_center.md)**: The main management interface for assigning users and schedules.
-*   **[Front Door](../dashboards/main/front_door.md)**: Live view and manual lock control.
+This package powers the following dashboard views:
+
+* **[Home Access Center](../dashboards/home-access/home_access_center.md)**: *The Home Access Center is the central hub for managing physical entry to the home. It integrates with the Unifi Access package to provide a unified user registry for both Fingerprint and NFC credentials. The dashboard enables you to assign users to IDs, toggle specific access methods on/off, and configure the weekly **Guest Access Schedule**. It also provides real-time logs of entry attempts and decision logic.* (Uses 8 entities)
+* **[Front Door](../dashboards/main/front_door.md)**: *This view is the central security hub for the Front Door. It features live feeds and event clips from Frigate cameras (Doorbell and Porch). Users can control the smart lock, arm/disarm the alarm system, and manage the front entry lights. It also monitors door status and presence, with settings for occupancy-based automations.* (Uses 1 entities)
+* **[Home](../dashboards/main/home.md)**: *The Home dashboard serves as the central information hub. It features a large clock and family calendars, alongside detailed weather forecasts. Key home stats are highlighted, including real-time energy prices, power usage, and the status of major appliances like the dishwasher and washing machine. The view also provides a high-level overview of the entire house, displaying camera feeds and status summaries for all key rooms (Sauna, Bathroom, Bedroom, etc.) using 'Streamline' area cards.* (Uses 1 entities)
+* **[Mud Room](../dashboards/main/mud_room.md)**: *This dashboard manages the Mud Room. It provides control for the ceiling light and visualizes occupancy status via motion sensors. The view includes standard settings for occupancy automations and light scheduling.* (Uses 1 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-The diagram below illustrates the unified access flow. When a physical credential (Fingerprint or NFC) is scanned, it triggers a Hardware Event. The logic resolves this UUID to a shared "Unified User" identity via MQTT persistence. The system then checks the specific permission switch for that method (FP vs NFC). If the user is a "Guest", it additionally validates against the global Guest Schedule. Authorized attempts command the Z-Wave lock to open and log to the cloud entity; unauthorized attempts trigger security notifications.
+The sequence starts when the G4 Doorbell Pro broadcasts a hardware event (fingerprint or NFC) to Home Assistant. The automation logic intercepts this event and resolves the raw ID to a "Unified User" using a mapped MQTT lookup. Once the user is identified, the system performs a multi-stage authorization check: first verifying the specific credential type is enabled (e.g., is NFC allowed for this user?), and then—if the user is a Guest—verifying the request against the global Guest Schedule. A "Pass" decision triggers the Z-Wave lock and logs the entry; a "Fail" decision prevents access and logs a security warning.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
@@ -464,12 +458,12 @@ automation:
       - variables:
           slug: "{{ trigger.topic.split('/')[1] }}"
           entity_id: "select.unifi_user_{{ slug }}"
-      - delay: "00:00:00:200"
+      - delay: "00:00:00.200"
       - service: script.add_unifi_user_entity
         data:
           ulp_id: "{{ state_attr(entity_id, 'ulp_id') | default(slug) }}"
           current_user: "{{ trigger.payload }}"
-      - delay: "00:00:00:200"
+      - delay: "00:00:00.200"
       - service: script.cleanup_unused_unifi_switches
 
 # ------------------------------------------------------------------------------

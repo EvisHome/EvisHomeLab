@@ -27,11 +27,6 @@ Your home connects to the grid via three separate power lines (phases). The Shel
 3.  **Special calculations**: It creates a "15-minute energy" tracker, useful for seeing short-term consumption spikes.
 <!-- END_DETAILED -->
 
-## Integration Dependencies
-<!-- START_DEPENDENCIES -->
-*   **Shelly**: Required for the physical device entities (`sensor.home_energy_shelly_3em_channel_*`).
-<!-- END_DEPENDENCIES -->
-
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 *No linked dashboard views found (Automatic Scan).*

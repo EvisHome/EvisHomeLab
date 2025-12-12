@@ -24,7 +24,7 @@ The Notification Center dashboard provides a comprehensive interface for managin
 ## Related Packages
 This view contains entities managed by:
 
-* [Room Automation](../../packages/room_automation.md)
+* [Room Manager](../../packages/room_manager.md)
 * [Smart Notifications](../../packages/smart_notifications.md)
 
 

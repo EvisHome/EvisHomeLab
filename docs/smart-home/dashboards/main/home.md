@@ -29,6 +29,7 @@ This view contains entities managed by:
 * [Dishwasher](../../packages/dishwasher.md)
 * [Nordpool Prices](../../packages/nordpool_prices.md)
 * [Unifi Access](../../packages/unifi_access.md)
+* [Washing Machine](../../packages/washing_machine.md)
 
 
 ## Dependencies (Custom Cards)
