@@ -11,14 +11,14 @@ tags:
 **Path:** `storage`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Storage room surveillance and camera configuration.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_storage.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This dashboard focuses on the Storage room. It features a live feed and event clips from the storage camera via Frigate. The view provides extensive camera configuration options (Privacy mode, Infrared, Detection settings) and basic light control, alongside standard occupancy settings.
 <!-- END_SUMMARY -->
 
 

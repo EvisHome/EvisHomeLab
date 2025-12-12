@@ -11,14 +11,14 @@ tags:
 **Path:** `Guest-2`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Controls for Guest-2 room (E Room) including lights and power monitoring.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_guest_2.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This view manages the Guest-2 room (labeled 'E Room'). It tracks detailed presence at the bed and desk using FP2 sensors. The dashboard offers lighting control and monitors power consumption from the window outlet, alongside standard occupancy automation settings.
 <!-- END_SUMMARY -->
 
 

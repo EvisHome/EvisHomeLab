@@ -11,14 +11,14 @@ tags:
 **Path:** `Guest-3`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Controls for Guest-3 room (A Room) with environmental monitoring.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_guest_3.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This view manages the Guest-3 room (labeled 'A Room'). It provides comprehensive environmental monitoring (Temperature, Humidity, CO2). Presence is tracked at the bed and desk. The view also includes controls for ceiling and window lights, plus occupancy automation configuration.
 <!-- END_SUMMARY -->
 
 

@@ -11,14 +11,14 @@ tags:
 **Path:** `living_room`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Living room environment monitoring, entertainment controls, and fireplace management.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_living_room.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+The Living Room dashboard is a media and comfort hub. It features in-depth environmental monitoring (Radon, VOCs, CO2) via Airthings Wave, displaying historical trends. Entertainment controls are central, with remotes for the TV and Soundbar, plus power management for the media wall. The view also includes specific controls for the fireplace, air purifier modes, and various lighting scenes, alongside standard occupancy settings.
 <!-- END_SUMMARY -->
 
 ## Related Packages

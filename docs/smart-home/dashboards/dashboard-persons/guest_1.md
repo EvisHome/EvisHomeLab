@@ -11,14 +11,14 @@ tags:
 **Path:** `Guest-1`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Personal dashboard for Guest-1, managing notifications and guest settings.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_guest_1.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This view is dedicated to Guest-1. It provides a personal interface consisting of a family member identity card and a dynamic list of notification configuration switches. This allows the guest user to manage their own notification preferences within the home system.
 <!-- END_SUMMARY -->
 
 

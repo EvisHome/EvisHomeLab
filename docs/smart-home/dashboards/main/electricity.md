@@ -11,14 +11,14 @@ tags:
 **Path:** `electricity`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Comprehensive energy dashboard showing real-time prices, historical usage, and cost analysis.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_electricity.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+The Electricity dashboard is a detailed analytics hub for home energy. It features sophisticated charts tracking today's and tomorrow's hourly electricity prices (Nordpool), dynamically color-coded based on daily highs and lows. It also monitors daily energy consumption and real-time power usage via Shelly 3EM, providing cost estimates and historical usage trends.
 <!-- END_SUMMARY -->
 
 ## Related Packages

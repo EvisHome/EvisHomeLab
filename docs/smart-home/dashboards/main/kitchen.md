@@ -11,14 +11,14 @@ tags:
 **Path:** `kitchen`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Kitchen management including appliance monitoring, detailed dishwasher stats, and zoned presence.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_kitchen.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This view offers comprehensive control over the Kitchen. It monitors critical appliances, showing the status of the fridge (door/leak), coffee machine, and detailed cycle information for the dishwasher. Lighting controls allow for general switching or individual bulb adjustments. A key feature is the visualization of zoned presence detection (Entrance, Table, Cooking) using FP2 sensors, enabling highly granular kitchen automations.
 <!-- END_SUMMARY -->
 
 ## Related Packages

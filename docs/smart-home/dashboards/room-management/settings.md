@@ -11,14 +11,14 @@ tags:
 **Path:** `settings`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Dynamic room configuration and automation parameter management.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_settings.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This dashboard allows for the dynamic creation and configuration of 'Rooms' within the automation system. It uses 'Home Assistant Areas' as a base to generate helper entities. Users can initialize new rooms or delete existing configs. The view also lists all configured rooms, providing detailed settings for automation modes, occupancy timeouts (idle/off delay), lux thresholds, and bed presence triggers.
 <!-- END_SUMMARY -->
 
 ## Related Packages

@@ -11,14 +11,14 @@ tags:
 **Path:** `settings`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Global presence and occupancy sensitivity settings for every room.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_settings.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+The Settings dashboard provides a centralized interface for fine-tuning presence detection across the entire home. It displays a grid of controls allowing users to adjust occupancy settings (likely sensitivity, timeouts, or automation modes) for every individual room and specific key zones like the sofa or shower, utilizing a standardized 'presence_settings' card template.
 <!-- END_SUMMARY -->
 
 

@@ -11,14 +11,14 @@ tags:
 **Path:** `notifications-management`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Centralized management for notification users, categories, and subscriptions.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_notifications_management.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+The Notification Center dashboard provides a comprehensive interface for managing the smart home's notification system. Administrators can add or remove users for mobile app notifications and define notification categories (e.g., 'Garage', 'Electricity'). The view allows for granular control over subscriptions, enabling individual users to opt-in or out of specific notification types, and includes tools to map and monitor notification-related automations.
 <!-- END_SUMMARY -->
 
 ## Related Packages

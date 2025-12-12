@@ -11,14 +11,14 @@ tags:
 **Path:** `stairs`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Staircase lighting controls including WLED effects.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_stairs.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This view manages the Stairs area. It features specific control for the WLED strip lighting on the stairs, allowing users to toggle power, adjust brightness, and select WLED presets/effects. Standard occupancy settings and scheduling options are also available.
 <!-- END_SUMMARY -->
 
 ## Related Packages

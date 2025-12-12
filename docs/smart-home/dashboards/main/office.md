@@ -11,14 +11,14 @@ tags:
 **Path:** `office`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Home office workspace controls and extensive system monitoring.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_office.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+The Office dashboard handles both workspace environment and IT infrastructure. It offers detailed environmental tracking (Airthings Wave) and lighting prompts. Key features include remote PC control (Audio, Power, Displays) and extensive server monitoring (Proxmox, Home Assistant OS stats, SSD usage). It also manages potential window covers and detailed power consumption for office equipment.
 <!-- END_SUMMARY -->
 
 ## Related Packages

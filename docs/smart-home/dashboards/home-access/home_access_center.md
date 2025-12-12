@@ -11,14 +11,14 @@ tags:
 **Path:** `home-access-center`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Comprehensive access control system for Unifi users and guests.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_home_access_center.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+The Home Access Center monitors and manages physical entry to the home. It integrates with Unifi Access to display user statuses for both NFC and Fingerprint methods. The dashboard allows for separate control of these credentials, management of guest access schedules (days/times), and review of detailed access logs and registered User IDs.
 <!-- END_SUMMARY -->
 
 ## Related Packages

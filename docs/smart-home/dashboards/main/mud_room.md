@@ -11,14 +11,14 @@ tags:
 **Path:** `mud_room`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Mud room utility simple controls and occupancy tracking.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_mud_room.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This dashboard manages the Mud Room. It provides control for the ceiling light and visualizes occupancy status via motion sensors. The view includes standard settings for occupancy automations and light scheduling.
 <!-- END_SUMMARY -->
 
 ## Related Packages

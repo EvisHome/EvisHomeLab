@@ -11,14 +11,14 @@ tags:
 **Path:** `electricity-dev`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Development version of the electricity dashboard for testing new charts.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_electricity_dev.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This is a development view for the main Electricity dashboard, used for testing new chart configurations and layouts (Panel mode). It replicates the core pricing and usage visualizations but may contain experimental features or alternative display styles like vertical stacks.
 <!-- END_SUMMARY -->
 
 ## Related Packages

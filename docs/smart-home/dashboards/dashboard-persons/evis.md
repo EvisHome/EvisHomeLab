@@ -11,14 +11,14 @@ tags:
 **Path:** `evis`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Personal dashboard for Evis, managing notifications and personal settings.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_evis.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This view is a personal space for Evis. It features a standardized family member identity card acting as a header and a comprehensive list of notification preference switches. These switches allow Evis to granularly opt-in or out of specific notification categories (e.g., Info, Security) directly from the dashboard.
 <!-- END_SUMMARY -->
 
 

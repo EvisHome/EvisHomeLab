@@ -11,14 +11,14 @@ tags:
 **Path:** `front-door`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Security and access control for the front entrance.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_front_door.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This view is the central security hub for the Front Door. It features live feeds and event clips from Frigate cameras (Doorbell and Porch). Users can control the smart lock, arm/disarm the alarm system, and manage the front entry lights. It also monitors door status and presence, with settings for occupancy-based automations.
 <!-- END_SUMMARY -->
 
 ## Related Packages

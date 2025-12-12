@@ -11,14 +11,14 @@ tags:
 **Path:** `bathroom`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Controls for bathroom lights, floor heating, and appliance monitoring.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_bathroom.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This view manages the bathroom environment. It features a 'Streamline' header card summarizing key states (temperature, washing machine status, occupancy). Lighting controls allow separate adjustments for the sauna, table, and ceiling. A major focus is the smart floor heating system (Aqara W500), which includes a thermostat control, historical temperature graphs, and a dedicated timer automation for overriding default heating schedules.
 <!-- END_SUMMARY -->
 
 ## Related Packages

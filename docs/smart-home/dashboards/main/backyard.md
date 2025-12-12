@@ -11,14 +11,14 @@ tags:
 **Path:** `backyard`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Monitoring and control for the backyard, including Frigate cameras and environmental stats.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_backyard.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+The Backyard dashboard provides a comprehensive overview of the outdoor area. It centers around a live Frigate camera feed for security monitoring, complemented by controls for outdoor lighting and door sensors. Environmental data (temperature and humidity) is visualized with color-coded graphs. The view also includes detailed occupancy settings and automation schedules, allowing for fine-tuned control over when the backyard automations are active.
 <!-- END_SUMMARY -->
 
 

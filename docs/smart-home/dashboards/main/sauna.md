@@ -11,14 +11,14 @@ tags:
 **Path:** `sauna`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Sauna status monitoring and basic lighting control.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_sauna.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This view monitors the Sauna environment. It displays real-time temperature and humidity trends from a Ruuvitag sensor. Users can control the sauna lights and monitor the door status, along with configuring occupancy-related automations.
 <!-- END_SUMMARY -->
 
 

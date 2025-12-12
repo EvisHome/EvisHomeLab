@@ -11,14 +11,14 @@ tags:
 **Path:** `home`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Primary home overview dashboard with calendars, weather, key energy stats, and room summaries.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_home.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+The Home dashboard serves as the central information hub. It features a large clock and family calendars, alongside detailed weather forecasts. Key home stats are highlighted, including real-time energy prices, power usage, and the status of major appliances like the dishwasher and washing machine. The view also provides a high-level overview of the entire house, displaying camera feeds and status summaries for all key rooms (Sauna, Bathroom, Bedroom, etc.) using 'Streamline' area cards.
 <!-- END_SUMMARY -->
 
 ## Related Packages

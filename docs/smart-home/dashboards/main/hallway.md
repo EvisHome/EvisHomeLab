@@ -11,14 +11,14 @@ tags:
 **Path:** `hallway`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Controls for the hallway including lights and staircase automations.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_hallway.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This view manages the Hallway area. It provides simple controls for the ceiling and stair lights. The dashboard also visualizes presence data from multiple FP2 sensors (Hallway and Downstairs) and includes standard occupancy and scheduling settings.
 <!-- END_SUMMARY -->
 
 ## Related Packages

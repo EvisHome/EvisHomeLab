@@ -11,14 +11,14 @@ tags:
 **Path:** `lobby`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Entry lobby controls for lights and automation modes.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_lobby.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This view manages the Lobby area. It offers basic control over the ceiling light. The primary focus is on automation scheduling, allowing users to define when the lobby lights operate and to schedule changes to the room's overall 'Automation Mode' based on time or sun position.
 <!-- END_SUMMARY -->
 
 

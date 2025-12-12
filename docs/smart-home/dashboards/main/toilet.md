@@ -11,14 +11,14 @@ tags:
 **Path:** `toilet`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Toilet room controls and detailed motion sensor calibration.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_toilet.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This dashboard manages the Toilet room. It offers basic light control and occupancy settings. A key feature is the detailed sensor settings section, allowing fine-tuning of the mmWave and PIR motion sensors, including distance and latency adjustments to optimize presence detection.
 <!-- END_SUMMARY -->
 
 

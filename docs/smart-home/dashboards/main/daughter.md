@@ -11,14 +11,14 @@ tags:
 **Path:** `Daughter`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Controls for the daughter's room (Guest Room) including lights and schedules.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_daughter.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This dashboard manages the daughter's room. It includes a header card labeled 'Guest Room' with bed presence indication. The view provides controls for the ceiling light and other lights, along with occupancy settings and a scheduler for automating lighting based on presence modes.
 <!-- END_SUMMARY -->
 
 
