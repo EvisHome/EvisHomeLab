@@ -12,9 +12,9 @@ An overview of the key directories and files in the Home Assistant root folder.
 
 | Directory / File | Purpose |
 | :--- | :--- |
-| **`.ag_scripts/`** | Automation scripts for maintaining this documentation and workspace. |
+| **`.ag_scripts/`** | Python tooling for automated docs generation (Packages, Dashboards, Indexing). |
 | **`.storage/`** | Internal Home Assistant storage for registries (devices, entities, etc.). **Do not edit manually.** |
-| **`AI_CONTEXT.md`** |  |
+| **`AI_CONTEXT.md`** | System prompt and context file for the creation of this AI Agent. |
 | **`ag_v2_agent.py`** |  |
 | **`ag_v2_dashboard.py`** |  |
 | **`ag_v2_package.py`** |  |

@@ -71,7 +71,10 @@ sequenceDiagram
 
 ## Configuration (Source Code)
 ```yaml
-# /config/packages/ai_summary.yaml (Updated)
+# Package: AI Summary
+# Version: 1.0.0
+# Description: Frontend controller for the remote AI Log Reporter integration.
+# -----------------------------------------------------------------------------
 
 template:
   - trigger:
@@ -93,7 +96,7 @@ shell_command:
     ssh -i /config/.ssh/id_rsa_new 
     -o StrictHostKeyChecking=no 
     -o UserKnownHostsFile=/dev/null 
-    root@<REMOTE_HOST_IP> 
+    root@10.0.0.23 
     'docker exec ai-log-reporter python /app/reporter.py'
 
 script:

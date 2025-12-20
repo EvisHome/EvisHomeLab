@@ -33,4 +33,4 @@ The system integrates various smart home technologies into a cohesive platform.
 | **Automotive** | Mercedes GLC (Mercedes Me), Garmin, Car Sensors |
 | **Multimedia** | DNA TV Hub, Office PC (IoT Link) |
 | **Logic & Data** | Nordpool Energy Prices, Home Time Modes, Scenes |
-| **System** | Smart Notifications (Router), Room Automation (MQTT Dynamic), Fingerprint Mgmt |
+| **System** | Smart Notifications, Room Automation, Fingerprint Mgmt, **AI Log Reporter** |

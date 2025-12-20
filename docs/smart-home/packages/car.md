@@ -33,7 +33,7 @@ The `Car` package provides a unified interface for the Mercedes GLC, leveraging 
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
-* **[CAR](../dashboards/dashboard-persons/car.md)** (Uses 1 entities)
+* **[CAR](../dashboards/dashboard-persons/car.md)**: *This view provides a comprehensive interface for the Mercedes GLC ("The Car"). It features a visual representation of the car's state (Home/Away, Engine On) using dynamic picture elements. Key controls include pre-entry climate scheduling via a scheduler card and door/window management. The dashboard also monitors critical telemetry such as fuel level, EV battery charge, tire pressure, and lock status, visualizing them with color-coded indicators and Mushroom cards.* (Uses 1 entities)
 * **[Home](../dashboards/main/home.md)**: *The Home dashboard serves as the central information hub. It features a large clock and family calendars, alongside detailed weather forecasts. Key home stats are highlighted, including real-time energy prices, power usage, and the status of major appliances like the dishwasher and washing machine. The view also provides a high-level overview of the entire house, displaying camera feeds and status summaries for all key rooms (Sauna, Bathroom, Bedroom, etc.) using 'Streamline' area cards.* (Uses 1 entities)
 <!-- END_DASHBOARD -->
 
