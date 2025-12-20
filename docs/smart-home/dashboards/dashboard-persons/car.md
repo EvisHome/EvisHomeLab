@@ -11,14 +11,14 @@ tags:
 **Path:** `car`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Control interface for the Mercedes GLC, featuring climate scheduling, lock status, and real-time fuel/battery monitoring.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_car.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+This view provides a comprehensive interface for the Mercedes GLC ("The Car"). It features a visual representation of the car's state (Home/Away, Engine On) using dynamic picture elements. Key controls include pre-entry climate scheduling via a scheduler card and door/window management. The dashboard also monitors critical telemetry such as fuel level, EV battery charge, tire pressure, and lock status, visualizing them with color-coded indicators and Mushroom cards.
 <!-- END_SUMMARY -->
 
 ## Related Packages

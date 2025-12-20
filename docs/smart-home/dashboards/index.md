@@ -13,7 +13,7 @@ Welcome to the Home Lab Dashboards overview. Below is a structured list of all a
 
 ## 📱 Persons
 -   **[CAR](./dashboard-persons/car.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
+    <br> :material-arrow-right-bottom: *Control interface for the Mercedes GLC, featuring climate scheduling, lock status, and real-time fuel/battery monitoring.*
 -   **[Evis](./dashboard-persons/evis.md)**
     <br> :material-arrow-right-bottom: *Personal dashboard for Evis, managing notifications and personal settings.*
 -   **[Guest-1](./dashboard-persons/guest_1.md)**
@@ -21,7 +21,7 @@ Welcome to the Home Lab Dashboards overview. Below is a structured list of all a
 
 ## 📱 Home Access
 -   **[Home Access Center](./home-access/home_access_center.md)**
-    <br> :material-arrow-right-bottom: *Comprehensive access control system for Unifi users and guests.*
+    <br> :material-arrow-right-bottom: *Centralized management interface for Unifi Access users, credentials, and guest schedules.*
 
 ## 📱 Main
 -   **[Backyard](./main/backyard.md)**
