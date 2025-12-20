@@ -16,71 +16,197 @@ version: 1.2.0
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-> ⚠️ **Update Required:** Analysis for v1.0.0. Code is v1.2.0.
-
-The **Room Automation** package provides a standardized, scalable framework for managing room states (e.g., Occupied, Idle, Sleep) and automation parameters (e.g., lighting delays, lux thresholds) dynamically. It utilizes **MQTT discovery** to generate entities for each room on-the-fly, allowing for decentralized configuration without restarting Home Assistant. Admin users can "initialize" a room from a dashboard, which triggers scripts to publish MQTT configuration payloads, creating a suite of helpers (timers, selects, sensors) specific to that room. It effectively acts as a "factory" for room controllers.
+The **Room Automation Manager** is a dynamic configuration engine that enables the decentralized creation of smart room controllers. Unlike static YAML configuration, this package allows administrators to "initialize" a room directly from the dashboard. This triggers a script that publishes **MQTT Discovery** payloads to Home Assistant, effectively factory-generating a standardized suite of entities for that room (Automation Mode, Idle Timers, Occupancy Sensors, etc.) without requiring a system restart. It acts as a "Room Controller Factory," ensuring every smart room has a consistent interface and logic structure.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-> ⚠️ **Update Required:** Analysis for v1.0.0. Code is v1.2.0.
-
-This system allows you to turn any "Area" in your home into a Smart Room without writing code. 
-1.  **Creation:** You select a room (like "Kitchen") from a list in the Settings Dashboard. 
-2.  **Generation:** The system instantly creates a set of controls for that room, including:
-    *   **Mode Selector:** Choose how the room behaves (e.g., "Presence Control" vs. "Manual").
-    *   **Timers:** Set how long lights stay on after you leave.
-    *   **Sensors:** Link motion sensors and light sensors to the room.
-3.  **Operation:** Once created, these controls appear in your dashboards, letting you tweak settings like "turn off lights after 5 minutes" individually for every room.
+This system allows you to turn any standard "Area" in your home into a fully functional Smart Room with a single click.
+1.  **Select & Initialize:** Go to the **Room Management** dashboard, pick a room (e.g., "Kitchen") from the list, and click "Initialize".
+2.  **Automatic Creation:** The system instantly builds a "Control Panel" for that room behind the scenes. It creates:
+    *   **Mode Switch:** To set the room to "Automatic", "Manual", or "Guest Mode".
+    *   **Timers:** Dials to set how long lights stay on (e.g., 5 minutes).
+    *   **Sensor Links:** Dropdown menus to choose which Motion Sensor and Bed Sensor belongs to this room.
+3.  **Instant Control:** New controls appear immediately. You can now tweak the "Kitchen" settings without ever touching a code file. If you delete the room, all these controls vanish cleanly.
 <!-- END_DETAILED -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
-This package powers the following dashboard views:
+*   **[Room Management](../dashboards/room-management/room_management.md)**: The primary admin interface. Used to Create (Initialize) and Delete rooms. It also lists all active rooms and their configuration state.
+*   **[Settings (System)](../dashboards/main/settings.md)**: Displays the global list of active rooms and their current modes (Occupied/Idle).
 
-* **[Living Room](../dashboards/main/living_room.md)**: *The Living Room dashboard is a media and comfort hub. It features in-depth environmental monitoring (Radon, VOCs, CO2) via Airthings Wave, displaying historical trends. Entertainment controls are central, with remotes for the TV and Soundbar, plus power management for the media wall. The view also includes specific controls for the fireplace, air purifier modes, and various lighting scenes, alongside standard occupancy settings.* (Uses 1 entities)
-* **[Notifications Management](../dashboards/notification-center/notifications_management.md)**: *The Notification Center dashboard provides a comprehensive interface for managing the smart home's notification system. Administrators can add or remove users for mobile app notifications and define notification categories (e.g., 'Garage', 'Electricity'). The view allows for granular control over subscriptions, enabling individual users to opt-in or out of specific notification types, and includes tools to map and monitor notification-related automations.* (Uses 1 entities)
-* **[Room Management](../dashboards/room-management/room_management.md)**: *The Room Management dashboard serves as the administrative backend for the home's room logic. It allows users to initialize new rooms (creating necessary helper entities) or delete existing ones. It features a dynamic "Configured Rooms" section powered by `auto-entities`, which automatically lists all configured rooms and provides collapsible controls for their automation modes, occupancy sensors, and timeouts.* (Uses 4 entities)
+### Embedded Card: Configured Rooms List
+The following `auto-entities` configuration is used to dynamically list all rooms:
+
+```yaml
+type: custom:auto-entities
+show_empty: true
+card:
+  type: entities
+  show_header_toggle: false
+filter:
+  template: |
+    {% set ns = namespace(rows=[]) %}
+    {% set mode_selectors = states.select | selectattr('entity_id','search','automation_mode') | sort(attribute='entity_id') | list %}
+    
+    {% for sel in mode_selectors %}
+      {# Extract base id and normalize to room_key #}
+      {% set raw_id = sel.entity_id.split('.')[1] %}
+      {% set base = raw_id.replace('_automation_mode','') %}
+      {% if base.startswith('room_') %}
+        {% set room_key = base[5:] %}
+      {% else %}
+        {% set room_key = base %}
+      {% endif %}
+      {% set name = room_key.replace('_',' ') | title %}
+
+      {# Entity IDs #}
+      {% set state_select = 'select.room_' ~ room_key ~ '_state' %}
+      {% set auto_switch  = 'switch.room_' ~ room_key ~ '_automation' %}
+      {% set occ_sensor   = 'binary_sensor.room_' ~ room_key ~ '_occupancy' %}
+      {% set idle_entity  = 'number.room_' ~ room_key ~ '_presence_idle_time' %}
+      {% set delay_entity = 'number.room_' ~ room_key ~ '_lights_presence_delay' %}
+      {% set bed_s        = 'select.room_' ~ room_key ~ '_bed_sensor' %}
+      {% set sleep_entry  = 'number.room_' ~ room_key ~ '_sleep_entry_delay' %}
+      {% set sleep_exit   = 'number.room_' ~ room_key ~ '_sleep_exit_delay' %}
+      {% set occ_source   = 'select.room_' ~ room_key ~ '_occupancy_source' %}
+      {% set timer_entity = 'sensor.room_' ~ room_key ~ '_timer' %}
+
+      {% set entities = [] %}
+      
+      {# 1. Mode #}
+      {% set entities = entities + [{'entity': sel.entity_id, 'name': 'Mode'}] %}
+
+      {# 2. Switch #}
+      {% if states[auto_switch] is defined %}
+        {% set entities = entities + [{'entity': auto_switch, 'name': 'Automation Enabled'}] %}
+      {% endif %}
+
+      {# 3. State #}
+      {% if states[state_select] is defined %}
+        {% set entities = entities + [{'entity': state_select, 'name': 'Current State'}] %}
+      {% endif %}
+
+      {# 4. Occupancy #}
+      {% if states[occ_sensor] is defined %}
+        {% set entities = entities + [{'entity': occ_sensor, 'name': 'Occupancy'}] %}
+      {% endif %}
+
+      {# 5. Occupancy Source #}
+      {% if states[occ_source] is defined %}
+        {% set entities = entities + [{'entity': occ_source, 'name': 'Occupancy Sensor'}] %}
+      {% endif %}
+
+      {# 6. Timer Bar (Conditional Row) #}
+      {% if states[timer_entity] is defined %}
+         {% set entities = entities + [{
+            'type': 'conditional',
+            'conditions': [
+              {'entity': timer_entity, 'state_not': 'unavailable'},
+              {'entity': timer_entity, 'state_not': 'unknown'},
+              {'entity': timer_entity, 'state_not': 'none'},
+              {'entity': timer_entity, 'state_not': ''}
+            ],
+            'row': {
+               'entity': timer_entity,
+               'name': 'Timer'
+            }
+         }] %}
+      {% endif %}
+
+      {# 7. Config Numbers #}
+      {% if states[idle_entity] is defined %}
+        {% set entities = entities + [{'entity': idle_entity, 'name': 'Idle Time (sec)'}] %}
+      {% endif %}
+      {% if states[delay_entity] is defined %}
+        {% set entities = entities + [{'entity': delay_entity, 'name': 'Off Delay (sec)'}] %}
+      {% endif %}
+
+      {# 8. Bed Sensor & Sleep Timers (Conditional) #}
+      {% if states[bed_s] is defined %}
+        {% set entities = entities + [{'entity': bed_s, 'name': 'Bed Occupancy Sensor'}] %}
+        
+        {# Sleep Entry Delay #}
+        {% if states[sleep_entry] is defined %}
+          {% set entities = entities + [{
+             'type': 'conditional',
+             'conditions': [
+                {'entity': bed_s, 'state_not': '-Select-'},
+                {'entity': bed_s, 'state_not': 'unknown'},
+                {'entity': bed_s, 'state_not': 'unavailable'}
+             ],
+             'row': {
+                'entity': sleep_entry,
+                'name': 'Sleep Entry Delay (sec)'
+             }
+          }] %}
+        {% endif %}
+
+        {# Sleep Exit Delay #}
+        {% if states[sleep_exit] is defined %}
+          {% set entities = entities + [{
+             'type': 'conditional',
+             'conditions': [
+                {'entity': bed_s, 'state_not': '-Select-'},
+                {'entity': bed_s, 'state_not': 'unknown'},
+                {'entity': bed_s, 'state_not': 'unavailable'}
+             ],
+             'row': {
+                'entity': sleep_exit,
+                'name': 'Sleep Exit Delay (sec)'
+             }
+          }] %}
+        {% endif %}
+      {% endif %}
+
+      {# Create the Group #}
+      {% set group = {
+        'type': 'custom:fold-entity-row',
+        'head': {'type':'section', 'label': name},
+        'entities': entities
+      } %}
+      {% set ns.rows = ns.rows + [group] %}
+    {% endfor %}
+    
+    {{ ns.rows | to_json }}
+```
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-> ⚠️ **Update Required:** Analysis for v1.0.0. Code is v1.2.0.
-
-The sequence diagram below illustrates the "Room Initialization" process. When a user selects a room (e.g., "Kitchen") and clicks "Initialize", the `create_room_settings` script is triggered. This script iterates through a predefined list of required entities (Mode Select, Idle Timer, Occupancy Sensor, etc.) and publishes **MQTT Configuration Payloads** to the `homeassistant/` discovery topic. Home Assistant's MQTT integration detects these payloads and dynamically duplicates the "Room Controller" entity structure for the new room. Finally, the script sets default values (e.g., 120s delay) via retained MQTT messages, ensuring the room is ready for immediate use.
+The sequence diagram below illustrates the **Room Initialization Flow**. When a user clicks "Initialize" for a specific room (e.g., "Kitchen"), the `create_room_settings` script triggers. It loops through a definition of required entities (Automation Mode, Idle Timer, Occupancy Sensor Link) and publishes **MQTT Configuration Payloads** to the `homeassistant/` discovery topic. Home Assistant detects these payloads and dynamically creates the entities in its registry. Finally, the script publishes default state values (retained) to ensure the new controls are immediately usable.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-> ⚠️ **Update Required:** Analysis for v1.0.0. Code is v1.2.0.
-
 ```mermaid
 sequenceDiagram
-    participant Admin as 👤 Admin
-    participant Dash as 📱 Dashboard (Settings)
-    participant Script as 📜 Script: create_room_settings
+    participant User as 👤 Admin (Dashboard)
+    participant Script as 📜 Script: create_room
     participant MQTT as 📡 MQTT Broker
     participant HA as 🏠 Home Assistant (Discovery)
 
-    Admin->>Dash: Selects "Kitchen" & Clicks Initialize
-    Dash->>Script: Run(room_slug="kitchen")
+    User->>Script: Run(room_slug="kitchen")
+    activate Script
     
     rect rgb(20, 20, 20)
-    note right of Script: Entity Generation Loop
-    Script->>MQTT: Publish config: select.room_kitchen_mode
-    MQTT-->>HA: Discovery: New Entity (select.room_kitchen_mode)
-    Script->>MQTT: Publish config: number.room_kitchen_idle
-    MQTT-->>HA: Discovery: New Entity (number.room_kitchen_idle)
-    Script->>MQTT: Publish config: binary_sensor.room_kitchen_occupancy
-    MQTT-->>HA: Discovery: New Entity (binary_sensor...occupancy)
+        note right of Script: 1. Entity Construction Loop
+        Script->>MQTT: Publish config: select.room_kitchen_mode
+        MQTT-->>HA: Discovery: New Entity (select...mode)
+        Script->>MQTT: Publish config: number.room_kitchen_idle
+        MQTT-->>HA: Discovery: New Entity (number...idle)
+        Script->>MQTT: Publish config: binary_sensor.room_kitchen_occupancy
+        MQTT-->>HA: Discovery: New Entity (binary_sensor...occupancy)
     end
 
     rect rgb(30, 30, 50)
-    note right of Script: Default Values
-    Script->>MQTT: Publish state: mode = "presence-control"
-    Script->>MQTT: Publish state: delay = 120s
+        note right of Script: 2. Default State Injection (Retained)
+        Script->>MQTT: Publish state: mode = "presence-control"
+        Script->>MQTT: Publish state: idle_time = 120s
+        Script->>MQTT: Publish state: occupancy = OFF
     end
     
-    HA-->>Dash: UI Updates with new Kitchen Controls
+    deactivate Script
+    HA-->>User: UI Updates (New Controls Appear)
 ```
 <!-- END_MERMAID -->
 
@@ -813,5 +939,3 @@ automation:
                 payload: ""
 
       - service: script.refresh_room_options
-
-```
