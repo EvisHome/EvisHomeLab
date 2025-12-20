@@ -11,6 +11,10 @@ Welcome to the Home Lab Dashboards overview. Below is a structured list of all a
 !!! info "Auto-Generated"
     This catalog is automatically maintained by the Documentation Agent.
 
+## 📱 Admin System
+-   **[System](./admin-system/system.md)**
+    <br> :material-arrow-right-bottom: *Advanced system monitoring and control for the Proxmox 'Halo' node, including resource usage, power management, and guest orchestration.*
+
 ## 📱 Persons
 -   **[CAR](./dashboard-persons/car.md)**
     <br> :material-arrow-right-bottom: *Control interface for the Mercedes GLC, featuring climate scheduling, lock status, and real-time fuel/battery monitoring.*
