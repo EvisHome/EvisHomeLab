@@ -14,7 +14,7 @@ Use this catalog to browse all installed configuration packages. Each package is
 
 ## 📦 Installed Packages
 -   **[Ai Summary](./ai_summary.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
+    <br> :material-arrow-right-bottom: *Frontend controller for the remote AI Log Reporter integration.*
 -   **[Airthings](./airthings.md)**
     <br> :material-arrow-right-bottom: *Normalizes Airthings Wave sensors (Temp, Humidity, CO2)*
 -   **[Aqara W500](./aqara_w500.md)**
