@@ -11,14 +11,14 @@ tags:
 **Path:** `room-management`
 
 <!-- START_DESCRIPTION -->
-No description provided.
+Admin interface for creating, deleting, and managing room configurations and automation helpers.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_room_management.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-*No summary generated yet.*
+The Room Management dashboard serves as the administrative backend for the home's room logic. It allows users to initialize new rooms (creating necessary helper entities) or delete existing ones. It features a dynamic "Configured Rooms" section powered by `auto-entities`, which automatically lists all configured rooms and provides collapsible controls for their automation modes, occupancy sensors, and timeouts.
 <!-- END_SUMMARY -->
 
 ## Related Packages

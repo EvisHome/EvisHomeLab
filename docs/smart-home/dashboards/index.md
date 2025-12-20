@@ -73,7 +73,5 @@ Welcome to the Home Lab Dashboards overview. Below is a structured list of all a
 
 ## 📱 Room Management
 -   **[Room Management](./room-management/room_management.md)**
-    <br> :material-arrow-right-bottom: *No description provided.*
--   **[Settings](./room-management/settings.md)**
-    <br> :material-arrow-right-bottom: *Dynamic room configuration and automation parameter management.*
+    <br> :material-arrow-right-bottom: *Admin interface for creating, deleting, and managing room configurations and automation helpers.*
 
