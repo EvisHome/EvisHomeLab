@@ -59,7 +59,7 @@ Welcome to the Home Lab Dashboards overview. Below is a structured list of all a
 -   **[Sauna](./main/sauna.md)**
     <br> :material-arrow-right-bottom: *Sauna status monitoring and basic lighting control.*
 -   **[Settings](./main/settings.md)**
-    <br> :material-arrow-right-bottom: *Global presence and occupancy sensitivity settings for every room.*
+    <br> :material-arrow-right-bottom: *Global system settings for occupancy sensitivity, timeouts, and automation flags across all zones.*
 -   **[Stairs](./main/stairs.md)**
     <br> :material-arrow-right-bottom: *Staircase lighting controls including WLED effects.*
 -   **[Storage](./main/storage.md)**
