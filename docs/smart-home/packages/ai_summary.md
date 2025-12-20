@@ -28,6 +28,13 @@ This system runs automatically every morning at 7:00 AM.
 4.  **Notification:** You receive a notification on your phone (and a persistent message in the dashboard) summarizing the health of your smart home.
 <!-- END_DETAILED -->
 
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **[AI Log Reporter](../integrations/ai_reporter.md)**: Required for log analysis and report generation.
+    *   *Type:* Remote Docker Container
+    *   *Role:* Backend Logic
+<!-- END_DEPENDENCIES -->
+
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 *No linked dashboard views found (Automatic Scan).*
@@ -35,7 +42,7 @@ This system runs automatically every morning at 7:00 AM.
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-The sequence diagram below details the interaction between the local Home Assistant instance and the remote **AI Log Reporter**. The process is initiated by a time-based trigger (7:00 AM) or a manual script invocation. Home Assistant opens a secure SSH tunnel to the remote host (`10.0.0.23`) and executes a Docker command (`docker exec`). The `ai-log-reporter` container processes the logs and, upon completion, fires an asynchronous event (`update_ai_summary`) back to the Home Assistant API. This event payload is captured by a Template Trigger, which updates the permanent `sensor.daily_system_summary`.
+The sequence diagram below details the interaction between the local Home Assistant instance and the remote **AI Log Reporter**. The process is initiated by a time-based trigger (7:00 AM) or a manual script invocation. Home Assistant opens a secure SSH tunnel to the remote host (`<REMOTE_HOST_IP>`) and executes a Docker command (`docker exec`). The `ai-log-reporter` container processes the logs and, upon completion, fires an asynchronous event (`update_ai_summary`) back to the Home Assistant API. This event payload is captured by a Template Trigger, which updates the permanent `sensor.daily_system_summary`.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
@@ -49,7 +56,7 @@ sequenceDiagram
     participant Sensor as 🧠 Sensor: daily_system_summary
 
     Sched->>Script: Trigger 7:00 AM
-    Script->>SSH: ssh root@10.0.0.23 (Exec Reporter)
+    Script->>SSH: ssh root@<REMOTE_HOST_IP> (Exec Reporter)
     activate SSH
     SSH->>Remote: docker exec python /app/reporter.py
     activate Remote
@@ -86,7 +93,7 @@ shell_command:
     ssh -i /config/.ssh/id_rsa_new 
     -o StrictHostKeyChecking=no 
     -o UserKnownHostsFile=/dev/null 
-    root@10.0.0.23 
+    root@<REMOTE_HOST_IP> 
     'docker exec ai-log-reporter python /app/reporter.py'
 
 script:

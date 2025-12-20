@@ -374,3 +374,12 @@ services:
     restart: unless-stopped
     network_mode: host
 ```
+
+## 🧩 Consumers
+
+The following Home Assistant packages rely on this integration:
+
+| Package | Description |
+| :--- | :--- |
+| **[AI Summary](../packages/ai_summary.md)** | Controls the scheduling (7:00 AM) of this reporter and exposes the results as a Sensor. |
+
