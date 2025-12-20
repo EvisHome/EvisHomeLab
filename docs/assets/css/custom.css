@@ -6,14 +6,6 @@
     font-weight: bold;
 }
 
-/* Make H1, H2, and H3 headers Orange (using the Accent color variable) */
-.md-typeset h1,
-.md-typeset h2,
-.md-typeset h3 {
-    color: var(--md-accent-fg-color);
-    font-weight: bold;
-}
-
 /* Add separator line below Home in Sidebar */
 .md-nav__item a[href^='index.md'],
 .md-nav__item a[href='.'] {
