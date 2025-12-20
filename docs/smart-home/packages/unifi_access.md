@@ -33,7 +33,7 @@ The **Unifi Access** package implements a unified access control layer on top of
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
-* **[Home Access Center](../dashboards/home-access/home_access_center.md)**: *The Home Access Center is the central hub for managing physical entry to the home. It integrates with the Unifi Access package to provide a unified user registry for both Fingerprint and NFC credentials. The dashboard enables you to assign users to IDs, toggle specific access methods on/off, and configure the weekly **Guest Access Schedule**. It also provides real-time logs of entry attempts and decision logic.* (Uses 8 entities)
+* **[Home Access Center](../dashboards/home-access/home_access_center.md)**: *The **Home Access Center** serves as the central administrative hub for managing physical security and entry credentials. Its primary function is to maintain a unified user registry where distinct hardware identifiers—such as Fingerprints and NFC tags—are mapped to specific individuals. This abstraction allows homeowners to easily enroll new keys, assign them to family members or guests, and instantly revoke permissions if a credential is lost or compromised.* (Uses 8 entities)
 * **[Front Door](../dashboards/main/front_door.md)**: *This view is the central security hub for the Front Door. It features live feeds and event clips from Frigate cameras (Doorbell and Porch). Users can control the smart lock, arm/disarm the alarm system, and manage the front entry lights. It also monitors door status and presence, with settings for occupancy-based automations.* (Uses 1 entities)
 * **[Home](../dashboards/main/home.md)**: *The Home dashboard serves as the central information hub. It features a large clock and family calendars, alongside detailed weather forecasts. Key home stats are highlighted, including real-time energy prices, power usage, and the status of major appliances like the dishwasher and washing machine. The view also provides a high-level overview of the entire house, displaying camera feeds and status summaries for all key rooms (Sauna, Bathroom, Bedroom, etc.) using 'Streamline' area cards.* (Uses 1 entities)
 * **[Mud Room](../dashboards/main/mud_room.md)**: *This dashboard manages the Mud Room. It provides control for the ceiling light and visualizes occupancy status via motion sensors. The view includes standard settings for occupancy automations and light scheduling.* (Uses 1 entities)
@@ -154,13 +154,17 @@ automation:
     id: access_fingerprint_entry_logic
     mode: single
     trigger:
-      - event_type: state_changed
-        event_data:
-          entity_id: event.front_door_fingerprint
-        trigger: event
+      - platform: state
+        entity_id: event.front_door_fingerprint
+        not_from:
+          - "unknown"
+          - "unavailable"
+        not_to:
+          - "unknown"
+          - "unavailable"
     variables:
       raw_id: >-
-        {{ trigger.event.data.new_state.attributes.ulp_id | default('unknown') }}
+        {{ trigger.to_state.attributes.ulp_id | default('unknown') }}
       slug_id: "{{ raw_id | replace('-', '_') | lower }}"
       # SHARED IDENTITY ENTITY
       assigned_user: "{{ states('select.unifi_user_' ~ slug_id) }}"
@@ -293,13 +297,17 @@ automation:
     id: access_nfc_entry_logic
     mode: single
     trigger:
-      - event_type: state_changed
-        event_data:
-          entity_id: event.front_door_nfc
-        trigger: event
+      - platform: state
+        entity_id: event.front_door_nfc
+        not_from:
+          - "unknown"
+          - "unavailable"
+        not_to:
+          - "unknown"
+          - "unavailable"
     variables:
       raw_id: >-
-        {{ trigger.event.data.new_state.attributes.ulp_id | default('unknown') }}
+        {{ trigger.to_state.attributes.ulp_id | default('unknown') }}
       slug_id: "{{ raw_id | replace('-', '_') | lower }}"
       # SHARED IDENTITY ENTITY
       assigned_user: "{{ states('select.unifi_user_' ~ slug_id) }}"

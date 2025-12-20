@@ -79,7 +79,7 @@ input_boolean:
 template:
   - triggers:
       - platform: time_pattern
-        minutes: "/1"
+        minutes: "0"
       - platform: homeassistant
         event: start
 
@@ -181,49 +181,59 @@ template:
       - name: "Electricity Today 32nd Lowest Price"
         unique_id: electricity_today_32nd_lowest
         unit_of_measurement: "c/kWh"
-        state: >
+        availability: >
           {% set today = now().date().isoformat() %}
           {% set entries = state_attr('sensor.electricity_prices', 'data') %}
           {% if entries %}
-            {% set today_prices = entries
+            {{ entries
+               | selectattr('start', 'defined')
+               | selectattr('start', 'string')
+               | selectattr('start', 'search', today)
+               | list
+               | count >= 32 }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+        state: >
+          {% set today = now().date().isoformat() %}
+          {% set entries = state_attr('sensor.electricity_prices', 'data') %}
+          {% set today_prices = entries
               | selectattr('start', 'defined')
               | selectattr('start', 'string')
               | selectattr('start', 'search', today)
               | map(attribute='price')
               | list %}
-            {% if today_prices | count >= 32 %}
-              {% set sorted = today_prices | sort %}
-              {{ sorted[31] | round(2) }}
-            {% else %}
-              none
-            {% endif %}
-          {% else %}
-            none
-          {% endif %}
+          {% set sorted = today_prices | sort %}
+          {{ sorted[31] | round(2) }}
 
   - sensor:
       - name: "Electricity Today 32nd Highest Price"
         unique_id: electricity_today_32nd_highest
         unit_of_measurement: "c/kWh"
-        state: >
-          {% set today = now().date() %}
+        availability: >
+          {% set today = now().date().isoformat() %}
           {% set entries = state_attr('sensor.electricity_prices', 'data') %}
           {% if entries %}
-            {% set today_prices = entries
+            {{ entries
+               | selectattr('start', 'defined')
+               | selectattr('start', 'string')
+               | selectattr('start', 'search', today)
+               | list
+               | count >= 32 }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+        state: >
+          {% set today = now().date().isoformat() %}
+          {% set entries = state_attr('sensor.electricity_prices', 'data') %}
+          {% set today_prices = entries
               | selectattr('start', 'defined')
               | selectattr('start', 'string')
-              | selectattr('start', 'search', today.isoformat())
+              | selectattr('start', 'search', today)
               | map(attribute='price')
               | list %}
-            {% if today_prices | count >= 32 %}
-              {% set sorted = today_prices | sort(reverse=true) %}
-              {{ sorted[31] | round(2) }}
-            {% else %}
-              none
-            {% endif %}
-          {% else %}
-            none
-          {% endif %}
+          {% set sorted = today_prices | sort(reverse=true) %}
+          {{ sorted[31] | round(2) }}
 
   - sensor:
       - name: "Electricity Tomorrow Valid"
@@ -235,49 +245,59 @@ template:
       - name: "Electricity Tomorrow 32nd Lowest Price"
         unique_id: electricity_tomorrow_32nd_lowest
         unit_of_measurement: "c/kWh"
-        state: >
+        availability: >
           {% set tomorrow = (now() + timedelta(days=1)).date().isoformat() %}
           {% set entries = state_attr('sensor.electricity_prices', 'data') %}
           {% if entries %}
-            {% set tomorrow_prices = entries
+            {{ entries
+               | selectattr('start', 'defined')
+               | selectattr('start', 'string')
+               | selectattr('start', 'search', tomorrow)
+               | list
+               | count >= 32 }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+        state: >
+          {% set tomorrow = (now() + timedelta(days=1)).date().isoformat() %}
+          {% set entries = state_attr('sensor.electricity_prices', 'data') %}
+          {% set tomorrow_prices = entries
               | selectattr('start', 'defined')
               | selectattr('start', 'string')
               | selectattr('start', 'search', tomorrow)
               | map(attribute='price')
               | list %}
-            {% if tomorrow_prices | count >= 32 %}
-              {% set sorted = tomorrow_prices | sort %}
-              {{ sorted[31] | round(2) }}
-            {% else %}
-              none
-            {% endif %}
-          {% else %}
-            none
-          {% endif %}
+          {% set sorted = tomorrow_prices | sort %}
+          {{ sorted[31] | round(2) }}
 
   - sensor:
       - name: "Electricity Tomorrow 32nd Highest Price"
         unique_id: electricity_tomorrow_32nd_highest
         unit_of_measurement: "c/kWh"
-        state: >
+        availability: >
           {% set tomorrow = (now() + timedelta(days=1)).date().isoformat() %}
           {% set entries = state_attr('sensor.electricity_prices', 'data') %}
           {% if entries %}
-            {% set tomorrow_prices = entries
+            {{ entries
+               | selectattr('start', 'defined')
+               | selectattr('start', 'string')
+               | selectattr('start', 'search', tomorrow)
+               | list
+               | count >= 32 }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+        state: >
+          {% set tomorrow = (now() + timedelta(days=1)).date().isoformat() %}
+          {% set entries = state_attr('sensor.electricity_prices', 'data') %}
+          {% set tomorrow_prices = entries
               | selectattr('start', 'defined')
               | selectattr('start', 'string')
               | selectattr('start', 'search', tomorrow)
               | map(attribute='price')
               | list %}
-            {% if tomorrow_prices | count >= 32 %}
-              {% set sorted = tomorrow_prices | sort(reverse=true) %}
-              {{ sorted[31] | round(2) }}
-            {% else %}
-              none
-            {% endif %}
-          {% else %}
-            none
-          {% endif %}
+          {% set sorted = tomorrow_prices | sort(reverse=true) %}
+          {{ sorted[31] | round(2) }}
 
   - sensor:
       - name: "Energy Cost 15min"
@@ -333,7 +353,7 @@ template:
       - name: "Energy Cost Final 15min (c)"
         unique_id: energy_cost_final_15min_c
         unit_of_measurement: "c"
-        device_class: monetary
+
         state_class: measurement
         state: >
           {% set energy_kwh = trigger.from_state.state | float(0) %}
@@ -386,7 +406,7 @@ template:
       - name: "Current 15-Minute Electricity Price"
         unique_id: "current_15min_electricity_price"
         unit_of_measurement: "c/kWh"
-        device_class: monetary
+
         state_class: measurement
         state: >
           {# 1. Get the list of prices from the 'data' attribute #}
@@ -427,31 +447,30 @@ template:
         # Set the unit of measurement, copied from your existing sensor
         unit_of_measurement: "c/kWh"
         # Set the device class to 'monetary' so it's treated as a price
-        device_class: monetary
+
         # Set the state class for long-term statistics
         state_class: measurement
         # The 'icon' is optional, but this one fits
         icon: "mdi:chart-line"
         # This is where the magic happens
-        state: >
+        availability: >
           {% set tomorrow_str = (now().date() + timedelta(days=1)).isoformat() %}
-          {% set price_data = state_attr('sensor.electricity_prices', 'truedata') %}
-
+          {% set price_data = state_attr('sensor.electricity_prices', 'data') %}
           {% if price_data is not none %}
             {% set tomorrow_prices = price_data 
-                                     | selectattr('start', 'starts_with', tomorrow_str) 
-                                     | map(attribute='price') 
+                                     | selectattr('start', 'search', tomorrow_str) 
                                      | list %}
-            
-            {% if tomorrow_prices | count > 0 %}
-              {{ tomorrow_prices | average | round(3) }}
-            {% else %}
-              {# This will happen if tomorrow's data is not yet available #}
-              unavailable
-            {% endif %}
+            {{ tomorrow_prices | count > 0 }}
           {% else %}
-            {# This will happen if the 'truedata' attribute is missing #}
-            unavailable
+            {{ false }}
           {% endif %}
+        state: >
+          {% set tomorrow_str = (now().date() + timedelta(days=1)).isoformat() %}
+          {% set price_data = state_attr('sensor.electricity_prices', 'data') %}
+          {% set tomorrow_prices = price_data 
+                                   | selectattr('start', 'search', tomorrow_str) 
+                                   | map(attribute='price') 
+                                   | list %}
+          {{ tomorrow_prices | average | round(3) }}
 
 ```

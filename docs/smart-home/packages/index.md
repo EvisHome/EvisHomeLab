@@ -13,6 +13,8 @@ Use this catalog to browse all installed configuration packages. Each package is
     This catalog is automatically maintained by the Documentation Agent.
 
 ## 📦 Installed Packages
+-   **[Ai Summary](./ai_summary.md)**
+    <br> :material-arrow-right-bottom: *No description provided.*
 -   **[Airthings](./airthings.md)**
     <br> :material-arrow-right-bottom: *Normalizes Airthings Wave sensors (Temp, Humidity, CO2)*
 -   **[Aqara W500](./aqara_w500.md)**
@@ -29,14 +31,12 @@ Use this catalog to browse all installed configuration packages. Each package is
     <br> :material-arrow-right-bottom: *Parametric Time-of-Day Logic*
 -   **[Nordpool Prices](./nordpool_prices.md)**
     <br> :material-arrow-right-bottom: *Nordpool energy price calculations and logic*
--   **[Office. Pc](./office._pc.md)**
+-   **[Office Pc](./office_pc.md)**
     <br> :material-arrow-right-bottom: *Office PC control (Audio, Displays, Power)*
--   **[Office PC](./office_pc.md)**
-    <br> :material-arrow-right-bottom: **No description provided.**
 -   **[Philips Air Purifier](./philips_air_purifier.md)**
     <br> :material-arrow-right-bottom: *Normalizes Philips Air Purifier attributes (PM2.5, Filters)*
--   **[Room Automation](./room_automation.md)**
-    <br> :material-arrow-right-bottom: *Dynamic creation of room lighting settings via MQTT*
+-   **[Room Manager](./room_manager.md)**
+    <br> :material-arrow-right-bottom: *Dynamic creation of room settings via MQTT*
 -   **[Scenes](./scenes.md)**
     <br> :material-arrow-right-bottom: *Definitions for various lighting scenes (Daylight, Night, Movie, etc.)*
 -   **[Shelly 3Em](./shelly_3em.md)**
@@ -45,3 +45,5 @@ Use this catalog to browse all installed configuration packages. Each package is
     <br> :material-arrow-right-bottom: *Helpers and logic for the dynamic notification router*
 -   **[Unifi Access](./unifi_access.md)**
     <br> :material-arrow-right-bottom: *Unified management for G4 Doorbell Pro Fingerprint & NFC.*
+-   **[Washing Machine](./washing_machine.md)**
+    <br> :material-arrow-right-bottom: *Logic for Washing Machine state tracking, run time calculation, and notifications.*

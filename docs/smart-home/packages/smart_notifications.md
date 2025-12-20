@@ -142,10 +142,6 @@ input_select:
 # 2. INPUT BOOLEANS (Flags & Maintenance)
 # ------------------------------------------------------------------------------
 input_boolean:
-  # Energy Prices: Sent flag
-  notify_flag_energy_tomorrow_sent:
-    name: "Energy: Tomorrow Prices Sent"
-    icon: mdi:checkbox-marked-circle-outline
 
   # Global Category Settings (Generated dynamically, but good to have base logic ready)
   # Note: Individual category switches are MQTT switches now, not input_booleans.
@@ -608,17 +604,17 @@ script:
                       push:
                         sound:
                           name: "default"
-                          critical: "{{ 1 if critical else 0 }}"
-                          volume: "{{ 1.0 if critical else 0.5 }}"
-                      ttl: "{{ 0 if critical else 0 }}"
-                      priority: "{{ 'high' if critical else 'normal' }}"
+                          critical: "{{ 1 if critical | default(false) else 0 }}"
+                          volume: "{{ 1.0 if critical | default(false) else 0.5 }}"
+                      ttl: "{{ 0 if critical | default(false) else 0 }}"
+                      priority: "{{ 'high' if critical | default(false) else 'normal' }}"
                       clickAction: >-
                         {% if target_platform == 'ios' and 'app://' in (clickAction|string) %}
                           unifi-protect://
                         {% else %}
                           {{ clickAction }}
                         {% endif %}
-                      actions: "{{ actions }}"
+                      actions: "{{ actions | default([]) }}"
 
 # ------------------------------------------------------------------------------
 # 3. AUTOMATIONS
@@ -639,7 +635,7 @@ automation:
         data:
           options: >
             {% set person_names = states.person | map(attribute='attributes.friendly_name') | list | sort %}
-            {{ person_names + ['Guest'] }} # Always include 'Guest' option
+            {{ ['-select-'] + person_names + ['Guest'] }} # Always include 'Guest' option
 
       - service: input_select.set_options
         target:
@@ -656,7 +652,7 @@ automation:
                 {% set ns.services = ns.services + [service_name] %}
               {% endif %}
             {% endfor %}
-            {{ (ns.services + ['notify.mobile_app_unknown']) | unique | sort }}
+            {{ (['-select-'] + ns.services + ['notify.mobile_app_unknown']) | unique | sort }}
 
       # 3. Populate Delete User list
       # Scans for existing 'text.notify_service_*' entities to find valid user slugs
@@ -671,7 +667,7 @@ automation:
                {% set slug = helper.object_id.replace('notify_service_', '') %}
                {% set ns.users = ns.users + [slug] %}
             {% endfor %}
-            {{ (ns.users + ['unknown']) | unique | sort }}
+            {{ (['-select-'] + ns.users + ['unknown']) | unique | sort }}
 
       # 4. Populate Delete Category List (NEW)
       - service: input_select.set_options

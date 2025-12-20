@@ -81,29 +81,29 @@ scene:
       light.kitchen_ikea_1:
         state: "on"
         brightness: 254
-        color_temp: 250
+        color_temp_kelvin: 4000
       light.kitchen_ikea_2:
         state: "on"
         brightness: 254
-        color_temp: 250
+        color_temp_kelvin: 4000
       light.kitchen_ikea_3:
         state: "on"
         brightness: 254
-        color_temp: 250
+        color_temp_kelvin: 4000
       light.kitchen_sink:
         state: "on"
         brightness: 254
-        color_temp: 153
+        color_temp_kelvin: 6500
         effect: none
       light.livingroom_light:
         state: "on"
         brightness: 254
-        color_temp: 153
+        color_temp_kelvin: 6500
         effect: none
       light.stairs_light:
         state: "on"
         brightness: 254
-        color_temp: 153
+        color_temp_kelvin: 6500
         effect: none
 
   - id: "1581434276374"
@@ -113,12 +113,12 @@ scene:
       light.kitchen_sink:
         state: "on"
         brightness: 128
-        color_temp: 153
+        color_temp_kelvin: 6500
         effect: none
       light.livingroom_light:
         state: "on"
         brightness: 64
-        color_temp: 153
+        color_temp_kelvin: 6500
         effect: none
 
   - id: "1581486599024"
@@ -131,12 +131,12 @@ scene:
       light.livingroom_light:
         state: "on"
         brightness: 46
-        color_temp: 333
+        color_temp_kelvin: 3000
         effect: none
       light.stairs_light:
         state: "on"
         brightness: 51
-        color_temp: 333
+        color_temp_kelvin: 3000
         effect: none
 
   - id: "1581525515761"
@@ -181,8 +181,7 @@ scene:
       light.floor_light:
         state: "on"
         brightness: 255
-        color_mode: color_temp
-        color_temp: 250
+        color_temp_kelvin: 4000
         hs_color: [26.812, 34.87]
         rgb_color: [255, 205, 166]
         xy_color: [0.421, 0.364]
@@ -194,8 +193,7 @@ scene:
       light.floor_light:
         state: "on"
         brightness: 255
-        color_mode: color_temp
-        color_temp: 153
+        color_temp_kelvin: 6500
         hs_color: [54.768, 1.6]
         rgb_color: [255, 254, 250]
         xy_color: [0.326, 0.333]
@@ -206,8 +204,7 @@ scene:
       light.bedroom_bed_light:
         state: "on"
         brightness: 255
-        color_mode: color_temp
-        color_temp: 153
+        color_temp_kelvin: 6500
         hs_color: [54.768, 1.6]
         rgb_color: [255, 254, 250]
         xy_color: [0.326, 0.333]
@@ -236,8 +233,7 @@ scene:
       light.floor_light:
         state: "on"
         brightness: 76
-        color_mode: color_temp
-        color_temp: 400
+        color_temp_kelvin: 2500
         hs_color: [28.874, 72.522]
         rgb_color: [255, 159, 70]
         xy_color: [0.546, 0.389]
@@ -259,8 +255,7 @@ scene:
       light.living_room_ceiling_light:
         state: "on"
         brightness: 255
-        color_mode: color_temp
-        color_temp: 210
+        color_temp_kelvin: 4760
         hs_color: [26.815, 22.59]
         rgb_color: [255, 223, 197]
         xy_color: [0.382, 0.353]
@@ -274,8 +269,7 @@ scene:
       light.living_room_ceiling_light:
         state: "on"
         brightness: 255
-        color_mode: color_temp
-        color_temp: 153
+        color_temp_kelvin: 6500
         hs_color: [54.768, 1.6]
         rgb_color: [255, 254, 250]
         xy_color: [0.326, 0.333]
@@ -289,8 +283,7 @@ scene:
       light.living_room_ceiling_light:
         state: "on"
         brightness: 51
-        color_mode: color_temp
-        color_temp: 410
+        color_temp_kelvin: 2440
         hs_color: [29.04, 74.777]
         rgb_color: [255, 156, 64]
         xy_color: [0.554, 0.389]
@@ -304,8 +297,7 @@ scene:
       light.living_room_ceiling_light:
         state: "on"
         brightness: 64
-        color_mode: color_temp
-        color_temp: 210
+        color_temp_kelvin: 4760
         hs_color: [26.815, 22.59]
         rgb_color: [255, 223, 197]
         xy_color: [0.382, 0.353]
@@ -333,8 +325,7 @@ scene:
       light.Daughter_bed_light:
         state: "on"
         brightness: 127
-        color_mode: color_temp
-        color_temp: 200
+        color_temp_kelvin: 5000
         hs_color: [27.001, 19.243]
         rgb_color: [255, 228, 205]
         xy_color: [0.372, 0.35]
@@ -345,8 +336,7 @@ scene:
       light.Daughter_bed_light:
         state: "on"
         brightness: 255
-        color_mode: color_temp
-        color_temp: 153
+        color_temp_kelvin: 6500
         hs_color: [54.768, 1.6]
         rgb_color: [255, 254, 250]
         xy_color: [0.326, 0.333]
@@ -379,12 +369,10 @@ scene:
       light.bedroom_ceiling_light:
         state: "on"
         brightness: 255
-        color_mode: color_temp
       light.bedroom_bed_light:
         state: "on"
         brightness: 255
-        color_mode: color_temp
-        color_temp: 200
+        color_temp_kelvin: 5000
         hs_color: [27.001, 19.243]
         rgb_color: [255, 228, 205]
         xy_color: [0.372, 0.35]
@@ -395,8 +383,7 @@ scene:
       light.Guest-2_ceiling_light:
         state: "on"
         brightness: 64
-        color_mode: color_temp
-        color_temp: 250
+        color_temp_kelvin: 4000
         hs_color: [26.812, 34.87]
         rgb_color: [255, 205, 166]
         xy_color: [0.421, 0.364]
@@ -410,8 +397,7 @@ scene:
       light.Guest-2_ceiling_light:
         state: "on"
         brightness: 255
-        color_mode: color_temp
-        color_temp: 250
+        color_temp_kelvin: 4000
         hs_color: [26.812, 34.87]
         rgb_color: [255, 205, 166]
         xy_color: [0.421, 0.364]
@@ -425,8 +411,7 @@ scene:
       light.Guest-2_ceiling_light:
         state: "on"
         brightness: 13
-        color_mode: color_temp
-        color_temp: 454
+        color_temp_kelvin: 2200
         hs_color: [29.79, 84.553]
         rgb_color: [255, 146, 39]
         xy_color: [0.579, 0.388]

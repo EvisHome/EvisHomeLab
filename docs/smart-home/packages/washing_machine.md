@@ -164,7 +164,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sensor.washing_machine_plug_power
-        below: 3
+        below: 5
         for: "00:02:00"
     condition:
       - condition: state
@@ -224,11 +224,62 @@ automation:
         data:
           option: "Idle"
     mode: single
-# ------------------------------------------------------------------------------
-# 4. OVERRIDES
-# ------------------------------------------------------------------------------
-# Allow "Start" to trigger even if status is "Clean" (forgot to unload)
-# See modification in Automation 1 Check: currently checks for "Idle".
-# Let's change Automation 1 condition to be status != Running.
+  # ------------------------------------------------------------------------------
+  # 4. OVERRIDES
+  # ------------------------------------------------------------------------------
+  # Allow "Start" to trigger even if status is "Clean" (forgot to unload)
+  # See modification in Automation 1 Check: currently checks for "Idle".
+  # Let's change Automation 1 condition to be status != Running.
+
+  - alias: "System: Washing Machine Recovery"
+    id: system_washing_machine_recovery
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: event
+        event_type: automation_reloaded
+    action:
+      # If Power > 10W and Status is Idle/Clean -> Set Running
+      - if:
+          - condition: numeric_state
+            entity_id: sensor.washing_machine_plug_power
+            above: 10
+          - condition: not
+            conditions:
+              - condition: state
+                entity_id: input_select.washing_machine_status
+                state: "Running"
+        then:
+          - service: input_select.select_option
+            target:
+              entity_id: input_select.washing_machine_status
+            data:
+              option: "Running"
+          - service: input_datetime.set_datetime
+            target:
+              entity_id: input_datetime.washing_machine_start_time
+            data:
+              timestamp: "{{ now().timestamp() }}"
+          - service: script.notify_smart_master
+            data:
+              category: info
+              title: ♻️ System Recovery
+              message: "Washing machine resumed from power state."
+              tag: washing_machine
+
+      # If Power < 5W and Status is Running -> Set Clean
+      - if:
+          - condition: numeric_state
+            entity_id: sensor.washing_machine_plug_power
+            below: 5
+          - condition: state
+            entity_id: input_select.washing_machine_status
+            state: "Running"
+        then:
+          - service: input_select.select_option
+            target:
+              entity_id: input_select.washing_machine_status
+            data:
+              option: "Clean"
 
 ```
