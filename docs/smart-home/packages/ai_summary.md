@@ -16,7 +16,9 @@ version: Unknown
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-*No executive summary generated yet.*
+This package acts as the **Frontend** and **Controller** for the external **[AI Log Reporter Integration](../integrations/ai_reporter.md)**.
+1.  It provides the **Template Sensor** to display the summary.
+2.  It handles the **Scheduling** (7:00 AM) and **SSH Connection** logic to trigger the remote analysis.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
@@ -31,11 +33,23 @@ version: Unknown
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-*No architecture explanation generated yet.*
+The diagram below illustrates the hand-off between this Home Assistant package and the external Docker container. For full implementation details of the remote system, see the **[AI Reporter Integration](../integrations/ai_reporter.md)** documentation.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-*No architecture diagram generated yet.*
+```mermaid
+sequenceDiagram
+    participant Sched as ⏰ Schedule
+    participant Script as 📜 Script
+    participant SSH as 🔐 SSH Tunnel
+    participant Remote as 📦 Remote Integration
+
+    Sched->>Script: Trigger 7:00 AM
+    Script->>SSH: Connect root@10.0.0.23
+    SSH->>Remote: Trigger Docker Analysis
+    Note over Remote: Processing...
+    Remote-->>Script: (Async Event Return)
+```
 <!-- END_MERMAID -->
 
 ## Configuration (Source Code)

@@ -21,7 +21,11 @@ This section contains all architectural documentation for the Home Assistant set
 - **[Package Catalog](packages/index.md)**:
   Index of all feature-based configuration packages (Automations, Scripts, etc.).
 
+- **[Integrations Catalog](integrations/index.md)**:
+  Index of external systems running outside Home Assistant.
+
 ## Contents
 - **[Automations](automations.md)**: Detailed breakdown of UI-managed automations (`automations.yaml`).
 - **[Dashboards](dashboards/index.md)**: Overview of Lovelace dashboards.
+- **[Integrations](integrations/index.md)**: External systems (Docker, Scripts).
 - **[Packages](packages/index.md)**: Modular configuration bundles.
