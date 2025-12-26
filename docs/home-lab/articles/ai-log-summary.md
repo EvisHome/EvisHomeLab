@@ -75,6 +75,9 @@ graph TD
     style Grafana fill:#ff9900,stroke:#333,stroke-width:2px,color:white
 ```
 
+*Logs are aggregated from distributed collectors via Promtail and centralized in a Loki instance on Unraid. This data feeds two parallel consumers: Grafana for visualization and a Python-based automation loop. The Python script queries Loki, processes logs through Google Gemini for anomaly detection, and forwards actionable insights to Home Assistant via Webhooks.*
+
+
 ### 4. Key Features
 * **Cost Efficient:** Uses client-side deduplication to reduce token usage by ~95%.
 * **Massive Context:** Can analyze up to 50,000 log lines per run.
