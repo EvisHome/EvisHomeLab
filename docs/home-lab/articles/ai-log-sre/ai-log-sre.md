@@ -1,4 +1,4 @@
-# 🧠 The AI Log SRE: Turning Noise into Insights
+# AI Log Summary: Turning Noise into Insights
 
 **Project Status:** ✅ Operational  
 **Components:** Grafana Loki, Google Gemini 2.0 Flash, Home Assistant, Unraid, Python
@@ -20,10 +20,13 @@ Instead of feeding raw logs to an LLM (which is slow and expensive), I implement
 3.  **Summarizes** the context using Google Gemini.
 4.  **Reports** the findings to my Home Assistant dashboard.
 
-<video width="100%" autoplay loop muted playsinline>
+
+
+<video width="600px" autoplay loop muted playsinline>
   <source src="ai-home-assistant-dashboard.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
+
 
 ## 3. Architecture Diagram
 
