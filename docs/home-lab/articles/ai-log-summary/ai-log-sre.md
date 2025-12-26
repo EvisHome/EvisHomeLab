@@ -3,7 +3,7 @@
 **Project Status:** ✅ Operational  
 **Components:** Grafana Loki, Google Gemini 2.0 Flash, Home Assistant, Unraid, Python
 
-## 1. The Problem: Log Fatigue
+### 1. The Problem: Log Fatigue
 In a distributed homelab (Unraid, Proxmox VE, Edge Servers, DNS (Adguard + Unbound), Traefik, Unifi Network, Tailscale ...), logs are scattered everywhere.
 * **Volume:** My servers generate ~1GB of text logs daily.
 * **Visibility:** I only looked at logs *after* I noticed something was broken.
@@ -11,7 +11,7 @@ In a distributed homelab (Unraid, Proxmox VE, Edge Servers, DNS (Adguard + Unbou
 
 I needed a system that wouldn't just *store* logs, but actively *analyze* them and tap me on the shoulder only when it found something I actually needed to see.
 
-## 2. The Solution
+### 2. The Solution
 I built a centralized logging pipeline using **Grafana** and **Loki** (for storage) and a custom **Python + Gemini** script (for analysis).
 
 Instead of feeding raw logs to an LLM (which is slow and expensive), I implemented a **"Pre-processing Engine"** that:
@@ -22,13 +22,13 @@ Instead of feeding raw logs to an LLM (which is slow and expensive), I implement
 
 
 
-<video width="600px" autoplay loop muted playsinline>
+<video width="100%" autoplay loop muted playsinline>
   <source src="../ai-home-assistant-dashboard.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 
-## 3. Architecture Diagram
+### 3. Architecture Diagram
 
 ```mermaid
 graph TD
@@ -69,7 +69,7 @@ graph TD
     style Grafana fill:#ff9900,stroke:#333,stroke-width:2px,color:white
 ```
 
-## 4. Key Features
+### 4. Key Features
 * **Cost Effic  ient:** Uses client-side deduplication to reduce token usage by ~95%.
 * **Massive Context:** Can analyze up to 50,000 log lines per run.
 * **Self-Healing:** If the report fails, Home Assistant retains the last known state.
@@ -87,21 +87,21 @@ graph TD
 <br>
 <br>
 
-# 🛠️ Implementation Guide
+## 🛠️ Implementation Guide
 
 This guide details how to reproduce the "AI Log SRE" stack.
 
-## Prerequisites
+### Prerequisites
 * **Unraid Server** (or any Docker host).
 * **Google Gemini API Key** (Free tier is sufficient, Paid recommended for high limits).
 * **Home Assistant** (for notifications).
 
 ---
 
-## Step 1: Central Server (Unraid)
+### Step 1: Central Server (Unraid)
 We run the `loki` database and the `ai-reporter` script in a single stack.
 
-### Docker Compose
+#### Docker Compose
 ```yaml
 services:
   loki:
@@ -190,7 +190,7 @@ limits_config:
   max_entries_limit_per_query: 50000  # <--- CRITICAL FOR AI
 ```
 
-### Step 2: Log Collection (Edge Nodes)
+#### Step 2: Log Collection (Edge Nodes)
 On every other server (Proxmox, Pi, Edge), we run **Promtail** to ship logs to Unraid.
 
 **Promtail Config** (config.yml)
@@ -269,7 +269,7 @@ scrape_configs:
 
 ```
 
-### Step 3: The Intelligence (Python Script)
+#### Step 3: The Intelligence (Python Script)
 This script runs inside the `ai-log-reporter` container.
 
 **Key Logic:**
@@ -311,17 +311,14 @@ automation:
 
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
 
-# 📖 User Manual & Operations
 
-## How to Read the Daily Report
+## 📖 User Manual & Operations
+
+### How to Read the Daily Report
 The AI Summary appears in Home Assistant every morning at 07:00.
 
-### The Iconography
+#### The Iconography
 * 🔴 **CRITICAL:** Immediate action required.
     * *Examples:* Database corruption, Disk failure (SMART), Service boot loops.
     * *Action:* Check Grafana immediately.
@@ -332,7 +329,7 @@ The AI Summary appears in Home Assistant every morning at 07:00.
     * *Examples:* Timeouts, configuration deprecation warnings.
     * *Action:* Add to "Technical Debt" to-do list.
 
-## Troubleshooting
+### Troubleshooting
 **"Report says: No critical errors found."**
 * **Good News:** Your system is healthy!
 * **Verification:** Check the `ai-log-reporter` container logs to ensure it actually ran and didn't just fail to fetch data.
@@ -341,7 +338,7 @@ The AI Summary appears in Home Assistant every morning at 07:00.
 * Check Home Assistant logs for `Shell Command` errors.
 * Ensure the SSH key in Home Assistant allows connection to Unraid without a password.
 
-## Grafana Deep Dive
+### Grafana Deep Dive
 When the AI reports a "Critical" error, use Grafana to investigate.
 
 **Recommended LogQL Query:**
