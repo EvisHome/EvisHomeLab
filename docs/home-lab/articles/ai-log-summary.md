@@ -5,6 +5,7 @@
 
 ### 1. The Problem: Log Fatigue
 In a distributed homelab (Unraid, Proxmox VE, Edge Servers, DNS (Adguard + Unbound), Traefik, Unifi Network, Tailscale ...), logs are scattered everywhere.
+
 * **Volume:** My servers generate ~1GB of text logs daily.
 * **Visibility:** I only looked at logs *after* I noticed something was broken.
 * **Noise:** 99% of logs are "Info", masking the 1% "Critical" errors.
@@ -23,7 +24,7 @@ Instead of feeding raw logs to an LLM (which is slow and expensive), I implement
 
 
 <video width="100%" autoplay loop muted playsinline>
-  <source src="../ai-home-assistant-dashboard.mp4" type="video/mp4">
+  <source src="../ai-log-summary/ai-home-assistant-dashboard.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
@@ -70,7 +71,7 @@ graph TD
 ```
 
 ### 4. Key Features
-* **Cost Effic  ient:** Uses client-side deduplication to reduce token usage by ~95%.
+* **Cost Efficient:** Uses client-side deduplication to reduce token usage by ~95%.
 * **Massive Context:** Can analyze up to 50,000 log lines per run.
 * **Self-Healing:** If the report fails, Home Assistant retains the last known state.
 * **Privacy:** Only anonymized/filtered error logs are sent to the AI; raw logs stay local.
@@ -82,12 +83,9 @@ graph TD
 -->
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
 
-## 🛠️ Implementation Guide
+
+## Implementation Guide
 
 This guide details how to reproduce the "AI Log SRE" stack.
 
