@@ -16,12 +16,13 @@ I needed a system that wouldn't just *store* logs, but actively *analyze* them a
 I built a centralized logging pipeline using **Grafana** and **Loki** (for storage) and a custom **Python + Gemini** script (for analysis).
 
 Instead of feeding raw logs to an LLM (which is slow and expensive), I implemented a **"Pre-processing Engine"** that:
+
 1.  **Fetches** the last 24 hours of history.
 2.  **Deduplicates** repetitive errors (e.g., compressing 5,000 "Connection Refused" lines into 1 line).
 3.  **Summarizes** the context using Google Gemini.
 4.  **Reports** the findings to my Home Assistant dashboard.
 
-![type:video](../ai-log-summary/ai-home-assistant-dashboard.mp4)
+![type:video](/ai-log-summary/ai-home-assistant-dashboard.mp4)
 
 <a href="../ai-log-summary/ai-home-assistant-dashboard.mp4" target="_blank" title="Click to watch full screen">
   <video width="100%" autoplay loop muted playsinline style="cursor: pointer;">
@@ -290,7 +291,7 @@ The automation that triggers the report and displays it.
 ```yaml
 shell_command:
   generate_ai_log_summary: >
-    ssh -i /config/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.0.0.23 'docker exec ai-log-reporter python /app/reporter.py'
+    ssh -i /config/.ssh/id_rsa -o StrictHostKeyChecking=no root@[UNRAID-IP] 'docker exec ai-log-reporter python /app/reporter.py'
 
 automation:
   - alias: "Daily AI System Summary"
@@ -315,7 +316,7 @@ automation:
 <br>
 
 
-## 📖 User Manual & Operations
+## User Manual & Operations
 
 ### How to Read the Daily Report
 The AI Summary appears in Home Assistant every morning at 07:00.
