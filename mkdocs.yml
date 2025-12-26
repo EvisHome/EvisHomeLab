@@ -46,3 +46,5 @@ plugins:
       tags_file: tags.md
   - awesome-pages
   - glightbox
+  - mkdocs-video
+  - search
