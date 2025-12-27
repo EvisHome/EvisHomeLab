@@ -28,7 +28,7 @@
     <div style="padding: 10px;">
       <h3>AI Log Summary </h3>
       <p>Turning log noise into actionable insights using AI.</p>
-      <p><a href="../articles/ai-log-summary/ai-log-summary.md">Read more →</a></p>
+      <p><a href="../articles/ai-log-summary.md">Read more →</a></p>
     </div>
   </div>
 
