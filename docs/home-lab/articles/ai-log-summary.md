@@ -1,7 +1,7 @@
 # AI Log Summary: Turning Noise into Insights
 
 **Project Status:** ✅ Operational  
-**Components:** Grafana Loki, Google Gemini 2.0 Flash, Home Assistant, Unraid, Python
+**Components:** Grafana, Loki, Promtail, Otel-Collector, Google Gemini 2.0 Flash, Home Assistant, Unraid, Python
 
 ### 1. The Problem: Log Fatigue
 In a distributed homelab (Unraid, Proxmox VE, Edge Servers, DNS (Adguard + Unbound), Traefik, Unifi Network, Tailscale ...), logs are scattered everywhere.
@@ -30,47 +30,47 @@ Instead of feeding raw logs to an LLM (which is slow and expensive), I implement
 
 
 ### 3. Architecture Diagram
-
 ```mermaid
 graph TD
-    %% --- LEVEL 1: EDGE ---
-    subgraph Edge ["Edge Nodes (Collectors)"]
+    %% --- LEVEL 1: SOURCES ---
+    subgraph Sources ["Distributed Sources"]
         direction TB
-        Docker[Docker Logs] & System[System Logs] --> Promtail[Promtail Agent]
+        Edge[Edge Nodes] -->|Promtail| Loki
+        Unifi[Unifi UDM Pro] -->|Syslog 5514| Otel
+        PVE[Proxmox Nodes] -->|Syslog 5514| Otel
+        UnraidD[Unraid Docker] -->|Filelog| Otel
     end
 
-    %% --- LEVEL 2: UNRAID ---
-    subgraph Unraid ["Unraid Server (The Brain)"]
+    %% --- LEVEL 2: PROCESSING ---
+    subgraph Hub ["Unraid Hub (Processing)"]
         direction TB
-        Promtail -->|Push| Loki[Loki DB]
+        Otel[Otel Collector] -->|OTLP Push| Loki[Loki DB]
         
-        %% The Fork: Human vs AI
-        Loki -->|Visualise| Grafana[Grafana UI]
         Loki -->|Fetch| Script[Python Script]
-        
+        Loki -->|Visualise| Grafana[Grafana UI]
         Script <-->|Analyze| Gemini[Gemini API]
     end
 
-    %% --- LEVEL 3: HA ---
-    subgraph HA ["Home Assistant (Interface)"]
+    %% --- LEVEL 3: INTERFACE ---
+    subgraph HA ["Home Assistant"]
         direction TB
         Script -->|Webhook| Core[Home Assistant]
         Core --> Phone[Mobile Alert]
         Core --> Wall[Dashboard]
     end
 
-    %% --- THE FIX: INVISIBLE STRUT ---
+   %% --- THE FIX: INVISIBLE STRUT ---
     %% Forces HA to stay at the bottom
     Gemini ~~~ Core
 
-    %% --- STYLING ---
+    style Otel fill:#ff9900,stroke:#333,stroke-width:2px,color:white
     style Loki fill:#f9f,stroke:#333,stroke-width:2px
     style Script fill:#ff9,stroke:#333,stroke-width:2px
-    style Gemini fill:#4285f4,stroke:#fff,stroke-width:2px,color:#fff
-    style Grafana fill:#ff9900,stroke:#333,stroke-width:2px,color:white
 ```
 
-*Logs are aggregated from distributed collectors via Promtail and centralized in a Loki instance on Unraid. This data feeds two parallel consumers: Grafana for visualization and a Python-based automation loop. The Python script queries Loki, processes logs through Google Gemini for anomaly detection, and forwards actionable insights to Home Assistant via Webhooks.*
+
+
+*Logs are aggregated from distributed collectors via Promtail and Otel-Collector and centralized in a Loki instance on Unraid. This data feeds two parallel consumers: Grafana for visualization and a Python-based automation loop. The Python script queries Loki, processes logs through Google Gemini for anomaly detection, and forwards actionable insights to Home Assistant via Webhooks.*
 
 
 ### 4. Key Features
