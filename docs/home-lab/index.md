@@ -24,11 +24,11 @@
 <div class="grid cards" borderless style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
 
   <div class="card">
-    <img src="https://via.placeholder.com/400x200?text=Security+CCTV" alt="CCTV" style="width:100%; border-radius: 8px;">
+    <img src="../ai-log-summary/thumb.jpg" alt="CCTV" style="width:100%; border-radius: 8px;">
     <div style="padding: 10px;">
-      <h3>📹 Security Setup</h3>
-      <p>A deep dive into our outdoor CCTV and 🏃 motion presence detection system.</p>
-      <p><a href="security/cctv/">Read Article →</a></p>
+      <h3>AI Log Summary </h3>
+      <p>Turning log noise into actionable insights using AI.</p>
+      <p><a href="../ai-log-summary/ai-log-summary.md">Read more →</a></p>
     </div>
   </div>
 
@@ -37,7 +37,7 @@
     <div style="padding: 10px;">
       <h3>☕ Smart Kitchen</h3>
       <p>Automating the morning ☕ coffee machine and tracking the 🧼 washing machine cycles.</p>
-      <p><a href="kitchen/appliances/">Read Article →</a></p>
+      <p><a href="kitchen/appliances/">Read more →</a></p>
     </div>
   </div>
 
@@ -46,7 +46,7 @@
     <div style="padding: 10px;">
       <h3>📡 Infrastructure</h3>
       <p>How our 🛰️ satellite dish keeps the house 🔊 speakers and smart devices online.</p>
-      <p><a href="network/starlink/">Read Article →</a></p>
+      <p><a href="network/starlink/">Read more →</a></p>
     </div>
   </div>
 
