@@ -22,17 +22,12 @@ Instead of feeding raw logs to an LLM (which is slow and expensive), I implement
 3.  **Summarizes** the context using Google Gemini.
 4.  **Reports** the findings to my Home Assistant dashboard.
 
-![type:video](../ai-log-summary/ai-home-assistant-dashboard.mp4)
-
-<a href="../ai-log-summary/ai-home-assistant-dashboard.mp4" target="_blank" title="Click to watch full screen">
-  <video width="100%" autoplay loop muted playsinline style="cursor: pointer;">
-    <source src="../ai-log-summary/ai-home-assistant-dashboard.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+<a href="../ai-log-summary/ai-home-assistant-dashboard.mp4" class="glightbox" data-width="100%" data-height="auto">
+    <video width="100%" autoplay loop muted playsinline style="cursor: pointer;">
+        <source src="../ai-log-summary/ai-home-assistant-dashboard.mp4" type="video/mp4">
+    </video>
 </a>
-<p style="text-align: center; font-size: 0.8em; color: grey;">
-  <i>(Click video to enlarge)</i>
-</p>
+
 
 ### 3. Architecture Diagram
 
