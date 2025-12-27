@@ -47,3 +47,8 @@ plugins:
   - awesome-pages
   - glightbox
   - mkdocs-video
+
+extra:
+  analytics:
+    provider: google
+    property: G-Q3C6JS2Q46
