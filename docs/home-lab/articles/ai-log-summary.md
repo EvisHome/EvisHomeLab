@@ -346,3 +346,23 @@ When the AI reports a "Critical" error, use Grafana to investigate.
 To see the raw data the AI analyzed:
 ```logql
 {job=~".+"} != "docker-socket-proxy" |= "error"
+```
+*shows all logs from the edge host but removes the noisy traefik and crowdsec logs so you can see system issues*
+
+```logql
+{host="edge"} != "traefik" != "crowdsec"
+```
+*shows all logs from the edge host but removes the noisy traefik and crowdsec logs so you can see system issues*
+
+```logql
+sum by (container_name) (count_over_time({job="docker"} |= "error" [1m]))
+```
+*counts the number of errors per container over the last minute*
+
+| Source   | Goal              | Query                                           |
+|----------|-------------------|--------------------------------------------------|
+| Docker   | See Raw AI Data   | `{job=~".+"} != "docker-socket-proxy"`          |
+| Docker   | Filter Noise      | `{host="edge"} != "traefik" != "crowdsec"`      |
+| Hardware | Search Unifi Logs | `{job="syslog"}`                                |
+| Metrics  | Live Error Count  | `sum(count_over_time({job="docker"}))`          |
+
