@@ -3,7 +3,7 @@
     border: 1px solid #e1e1e1;
     border-radius: 8px;
     transition: 0.3s;
-    background-color: #fff;
+    background-color: #222;
   }
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -24,11 +24,11 @@
 <div class="grid cards" borderless style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
 
   <div class="card">
-    <img src="../ai-log-summary/thumb.jpg" alt="CCTV" style="width:100%; border-radius: 8px;">
+    <img src="articles/ai-log-summary/thumb.jpg" alt="CCTV" style="width:100%; border-radius: 8px;">
     <div style="padding: 10px;">
       <h3>AI Log Summary </h3>
       <p>Turning log noise into actionable insights using AI.</p>
-      <p><a href="../ai-log-summary/ai-log-summary.md">Read more →</a></p>
+      <p><a href="../articles/ai-log-summary/ai-log-summary.md">Read more →</a></p>
     </div>
   </div>
 
