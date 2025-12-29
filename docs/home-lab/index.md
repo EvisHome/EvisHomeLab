@@ -29,7 +29,7 @@
     <div style="padding: 10px;">
       <h3>AI Log Summary </h3>
       <p>Turning log noise into actionable insights using AI.</p>
-      <p><a href="../articles/ai-log-summary.md">Read more →</a></p>
+      <p><a href="articles/ai-log-summary.md">Read more →</a></p>
     </div>
   </div>
 
@@ -38,7 +38,7 @@
     <div style="padding: 10px;">
       <h3>DNS: AdGuard Home & Unbound</h3>
       <p>Eliminating reliance on third parties. Coupling AdGuard Home (The Network Shield) with Unbound (The Recursive Resolver).</p>
-      <p><a href="../articles/dns-adguard-unbound.md">Read more →</a></p>
+      <p><a href="articles/dns-adguard-unbound.md">Read more →</a></p>
     </div>
   </div>
 
