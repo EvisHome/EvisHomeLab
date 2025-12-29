@@ -1,5 +1,7 @@
 # DNS: The AdGuard Home & Unbound Stack
-In this section, we break down the DNS architecture of the Homelab. The goal was to move from a standard setup to a "Resilient & Private" stack that eliminates random timeouts, handles high-load traffic without choking, and correctly resolves local device names.
+In this section, we break down the DNS architecture of the Homelab.
+
+The goal is simple: Eliminate reliance on third parties. By coupling AdGuard Home (The Network Shield) with Unbound (The Recursive Resolver), we stop "asking" Google or our ISP for website addresses and start finding them ourselves directly from the global Root Servers.
 
 <br/>
 
@@ -153,6 +155,11 @@ sudo nano /etc/systemd/resolved.conf
 DNSStubListener=no
 ```
 Press CTRL + x and then press y to save the changes
+
+```bash
+sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+sudo systemctl restart systemd-resolved
+```
 
 ## Prepare Docker Directories
 
@@ -506,7 +513,7 @@ Edit **unbound.conf** on all DNS servers
 sudo nano /docker/unbound/unbound.conf
 ```
 
-add to the bottom of the **server:** lock"
+add to the bottom of the **server:** block
 
 ```yaml
 server:
