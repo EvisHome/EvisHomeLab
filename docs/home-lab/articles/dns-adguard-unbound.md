@@ -129,12 +129,6 @@ Each Pi runs an identical Docker stack:
 <br/>
 <br/>
 
-
-
-
-<br/>
-<br/>
-
 ## Preparing the Ubuntu Server
 
 If you just try to start the Adguard docker container you will probably run in to few problems:
@@ -157,6 +151,9 @@ DNSStubListener=no
 Press CTRL + x and then press y to save the changes
 
 ## Prepare Docker Directories
+
+!!! warning
+    Make sure the directory mapped to /opt/adguardhome/work\ has rights 0700 | Otherwise your settings are not stored, and when restarted you need to reconfigure.
 
 ```bash
 cd ..
@@ -334,4 +331,44 @@ We ran this command to confirm the UDM Pro was correctly resolving local names:
 ```bash
 dig -x 10.0.0.189 @10.0.0.63
 
+```
+
+### Domain fails
+
+Check that the domain actually exists:
+
+```bash
+nslookup oma.valoo.fi 8.8.8.8
+```
+
+If it does exist, you can add it to the **unbound.conf** on all DNS servers.
+
+Edit **unbound.conf** on all DNS servers
+```bash
+sudo nano /docker/unbound/unbound.conf
+```
+
+add to the bottom of the **server:** lock"
+
+```yaml
+server:
+    # ... other settings ...
+    domain-insecure: "valoo.fi"
+
+
+# add to the bottom of the file
+forward-zone:
+    name: "valoo.fi."
+    forward-addr: 8.8.8.8
+    forward-addr: 1.1.1.1
+```
+
+Restart Unbound:
+```bash
+docker restart unbound
+```
+
+Test with:
+```bash
+docker exec -it adguard-home nslookup oma.valoo.fi 127.0.0.1
 ```
