@@ -33,11 +33,11 @@
   </div>
 
   <div class="card">
-    <img src="https://via.placeholder.com/400x200?text=Coffee+Machine" alt="Coffee" style="width:100%; border-radius: 8px;">
+    <img src="articles/dns-adguard-unbound/thumb.jpg" alt="Coffee" style="width:100%; border-radius: 8px;">
     <div style="padding: 10px;">
-      <h3>☕ Smart Kitchen</h3>
-      <p>Automating the morning ☕ coffee machine and tracking the 🧼 washing machine cycles.</p>
-      <p><a href="kitchen/appliances/">Read more →</a></p>
+      <h3>DNS: The AdGuard Home & Unbound Stack</h3>
+      <p>Eliminating reliance on third parties. Coupling AdGuard Home (The Network Shield) with Unbound (The Recursive Resolver).</p>
+      <p><a href="../articles/dns-adguard-unbound.md">Read more →</a></p>
     </div>
   </div>
 
