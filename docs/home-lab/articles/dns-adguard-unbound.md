@@ -14,6 +14,8 @@ In this section, we break down the DNS architecture of the Homelab. The goal was
 
 <br>
 
+![adguard-home](../dns-adguard-unbound/adguard-home.png)
+
 ## 1. Architecture Overview
 
 ### The "Split-Brain" DNS Model
@@ -190,6 +192,144 @@ Create the Networks in Portainer
 <br/>
 <br/>
 
+
+## Prepare Unbound Configuration
+
+```bash
+sudo nano /docker/unbound/unbound.conf
+```
+
+
+```bash
+server:
+    ###########################################################################
+    # BASIC SETTINGS
+    ###########################################################################
+    # Standard Port 53 (Mapped to 5053 via Docker Compose)
+    interface: 0.0.0.0@53
+    port: 53
+
+    # Protocol Support
+    do-ip4: yes
+    do-ip6: yes
+    do-tcp: yes
+    do-udp: yes
+    prefer-ip6: no
+
+    # Optimization
+    edns-buffer-size: 1232
+    rrset-roundrobin: yes
+    username: "_unbound"
+
+    # Directory
+    directory: "/opt/unbound/etc/unbound"
+    cache-max-ttl: 86400
+    cache-min-ttl: 300
+
+    ###########################################################################
+    # LOGGING (Promtail Ready)
+    ###########################################################################
+    # Disable internal file logging -> Send to Stdout for Docker/Promtail
+    log-local-actions: no
+    log-queries: no
+    log-replies: no
+    log-servfail: no
+
+    logfile: ""        # Force stdout
+    use-syslog: no
+    verbosity: 2       # Level 2 gives us the stats we need for Grafana
+
+    ###########################################################################
+    # PERFORMANCE (Tuned for 8GB Raspberry Pi)
+    ###########################################################################
+    # Use all 4 cores
+    num-threads: 4
+
+    # Slabs (Must be power of 2)
+    infra-cache-slabs: 4
+    key-cache-slabs: 4
+    msg-cache-slabs: 4
+    rrset-cache-slabs: 4
+
+    # Cache Sizes (High Performance - Uses ~2GB RAM total)
+    msg-cache-size: 256m
+    rrset-cache-size: 512m
+
+    # TCP & Queries
+    outgoing-range: 8192
+    num-queries-per-thread: 4096
+    incoming-num-tcp: 10
+
+    # Speed Tweaks
+    minimal-responses: yes
+    prefetch: yes
+    prefetch-key: yes
+    serve-expired: yes
+    so-reuseport: yes
+
+    ###########################################################################
+    # SECURITY & PRIVACY
+    ###########################################################################
+    # Access Control (Allow Local Network)
+    access-control: 127.0.0.1/32 allow
+    access-control: 192.168.0.0/16 allow
+    access-control: 172.16.0.0/12 allow
+    access-control: 10.0.0.0/8 allow
+    access-control: fc00::/7 allow
+    access-control: ::1/128 allow
+
+    # Privacy
+    hide-identity: yes
+    hide-version: yes
+    identity: "DNS"
+    http-user-agent: "DNS"
+    qname-minimisation: yes
+    aggressive-nsec: yes
+
+    # Hardening
+    harden-algo-downgrade: yes
+    harden-below-nxdomain: yes
+    harden-dnssec-stripped: yes
+    harden-glue: yes
+    harden-large-queries: yes
+    harden-short-bufsize: yes
+    use-caps-for-id: yes
+
+    # Private Addresses (Rebinding Protection)
+    private-address: 10.0.0.0/8
+    private-address: 172.16.0.0/12
+    private-address: 192.168.0.0/16
+    private-address: 169.254.0.0/16
+    private-address: fd00::/8
+    private-address: fe80::/10
+
+    # Certificates
+    tls-cert-bundle: /etc/ssl/certs/ca-certificates.crt
+
+    ###########################################################################
+    # INCLUDES
+    ###########################################################################
+    # Only include custom conf files if you create them manually
+    #include: "*.conf"
+
+    domain-insecure: "valoo.fi"
+
+remote-control:
+    control-enable: no
+
+
+# Forward Zone for Valoo (Bypass local validation)
+forward-zone:
+    name: "valoo.fi"
+    forward-dnssec: no
+    forward-addr: 9.9.9.9
+    forward-addr: 1.1.1.1
+
+```
+
+<br/>
+<br/>
+
 ## Unbound Portainer Stack
 
 ```yaml
@@ -227,8 +367,10 @@ services:
     restart: unless-stopped
 ```
 
+
 <br/>
 <br/>
+
 
 ## Adguard Portainer Stack
 
