@@ -79,8 +79,10 @@ flowchart TD
     AGH2 -.->|"Timeout > Safety Net"| Quad9
 
     %% Styling
-    style LAN fill:#3471eb,stroke:#01579b,stroke-width:2px
+    
     style DNS_Cluster fill:#2deb49,stroke:#01579b,stroke-width:2px
+    style Node1 fill:#111111,stroke:#01579b,stroke-width:2px
+    style Node2 fill:#111111,stroke:#01579b,stroke-width:2px
     style Quad9 fill:#610c06,stroke:#b71c1c,stroke-dasharray: 5 5
     style RootServers fill:#066114,stroke:#2e7d32
 ```
@@ -170,6 +172,20 @@ sudo chmod -R 0700 adguard/conf
 sudo chown -R evis:docker adguard/work
 sudo chown -R evis:docker adguard/conf
 ```
+
+<br/>
+<br/>
+
+## Prepare Docker Networks (in Portainer)
+
+Create the Networks in Portainer
+
+* dns_net | will used to put Adguard Home and Unbound DNS server to same network so they can connect. When Adguard is using Unbound as the DNS server.
+* proxy | this can be used with Traefik Reverse Proxy (if using Traefik)
+
+**dns_net Network**
+
+![dns_net Network](../dns-adguard-unbound/dns_net.png)
 
 <br/>
 <br/>
