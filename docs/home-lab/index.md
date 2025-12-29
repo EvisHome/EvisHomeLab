@@ -35,7 +35,7 @@
   <div class="card">
     <img src="articles/dns-adguard-unbound/thumb.jpg" alt="Coffee" style="width:100%; border-radius: 8px;">
     <div style="padding: 10px;">
-      <h3>DNS: The AdGuard Home & Unbound Stack</h3>
+      <h3>DNS: AdGuard Home & Unbound</h3>
       <p>Eliminating reliance on third parties. Coupling AdGuard Home (The Network Shield) with Unbound (The Recursive Resolver).</p>
       <p><a href="../articles/dns-adguard-unbound.md">Read more →</a></p>
     </div>
