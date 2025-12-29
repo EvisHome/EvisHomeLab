@@ -3,6 +3,7 @@
     border: 1px solid #e1e1e1;
     border-radius: 8px;
     transition: 0.3s;
+    padding: 0px;
     background-color: #222;
   }
   .card:hover {
