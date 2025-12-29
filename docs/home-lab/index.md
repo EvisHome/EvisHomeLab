@@ -3,7 +3,7 @@
     border: 1px solid #e1e1e1;
     border-radius: 8px;
     transition: 0.3s;
-    padding: 0px;
+    padding: 0rem;
     background-color: #222;
   }
   .card:hover {
@@ -22,7 +22,7 @@
 - **Containers**: (To be documented)
 
 
-<div class="grid cards" borderless style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+<div class="grid cards" borderless style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0px;">
 
   <div class="card">
     <p><a href="articles/ai-log-summary">
