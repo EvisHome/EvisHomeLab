@@ -503,7 +503,7 @@ services:
 !!! info
     Internet DNS is used for all outbound traffic
 
-![Unifi Internet DNS](../dns-adguard-unbound/unifi_internet_dns.png)
+![Unifi Internet DNS](../dns-adguard-unbound/unifi-internet-dns.png)
 
 ### Unifi Network DNS
 
@@ -513,7 +513,7 @@ services:
 !!! warning
     Only LAN network is using the Local DNS server, other networks like IoT and Company network are using public networks to avoid any blocking. Using AdGuard with some IoT devices like TV has created outage on some streaming applications e.g. Viaplay.
 
-![Unifi Network DNS](../dns-adguard-unbound/unifi_network_dns.png)
+![Unifi Network DNS](../dns-adguard-unbound/unifi-network-dns.png)
 
 ### Unifi IP Group DNS
 !!! info
