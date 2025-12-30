@@ -475,6 +475,53 @@ services:
 <br/>
 <br/>
 
+## Unifi Network DNS Configurations
+
+!!! info
+    When changing DNS servers remember to check the following settings from Unifi Network Settings
+
+!!! Success
+    Network DHCP clients should use the router (UDM) as the DNS server and then the below settings are applied in all cases.
+
+#### Differences between the DNS settings
+
+* Internet - DNS server(s) that UDM or other gateway reaches out to for DNS results
+* Network - DNS server(s) that the DHCP server hands out to the clients on that network
+* IP Group - DNS server(s) used in the firewall rules
+
+### Unifi Internet DNS
+
+!!! info
+    Internet DNS is used for all outbound traffic
+
+![Unifi Internet DNS](../dns-adguard-unbound/unifi_internet_dns.png)
+
+### Unifi Network DNS
+
+!!! info
+    Network DNS is used for all DHCP clients on the network
+
+!!! warning
+    Only LAN network is using the Local DNS server, other networks like IoT and Company network are using public networks to avoid any blocking. Using AdGuard with some IoT devices like TV has created outage on some streaming applications e.g. Viaplay.
+
+![Unifi Network DNS](../dns-adguard-unbound/unifi_network_dns.png)
+
+### Unifi IP Group DNS
+!!! info
+    IP Group DNS is used for all firewall rules
+
+!!! warning
+    IP Group DNS is not used for DHCP clients on the network
+
+![Unifi IP Group DNS 1](../dns-adguard-unbound/unifi-ip-group-dns1.png)
+![Unifi IP Group DNS 2](../dns-adguard-unbound/unifi-ip-group-dns2.png)
+
+<br/>
+<br/>
+
+
+
+
 ## Performance
 
 Because Unbound does the heavy lifting of traversing the DNS tree itself (instead of offloading it to a giant like Google), the performance metrics look different than a standard ISP setup.
