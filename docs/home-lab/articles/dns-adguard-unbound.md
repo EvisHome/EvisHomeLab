@@ -1,3 +1,12 @@
+---
+tags:
+  - dns
+  - adguard
+  - unbound
+  - self-hosted
+  - unifi-network
+---
+
 # DNS: The AdGuard Home & Unbound Stack
 In this section, we break down the DNS architecture of the Homelab.
 
