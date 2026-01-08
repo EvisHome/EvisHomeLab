@@ -5,6 +5,13 @@ description: Turning log noise into actionable insights using AI.
 image: ai-log-summary/thumb.jpg
 highlight: true
 ---
+tags:
+- home assistant
+- logs
+- python
+- AI
+- self-hosted
+---
 
 # AI Log Summary: Turning Noise into Insights
 

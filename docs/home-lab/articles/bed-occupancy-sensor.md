@@ -4,6 +4,12 @@ date: 2024-12-03
 description: Double bed occupancy monitoring, using two pressure sensitive stripes under the bed mattresses.
 image: bed-occupancy-sensor/main-bed-picture.jpg
 ---
+tags:
+- DIY
+- ESPHome
+- Home Assistant
+- NodeRED
+---
 
 # Bed Occupancy Sensor
 
