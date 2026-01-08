@@ -19,6 +19,7 @@ Articles about my Home Lab.
 
 
 
+
 <div class="grid cards" borderless style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0px;">
 
   <div class="card">
@@ -52,3 +53,6 @@ Articles about my Home Lab.
   </div>
 
 </div>
+
+## Articles
+{{ list_articles_grid() }}

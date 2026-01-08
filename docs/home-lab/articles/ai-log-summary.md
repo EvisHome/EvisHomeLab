@@ -1,3 +1,10 @@
+---
+title: AI Log Summary
+date: 2024-05-20
+description: Turning log noise into actionable insights using AI.
+image: ai-log-summary/thumb.jpg
+---
+
 # AI Log Summary: Turning Noise into Insights
 
 **Project Status:** ✅ Operational  

@@ -49,6 +49,7 @@ plugins:
   - glightbox
   - mkdocs-video
   - search
+  - macros
 
 extra:
   analytics:

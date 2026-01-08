@@ -1,3 +1,10 @@
+---
+title: NTP Servers
+date: 2023-10-10
+description: Setting up a local NTP server with Chrony for accurate timekeeping.
+image: https://via.placeholder.com/300x200?text=NTP
+---
+
 # 1. Install Chrony & Stop the old time service
 sudo apt-get update
 sudo apt-get install chrony -y
