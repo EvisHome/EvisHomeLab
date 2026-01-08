@@ -41,6 +41,10 @@ def define_env(env):
                                     # but let's try to make it relative to docs root or standard mkdocs link
                                     
                                     # Construct article object
+                                    is_draft = frontmatter.get('draft', False)
+                                    if is_draft:
+                                        continue
+
                                     article = {
                                         'title': frontmatter.get('title', 'No Title'),
                                         'date': frontmatter.get('date'),
