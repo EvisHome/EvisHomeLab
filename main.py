@@ -39,7 +39,8 @@ def define_env(env):
                                         'image': frontmatter.get('image', 'https://via.placeholder.com/300x200'),
                                         'description': frontmatter.get('description', ''),
                                         'draft': is_draft,
-                                        'highlight': frontmatter.get('highlight', False)
+                                        'highlight': frontmatter.get('highlight', False),
+                                        'tags': frontmatter.get('tags', [])
                                     }
                                     
                                     # Link Calculation
@@ -75,6 +76,11 @@ def define_env(env):
         html = '<div class="grid cards" borderless style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0px;">\n'
         
         for article in highlight_articles:
+            tags_html = ''
+            if article['tags']:
+                for tag in article['tags']:
+                    tags_html += f'<span style="display: inline-block; background: #333; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 0.7em; margin-right: 5px; margin-top: 5px;">{tag}</span>'
+            
             html += f'''
   <div class="card">
     <a href="{article['url']}" style="text-decoration: none; color: inherit; display: block;">
@@ -82,6 +88,7 @@ def define_env(env):
     <div style="padding: 10px;">
       <h3>{article['title']}</h3>
       <p>{article['description']}</p>
+      <div style="margin-top: 8px;">{tags_html}</div>
     </div>
     </a>
   </div>
@@ -102,6 +109,11 @@ def define_env(env):
         html = '<div class="grid cards" borderless style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 0px;">\n'
         
         for article in display_articles:
+            tags_html = ''
+            if article['tags']:
+                for tag in article['tags']:
+                    tags_html += f'<span style="display: inline-block; background: #333; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 0.7em; margin-right: 5px; margin-top: 5px;">{tag}</span>'
+
             html += f'''
   <div class="card">
     <a href="{article['url']}" style="text-decoration: none; color: inherit; display: block;">
@@ -110,6 +122,7 @@ def define_env(env):
       <h3 style="margin: 0; font-size: 1.0em; line-height: 1.2;">{article['title']}</h3>
       <p style="margin-top: 4px; font-size: 0.8em; color: #aaa;">{article['date']}</p>
       <p style="margin-top: 4px; font-size: 0.85em; line-height: 1.4;">{article['description']}</p>
+      <div style="margin-top: 6px;">{tags_html}</div>
     </div>
     </a>
   </div>
