@@ -4,7 +4,6 @@ date: 2025-12-20
 description: Turning log noise into actionable insights using AI.
 image: ai-log-summary/thumb.jpg
 highlight: true
----
 tags:
 - home assistant
 - logs
