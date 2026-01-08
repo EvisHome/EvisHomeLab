@@ -414,7 +414,7 @@ scrape_configs:
                 expression: '\s\d+/\d+/\d+/\d+/\d+\s+(?P<status_code>\d{3})\s'
             - template:
                 source: level
-                template: '{{ if hasPrefix "2" .status_code }}info{{ else if hasPrefix "3" .status_code }}info{{ else if hasPrefix "4" .status_code }}warn{{ else if hasPrefix "5" .status_code }}error{{ else }}unknown{{ end }}'
+                template: '{% raw %}{{ if hasPrefix "2" .status_code }}info{{ else if hasPrefix "3" .status_code }}info{{ else if hasPrefix "4" .status_code }}warn{{ else if hasPrefix "5" .status_code }}error{{ else }}unknown{{ end }}{% endraw %}'
             - labels:
                 level:
       - regex:
