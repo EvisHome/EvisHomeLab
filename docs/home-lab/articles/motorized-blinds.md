@@ -3,7 +3,6 @@ title: Motorized Horizontal Blinds - Tilt Action
 date: 2022-08-26
 description: Automating horizontal window blinds tilt with a stepper motor and ESP board using ESPHome.
 image: motorized-blinds/blinds-thumb.jpg
----
 tags:
 - ESPHome
 - Home Assistant

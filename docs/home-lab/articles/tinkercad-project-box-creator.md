@@ -4,7 +4,6 @@ date: 2022-09-01
 description: Parametric 3D printable project box creator using TinkerCad Codeblocks.
 image: tinkercad-project-box-creator/main_picture.jpg
 highlight: true
----
 tags:    
 - 3D Printing
 - TinkerCad
