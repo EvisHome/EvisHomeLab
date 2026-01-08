@@ -5,6 +5,8 @@ repo_url: https://github.com/EvisHome/EvisHomeLab
 edit_uri: edit/main/docs/
 theme:
   name: material
+  features:
+    - navigation.indexes
   # Add the following block for color customization
   palette:
     # Palette toggle for light mode
