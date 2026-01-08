@@ -95,14 +95,14 @@ def define_env(env):
         for article in articles:
             html += f'''
   <div class="card">
-    <p><a href="{article['url']}">
+    <a href="{article['url']}" style="text-decoration: none; color: inherit; display: block;">
     <img src="{article['image']}" alt="{article['title']}" style="width:100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px 8px 0 0;">
     <div style="padding: 8px;">
       <h3 style="margin: 0; font-size: 1.0em; line-height: 1.2;">{article['title']}</h3>
       <p style="margin-top: 4px; font-size: 0.8em; color: #aaa;">{article['date']}</p>
-      <p style="font-size: 0.85em; line-height: 1.4; margin-top: 4px;">{article['description']}</p>
+      <p style="margin-top: 4px; font-size: 0.85em; line-height: 1.4;">{article['description']}</p>
     </div>
-    </a></p>
+    </a>
   </div>
 '''
         html += '</div>'
