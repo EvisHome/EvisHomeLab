@@ -13,9 +13,7 @@
 
 # Home Lab
 
-Articles about my Home Lab.
-
-## Highlights
+## Story Highlights
 
 
 
