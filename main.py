@@ -5,13 +5,9 @@ from datetime import datetime
 def define_env(env):
     """
     This is the hook for defining variables, macros and filters
-
-    - variables: the dictionary that contains the environment variables
-    - macro: a decorator function, to declare a macro.
     """
 
-    @env.macro
-    def list_articles_grid():
+    def get_articles(env):
         articles_dir = os.path.join(env.project_dir, 'docs', 'home-lab', 'articles')
         articles = []
 
@@ -33,49 +29,27 @@ def define_env(env):
                             if len(parts) >= 3:
                                 frontmatter = yaml.safe_load(parts[1])
                                 if frontmatter and 'date' in frontmatter:
-                                    # Create relative link
-                                    rel_dir = os.path.relpath(root, os.path.join(env.project_dir, 'docs'))
-                                    rel_path = f"{rel_dir}/{file}".replace('\\', '/')
-                                    # Fix path if it starts with home-lab/articles
-                                    # MkDocs URLs are relative to the page calling the macro usually, 
-                                    # but let's try to make it relative to docs root or standard mkdocs link
-                                    
                                     # Construct article object
                                     is_draft = frontmatter.get('draft', False)
-                                    if is_draft:
-                                        continue
-
+                                    # We don't filter drafts here, we let the macros decide
+                                    
                                     article = {
                                         'title': frontmatter.get('title', 'No Title'),
                                         'date': frontmatter.get('date'),
                                         'image': frontmatter.get('image', 'https://via.placeholder.com/300x200'),
                                         'description': frontmatter.get('description', ''),
-                                        'url': f"articles/{file.replace('.md', '')}" # Simplified relative link for index.md
+                                        'draft': is_draft,
+                                        'highlight': frontmatter.get('highlight', False)
                                     }
                                     
-                                    # Check if article is in a subdirectory (e.g. motorized-blinds/motorized-blinds.md)
-                                    # If so, link might need adjustment. 
-                                    # Assuming structure: docs/home-lab/articles/name.md or docs/home-lab/articles/dir/name.md
-                                    
-                                    # Let's handle the specific pathing relative to home-lab/index.md
-                                    # Index is at docs/home-lab/index.md.
-                                    # Articles are at docs/home-lab/articles/...
-                                    
-                                    # Calculate relative path from home-lab/index.md to the article
-                                    # If file is at docs/home-lab/articles/foo.md -> link is articles/foo
-                                    # If file is at docs/home-lab/articles/foo/bar.md -> link is articles/foo/bar
-                                    
+                                    # Link Calculation
                                     rel_path_from_articles = os.path.relpath(file_path, articles_dir)
                                     link_url = f"articles/{rel_path_from_articles.replace('.md', '').replace('\\', '/')}"
                                     article['url'] = link_url
                                     
-                                    # Handle image path
-                                    # If image is relative to article, e.g. "thumb.jpg" in same dir
-                                    # We need to make it relative to index.md
+                                    # Image Path Calculation
                                     img_path = article['image']
                                     if not img_path.startswith('http'):
-                                         # If image is just "thumb.jpg" and article is in "dir", 
-                                         # image path from index should be "articles/dir/thumb.jpg"
                                          article_sub_dir = os.path.dirname(rel_path_from_articles)
                                          if article_sub_dir:
                                              article['image'] = f"articles/{article_sub_dir}/{img_path}".replace('\\', '/')
@@ -88,11 +62,46 @@ def define_env(env):
 
         # Sort articles by date descending
         articles.sort(key=lambda x: str(x['date']), reverse=True)
+        return articles
 
-        # Generate HTML Grid
+    @env.macro
+    def list_highlights_grid():
+        articles = get_articles(env)
+        
+        # Filter: Highlights Only, No Drafts
+        highlight_articles = [a for a in articles if a['highlight'] and not a['draft']]
+        
+        # HTML Grid: 3 Columns (Original Style)
+        html = '<div class="grid cards" borderless style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0px;">\n'
+        
+        for article in highlight_articles:
+            html += f'''
+  <div class="card">
+    <a href="{article['url']}" style="text-decoration: none; color: inherit; display: block;">
+    <img src="{article['image']}" alt="{article['title']}" style="width:100%; border-radius: 8px;">
+    <div style="padding: 10px;">
+      <h3>{article['title']}</h3>
+      <p>{article['description']}</p>
+    </div>
+    </a>
+  </div>
+'''
+        html += '</div>'
+        return html
+
+    @env.macro
+    def list_articles_grid():
+        articles = get_articles(env)
+        
+        # Filter: No Drafts
+        # Note: We include highlights here too, usually desired. 
+        # If user wants to exclude highlights from main list, we can add `and not a['highlight']`
+        display_articles = [a for a in articles if not a['draft']]
+        
+        # HTML Grid: 4 Columns (Compact Style)
         html = '<div class="grid cards" borderless style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 0px;">\n'
         
-        for article in articles:
+        for article in display_articles:
             html += f'''
   <div class="card">
     <a href="{article['url']}" style="text-decoration: none; color: inherit; display: block;">

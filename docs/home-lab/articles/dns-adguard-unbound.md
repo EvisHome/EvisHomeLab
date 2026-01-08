@@ -3,6 +3,7 @@ title: DNS AdGuard Home & Unbound
 date: 2025-12-28
 description: Eliminating reliance on third parties. Coupling AdGuard Home with Unbound.
 image: dns-adguard-unbound/thumb.jpg
+highlight: true
 tags:
   - dns
   - adguard
