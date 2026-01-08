@@ -84,7 +84,7 @@ def define_env(env):
             html += f'''
   <div class="card">
     <a href="{article['url']}" style="text-decoration: none; color: inherit; display: block;">
-    <img src="{article['image']}" alt="{article['title']}" style="width:100%; border-radius: 8px;">
+    <img src="{article['image']}" alt="{article['title']}" style="width:100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px 8px 0 0;">
     <div style="padding: 10px;">
       <h3>{article['title']}</h3>
       <p>{article['description']}</p>

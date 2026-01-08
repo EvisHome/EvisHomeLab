@@ -8,6 +8,7 @@ tags:
 - 3D Printing
 - TinkerCad
 - Project Box
+- DIY
 ---
 
 # Project Box Creator
