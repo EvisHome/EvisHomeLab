@@ -7,19 +7,16 @@
     background-color: #222;
   }
   .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    transform: translateY(-5px);
+    background-color: #333;
   }
 </style>
 
 # Home Lab
 
-*Placeholder for Server & VM documentation.*
+Articles about my Home Lab.
 
-## Infrastructure
-- **Servers**: (To be documented)
-- **Virtual Machines**: (To be documented)
-- **Containers**: (To be documented)
+## Highlights
+
 
 
 <div class="grid cards" borderless style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0px;">
