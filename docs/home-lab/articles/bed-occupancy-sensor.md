@@ -1,6 +1,6 @@
 ---
 title: Bed Occupancy Sensor
-date: 2022-12-15
+date: 2024-12-03
 description: Double bed occupancy monitoring, using two pressure sensitive stripes under the bed mattresses.
 image: bed-occupancy-sensor/main-bed-picture.jpg
 ---

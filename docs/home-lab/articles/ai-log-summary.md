@@ -1,6 +1,6 @@
 ---
 title: AI Log Summary
-date: 2024-05-20
+date: 2025-12-20
 description: Turning log noise into actionable insights using AI.
 image: ai-log-summary/thumb.jpg
 ---
