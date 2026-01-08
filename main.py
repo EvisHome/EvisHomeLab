@@ -90,17 +90,17 @@ def define_env(env):
         articles.sort(key=lambda x: str(x['date']), reverse=True)
 
         # Generate HTML Grid
-        html = '<div class="grid cards" borderless style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0px;">\n'
+        html = '<div class="grid cards" borderless style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 0px;">\n'
         
         for article in articles:
             html += f'''
   <div class="card">
     <p><a href="{article['url']}">
     <img src="{article['image']}" alt="{article['title']}" style="width:100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px 8px 0 0;">
-    <div style="padding: 10px;">
-      <h3 style="margin: 0; font-size: 1.1em;">{article['title']}</h3>
-      <p style="margin-top: 5px; font-size: 0.9em; color: #ccc;">{article['date']}</p>
-      <p style="font-size: 0.9em;">{article['description']}</p>
+    <div style="padding: 8px;">
+      <h3 style="margin: 0; font-size: 1.0em; line-height: 1.2;">{article['title']}</h3>
+      <p style="margin-top: 4px; font-size: 0.8em; color: #aaa;">{article['date']}</p>
+      <p style="font-size: 0.85em; line-height: 1.4; margin-top: 4px;">{article['description']}</p>
     </div>
     </a></p>
   </div>
