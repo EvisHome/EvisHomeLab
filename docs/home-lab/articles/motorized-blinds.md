@@ -6,7 +6,7 @@ Motorizing and automating horizontal window blinds tilt with a stepper motor and
 
 
 <video controls autoplay muted>
-  <source src="/docs/home-lab/articles/motorized-blinds/motorized-blinds-demo.mp4" type="video/mp4">
+  <source src=" ../motorized-blinds/motorized-blinds-demo.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
