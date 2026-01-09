@@ -68,4 +68,6 @@ extra:
     cookies:
       analytics:
         name: Google Analytics
-        checked: true
+
+hooks:
+  - hooks/hide_drafts.py
