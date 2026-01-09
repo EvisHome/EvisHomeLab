@@ -51,7 +51,8 @@ plugins:
   - glightbox
   - mkdocs-video
   - search
-  - macros
+  - macros:
+      render_by_default: false
 
 extra:
   analytics:

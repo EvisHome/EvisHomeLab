@@ -1,3 +1,6 @@
+---
+macros: true
+---
 <style>
   .card {
     border: 1px solid #e1e1e1;
