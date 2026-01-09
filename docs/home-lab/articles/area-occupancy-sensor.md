@@ -1,7 +1,7 @@
 ---
 title: Area Occupancy Sensor
 date: 2022-08-27
-description: Eliminating reliance on third parties. Coupling AdGuard Home with Unbound.
+description: Presence detection with PIR, mmWave radar and BLE Tracking.
 image: area-occupancy-sensor/main-picture.jpg
 highlight: false
 draft: false
