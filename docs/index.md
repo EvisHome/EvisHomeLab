@@ -7,12 +7,12 @@ description: Welcome to EvisHomeLab
 # EvisHomeLab
 
 <div class="media-grid">
-    <a href="assets/images/evishomelab.png" class="glightbox">
-        <img src="assets/images/evishomelab.png" alt="Dashboard Image">
+    <a href="home-lab/articles/the-rack/rack-back.jpeg" class="glightbox">
+        <img src="home-lab/articles/the-rack/rack-back.jpeg" alt="Dashboard Image">
     </a>
-    <a href="../docs/home-lab/articles/the-rack/the-rack.mp4" class="glightbox" data-width="100%" data-height="auto">
+    <a href="home-lab/articles/the-rack/the-rack.mp4" class="glightbox" data-width="100%" data-height="auto">
         <video width="100%" autoplay loop muted playsinline style="cursor: pointer;">
-            <source src="../docs/home-lab/articles/the-rack/the-rack.mp4" type="video/mp4">
+            <source src="home-lab/articles/the-rack/the-rack.mp4" type="video/mp4">
         </video>
     </a>
     <a href="assets/images/frigate_nvr.png" class="glightbox">
