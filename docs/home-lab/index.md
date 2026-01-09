@@ -1,5 +1,5 @@
 ---
-macros: true
+render_macros: true
 ---
 <style>
   .card {
