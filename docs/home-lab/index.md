@@ -4,7 +4,7 @@ render_macros: true
 <style>
   .card {
     border: 1px solid #e1e1e1;
-    border-radius: 8px;
+    border-radius: 0px;
     transition: 0.3s;
     padding: 0rem;
     background-color: #252933;
