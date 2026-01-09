@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Placeholder for Garmin integration
 
 <!-- START_IMAGE -->
-![Package Diagram](../../../assets/images/packages/garmin.png)
+![Package Diagram](../../assets/images/packages/garmin.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

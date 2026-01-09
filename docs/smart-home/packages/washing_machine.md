@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Logic for Washing Machine state tracking, run time calculation, and notifications.
 
 <!-- START_IMAGE -->
-![Package Diagram](../../../assets/images/packages/washing_machine.png)
+![Package Diagram](../../assets/images/packages/washing_machine.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary
@@ -34,6 +34,7 @@ The Washing Machine package provides intelligent state tracking for any washing 
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
+* **[System](../dashboards/admin-system/system.md)**: *This view provides deep insights into the Proxmox 'Halo' virtualization node. It features real-time resource monitoring (CPU, RAM) using `mini-graph-card`, and critical power controls (Reboot, Shutdown) protected by confirmation dialogs. It also offers bulk management for guest VMs/containers and tracks system update status, ensuring the infrastructure host is healthy and up-to-date.* (Uses 1 entities)
 * **[Home](../dashboards/main/home.md)**: *The Home dashboard serves as the central information hub. It features a large clock and family calendars, alongside detailed weather forecasts. Key home stats are highlighted, including real-time energy prices, power usage, and the status of major appliances like the dishwasher and washing machine. The view also provides a high-level overview of the entire house, displaying camera feeds and status summaries for all key rooms (Sauna, Bathroom, Bedroom, etc.) using 'Streamline' area cards.* (Uses 1 entities)
 <!-- END_DASHBOARD -->
 

@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Power aggregation for Shelly 3EM (Total Power, Energy)
 
 <!-- START_IMAGE -->
-![Package Diagram](../../../assets/images/packages/shelly_3em.png)
+![Package Diagram](../../assets/images/packages/shelly_3em.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

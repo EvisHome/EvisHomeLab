@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Office PC control (Audio, Displays, Power)
 
 <!-- START_IMAGE -->
-![Package Diagram](../../../assets/images/packages/office._pc.png)
+![Package Diagram](../../assets/images/packages/office_pc.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

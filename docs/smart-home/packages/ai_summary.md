@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Frontend controller for the remote AI Log Reporter integration.
 
 <!-- START_IMAGE -->
-![Package Diagram](../../../assets/images/packages/ai_summary.png)
+![Package Diagram](../../assets/images/packages/ai_summary.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary
@@ -37,7 +37,9 @@ This system runs automatically every morning at 7:00 AM.
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
-*No linked dashboard views found (Automatic Scan).*
+This package powers the following dashboard views:
+
+* **[System](../dashboards/admin-system/system.md)**: *This view provides deep insights into the Proxmox 'Halo' virtualization node. It features real-time resource monitoring (CPU, RAM) using `mini-graph-card`, and critical power controls (Reboot, Shutdown) protected by confirmation dialogs. It also offers bulk management for guest VMs/containers and tracks system update status, ensuring the infrastructure host is healthy and up-to-date.* (Uses 2 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram
@@ -93,7 +95,10 @@ template:
 
 shell_command:
   generate_ai_log_summary: >
-    ssh -i /config/.ssh/id_rsa_new 
+    ssh -i /config/.ssh/id_rsa
+    -o IdentitiesOnly=yes 
+    -o BatchMode=yes
+    -o ConnectTimeout=5
     -o StrictHostKeyChecking=no 
     -o UserKnownHostsFile=/dev/null 
     root@10.0.0.23 
@@ -105,10 +110,10 @@ script:
     icon: mdi:robot
     sequence:
       - action: shell_command.generate_ai_log_summary # Service changed to Action in 2024.12+
-      - action: notify.persistent_notification # Optional: popup in HA UI
-        data:
-          title: "AI Reporter"
-          message: "Gemini is analyzing logs and updating your dashboard."
+#      - action: notify.persistent_notification # Optional: popup in HA UI
+#        data:
+#          title: "AI Reporter"
+#          message: "Gemini is analyzing logs and updating your dashboard."
 
 automation:
   - alias: "Daily AI System Summary"

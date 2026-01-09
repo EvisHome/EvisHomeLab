@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Helpers and logic for the dynamic notification router
 
 <!-- START_IMAGE -->
-![Package Diagram](../../../assets/images/dashboards/smart_notifications.png)
+![Package Diagram](../../assets/images/packages/smart_notifications.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary
@@ -36,9 +36,10 @@ The system operates on a "Publish-Subscribe" model adapted for a smart home:
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
+* **[System](../dashboards/admin-system/system.md)**: *This view provides deep insights into the Proxmox 'Halo' virtualization node. It features real-time resource monitoring (CPU, RAM) using `mini-graph-card`, and critical power controls (Reboot, Shutdown) protected by confirmation dialogs. It also offers bulk management for guest VMs/containers and tracks system update status, ensuring the infrastructure host is healthy and up-to-date.* (Uses 1 entities)
 * **[Living Room](../dashboards/main/living_room.md)**: *The Living Room dashboard is a media and comfort hub. It features in-depth environmental monitoring (Radon, VOCs, CO2) via Airthings Wave, displaying historical trends. Entertainment controls are central, with remotes for the TV and Soundbar, plus power management for the media wall. The view also includes specific controls for the fireplace, air purifier modes, and various lighting scenes, alongside standard occupancy settings.* (Uses 1 entities)
 * **[Notifications Management](../dashboards/notification-center/notifications_management.md)**: *The Notification Center dashboard provides a comprehensive interface for managing the smart home's notification system. Administrators can add or remove users for mobile app notifications and define notification categories (e.g., 'Garage', 'Electricity'). The view allows for granular control over subscriptions, enabling individual users to opt-in or out of specific notification types, and includes tools to map and monitor notification-related automations.* (Uses 9 entities)
-* **[Room Management](../dashboards/room-management/room_management.md)**: *The Room Management dashboard serves as the administrative backend for the home's room logic. It allows users to initialize new rooms (creating necessary helper entities) or delete existing ones. It features a dynamic "Configured Rooms" section powered by `auto-entities`, which automatically lists all configured rooms and provides collapsible controls for their automation modes, occupancy sensors, and timeouts.* (Uses 1 entities)
+* **[Room Management](../dashboards/room-management/room_management.md)**: *The Room Management dashboard serves as the administrative backend for the home's room logic. It allows users to initialize new rooms (creating necessary helper entities) or delete existing ones. It features a dynamic "Configured Rooms" section powered by `auto-entities`, which automatically lists all configured rooms and provides collapsible controls for their automation modes, occupancy sensors, and timeouts.* (Uses 2 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram
@@ -89,7 +90,7 @@ input_text:
   ## MASTER LIST FOR THE CATEGORIES
   notify_mgmt_categories:
     name: "Categories (comma-separated)"
-    initial: "info,system,security,alarm"
+    initial: "info,system,security,alarm,doorbell"
 
   # TO BE REMOVED
   notify_delete_category:
@@ -182,7 +183,7 @@ script:
                 payload: >-
                   {
                     "name": "{{ repeat.item|capitalize }} Notification",
-                    "object_id": "{{ repeat.item }}_notification_{{ user_slug }}",
+                    "default_entity_id": "switch.{{ repeat.item }}_notification_{{ user_slug }}",
                     "unique_id": "notify_switch_{{ user_slug }}_{{ repeat.item }}",
                     "icon": "mdi:bell-ring",
                     "command_topic": "notify/{{ user_slug }}/{{ repeat.item }}/set",
@@ -223,7 +224,7 @@ script:
                 payload: >-
                   {
                     "name": "Notify {{ repeat.item|capitalize }}: When Home",
-                    "object_id": "notify_category_{{ repeat.item }}_local",
+                    "name": "Notify {{ repeat.item|capitalize }}: When Home",
                     "unique_id": "notify_category_{{ repeat.item }}_local",
                     "icon": "mdi:home-account",
                     "command_topic": "notify/settings/{{ repeat.item }}/local_only/set",
@@ -255,7 +256,7 @@ script:
           payload: >-
             {
               "name": "{{ user_name }} Notify Service",
-              "object_id": "notify_service_{{ user_slug }}",
+              "name": "{{ user_name }} Notify Service",
               "unique_id": "notify_service_{{ user_slug }}",
               "icon": "mdi:cellphone",
               "command_topic": "notify/{{ user_slug }}/service/set",
@@ -276,7 +277,7 @@ script:
           payload: >-
             {
               "name": "{{ user_name }} Phone Platform",
-              "object_id": "notify_platform_{{ user_slug }}",
+              "name": "{{ user_name }} Phone Platform",
               "unique_id": "notify_platform_{{ user_slug }}",
               "icon": "mdi:apple-ios",
               "options": ["android", "ios"],
@@ -461,7 +462,7 @@ script:
           payload: >-
             {
               "name": "Notify {{ new_category|capitalize }}: When Home",
-              "object_id": "notify_category_{{ new_category }}_local",
+              "default_entity_id": "switch.notify_category_{{ new_category }}_local",
               "unique_id": "notify_category_{{ new_category }}_local",
               "icon": "mdi:home-account",
               "command_topic": "notify/settings/{{ new_category }}/local_only/set",
@@ -481,7 +482,6 @@ script:
           payload: "OFF"
 
       # 3. Add Switch to ALL Existing Users
-      #    We find users by looking for their 'notify_service_' helper entities
       - repeat:
           for_each: >-
             {{ states.text 
@@ -492,10 +492,6 @@ script:
           sequence:
             - variables:
                 user_slug: "{{ repeat.item }}"
-                # We need the user's friendly name to name the switch nicely.
-                # We can grab it from the existing 'notify_service' entity name (e.g. "Evis Notify Service")
-                user_friendly_name: >-
-                  {{ state_attr('text.notify_service_' ~ user_slug, 'friendly_name') | replace(' Notify Service', '') }}
 
             # Create the switch for this user
             - service: mqtt.publish
@@ -506,6 +502,7 @@ script:
                   {
                     "name": "{{ new_category|capitalize }} Notification",
                     "object_id": "{{ new_category }}_notification_{{ user_slug }}",
+                    "default_entity_id": "switch.{{ new_category }}_notification_{{ user_slug }}",
                     "unique_id": "notify_switch_{{ user_slug }}_{{ new_category }}",
                     "icon": "mdi:bell-ring",
                     "command_topic": "notify/{{ user_slug }}/{{ new_category }}/set",
@@ -526,7 +523,43 @@ script:
                 topic: "notify/{{ user_slug }}/{{ new_category }}/state"
                 payload: "ON"
 
-      # Refresh Lists (to update delete dropdown with new category)
+      # 4. Add Switch to ALL Smart Speakers
+      - variables:
+          all_speakers: >-
+            {{ states.switch 
+               | selectattr('attributes.speaker_slug', 'defined')
+               | map(attribute='attributes.speaker_slug')
+               | unique
+               | list }}
+      - repeat:
+          for_each: "{{ all_speakers }}"
+          sequence:
+            - service: mqtt.publish
+              data:
+                retain: true
+                topic: "homeassistant/switch/speaker_{{ repeat.item }}_notify_{{ new_category }}/config"
+                payload: >-
+                  {{
+                    {
+                      "name": new_category | title,
+                      "default_entity_id": "switch.speaker_" ~ repeat.item ~ "_notify_" ~ new_category,
+                      "unique_id": "speaker_notif_" ~ repeat.item ~ "_" ~ new_category ~ "_v4",
+                      "icon": "mdi:bell-ring",
+                      "command_topic": "speaker/" ~ repeat.item ~ "/notify_" ~ new_category ~ "/set",
+                      "state_topic": "speaker/" ~ repeat.item ~ "/notify_" ~ new_category ~ "/state",
+                      "payload_on": "ON",
+                      "payload_off": "OFF",
+                      "device": { "identifiers": ["smart_speaker_" ~ repeat.item] }
+                    } | to_json
+                  }}
+            # Default to ON
+            - service: mqtt.publish
+              data:
+                retain: true
+                topic: "speaker/{{ repeat.item }}/notify_{{ new_category }}/state"
+                payload: "ON"
+
+      # Refresh Lists
       - delay: "00:00:01"
       - service: automation.trigger
         target:
@@ -562,25 +595,45 @@ script:
       presence_only:
         description: "Override: Force check presence"
         default: null
+      source_room:
+        description: "Slug of the room where event originated (for suppression)"
+        default: null
+      room:
+        description: "Override: Specific room to target (bypass occupancy)"
+        default: null
     sequence:
       - variables:
           global_presence_setting: >-
-            {{ states('switch.notify_category_' ~ category ~ '_local') == 'on' }}
+            {{ states('switch.notify_category_' ~ category | default('info') ~ '_local') == 'on' }}
           use_presence_check: >-
-            {{ presence_only if presence_only is not none else global_presence_setting }}
+            {% set pres = presence_only | default(none) %}
+            {{ pres if pres is not none else global_presence_setting }}
       - repeat:
           for_each: >-
             {{ states.switch 
-               | selectattr('entity_id', 'search', '.' ~ category ~ '_notification_')
+               | selectattr('entity_id', 'search', '\.' ~ category | default('info') ~ '_notification_')
                | selectattr('state', 'eq', 'on')
                | map(attribute='entity_id')
                | list }}
           sequence:
             - variables:
-                user_slug: "{{ state_attr(repeat.item, 'user_slug') }}"
-                linked_person: "{{ state_attr(repeat.item, 'linked_person') }}"
+                match_id: "{{ repeat.item }}"
+                # Fallback: Extract from Entity ID
+                slug_from_id: >-
+                  {{ repeat.item 
+                     | replace('switch.', '') 
+                     | replace(category | default('info') ~ '_notify_', '') 
+                     | replace('_notification', '') }}
+                user_slug: "{{ state_attr(repeat.item, 'user_slug') | default(slug_from_id, true) }}"
+                # Fetch Service
                 target_service: "{{ states('text.notify_service_' ~ user_slug) }}"
-                target_platform: "{{ states('select.notify_platform_' ~ user_slug) | default('android') }}"
+                # Fetch Linked Person for Presence Check
+                linked_person: "{{ state_attr(repeat.item, 'linked_person') }}"
+
+            - service: system_log.write
+              data:
+                message: "DEBUG MOBILE {{ user_slug }} | Service: {{ target_service }} | Match: {{ match_id }}"
+                level: warning
             - if:
                 - condition: template
                   value_template: >-
@@ -594,12 +647,12 @@ script:
               then:
                 - service: "{{ target_service }}"
                   data:
-                    title: "{{ title }}"
+                    title: "{{ title | default('Notification') }}"
                     message: "{{ message }}"
                     data:
-                      tag: "{{ tag }}"
-                      image: "{{ image }}"
-                      sticky: "{{ sticky }}"
+                      tag: "{{ tag | default('') }}"
+                      image: "{{ image | default('') }}"
+                      sticky: "{{ sticky | default(false) }}"
                       push:
                         sound:
                           name: "default"
@@ -608,16 +661,281 @@ script:
                       ttl: "{{ 0 if critical | default(false) else 0 }}"
                       priority: "{{ 'high' if critical | default(false) else 'normal' }}"
                       clickAction: >-
-                        {% if target_platform == 'ios' and 'app://' in (clickAction|string) %}
+                        {% set clk = clickAction | default('') %}
+                        {% if target_platform == 'ios' and 'app://' in (clk|string) %}
                           unifi-protect://
                         {% else %}
-                          {{ clickAction }}
+                          {{ clk }}
                         {% endif %}
                       actions: "{{ actions | default([]) }}"
 
-# ------------------------------------------------------------------------------
-# 3. AUTOMATIONS
-# ------------------------------------------------------------------------------
+      # --- 2. SMART SPEAKER ROUTING ---
+      - variables:
+          # Define Priority based on Critical flag or Category
+          # Categories 'alarm', 'security', 'doorbell', 'smoke' are inherently Critical
+          is_critical: >-
+            {{ critical | default(false) or category in ['alarm', 'security', 'doorbell', 'smoke'] }}
+
+      - repeat:
+          # Find all speakers subscribed to this category
+          for_each: >-
+            {{ states.switch 
+               | selectattr('entity_id', 'search', '^switch\.speaker_.*_notify_' ~ category | default('info'))
+               | selectattr('state', 'eq', 'on')
+               | map(attribute='entity_id')
+               | list }}
+          sequence:
+            - variables:
+                # Extract Slug: switch.speaker_{slug}_notify_{category}
+                config_entity: "{{ repeat.item }}"
+                # Regex to pull slug
+                speaker_slug: >-
+                  {{ config_entity 
+                     | replace('switch.speaker_', '') 
+                     | replace('_notify_' ~ category | default('info'), '') }}
+
+                # Get Config Entity (now attached to Quiet Mode Switch)
+                speaker_config_entity: "switch.speaker_{{ speaker_slug }}_quiet_mode"
+
+                # Attributes are on the switch now
+                # Attributes are on the switch now
+                media_player: "{{ state_attr(speaker_config_entity, 'entity_id') }}"
+                # Get Linked Areas
+                linked_areas: "{{ state_attr(media_player, 'linked_areas') | default([]) }}"
+
+                # Status Tests
+                dnd_switch: "{{ speaker_config_entity | default('') }}"
+                # Check if Quiet Mode is ON
+                is_dnd_active: "{{ is_state(dnd_switch, 'on') }}"
+
+                # Room State Checks (Sleep/DND)
+                # We check if ANY linked room is in a restrictive state
+                is_room_quiet: >-
+                  {% set ns = namespace(quiet=false) %}
+                  {% for area in linked_areas %}
+                    {% set state = states('select.area_' ~ area ~ '_state') %}
+                    {% if state in ['Sleep', 'DND'] %}
+                      {% set ns.quiet = true %}
+                    {% endif %}
+                  {% endfor %}
+                  {{ ns.quiet }}
+
+                # Occupancy Check
+                is_occupied: >-
+                  {% set ns = namespace(occupied=false) %}
+                  {% set areas = linked_areas if linked_areas is iterable and linked_areas is not string else [] %}
+                  {% for area in areas %}
+                    {# Debug Sensor Logic #}
+                    {% set s1 = 'binary_sensor.area_' ~ area ~ '_occupancy' %}
+                    {% set s2 = 'binary_sensor.' ~ area ~ '_occupancy' %}
+                    {% set v1 = states(s1) %}
+                    {% set v2 = states(s2) %}
+                    
+                    {# Logic #}
+                    {% if v1 == 'on' or v2 == 'on' %}
+                      {% set ns.occupied = true %}
+                    {% endif %}
+                  {% endfor %}
+                  {{ ns.occupied }}
+
+                # Extended Debug Info
+                debug_occ_trace: >-
+                  {% set areas = linked_areas if linked_areas is iterable and linked_areas is not string else [] %}
+                  {% set ns = namespace(log=[]) %}
+                  {% for area in areas %}
+                     {% set s1 = 'binary_sensor.area_' ~ area ~ '_occupancy' %}
+                     {% set s2 = 'binary_sensor.' ~ area ~ '_occupancy' %}
+                     {% set ns.log = ns.log + [s1 ~ '=' ~ states(s1) ~ ' / ' ~ s2 ~ '=' ~ states(s2)] %}
+                  {% endfor %}
+                  {{ ns.log | join(', ') }}
+
+                # Source Suppression Check
+                # If source_room is provided, and matches a linked room, and I am in that room?
+                # Design: "If source_room is Occupied, start simple: If source matches linked room, suppress"
+                # Actually User said: "coffee ready... you in kitchen... silence"
+                # So: If source_room is in linked_rooms AND binary_sensor.room_{source_room}_occupancy is ON -> Suppress
+                is_at_source: >-
+                  {% if source_room is defined and source_room and source_room in linked_areas and is_state('binary_sensor.area_' ~ source_room ~ '_occupancy', 'on') %}
+                    true
+                  {% else %}
+                    false
+                  {% endif %}
+
+                # Targeted Override: If 'room' var is passed, force speak in that room (bypass occupancy)
+                # Targeted Override: Check if my linked rooms match the requested targets
+                is_targeted: >-
+                  {% if room is defined and room not in [none, '', 'unknown'] %}
+                     {% set targets = (room | string).split(',') | map('trim') | list %}
+                     {% set ns = namespace(match=false) %}
+                     {% for r in linked_areas %}
+                       {% if r in targets %}
+                         {% set ns.match = true %}
+                       {% endif %}
+                     {% endfor %}
+                     {{ ns.match }}
+                  {% else %}
+                     false
+                  {% endif %}
+
+            - service: system_log.write
+              data:
+                message: >-
+                  DEBUG SPEAKER {{ speaker_slug }} | 
+                  Media: {{ media_player }} | 
+                  Targeted: {{ is_targeted }} | 
+                  Room: {{ room }} |
+                  Linked: {{ linked_rooms }} |
+                  Occ: {{ is_occupied }} | 
+                  DND: {{ is_dnd_active }} | 
+                  Quiet: {{ is_room_quiet }}
+                level: warning
+
+            # LOGIC GATE
+            - if:
+                - condition: template
+                  value_template: >-
+                    {% set source_bool = is_at_source | bool %}
+                    {% set allow_priority = is_critical or (not is_dnd_active and not is_room_quiet) %}
+
+                    {# Logic Gate: Exclusive Targeting vs Occupancy #}
+                    {% set global_target_defined = room is defined and room not in [none, '', 'unknown'] %}
+
+                    {% if global_target_defined %}
+                       {# If targeting is active, ONLY allow targeted speakers #}
+                       {% set allow_occupancy = is_targeted %}
+                    {% else %}
+                       {# Standard Mode: Play if Critical OR Occupied #}
+                       {% set allow_occupancy = is_critical or is_occupied %}
+                    {% endif %}
+
+                    {% set allow_source = not source_bool %}
+                    {{ allow_priority and allow_occupancy and allow_source }}
+              then:
+                - service: system_log.write
+                  data:
+                    message: "DEBUG: Speaking to {{ media_player }} (Method: Cloud Say). Msg: {{ message }}"
+                    level: warning
+                - service: tts.cloud_say
+                  target:
+                    entity_id: "{{ media_player }}"
+                  data:
+                    message: "{{ message }}"
+                    # Optionally add chimes for critical?
+                    options:
+                      voice: "Katherine" # Customize as needed
+
+  # --- DEBUG DIAGNOSTICS ---
+  debug_notify_diagnostics:
+    alias: "System: Debug Notification Targets"
+    icon: mdi:bug
+    fields:
+      category:
+        description: "Category to test"
+        default: "info"
+    sequence:
+      - variables:
+          cat: "{{ category | default('info') }}"
+          # 1. Dump ALL Switches that look related
+          all_switches: >-
+            {{ states.switch | map(attribute='entity_id') | select('search', 'notify|speaker') | list }}
+
+          # 2. Test Mobile Regex
+          mobile_regex: "_{{ cat }}_notification"
+          mobile_matches: >-
+            {{ states.switch 
+               | selectattr('entity_id', 'search', mobile_regex)
+               | map(attribute='entity_id') | list }}
+
+          # 3. Test Speaker Regex
+          speaker_regex: "^switch\\.speaker_.*_notify_{{ cat }}"
+          speaker_matches: >-
+            {{ states.switch 
+               | selectattr('entity_id', 'search', speaker_regex)
+               | map(attribute='entity_id') | list }}
+
+      - service: system_log.write
+        data:
+          level: warning
+          message: >-
+            DEBUG DIAGNOSTICS (Category: {{ cat }})
+            --------------------------------------------------
+            Regex Mobile: '{{ mobile_regex }}' -> Found: {{ mobile_matches }}
+            Regex Speaker: '{{ speaker_regex }}' -> Found: {{ speaker_matches }}
+            --------------------------------------------------
+            ALL CANDIDATES: {{ all_switches }}
+
+      - service: system_log.write
+        data:
+          level: warning
+          message: >-
+            DEBUG DIAGNOSTICS (Category: {{ cat }})
+            --------------------------------------------------
+            Regex Mobile: '{{ mobile_regex }}' -> Found: {{ mobile_matches }}
+            Regex Speaker: '{{ speaker_regex }}' -> Found: {{ speaker_matches }}
+            --------------------------------------------------
+            ALL CANDIDATES: {{ all_switches }}
+
+  # --- PURGE GHOSTS ---
+  purge_notification_ghosts:
+    alias: "System: Purge Legacy Notification Ghosts"
+    icon: mdi:ghost-off
+    mode: single
+    sequence:
+      - variables:
+          categories: "{{ states('input_text.notify_mgmt_categories').split(',') | map('trim') | list + ['action', 'doorbell', 'doorbell2', 'network'] }}"
+          users: >-
+            {{ states.text 
+               | selectattr('entity_id', 'search', '^text\.notify_service_') 
+               | map(attribute='object_id') 
+               | map('replace', 'notify_service_', '') 
+               | list }}
+
+      - repeat:
+          for_each: "{{ users }}"
+          sequence:
+            - variables:
+                user: "{{ repeat.item }}"
+            - repeat:
+                for_each: "{{ categories }}"
+                sequence:
+                  - variables:
+                      cat: "{{ repeat.item }}"
+
+                  # PATTERN 1: switch.Evis_garden_notification
+                  # Topic: homeassistant/switch/Evis_garden_notification/config (Guess)
+                  - service: mqtt.publish
+                    data:
+                      retain: true
+                      topic: "homeassistant/switch/{{ user }}_{{ cat }}_notification/config"
+                      payload: ""
+
+                  # PATTERN 2: switch.Evis_garden_notify
+                  - service: mqtt.publish
+                    data:
+                      retain: true
+                      topic: "homeassistant/switch/{{ user }}_{{ cat }}_notify/config"
+                      payload: ""
+
+                  # PATTERN 3: switch.notify_garden_Evis (Old Flipped)
+                  - service: mqtt.publish
+                    data:
+                      retain: true
+                      topic: "homeassistant/switch/notify_{{ cat }}_{{ user }}/config"
+                      payload: ""
+
+                  # PATTERN 4: switch.notify_Evis_garden (Legacy Loop)
+                  - service: mqtt.publish
+                    data:
+                      retain: true
+                      topic: "homeassistant/switch/notify_{{ user }}_{{ cat }}/config"
+                      # Wait! Pattern 4 IS THE CURRENT CORRECT TOPIC.
+                      # DO NOT DELETE THIS unless object_id matches bad pattern?
+                      # We cannot target object_id here, only topic.
+                      # IF the ghost shares the topic with the new entity, deleting it kills the new entity too.
+                      # BUT create_notify_user will restore it.
+                      # Safer to NOT touch Pattern 4.
+                      payload: "" # SKIP THIS ONE
+
 automation:
   - alias: "System: Populate Notify Services"
     id: populate_notify_services_auto

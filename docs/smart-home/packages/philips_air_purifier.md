@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Normalizes Philips Air Purifier attributes (PM2.5, Filters)
 
 <!-- START_IMAGE -->
-![Package Diagram](../../../assets/images/packages/philips_air_purifier.png)
+![Package Diagram](../../assets/images/packages/philips_air_purifier.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

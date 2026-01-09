@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Parametric Time-of-Day Logic
 
 <!-- START_IMAGE -->
-![Package Diagram](../../../assets/images/packages/home_time_modes.png)
+![Package Diagram](../../assets/images/packages/home_time_modes.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary
@@ -30,7 +30,9 @@ This package implements a robust "State Machine" for the home's time-of-day logi
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
-*No linked dashboard views found (Automatic Scan).*
+This package powers the following dashboard views:
+
+* **[System](../dashboards/admin-system/system.md)**: *This view provides deep insights into the Proxmox 'Halo' virtualization node. It features real-time resource monitoring (CPU, RAM) using `mini-graph-card`, and critical power controls (Reboot, Shutdown) protected by confirmation dialogs. It also offers bulk management for guest VMs/containers and tracks system update status, ensuring the infrastructure host is healthy and up-to-date.* (Uses 1 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram

@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Template switch for DNA TV Hub remote control
 
 <!-- START_IMAGE -->
-![Package Diagram](../../../assets/images/packages/dna_tv_hub.png)
+![Package Diagram](../../assets/images/packages/dna_tv_hub.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

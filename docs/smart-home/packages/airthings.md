@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Normalizes Airthings Wave sensors (Temp, Humidity, CO2)
 
 <!-- START_IMAGE -->
-![Package Diagram](../../../assets/images/packages/airthings.png)
+![Package Diagram](../../assets/images/packages/airthings.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary
