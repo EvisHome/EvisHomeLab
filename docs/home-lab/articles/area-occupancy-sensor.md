@@ -8,7 +8,7 @@ draft: false
 tags:
   - ESPHome
   - ESP32
-  - MMWave
+  - mmWave
   - BLE
   - DIY
 ---
