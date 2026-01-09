@@ -6,7 +6,19 @@ description: Welcome to EvisHomeLab
 
 # EvisHomeLab
 
-![Dashboard Image](../../../assets/images/evishomelab.png)
+<div class="media-grid">
+    <a href="assets/images/evishomelab.png" class="glightbox">
+        <img src="assets/images/evishomelab.png" alt="Dashboard Image">
+    </a>
+    <a href="../docs/home-lab/articles/the-rack/the-rack.mp4" class="glightbox" data-width="100%" data-height="auto">
+        <video width="100%" autoplay loop muted playsinline style="cursor: pointer;">
+            <source src="../docs/home-lab/articles/the-rack/the-rack.mp4" type="video/mp4">
+        </video>
+    </a>
+    <a href="assets/images/frigate_nvr.png" class="glightbox">
+        <img src="assets/images/frigate_nvr.png" alt="Frigate NVR">
+    </a>
+</div>
 
 ## Sections
 
@@ -25,3 +37,5 @@ description: Welcome to EvisHomeLab
     * **Tools:** Home Assistant OS, Gemini AI (Architect AI), Antigravity IDE (AI Agent), Git, MkDocs Material
 
     [📖 **Read the full System Setup & Maintenance Manual**](system_manual/setup_guide.md)
+
+

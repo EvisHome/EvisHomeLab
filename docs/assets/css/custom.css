@@ -13,3 +13,26 @@
     padding-bottom: 15px;
     border-bottom: 1px solid var(--md-default-fg-color--lightest);
 }
+
+/* 3-Column Grid for Index Media */
+.media-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.media-grid img, 
+.media-grid video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* Optional: adds nice rounded corners */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .media-grid {
+        grid-template-columns: 1fr;
+    }
+}
