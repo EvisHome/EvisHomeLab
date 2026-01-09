@@ -15,8 +15,8 @@ description: Welcome to EvisHomeLab
             <source src="home-lab/articles/the-rack/the-rack.mp4" type="video/mp4">
         </video>
     </a>
-    <a href="assets/images/frigate_nvr.png" class="glightbox">
-        <img src="assets/images/frigate_nvr.png" alt="Frigate NVR">
+    <a href="home-lab/articles/the-rack/rack-door.jpeg" class="glightbox">
+        <img src="home-lab/articles/the-rack/rack-door.jpeg" alt="Frigate NVR">
     </a>
 </div>
 
