@@ -4,7 +4,7 @@ date: 2025-12-20
 description: explore the EvisHomeLab documentation covering Smart Home automation, Server Infrastructure, and Networking topologies.
 ---
 
-
+# Evishomelab
 
 <a href="assets/images/evishomelab-intro.mp4" class="glightbox" data-width="100%" data-height="auto">
     <video width="100%" autoplay loop muted playsinline style="cursor: pointer;">
