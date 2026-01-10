@@ -126,7 +126,27 @@ def define_env(env):
         sorted_keys = sorted(tag_map.keys(), key=lambda k: tag_map[k].lower())
 
         # 2. Build the Filter Cloud HTML
-        html = '<div style="margin-bottom: 20px;">'
+        # Mobile-friendly CSS
+        html = '''
+<style>
+    .article-grid-responsive {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        padding: 0;
+    }
+    @media screen and (max-width: 1100px) {
+        .article-grid-responsive { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media screen and (max-width: 768px) {
+        .article-grid-responsive { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media screen and (max-width: 480px) {
+        .article-grid-responsive { grid-template-columns: 1fr; }
+    }
+</style>
+'''
+        html += '<div style="margin-bottom: 20px;">'
         # 'All' button
         html += '<button data-tag="all" onclick="toggleFilter(\'all\')" style="margin-right: 5px; margin-bottom: 5px; padding: 5px 10px; border: 1px solid #444; background: #00C853; color: white; cursor: pointer; border-radius: 15px;">All</button>'
         
@@ -137,7 +157,8 @@ def define_env(env):
         html += '</div>'
 
         # 3. Build the Grid 
-        html += '<div id="article-grid" class="grid cards" borderless style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 0px;">\n'
+        # Removed inline style logic in favor of .article-grid-responsive class
+        html += '<div id="article-grid" class="grid cards article-grid-responsive" borderless>\n'
         
         for article in display_articles:
             # Prepare tag string for data attribute (LOWERCASE for logic match)
