@@ -14,7 +14,7 @@ description: explore the EvisHomeLab documentation covering Smart Home automatio
 
 ## Sections
 
-- **[Home Lab](home-lab/index.md)**: Article collection. Server infrastructure, VMs, and containers.
+- **[Articles](articles/index.md)**: Article collection. Server infrastructure, VMs, and containers.
 
 - **[Network](network/index.md)**: Network topology, VLANs, and firewall rules.
 
@@ -23,7 +23,7 @@ description: explore the EvisHomeLab documentation covering Smart Home automatio
 - **[Tags](tags.md)**: Browse the content by tags.
 
 !!! info "Site Architecture & Maintenance"
-    This documentation site is managed via an **Agentic Documentation Workflow**. It is automatically generated from the live Home Assistant configuration using Google Antigravity.
+    Some parts of this documentation site is managed via an **Agentic Documentation Workflow**. Meaning that it is automatically generated from the live Home Assistant configuration using Google Antigravity.
 
     * **Strategy:** Detached Docs (Private Config → Public Site)
     * **Tools:** Home Assistant OS, Gemini AI (Architect AI), Antigravity IDE (AI Agent), Git, MkDocs Material
@@ -60,7 +60,7 @@ description: explore the EvisHomeLab documentation covering Smart Home automatio
 
 ## About Me
 
-I'm an IT professional with a passion for home automation, DIY, self-hosting and AI. I'm a big fan of Home Assistant and have been using it for since 2019-2020.
+I've had a passion for home automation, DIY, self-hosting for a while now. I'm a big fan of Home Assistant and have been using it for since 2019-2020. I have documented my journey on various platforms, but I've always wanted to have a single place to keep everything in one place. Now with the help of Google Antigravity and the MkDocs Material theme, I've been able to create a single place to keep everything in one place. And the speed of creating everything into this site has been just amazing. Withing just few weekends I was able to create this site automate the documentation process convert some of my older articles and make them into markdown files and add them to the site.
 
 My Smart Home journey started along time ago I think somewhere around 2005with having too many remote controllers for my home theater system. I started with a basic setup using a Raspberry Pi and a few scripts to control the system. Over time, I added more and more features, such as voice control, scene management, and more.
 
