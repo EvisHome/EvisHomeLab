@@ -2,6 +2,9 @@
 site_url: https://www.evishome.com/
 repo_name: EvisHome/EvisHomeLab
 repo_url: https://github.com/EvisHome/EvisHomeLab
+site_description: Documentation for EvisHomeLab - A comprehensive Smart Home & Home Lab built with Home Assistant, Unraid, and Networking gear.
+site_author: Evis
+copyright: Copyright &copy; 2025 EvisHome
 edit_uri: edit/main/docs/
 theme:
   name: material
@@ -38,8 +41,8 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra_css:
   - assets/css/custom.css

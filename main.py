@@ -77,12 +77,15 @@ def define_env(env):
 <style>
     .highlights-grid-responsive {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr) !important;
         gap: 20px;
         padding: 0;
     }
+    @media screen and (max-width: 900px) {
+        .highlights-grid-responsive { grid-template-columns: repeat(2, 1fr) !important; }
+    }
     @media screen and (max-width: 480px) {
-        .highlights-grid-responsive { grid-template-columns: 1fr; }
+        .highlights-grid-responsive { grid-template-columns: 1fr !important; }
     }
 </style>
 '''
@@ -144,18 +147,18 @@ def define_env(env):
 <style>
     .article-grid-responsive {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 1fr) !important;
         gap: 15px;
         padding: 0;
     }
     @media screen and (max-width: 1100px) {
-        .article-grid-responsive { grid-template-columns: repeat(3, 1fr); }
+        .article-grid-responsive { grid-template-columns: repeat(3, 1fr) !important; }
     }
     @media screen and (max-width: 768px) {
-        .article-grid-responsive { grid-template-columns: repeat(2, 1fr); }
+        .article-grid-responsive { grid-template-columns: repeat(2, 1fr) !important; }
     }
     @media screen and (max-width: 480px) {
-        .article-grid-responsive { grid-template-columns: 1fr; }
+        .article-grid-responsive { grid-template-columns: 1fr !important; }
     }
 </style>
 '''

@@ -1,7 +1,7 @@
 ---
 title: Home
 date: 2025-12-20
-description: Welcome to EvisHomeLab
+description: explore the EvisHomeLab documentation covering Smart Home automation, Server Infrastructure, and Networking topologies.
 ---
 
 # Evishomelab
