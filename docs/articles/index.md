@@ -1,5 +1,5 @@
 ---
-title: Stories
+title: articles
 render_macros: true
 ---
 <style>

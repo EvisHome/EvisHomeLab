@@ -8,7 +8,7 @@ def define_env(env):
     """
 
     def get_articles(env):
-        articles_dir = os.path.join(env.project_dir, 'docs', 'home-lab', 'articles')
+        articles_dir = os.path.join(env.project_dir, 'docs', 'articles', 'articles')
         articles = []
 
         # Walk through the articles directory
@@ -101,21 +101,42 @@ def define_env(env):
         articles = get_articles(env)
         
         # Filter: No Drafts
-        # Note: We include highlights here too, usually desired. 
-        # If user wants to exclude highlights from main list, we can add `and not a['highlight']`
         display_articles = [a for a in articles if not a['draft']]
         
-        # HTML Grid: 4 Columns (Compact Style)
-        html = '<div class="grid cards" borderless style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 0px;">\n'
+        # 1. Collect all unique tags for the filter cloud
+        all_tags = set()
+        for article in display_articles:
+            if article['tags']:
+                for tag in article['tags']:
+                    all_tags.add(tag)
+        sorted_tags = sorted(list(all_tags))
+
+        # 2. Build the Filter Cloud HTML
+        html = '<div style="margin-bottom: 20px;">'
+        # 'All' button
+        html += '<button onclick="filterArticles(\'all\')" style="margin-right: 5px; margin-bottom: 5px; padding: 5px 10px; border: 1px solid #444; background: #333; color: white; cursor: pointer; border-radius: 15px;">All</button>'
+        
+        for tag in sorted_tags:
+            # We use a simple onclick to call our JS function
+            html += f'<button onclick="filterArticles(\'{tag}\')" style="margin-right: 5px; margin-bottom: 5px; padding: 5px 10px; border: 1px solid #444; background: #252933; color: #ccc; cursor: pointer; border-radius: 15px;">{tag}</button>'
+        html += '</div>'
+
+        # 3. Build the Grid 
+        html += '<div id="article-grid" class="grid cards" borderless style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 0px;">\n'
         
         for article in display_articles:
+            # Prepare tag string for data attribute (comma separated)
+            article_tags_str = ",".join(article['tags']) if article['tags'] else ""
+            
+            # Prepare visual pills
             tags_html = ''
             if article['tags']:
                 for tag in article['tags']:
                     tags_html += f'<span style="display: inline-block; background: #333; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 0.7em; margin-right: 5px; margin-top: 5px;">{tag}</span>'
 
+            # Add data-tags attribute to the card wrapper
             html += f'''
-  <div class="card">
+  <div class="card article-card" data-tags="{article_tags_str}">
     <a href="{article['url']}" style="text-decoration: none; color: inherit; display: block;">
     <img src="{article['image']}" alt="{article['title']}" style="width:100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px 8px 0 0;">
     <div style="padding: 8px;">
@@ -128,4 +149,35 @@ def define_env(env):
   </div>
 '''
         html += '</div>'
+
+        # 4. Inject Client-Side Filtering Script
+        html += '''
+<script>
+function filterArticles(tag) {
+    const cards = document.querySelectorAll('.article-card');
+    const buttons = document.querySelectorAll('button[onclick^="filterArticles"]');
+
+    // Update active button style (simple visual feedback)
+    buttons.forEach(btn => {
+        if (btn.innerText === tag || (tag === 'all' && btn.innerText === 'All')) {
+             btn.style.background = '#00C853'; // Active Green
+             btn.style.color = '#fff';
+        } else {
+             btn.style.background = btn.innerText === 'All' ? '#333' : '#252933';
+             btn.style.color = btn.innerText === 'All' ? '#fff' : '#ccc';
+        }
+    });
+
+    // Filter Cards
+    cards.forEach(card => {
+        const cardTags = card.getAttribute('data-tags').split(',');
+        if (tag === 'all' || cardTags.includes(tag)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+</script>
+'''
         return html
