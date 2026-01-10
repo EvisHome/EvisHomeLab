@@ -2,6 +2,7 @@
 tags:
   - package
   - automated
+  - car
 version: 2.0.3
 ---
 
@@ -28,6 +29,16 @@ The `Car` package provides a unified interface for the Mercedes GLC, leveraging 
     *   **Charging:** Receive alerts when the car is plugged in, when charging starts (with estimated completion time), and when the battery is full.
     *   **Safety & Maintenance:** The system watches for warning signs like low tire pressure, low brake fluid, or low washer fluid and sends critical alerts to your phone if attention is needed.
 <!-- END_DETAILED -->
+
+## Integration Dependencies
+<!-- START_DEPENDENCIES -->
+*   **[Mercedes Me 2020 (mbapi2020)](https://github.com/ReneNulschDE/mbapi2020)**: Cloud integration for Mercedes-Benz.
+    *   *Type:* HACS Integration
+    *   *Role:* Device Attributes & Commands
+*   **script.notify_smart_master**: Central notification router.
+    *   *Type:* Script
+    *   *Role:* Alerting
+<!-- END_DEPENDENCIES -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->

@@ -1,4 +1,4 @@
 nav:
   - index.md
+  - home-lab: Articles
   - ...
-  - tags.md
