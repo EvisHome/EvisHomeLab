@@ -57,3 +57,14 @@ description: Welcome to EvisHomeLab
         <img src="home-lab/articles/the-rack/rack-door.jpeg" alt="Rack Closed">
     </a>
 </div>
+
+## About Me
+
+I'm an IT professional with a passion for home automation, DIY, self-hosting and AI. I'm a big fan of Home Assistant and have been using it for since 2019-2020.
+
+My Smart Home journey started along time ago I think somewhere around 2005with having too many remote controllers for my home theater system. I started with a basic setup using a Raspberry Pi and a few scripts to control the system. Over time, I added more and more features, such as voice control, scene management, and more.
+
+Before I moved to Home Assistant I used SmartThings with Webcore, SmartApps and Device Handlers (DTHs), which ran in the Groovy IDE. For some years I was using this setup, with a lot of custom code and a lot of time spent on debugging and just maintaining the system.
+
+Ever since I fully moved to Home Assistant things have been much easier and I've been able to focus on actual home automation, and making things smarter.
+

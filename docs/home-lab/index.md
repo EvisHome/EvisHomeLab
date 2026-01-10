@@ -1,4 +1,5 @@
 ---
+title: Stories
 render_macros: true
 ---
 <style>
@@ -14,7 +15,7 @@ render_macros: true
   }
 </style>
 
-# Home Lab
+# Home Lab Stories
 
 ## Story Highlights
 
