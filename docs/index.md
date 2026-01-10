@@ -33,28 +33,28 @@ description: Welcome to EvisHomeLab
 ## The Lab
 
 <div class="media-grid">
-    <a href="home-lab/articles/the-rack/light-preview.jpeg" class="glightbox">
-        <img src="home-lab/articles/the-rack/light-preview.jpeg" alt="Rack Lights">
+    <a href="articles/articles/the-rack/light-preview.jpeg" class="glightbox">
+        <img src="articles/articles/the-rack/light-preview.jpeg" alt="Rack Lights">
     </a>
-    <a href="home-lab/articles/the-rack/the-rack.mp4" class="glightbox" data-width="100%" data-height="auto">
+    <a href="articles/articles/the-rack/the-rack.mp4" class="glightbox" data-width="100%" data-height="auto">
         <video width="100%" autoplay loop muted playsinline style="cursor: pointer;">
-            <source src="home-lab/articles/the-rack/the-rack.mp4" type="video/mp4">
+            <source src="articles/articles/the-rack/the-rack.mp4" type="video/mp4">
         </video>
     </a>
-    <a href="home-lab/articles/the-rack/lab-preview.jpeg" class="glightbox">
-        <img src="home-lab/articles/the-rack/lab-preview.jpeg" alt="Lab Lights">
+    <a href="articles/articles/the-rack/lab-preview.jpeg" class="glightbox">
+        <img src="articles/articles/the-rack/lab-preview.jpeg" alt="Lab Lights">
     </a>
 </div>
 
 <div class="media-grid">
-    <a href="home-lab/articles/the-rack/rack-back.jpeg" class="glightbox">
-        <img src="home-lab/articles/the-rack/rack-back.jpeg" alt="Rack Back">
+    <a href="articles/articles/the-rack/rack-back.jpeg" class="glightbox">
+        <img src="articles/articles/the-rack/rack-back.jpeg" alt="Rack Back">
     </a>
-    <a href="home-lab/articles/the-rack/rack-front.png" class="glightbox">
-        <img src="home-lab/articles/the-rack/rack-front.png" alt="Rack Front">
+    <a href="articles/articles/the-rack/rack-front.png" class="glightbox">
+        <img src="articles/articles/the-rack/rack-front.png" alt="Rack Front">
     </a>
-    <a href="home-lab/articles/the-rack/rack-door.jpeg" class="glightbox">
-        <img src="home-lab/articles/the-rack/rack-door.jpeg" alt="Rack Closed">
+    <a href="articles/articles/the-rack/rack-door.jpeg" class="glightbox">
+        <img src="articles/articles/the-rack/rack-door.jpeg" alt="Rack Closed">
     </a>
 </div>
 

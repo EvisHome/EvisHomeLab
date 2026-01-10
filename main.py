@@ -103,38 +103,57 @@ def define_env(env):
         # Filter: No Drafts
         display_articles = [a for a in articles if not a['draft']]
         
-        # 1. Collect all unique tags for the filter cloud
-        all_tags = set()
+        # 1. Collect all unique tags (Case Insensitive Merging)
+        # Map: lowercase_tag -> Display Tag
+        tag_map = {}
+        
         for article in display_articles:
             if article['tags']:
                 for tag in article['tags']:
-                    all_tags.add(tag)
-        sorted_tags = sorted(list(all_tags))
+                    low_tag = tag.lower().strip()
+                    # If not yet recorded, or if the new version looks 'nicer' (has more capitals), update it?
+                    # For stability, let's just keep the first one or favor upper case.
+                    # Simple heuristic: if existing is all lower, and new has upper, take new.
+                    if low_tag not in tag_map:
+                        tag_map[low_tag] = tag.strip()
+                    else:
+                        # Optional: implementation to prefer "Home Assistant" over "home assistant"
+                        current_display = tag_map[low_tag]
+                        if current_display.islower() and not tag.islower():
+                             tag_map[low_tag] = tag.strip()
+
+        # Sort tags by their display name for the UI
+        sorted_keys = sorted(tag_map.keys(), key=lambda k: tag_map[k].lower())
 
         # 2. Build the Filter Cloud HTML
         html = '<div style="margin-bottom: 20px;">'
         # 'All' button
-        html += '<button onclick="filterArticles(\'all\')" style="margin-right: 5px; margin-bottom: 5px; padding: 5px 10px; border: 1px solid #444; background: #333; color: white; cursor: pointer; border-radius: 15px;">All</button>'
+        html += '<button data-tag="all" onclick="toggleFilter(\'all\')" style="margin-right: 5px; margin-bottom: 5px; padding: 5px 10px; border: 1px solid #444; background: #00C853; color: white; cursor: pointer; border-radius: 15px;">All</button>'
         
-        for tag in sorted_tags:
-            # We use a simple onclick to call our JS function
-            html += f'<button onclick="filterArticles(\'{tag}\')" style="margin-right: 5px; margin-bottom: 5px; padding: 5px 10px; border: 1px solid #444; background: #252933; color: #ccc; cursor: pointer; border-radius: 15px;">{tag}</button>'
+        for key in sorted_keys:
+            display_name = tag_map[key]
+            # data-tag uses the lowercase key for logic
+            html += f'<button data-tag="{key}" onclick="toggleFilter(\'{key}\')" style="margin-right: 5px; margin-bottom: 5px; padding: 5px 10px; border: 1px solid #444; background: #252933; color: #ccc; cursor: pointer; border-radius: 15px;">{display_name}</button>'
         html += '</div>'
 
         # 3. Build the Grid 
         html += '<div id="article-grid" class="grid cards" borderless style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 0px;">\n'
         
         for article in display_articles:
-            # Prepare tag string for data attribute (comma separated)
-            article_tags_str = ",".join(article['tags']) if article['tags'] else ""
+            # Prepare tag string for data attribute (LOWERCASE for logic match)
+            if article['tags']:
+                # We assume the article tags match the keys in our map (by lowering)
+                article_tags_lower = [t.lower().strip() for t in article['tags']]
+                article_tags_str = ",".join(article_tags_lower)
+            else:
+                article_tags_str = ""
             
-            # Prepare visual pills
+            # Prepare visual pills (Keep original display)
             tags_html = ''
             if article['tags']:
                 for tag in article['tags']:
                     tags_html += f'<span style="display: inline-block; background: #333; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 0.7em; margin-right: 5px; margin-top: 5px;">{tag}</span>'
 
-            # Add data-tags attribute to the card wrapper
             html += f'''
   <div class="card article-card" data-tags="{article_tags_str}">
     <a href="{article['url']}" style="text-decoration: none; color: inherit; display: block;">
@@ -150,31 +169,54 @@ def define_env(env):
 '''
         html += '</div>'
 
-        # 4. Inject Client-Side Filtering Script
+        # 4. Inject Client-Side Filtering Script (Multi-Select)
         html += '''
 <script>
-function filterArticles(tag) {
-    const cards = document.querySelectorAll('.article-card');
-    const buttons = document.querySelectorAll('button[onclick^="filterArticles"]');
+// State to track selected tags
+var activeTags = new Set();
 
-    // Update active button style (simple visual feedback)
+function toggleFilter(tag) {
+    const buttons = document.querySelectorAll('button[data-tag]');
+    const cards = document.querySelectorAll('.article-card');
+
+    // 1. Update State
+    if (tag === 'all') {
+        activeTags.clear();
+    } else {
+        if (activeTags.has(tag)) {
+            activeTags.delete(tag);
+        } else {
+            activeTags.add(tag);
+        }
+    }
+
+    // 2. Update Buttons UI
     buttons.forEach(btn => {
-        if (btn.innerText === tag || (tag === 'all' && btn.innerText === 'All')) {
-             btn.style.background = '#00C853'; // Active Green
+        const btnTag = btn.getAttribute('data-tag');
+        const isActive = activeTags.has(btnTag);
+        const isAllActive = activeTags.size === 0 && btnTag === 'all';
+        
+        if (isActive || isAllActive) {
+             btn.style.background = '#00C853'; 
              btn.style.color = '#fff';
         } else {
-             btn.style.background = btn.innerText === 'All' ? '#333' : '#252933';
-             btn.style.color = btn.innerText === 'All' ? '#fff' : '#ccc';
+             // Inactive Style
+             btn.style.background = btnTag === 'all' ? '#333' : '#252933';
+             btn.style.color = btnTag === 'all' ? '#fff' : '#ccc';
         }
     });
 
-    // Filter Cards
+    // 3. Filter Cards (OR Logic: Show if card has ANY of the active tags)
     cards.forEach(card => {
         const cardTags = card.getAttribute('data-tags').split(',');
-        if (tag === 'all' || cardTags.includes(tag)) {
+        
+        if (activeTags.size === 0) {
+            // Show all if no filter
             card.style.display = 'block';
         } else {
-            card.style.display = 'none';
+            // Check if card has at least one active tag
+            const hasMatch = cardTags.some(t => activeTags.has(t));
+            card.style.display = hasMatch ? 'block' : 'none';
         }
     });
 }
