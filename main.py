@@ -151,18 +151,49 @@ def define_env(env):
         gap: 15px;
         padding: 0;
     }
+    .filter-controls {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+    .toggle-container {
+        display: flex;
+        align-items: center;
+        margin-left: auto; /* Push to right on desktop */
+        background: rgba(255, 255, 255, 0.05);
+        padding: 5px 10px;
+        border-radius: 15px;
+        border: 1px solid #444;
+    }
+    [data-md-color-scheme="default"] .toggle-container {
+        background: rgba(0, 0, 0, 0.05);
+        border: 1px solid #ddd;
+    }
+    .toggle-label {
+        font-size: 0.9em;
+        margin-left: 8px;
+        cursor: pointer;
+        user-select: none;
+    }
+    
     @media screen and (max-width: 1100px) {
         .article-grid-responsive { grid-template-columns: repeat(3, 1fr) !important; }
     }
     @media screen and (max-width: 768px) {
         .article-grid-responsive { grid-template-columns: repeat(2, 1fr) !important; }
+        .toggle-container { margin-left: 0; width: 100%; justify-content: center; }
     }
     @media screen and (max-width: 480px) {
         .article-grid-responsive { grid-template-columns: 1fr !important; }
     }
 </style>
 '''
-        html += '<div style="margin-bottom: 20px;">'
+        html += '<div class="filter-controls">'
+        
+        # Tags Container
+        html += '<div style="flex: 1;">'
         # 'All' button
         html += '<button data-tag="all" onclick="toggleFilter(\'all\')" style="margin-right: 5px; margin-bottom: 5px; padding: 5px 10px; border: 1px solid #444; background: #00C853; color: white; cursor: pointer; border-radius: 15px;">All</button>'
         
@@ -171,6 +202,16 @@ def define_env(env):
             # data-tag uses the lowercase key for logic
             html += f'<button data-tag="{key}" onclick="toggleFilter(\'{key}\')" style="margin-right: 5px; margin-bottom: 5px; padding: 5px 10px; border: 1px solid #444; background: #252933; color: #ccc; cursor: pointer; border-radius: 15px;">{display_name}</button>'
         html += '</div>'
+
+        # Match All Toggle
+        html += '''
+        <div class="toggle-container" onclick="toggleMatchMode()">
+            <input type="checkbox" id="match-all-toggle" style="cursor: pointer;">
+            <label for="match-all-toggle" class="toggle-label">Match All Selected</label>
+        </div>
+        '''
+        
+        html += '</div>' # End filter-controls
 
         # 3. Build the Grid 
         # Removed inline style logic in favor of .article-grid-responsive class
@@ -206,16 +247,42 @@ def define_env(env):
 '''
         html += '</div>'
 
-        # 4. Inject Client-Side Filtering Script (Multi-Select)
+        # 4. Inject Client-Side Filtering Script (Multi-Select + Logic Toggle)
         html += '''
 <script>
 // State to track selected tags
 var activeTags = new Set();
+var matchAllMode = false;
+
+function toggleMatchMode() {
+    // Toggle state (handling interactions with container vs input)
+    const checkbox = document.getElementById('match-all-toggle');
+    // If usage clicked label/div, checkbox might not have updated yet or we need to sync?
+    // Easiest is to just read the current checkbox state after a microtask, or trust native click.
+    // Let's just listen to change on input is safer, but here we wrapper div onclick.
+    
+    // Better approach: Let native checkbox handle click if target is checkbox.
+    // If target is div/label, toggle checkbox manually.
+    // For simplicity, let's just read the checkbox in applyFilter and ensure applyFilter is called.
+    
+    setTimeout(() => {
+        matchAllMode = checkbox.checked;
+        applyFilter();
+    }, 10);
+}
+
+// Ensure checkbox listener updates if clicked directly
+document.addEventListener('DOMContentLoaded', () => {
+    const cb = document.getElementById('match-all-toggle');
+    if(cb) {
+        cb.addEventListener('change', (e) => {
+            matchAllMode = e.target.checked;
+            applyFilter();
+        });
+    }
+});
 
 function toggleFilter(tag) {
-    const buttons = document.querySelectorAll('button[data-tag]');
-    const cards = document.querySelectorAll('.article-card');
-
     // 1. Update State
     if (tag === 'all') {
         activeTags.clear();
@@ -226,6 +293,13 @@ function toggleFilter(tag) {
             activeTags.add(tag);
         }
     }
+    
+    applyFilter();
+}
+
+function applyFilter() {
+    const buttons = document.querySelectorAll('button[data-tag]');
+    const cards = document.querySelectorAll('.article-card');
 
     // 2. Update Buttons UI
     buttons.forEach(btn => {
@@ -238,12 +312,15 @@ function toggleFilter(tag) {
              btn.style.color = '#fff';
         } else {
              // Inactive Style
+             // Re-apply light/dark aware colors if possible or fixed colors
+             // For now using the fixed colors defined in HTML, we might lose theme awareness for inactive buttons if not careful
+             // But we are setting explicit colors so it overrides.
              btn.style.background = btnTag === 'all' ? '#333' : '#252933';
              btn.style.color = btnTag === 'all' ? '#fff' : '#ccc';
         }
     });
 
-    // 3. Filter Cards (OR Logic: Show if card has ANY of the active tags)
+    // 3. Filter Cards
     cards.forEach(card => {
         const cardTags = card.getAttribute('data-tags').split(',');
         
@@ -251,8 +328,18 @@ function toggleFilter(tag) {
             // Show all if no filter
             card.style.display = 'block';
         } else {
-            // Check if card has at least one active tag
-            const hasMatch = cardTags.some(t => activeTags.has(t));
+            // Check based on mode
+            let hasMatch = false;
+            
+            if (matchAllMode) {
+                // AND Logic: Must have ALL active tags
+                // Every tag in activeTags must be present in cardTags
+                hasMatch = Array.from(activeTags).every(t => cardTags.includes(t));
+            } else {
+                // OR Logic: Must have AT LEAST ONE active tag
+                hasMatch = cardTags.some(t => activeTags.has(t));
+            }
+            
             card.style.display = hasMatch ? 'block' : 'none';
         }
     });
