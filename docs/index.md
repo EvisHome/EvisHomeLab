@@ -12,15 +12,17 @@ description: explore the EvisHomeLab documentation covering Smart Home automatio
     </video>
 </a>
 
-## Sections
+## Content
 
-- **[Articles](articles/index.md)**: Article collection. Server infrastructure, VMs, and containers.
+- **[Articles](articles/index.md)**: Collection of articles and guides.
 
-- **[Network](network/index.md)**: Network topology, VLANs, and firewall rules.
+- **[Home Lab](home-lab/index.md)**: Networking, Server Infrastructure, VMs, and containers.
 
-- **[Smart Home ](smart-home/index.md)**: Home Assistant configuration, automations, and dashboards.
+- **[Smart Home](smart-home/index.md)**: Home Assistant configuration, automations, and dashboards.
 
 - **[Tags](tags.md)**: Browse the content by tags.
+
+## Documentation Workflow
 
 !!! info "Site Architecture & Maintenance"
     Some parts of this documentation site is managed via an **Agentic Documentation Workflow**. Meaning that it is automatically generated from the live Home Assistant configuration using Google Antigravity.
@@ -28,7 +30,7 @@ description: explore the EvisHomeLab documentation covering Smart Home automatio
     * **Strategy:** Detached Docs (Private Config → Public Site)
     * **Tools:** Home Assistant OS, Gemini AI (Architect AI), Antigravity IDE (AI Agent), Git, MkDocs Material
 
-    [**Read the full System Setup & Maintenance Manual**](system_manual/setup_guide.md)
+    [**Read the full System Setup & Maintenance Manual**](workflow/index.md)
 
 ## The Lab
 
