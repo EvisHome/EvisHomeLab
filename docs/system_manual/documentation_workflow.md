@@ -164,16 +164,24 @@ We implemented a **Version Integrity Check** to solve this:
 This ensures that a user reading the docs knows *immediately* that the explanation might be slightly out of date, prompting a new AI analysis cycle.
 
 
-### Writing Documentation
-1.  Create a new `.md` file in `docs_site/docs/`.
-2.  Add Frontmatter:
-    ```yaml
-    ---
-    title: My Article
-    tags: [manual]
-    ---
-    ```
-3.  Write content using standard Markdown.
+## 5. Maintenance Workflow
+
+We divide the documentation into two distinct zones:
+
+### Zone A: Manual Documentation (Guides & Manuals)
+*   **Locations:** `/docs/network/`, `/docs/articles/`, root `/docs/`
+*   **Workflow:**
+    1.  User creates `.md` files manually.
+    2.  User writes content (guides, SOPs, articles), while AI can be used to generate summaries and assist with content.
+    3.  **No automation touches these files.**
+
+### Zone B: Automated Documentation (Smart Home Specs)
+*   **Locations:** `/docs/smart-home/packages/`, `/docs/smart-home/dashboards/`
+*   **Workflow:**
+    1.  **NEVER create files manually here.**
+    2.  Run `python ag_v2_update.py`. The scripts will generate the files/indexes.
+    3.  **AI Injection:** The AI then fills in the content slots (`<!-- START_SUMMARY -->`) inside these generated files.
+    4. User can review and edit the generated content.
 
 ### Updating Configuration (Automated)
 1.  Make changes to your Home Assistant YAML or Dashboards.

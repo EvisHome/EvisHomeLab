@@ -12,38 +12,26 @@ Use this catalog to browse all installed configuration packages. Each package is
 !!! info "Auto-Generated"
     This catalog is automatically maintained by the Documentation Agent.
 
-## 📦 Installed Packages
--   **[Ai Summary](./ai_summary.md)**
-    <br> :material-arrow-right-bottom: *Frontend controller for the remote AI Log Reporter integration.*
--   **[Airthings](./airthings.md)**
-    <br> :material-arrow-right-bottom: *Normalizes Airthings Wave sensors (Temp, Humidity, CO2)*
--   **[Aqara W500](./aqara_w500.md)**
-    <br> :material-arrow-right-bottom: *Manages temperature settings and schedules for the Bathroom Floor Heat (Aqara W500 Climate). Includes logic for high electricity price reduction and shower occupancy boost.*
--   **[Car](./car.md)**
-    <br> :material-arrow-right-bottom: *Unified logic for Mercedes GLC. Normalizes sensors (Windows/Doors), wrapper switches, and Status Notifications.*
--   **[Dishwasher](./dishwasher.md)**
-    <br> :material-arrow-right-bottom: *Logic, sensors, flags, and automations for the LG Dishwasher. Handles normalization of LG ThinQ data, maintenance reminders, and leak detection.*
--   **[Dna Tv Hub](./dna_tv_hub.md)**
-    <br> :material-arrow-right-bottom: *Template switch for DNA TV Hub remote control*
--   **[Garmin](./garmin.md)**
-    <br> :material-arrow-right-bottom: *Placeholder for Garmin integration*
--   **[Home Time Modes](./home_time_modes.md)**
-    <br> :material-arrow-right-bottom: *Parametric Time-of-Day Logic*
--   **[Nordpool Prices](./nordpool_prices.md)**
-    <br> :material-arrow-right-bottom: *Nordpool energy price calculations and logic*
--   **[Office Pc](./office_pc.md)**
-    <br> :material-arrow-right-bottom: *Office PC control (Audio, Displays, Power)*
--   **[Philips Air Purifier](./philips_air_purifier.md)**
-    <br> :material-arrow-right-bottom: *Normalizes Philips Air Purifier attributes (PM2.5, Filters)*
--   **[Room Manager](./room_manager.md)**
-    <br> :material-arrow-right-bottom: *Dynamic creation of room settings via MQTT*
--   **[Scenes](./scenes.md)**
-    <br> :material-arrow-right-bottom: *Definitions for various lighting scenes (Daylight, Night, Movie, etc.)*
--   **[Shelly 3Em](./shelly_3em.md)**
-    <br> :material-arrow-right-bottom: *Power aggregation for Shelly 3EM (Total Power, Energy)*
--   **[Smart Notifications](./smart_notifications.md)**
-    <br> :material-arrow-right-bottom: *Helpers and logic for the dynamic notification router*
--   **[Unifi Access](./unifi_access.md)**
-    <br> :material-arrow-right-bottom: *Unified management for G4 Doorbell Pro Fingerprint & NFC.*
--   **[Washing Machine](./washing_machine.md)**
-    <br> :material-arrow-right-bottom: *Logic for Washing Machine state tracking, run time calculation, and notifications.*
+| Package | Description | Integrations | Dashboards |
+| :--- | :--- | :--- | :--- |
+| **[Ai Summary](./ai_summary.md)** | Frontend controller for the remote AI Log Reporter integration. | [AI Log Reporter](../integrations/ai_reporter.md) | [System](../dashboards/admin-system/system.md) |
+| **[Airthings](./airthings.md)** | Normalizes Airthings Wave sensors (Temp, Humidity, CO2) | - | [Living Room](../dashboards/main/living_room.md) |
+| **[Aqara W500](./aqara_w500.md)** | Manages temperature settings and schedules for the Bathroom Floor Heat (Aqara W500 Climate). Includes logic for high electricity price reduction and shower occupancy boost. | - | [Bathroom](../dashboards/main/bathroom.md)<br>[Electricity](../dashboards/main/electricity.md)<br>[Electricity Dev](../dashboards/main/electricity_dev.md)<br>[Home](../dashboards/main/home.md) |
+| **[Area Manager](./area_manager.md)** | Dynamic creation of AREA settings via MQTT (Replaces Room Manager) | - | [Living Room](../dashboards/main/living_room.md)<br>[Notifications Management](../dashboards/notification-center/notifications_management.md)<br>[Room Management](../dashboards/room-management/room_management.md) |
+| **[Car](./car.md)** | Unified logic for Mercedes GLC. Normalizes sensors (Windows/Doors), wrapper switches, and Status Notifications. | - | [CAR](../dashboards/dashboard-persons/car.md)<br>[Home](../dashboards/main/home.md) |
+| **[Debug Script](./debug_script.md)** | No description provided. | - | - |
+| **[Dishwasher](./dishwasher.md)** | Logic, sensors, flags, and automations for the LG Dishwasher. Handles normalization of LG ThinQ data, maintenance reminders, and leak detection. | - | [Home](../dashboards/main/home.md)<br>[Kitchen](../dashboards/main/kitchen.md) |
+| **[Dna Tv Hub](./dna_tv_hub.md)** | Template switch for DNA TV Hub remote control | - | - |
+| **[Garmin](./garmin.md)** | Placeholder for Garmin integration | - | - |
+| **[Home Time Modes](./home_time_modes.md)** | Parametric Time-of-Day Logic | - | [System](../dashboards/admin-system/system.md) |
+| **[Nordpool Prices](./nordpool_prices.md)** | Nordpool energy price calculations and logic | - | [Bathroom](../dashboards/main/bathroom.md)<br>[Electricity](../dashboards/main/electricity.md)<br>[Electricity Dev](../dashboards/main/electricity_dev.md)<br>[Home](../dashboards/main/home.md) |
+| **[Office Pc](./office_pc.md)** | Office PC control (Audio, Displays, Power) | - | [Office](../dashboards/main/office.md) |
+| **[Philips Air Purifier](./philips_air_purifier.md)** | Normalizes Philips Air Purifier attributes (PM2.5, Filters) | - | - |
+| **[Room Manager](./room_manager.md)** | Dynamic creation of room settings via MQTT | - | [Room Management](../dashboards/room-management/room_management.md)<br>[Settings (System)](../dashboards/main/settings.md) |
+| **[Scenes](./scenes.md)** | Definitions for various lighting scenes (Daylight, Night, Movie, etc.) | - | [Bedroom](../dashboards/main/bedroom.md)<br>[Hallway](../dashboards/main/hallway.md)<br>[Kitchen](../dashboards/main/kitchen.md)<br>[Living Room](../dashboards/main/living_room.md)<br>[Office](../dashboards/main/office.md)<br>[Stairs](../dashboards/main/stairs.md) |
+| **[Shelly 3Em](./shelly_3em.md)** | Power aggregation for Shelly 3EM (Total Power, Energy) | - | - |
+| **[Smart Notifications](./smart_notifications.md)** | Helpers and logic for the dynamic notification router | - | [System](../dashboards/admin-system/system.md)<br>[Living Room](../dashboards/main/living_room.md)<br>[Notifications Management](../dashboards/notification-center/notifications_management.md)<br>[Room Management](../dashboards/room-management/room_management.md) |
+| **[Smart Speakers](./smart_speakers.md)** | Configuration and helpers for managing Smart Speakers in Notification Center | - | [Notifications Management](../dashboards/notification-center/notifications_management.md) |
+| **[Tailscale Monitoring](./tailscale_monitoring.md)** | No description provided. | - | - |
+| **[Unifi Access](./unifi_access.md)** | Unified management for G4 Doorbell Pro Fingerprint & NFC. | - | [Home Access Center](../dashboards/home-access/home_access_center.md)<br>[Front Door](../dashboards/main/front_door.md)<br>[Home](../dashboards/main/home.md)<br>[Mud Room](../dashboards/main/mud_room.md) |
+| **[Washing Machine](./washing_machine.md)** | Logic for Washing Machine state tracking, run time calculation, and notifications. | - | [System](../dashboards/admin-system/system.md)<br>[Home](../dashboards/main/home.md) |

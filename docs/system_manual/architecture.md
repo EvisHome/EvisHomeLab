@@ -102,6 +102,11 @@ The master controller.
 * **Function:** Generates prompts for the IDE AI to write documentation.
 * **Context:** Reads YAML and MD to give the AI full context.
 
+### E. The Directives Layer (`AI_CONTEXT.md`)
+* **Role:** The "Brain" or "Constitution" for the AI Agent.
+* **Location:** `z:\AI_CONTEXT.md` (Root) and `z:\docs_site\AI_CONTEXT.md` (Replica).
+* **Purpose:** To bridge the gap between deterministic scripts and stochastic AI. While scripts handle the structure, this file tells the AI *how* to write the content (tone, rules, privacy mapping). It is the single source of truth for the Agent's behavior.
+
 ## 3. The Workflow (How we work)
 
 We edit the **Python Modules** in `.ag_scripts/`.
