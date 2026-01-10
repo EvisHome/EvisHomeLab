@@ -4,11 +4,11 @@ date: 2025-12-20
 description: Welcome to EvisHomeLab
 ---
 
-# EvisHomeLab
+# Evishomelab
 
-<a href="assets/images/evishomelab-intro-480.mp4" class="glightbox" data-width="100%" data-height="auto">
+<a href="assets/images/evishomelab-intro.mp4" class="glightbox" data-width="100%" data-height="auto">
     <video width="100%" autoplay loop muted playsinline style="cursor: pointer;">
-        <source src="assets/images/evishomelab-intro-480.mp4" type="video/mp4">
+        <source src="assets/images/evishomelab-intro.mp4" type="video/mp4">
     </video>
 </a>
 
