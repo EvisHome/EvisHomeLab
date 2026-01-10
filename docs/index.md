@@ -6,17 +6,21 @@ description: Welcome to EvisHomeLab
 
 # EvisHomeLab
 
-
+<a href="assets/images/evishomelab-intro-480.mp4" class="glightbox" data-width="100%" data-height="auto">
+    <video width="100%" autoplay loop muted playsinline style="cursor: pointer;">
+        <source src="assets/images/evishomelab-intro-480.mp4" type="video/mp4">
+    </video>
+</a>
 
 ## Sections
-
-- **[Tags](tags.md)**: Browse the content by tags.
 
 - **[Home Lab](home-lab/index.md)**: Article collection. Server infrastructure, VMs, and containers.
 
 - **[Network](network/index.md)**: Network topology, VLANs, and firewall rules.
 
 - **[Smart Home ](smart-home/index.md)**: Home Assistant configuration, automations, and dashboards.
+
+- **[Tags](tags.md)**: Browse the content by tags.
 
 !!! info "Site Architecture & Maintenance"
     This documentation site is managed via an **Agentic Documentation Workflow**. It is automatically generated from the live Home Assistant configuration using Google Antigravity.
