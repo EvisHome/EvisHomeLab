@@ -30,7 +30,7 @@ description: explore the EvisHomeLab documentation covering Smart Home automatio
     * **Strategy:** Detached Docs (Private Config → Public Site)
     * **Tools:** Home Assistant OS, Gemini AI (Architect AI), Antigravity IDE (AI Agent), Git, MkDocs Material
 
-    [**Read the full System Setup & Maintenance Manual**](workflow/index.md)
+    [**Documentation Workflow**](workflow/index.md)
 
 ## The Lab
 
