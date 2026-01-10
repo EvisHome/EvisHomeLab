@@ -15,9 +15,9 @@ render_macros: true
   }
 </style>
 
-# Home Lab Stories
+# Home Lab Articles and Guides
 
-## Story Highlights
+## Highlights
 
 
 
