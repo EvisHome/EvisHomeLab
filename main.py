@@ -72,8 +72,21 @@ def define_env(env):
         # Filter: Highlights Only, No Drafts
         highlight_articles = [a for a in articles if a['highlight'] and not a['draft']]
         
-        # HTML Grid: 3 Columns (Original Style)
-        html = '<div class="grid cards" borderless style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0px;">\n'
+        # HTML Grid: 3 Columns (Original Style) -> Responsive
+        html = '''
+<style>
+    .highlights-grid-responsive {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 0;
+    }
+    @media screen and (max-width: 480px) {
+        .highlights-grid-responsive { grid-template-columns: 1fr; }
+    }
+</style>
+'''
+        html += '<div class="grid cards highlights-grid-responsive" borderless>\n'
         
         for article in highlight_articles:
             tags_html = ''
