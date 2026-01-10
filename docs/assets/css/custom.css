@@ -36,3 +36,28 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Light Mode Overrides for Cards */
+[data-md-color-scheme="default"] .card {
+    /* Use theme background (white usually) */
+    background-color: var(--md-default-bg-color) !important;
+    /* Add border to separate from white background */
+    border: 1px solid var(--md-default-fg-color--lightest);
+    /* Add subtle shadow */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    /* Ensure text is standard color */
+    color: var(--md-default-fg-color);
+}
+
+/* Ensure Links inside cards are readable */
+[data-md-color-scheme="default"] .card a {
+    color: inherit;
+}
+
+/* Optional: Invert Tags logic for Light Mode if needed */
+/* 
+[data-md-color-scheme="default"] .card span {
+    background-color: #e0e0e0 !important;
+    color: #333 !important;
+} 
+*/

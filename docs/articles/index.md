@@ -25,4 +25,7 @@ render_macros: true
 {{ list_highlights_grid() }}
 
 ## Articles
+
+#### Filter articles by tags
+
 {{ list_articles_grid() }}

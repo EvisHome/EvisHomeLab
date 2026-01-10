@@ -12,22 +12,20 @@ theme:
     - navigation.indexes
   # Add the following block for color customization
   palette:
-    # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: teal
-      accent: orange
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to dark mode
-    # Palette toggle for dark mode (Default selection)
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+    # Palette toggle for dark mode
+    - scheme: slate
       primary: teal
       accent: orange
       toggle:
         icon: material/weather-night
         name: Switch to light mode
+    # Palette toggle for light mode
+    - scheme: default
+      primary: teal
+      accent: orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
 
 markdown_extensions:
   - attr_list # Required for MkDocs Material styling features
