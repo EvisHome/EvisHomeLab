@@ -1,0 +1,65 @@
+# Unraid Monitoring Stack - Compose Manager
+
+services:
+  loki:
+    image: grafana/loki:3.1.0
+    container_name: logs-loki
+    user: "0:0" # This runs Loki as root to bypass permission issues on Unraid
+    #ports:
+    #  - "3100:3100"
+    volumes:
+      - /mnt/docker/appdata/loki:/loki
+      - /etc/localtime:/etc/localtime:ro
+    command: -config.file=/loki/local-config.yaml
+    environment:
+      - TZ=Europe/Helsinki
+    network_mode: host
+    restart: unless-stopped
+
+  promtail:
+    image: grafana/promtail:latest
+    container_name: logs-promtail
+    volumes:
+      - /mnt/docker/appdata/promtail/config.yaml:/etc/promtail/config.yaml
+      - /mnt/docker/appdata/promtail:/etc/promtail/ # For Promtail positions.yaml
+      - /var/log:/var/log:ro # Reads Unraid OS logs
+      - /var/run/docker.sock:/var/run/docker.sock # Reads Docker names
+      - /mnt/user/appdata:/mnt/user/appdata:ro # For UniFi Syslog
+      - /etc/localtime:/etc/localtime:ro
+    command: -config.file=/etc/promtail/config.yaml
+    environment:
+      - TZ=Europe/Helsinki
+    network_mode: host
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: logs-grafana
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Helsinki
+    ports:
+      - "3000:3000"
+    volumes:
+      - /mnt/docker/appdata/grafana:/var/lib/grafana
+      - /etc/localtime:/etc/localtime:ro
+
+  ai-log-reporter:
+    image: python:3.11-slim
+    container_name: logs-ai-reporter
+    volumes:
+      - /mnt/docker/appdata/ai-reporter:/app
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=Europe/Helsinki
+      - LOKI_URL=http://localhost:3100
+      - GEMINI_API_KEY=[GEMINI_API_KEY]
+      - HA_URL=http://10.0.0.105:8123
+      - HA_TOKEN=[HA_TOKEN]
+    # Change the command to keep the container running indefinitely
+    command: >
+      sh -c "pip install requests google-genai && 
+      python /app/reporter.py && 
+      tail -f /dev/null"
+    restart: unless-stopped
+    network_mode: host
