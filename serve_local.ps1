@@ -5,8 +5,8 @@ Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host "   EvisHome Local Documentation Server    " -ForegroundColor Cyan
 Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "Binding to: http://evishome.local:8000" -ForegroundColor Green
-Write-Host "(Ensure 127.0.0.1 evishome.local is in your hosts file)" -ForegroundColor Gray
+Write-Host "Binding to: http://localhost:8000" -ForegroundColor Green
+Write-Host "(Alternative: http://evishome.local:8000 if configured in hosts)" -ForegroundColor Gray
 Write-Host ""
 Write-Host "Press Ctrl+C to stop."
 Write-Host ""

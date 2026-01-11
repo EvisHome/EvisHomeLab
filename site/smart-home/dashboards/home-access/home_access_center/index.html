@@ -1,0 +1,4016 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for EvisHomeLab - A comprehensive Smart Home &amp; Home Lab built with Home Assistant, Unraid, and Networking gear.">
+      
+      
+        <meta name="author" content="Evis">
+      
+      
+        <link rel="canonical" href="https://www.evishome.com/smart-home/dashboards/home-access/home_access_center/">
+      
+      
+        <link rel="prev" href="../../dashboard-persons/guest_1/">
+      
+      
+        <link rel="next" href="../../main/backyard/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Home Access Center - EvisHomeLab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/css/custom.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-Q3C6JS2Q46"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-Q3C6JS2Q46",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-Q3C6JS2Q46",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+  
+
+    
+    
+  <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#home-access-center" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="EvisHomeLab" class="md-header__button md-logo" aria-label="EvisHomeLab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EvisHomeLab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home Access Center
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="orange" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="orange" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/EvisHome/EvisHomeLab" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    EvisHome/EvisHomeLab
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="EvisHomeLab" class="md-nav__button md-logo" aria-label="EvisHomeLab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    EvisHomeLab
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/EvisHome/EvisHomeLab" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    EvisHome/EvisHomeLab
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../articles/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/articles/ai-log-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Log Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/articles/area-occupancy-sensor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Area Occupancy Sensor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/articles/bed-occupancy-sensor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bed Occupancy Sensor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/articles/dns-adguard-unbound/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DNS AdGuard Home &amp; Unbound
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/articles/motorized-blinds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Motorized Horizontal Blinds - Tilt Action
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/articles/tinkercad-project-box-creator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TinkerCad Project Box Creator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/articles/virtual-fireplace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtual Fireplace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_8">
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_8" id="__nav_2_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ai log summary
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ai log summary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/articles/ai-log-summary/home-lab-logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home lab logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/articles/ai-log-summary/unraid-syslog-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unraid syslog server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../home-lab/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home lab
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home lab
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Smart home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Smart home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Automations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration &amp; Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Addons
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Addons
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../addons/frigate_nvr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frigate NVR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboards
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dashboards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_2">
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_2" id="__nav_4_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin system
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Admin system
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin-system/system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_3">
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_3" id="__nav_4_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboard persons
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dashboard persons
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboard-persons/car/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CAR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboard-persons/evis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboard-persons/guest_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guest-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_4" id="__nav_4_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home access
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home access
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Access Center
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Access Center
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Packages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies-custom-cards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies (Custom Cards)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_5">
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_5" id="__nav_4_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Main
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Main
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/backyard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backyard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/bathroom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bathroom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/bedroom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bedroom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/daughter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Daughter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/electricity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Electricity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/electricity_dev/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Electricity Dev
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/front_door/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Front Door
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/guest_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guest-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/guest_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guest-3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/hallway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/kitchen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kitchen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/living_room/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Living Room
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/lobby/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lobby
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/mud_room/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mud Room
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/office/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Office
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/sauna/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sauna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/stairs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stairs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../main/toilet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toilet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_6">
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_6" id="__nav_4_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notification center
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notification center
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notification-center/notifications_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_7">
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_7" id="__nav_4_5_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Room management
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Room management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../room-management/room_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Room Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../integrations/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integrations/ai_reporter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration: AI Log Reporter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../packages/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Packages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/ai_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Ai Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/airthings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Airthings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/aqara_w500/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Aqara W500
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/area_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Area Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/car/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Car
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/debug_script/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Debug Script
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/dishwasher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Dishwasher
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/dna_tv_hub/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Dna Tv Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/garmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Garmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/home_time_modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Home Time Modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/nordpool_prices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Nordpool Prices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/office_pc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Office Pc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/philips_air_purifier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Philips Air Purifier
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/room_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Room Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/scenes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Scenes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/shelly_3em/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Shelly 3Em
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/smart_notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Smart Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/smart_speakers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Smart Speakers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/tailscale_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Tailscale Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/unifi_access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Unifi Access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../packages/washing_machine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Washing Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../workflow/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Workflow
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../workflow/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation System Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../workflow/setup_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../workflow/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Packages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies-custom-cards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies (Custom Cards)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags">
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:automated" class="md-tag">automated</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:dashboard" class="md-tag">dashboard</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:view" class="md-tag">view</a>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="home-access-center">Home Access Center</h1>
+<p><strong>Dashboard:</strong> Home Access<br>
+<strong>Path:</strong> <code>home-access-center</code></p>
+<!-- START_DESCRIPTION -->
+<p>Centralized management interface for Unifi Access users, credentials, and guest schedules.</p>
+<!-- END_DESCRIPTION -->
+
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../../../assets/images/dashboards/dashboard_home_access_center.png" data-desc-position="bottom"><img alt="View Screenshot" src="../../../../assets/images/dashboards/dashboard_home_access_center.png"></a></p>
+<h2 id="summary">Summary</h2>
+<!-- START_SUMMARY -->
+<p>The <strong>Home Access Center</strong> serves as the central administrative hub for managing physical security and entry credentials. Its primary function is to maintain a unified user registry where distinct hardware identifiers—such as Fingerprints and NFC tags—are mapped to specific individuals. This abstraction allows homeowners to easily enroll new keys, assign them to family members or guests, and instantly revoke permissions if a credential is lost or compromised.</p>
+<p>In day-to-day use, this dashboard provides granular control over access logic. Administrators can toggle specific access methods on or off per user (e.g., disabling NFC while keeping Fingerprint active) and configure a strict <strong>Guest Access Schedule</strong> to limit entry to specific days and hours. Real-time audit logs provide immediate feedback on entry attempts, differentiating between successful unlocks, denied attempts due to schedule restrictions, and disabled credentials, ensuring complete visibility into the home's security status.</p>
+<!-- END_SUMMARY -->
+
+<h2 id="related-packages">Related Packages</h2>
+<p>This view contains entities managed by:</p>
+<ul>
+<li><a href="../../../packages/unifi_access/">Unifi Access</a></li>
+</ul>
+<h2 id="dependencies-custom-cards">Dependencies (Custom Cards)</h2>
+<p>Required HACS frontend resources:</p>
+<ul>
+<li><code>custom:auto-entities</code></li>
+<li><code>custom:card-mod</code></li>
+<li><code>custom:fold-entity-row</code></li>
+<li><code>custom:hui-element</code></li>
+<li><code>custom:mushroom-title-card</code></li>
+<li><code>custom:template-entity-row</code></li>
+</ul>
+<h2 id="configuration">Configuration</h2>
+<div class="highlight"><pre><span></span><code><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Home Access Center</span>
+<span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:key-chain</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sections</span>
+<span class="nt">sections</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grid</span>
+<span class="w">  </span><span class="nt">cards</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:mushroom-title-card</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User Management</span>
+<span class="w">    </span><span class="nt">alignment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">center</span>
+<span class="w">    </span><span class="nt">title_tap_action</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<span class="w">    </span><span class="nt">subtitle_tap_action</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">heading</span>
+<span class="w">    </span><span class="nt">heading</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User Registry</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:fingerprint</span>
+<span class="w">    </span><span class="nt">heading_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">title</span>
+<span class="w">    </span><span class="nt">card_mod</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">style</span><span class="p">:</span><span class="w"> </span><span class="s">"ha-card</span><span class="nv"> </span><span class="s">{\n</span><span class="nv">  </span><span class="s">border:</span><span class="nv"> </span><span class="s">none;\n</span><span class="nv">  </span><span class="s">--primary-text-color:</span><span class="nv"> </span><span class="s">var(--green-color);\n\</span>
+<span class="w">        </span><span class="s">\ </span><span class="nv"> </span><span class="s">--secondary-text-color:</span><span class="nv"> </span><span class="s">var(--green-color);\n</span><span class="nv">  </span><span class="s">--card-mod-icon-color:</span><span class="nv"> </span><span class="s">var(--green-color);\n\</span>
+<span class="w">        </span><span class="s">}\n"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">entities</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">System Instructions</span>
+<span class="w">    </span><span class="nt">entities</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:fold-entity-row</span>
+<span class="w">      </span><span class="nt">head</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">section</span>
+<span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">🔐 Unifi Unified Access</span>
+<span class="w">      </span><span class="nt">entities</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:hui-element</span>
+<span class="w">        </span><span class="nt">card_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">markdown</span>
+<span class="w">        </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="s">'##</span><span class="nv"> </span><span class="s">UniFi</span><span class="nv"> </span><span class="s">Configuration</span>
+
+<span class="w">          </span><span class="s">1.</span><span class="nv"> </span><span class="s">Create</span><span class="nv"> </span><span class="s">User:</span><span class="nv"> </span><span class="s">Ensure</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">local</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">exists</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">UniFi</span><span class="nv"> </span><span class="s">Console</span><span class="nv"> </span><span class="s">(e.g.,</span><span class="nv"> </span><span class="s">"Guest").</span>
+
+
+<span class="w">          </span><span class="s">2.</span><span class="nv"> </span><span class="s">Enroll:</span><span class="nv"> </span><span class="s">Go</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">G4</span><span class="nv"> </span><span class="s">Doorbell</span><span class="nv"> </span><span class="s">Settings</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">NFC/Fingerprints</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">Add</span><span class="nv"> </span><span class="s">New.</span><span class="nv"> </span><span class="s">Scan</span>
+<span class="w">          </span><span class="s">your</span><span class="nv"> </span><span class="s">finger</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">card</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">assign</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">UniFi</span><span class="nv"> </span><span class="s">user.</span>
+
+
+<span class="w">          </span><span class="s">3.</span><span class="nv"> </span><span class="s">Test:</span><span class="nv"> </span><span class="s">Scan</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">credential</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">doorbell</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">verify</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">accepted.</span>
+
+<span class="w">          </span><span class="s">---</span>
+
+<span class="w">          </span><span class="s">##</span><span class="nv"> </span><span class="s">Home</span><span class="nv"> </span><span class="s">Assistant</span><span class="nv"> </span><span class="s">Setup</span>
+
+<span class="w">          </span><span class="s">*</span><span class="nv"> </span><span class="s">New</span><span class="nv"> </span><span class="s">Credentials:</span><span class="nv"> </span><span class="s">Wait</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">"New</span><span class="nv"> </span><span class="s">NFC</span><span class="nv"> </span><span class="s">ID"</span><span class="nv"> </span><span class="s">notification.</span><span class="nv"> </span><span class="s">Open</span><span class="nv"> </span><span class="s">Home</span><span class="nv"> </span><span class="s">Access</span>
+<span class="w">          </span><span class="s">Center</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">map</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">new</span><span class="nv"> </span><span class="s">ID</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Home</span><span class="nv"> </span><span class="s">Assistant</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">enable</span><span class="nv"> </span><span class="s">permissions.</span>
+
+
+<span class="w">          </span><span class="s">*</span><span class="nv"> </span><span class="s">Existing</span><span class="nv"> </span><span class="s">Credentials:</span><span class="nv"> </span><span class="s">No</span><span class="nv"> </span><span class="s">action</span><span class="nv"> </span><span class="s">required;</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">credential</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">immediately</span>
+<span class="w">          </span><span class="s">inherit</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">user</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">existing</span><span class="nv"> </span><span class="s">access</span><span class="nv"> </span><span class="s">rules.</span>
+
+
+<span class="w">          </span><span class="s">---</span>
+
+
+<span class="w">          </span><span class="s">###</span><span class="nv"> </span><span class="s">Access</span><span class="nv"> </span><span class="s">Status</span>
+
+
+<span class="w">          </span><span class="s">*</span><span class="nv"> </span><span class="s">🟢</span><span class="nv"> </span><span class="s">Green:</span><span class="nv"> </span><span class="s">Access</span><span class="nv"> </span><span class="s">Granted</span><span class="nv"> </span><span class="s">(Fingerprint</span><span class="nv"> </span><span class="s">AND</span><span class="nv"> </span><span class="s">NFC</span><span class="nv"> </span><span class="s">enabled).</span>
+
+<span class="w">          </span><span class="s">*</span><span class="nv"> </span><span class="s">🟠</span><span class="nv"> </span><span class="s">Orange:</span><span class="nv"> </span><span class="s">Partial</span><span class="nv"> </span><span class="s">Access</span><span class="nv"> </span><span class="s">(Fingerprint</span><span class="nv"> </span><span class="s">OR</span><span class="nv"> </span><span class="s">NFC</span><span class="nv"> </span><span class="s">enabled)</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">"Access</span><span class="nv"> </span><span class="s">still</span>
+<span class="w">          </span><span class="s">granted".</span>
+
+<span class="w">          </span><span class="s">*</span><span class="nv"> </span><span class="s">🔴</span><span class="nv"> </span><span class="s">Red:</span><span class="nv"> </span><span class="s">Access</span><span class="nv"> </span><span class="s">Denied</span><span class="nv"> </span><span class="s">(Fingerprint</span><span class="nv"> </span><span class="s">AND</span><span class="nv"> </span><span class="s">NFC</span><span class="nv"> </span><span class="s">disabled).</span>
+
+<span class="w">          </span><span class="s">---</span>
+
+<span class="w">          </span><span class="s">###</span><span class="nv"> </span><span class="s">👤</span><span class="nv"> </span><span class="s">Guest</span><span class="nv"> </span><span class="s">Access</span>
+
+<span class="w">          </span><span class="s">-</span><span class="nv"> </span><span class="s">Assign</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">**Guest**</span><span class="nv"> </span><span class="s">(or</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">containing</span><span class="nv"> </span><span class="s">"Guest").</span>
+
+<span class="w">          </span><span class="s">-</span><span class="nv"> </span><span class="s">Guests</span><span class="nv"> </span><span class="s">obey</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">**Guest</span><span class="nv"> </span><span class="s">Schedule**</span><span class="nv"> </span><span class="s">below.</span>
+
+<span class="w">          </span><span class="s">-</span><span class="nv"> </span><span class="s">Standard</span><span class="nv"> </span><span class="s">users</span><span class="nv"> </span><span class="s">have</span><span class="nv"> </span><span class="s">**24/7</span><span class="nv"> </span><span class="s">Access**</span><span class="nv"> </span><span class="s">(unless</span><span class="nv"> </span><span class="s">switched</span><span class="nv"> </span><span class="s">OFF).</span>
+
+
+<span class="w">          </span><span class="s">---</span>
+
+
+<span class="w">          </span><span class="s">*💡</span><span class="nv"> </span><span class="s">New</span><span class="nv"> </span><span class="s">IDs</span><span class="nv"> </span><span class="s">appear</span><span class="nv"> </span><span class="s">automatically</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">"Unknown"</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">scanned.*</span>
+
+<span class="w">          </span><span class="s">'</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">heading</span>
+<span class="w">    </span><span class="nt">heading</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Registered User List</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:fingerprint</span>
+<span class="w">    </span><span class="nt">heading_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">title</span>
+<span class="w">    </span><span class="nt">card_mod</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">style</span><span class="p">:</span><span class="w"> </span><span class="s">"ha-card</span><span class="nv"> </span><span class="s">{\n</span><span class="nv">  </span><span class="s">border:</span><span class="nv"> </span><span class="s">none;\n</span><span class="nv">  </span><span class="s">--primary-text-color:</span><span class="nv"> </span><span class="s">var(--green-color);\n\</span>
+<span class="w">        </span><span class="s">\ </span><span class="nv"> </span><span class="s">--secondary-text-color:</span><span class="nv"> </span><span class="s">var(--green-color);\n</span><span class="nv">  </span><span class="s">--card-mod-icon-color:</span><span class="nv"> </span><span class="s">var(--green-color);\n\</span>
+<span class="w">        </span><span class="s">}\n"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:auto-entities</span>
+<span class="w">    </span><span class="nt">card</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">entities</span>
+<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Registered Unifi Users</span>
+<span class="w">      </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:badge-account-outline</span>
+<span class="w">    </span><span class="nt">filter</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">include</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">select.unifi_user_*</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:template-entity-row</span>
+<span class="w">          </span><span class="nt">entity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">this.entity_id</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">'{{</span><span class="nv"> </span><span class="s">state_attr(config.entity,</span><span class="nv"> </span><span class="se">''</span><span class="s">friendly_name</span><span class="se">''</span><span class="s">)</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">regex_replace(</span><span class="se">''</span><span class="s">(?i)unifi</span>
+<span class="w">            </span><span class="s">access</span><span class="nv"> </span><span class="s">db</span><span class="nv"> </span><span class="s">unifi</span><span class="nv"> </span><span class="s">user</span><span class="se">''</span><span class="s">,</span><span class="nv"> </span><span class="se">''</span><span class="s">Unifi</span><span class="nv"> </span><span class="s">User:</span><span class="se">''</span><span class="s">)</span><span class="nv"> </span><span class="s">}}</span>
+
+<span class="w">            </span><span class="s">'</span>
+<span class="w">          </span><span class="nt">secondary</span><span class="p">:</span><span class="w"> </span><span class="s">'Last</span><span class="nv"> </span><span class="s">Changed:</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">states[config.entity].last_changed.strftime(</span><span class="se">''</span><span class="s">%d-%m</span>
+<span class="w">            </span><span class="s">%H:%M</span><span class="se">''</span><span class="s">)</span><span class="nv"> </span><span class="s">}}'</span>
+<span class="w">          </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="s">'{%</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">user_slug</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">states(config.entity)</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">slugify</span><span class="nv"> </span><span class="s">%}</span><span class="nv"> </span><span class="s">{%</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">fp</span><span class="nv"> </span><span class="s">=</span>
+<span class="w">            </span><span class="s">is_state(</span><span class="se">''</span><span class="s">switch.fp_access_</span><span class="se">''</span><span class="nv"> </span><span class="s">~</span><span class="nv"> </span><span class="s">user_slug,</span><span class="nv"> </span><span class="se">''</span><span class="s">on</span><span class="se">''</span><span class="s">)</span><span class="nv"> </span><span class="s">%}</span><span class="nv"> </span><span class="s">{%</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">nfc</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">is_state(</span><span class="se">''</span><span class="s">switch.nfc_access_</span><span class="se">''</span>
+<span class="w">            </span><span class="s">~</span><span class="nv"> </span><span class="s">user_slug,</span><span class="nv"> </span><span class="se">''</span><span class="s">on</span><span class="se">''</span><span class="s">)</span><span class="nv"> </span><span class="s">%}</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="se">''</span><span class="s">mdi:check-circle</span><span class="se">''</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">(fp</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">nfc)</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="se">''</span><span class="s">mdi:alert-circle</span><span class="se">''</span>
+<span class="w">            </span><span class="s">}}'</span>
+<span class="w">          </span><span class="nt">card_mod</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">style</span><span class="p">:</span><span class="w"> </span><span class="s">":host::before</span><span class="nv"> </span><span class="s">{\n</span><span class="nv">  </span><span class="s">content:</span><span class="nv"> </span><span class="s">\"\";\n</span><span class="nv">  </span><span class="s">display:</span><span class="nv"> </span><span class="s">block;\n</span><span class="nv">  </span><span class="s">height:\</span>
+<span class="w">              </span><span class="s">\ 1px;\n</span><span class="nv">  </span><span class="s">background-color:</span><span class="nv"> </span><span class="s">#dddddd;\n</span><span class="nv">  </span><span class="s">opacity:</span><span class="nv"> </span><span class="s">0.2;\n</span><span class="nv">  </span><span class="s">margin-top:\</span>
+<span class="w">              </span><span class="s">\ 10px;\n</span><span class="nv">  </span><span class="s">margin-bottom:</span><span class="nv"> </span><span class="s">10px;\n}\nstate-badge</span><span class="nv"> </span><span class="s">{\n</span><span class="nv">  </span><span class="s">color:</span><span class="nv"> </span><span class="s">{%</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">user_slug\</span>
+<span class="w">              </span><span class="s">\ =</span><span class="nv"> </span><span class="s">states(config.entity)</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">slugify</span><span class="nv"> </span><span class="s">%}\n</span><span class="nv">         </span><span class="s">{%</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">fp</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">is_state('switch.fp_access_'\</span>
+<span class="w">              </span><span class="s">\ ~</span><span class="nv"> </span><span class="s">user_slug,</span><span class="nv"> </span><span class="s">'on')</span><span class="nv"> </span><span class="s">%}\n</span><span class="nv">         </span><span class="s">{%</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">nfc</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">is_state('switch.nfc_access_'\</span>
+<span class="w">              </span><span class="s">\ ~</span><span class="nv"> </span><span class="s">user_slug,</span><span class="nv"> </span><span class="s">'on')</span><span class="nv"> </span><span class="s">%}\n</span><span class="nv">         </span><span class="s">{%</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">fp</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">nfc</span><span class="nv"> </span><span class="s">%}\n</span><span class="nv">           </span><span class="s">lightgreen\n\</span>
+<span class="w">              </span><span class="s">\ </span><span class="nv">        </span><span class="s">{%</span><span class="nv"> </span><span class="s">elif</span><span class="nv"> </span><span class="s">fp</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">nfc</span><span class="nv"> </span><span class="s">%}\n</span><span class="nv">           </span><span class="s">orange\n</span><span class="nv">         </span><span class="s">{%</span><span class="nv"> </span><span class="s">else\</span>
+<span class="w">              </span><span class="s">\ %}\n</span><span class="nv">           </span><span class="s">#FB6464\n</span><span class="nv">         </span><span class="s">{%</span><span class="nv"> </span><span class="s">endif</span><span class="nv"> </span><span class="s">%}</span><span class="nv"> </span><span class="s">!important;\n}\n"</span>
+<span class="w">      </span><span class="nt">exclude</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">    </span><span class="nt">sort</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grid</span>
+<span class="w">  </span><span class="nt">cards</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:mushroom-title-card</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Access Management</span>
+<span class="w">    </span><span class="nt">alignment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">center</span>
+<span class="w">    </span><span class="nt">title_tap_action</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<span class="w">    </span><span class="nt">subtitle_tap_action</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">heading</span>
+<span class="w">    </span><span class="nt">heading</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Access Methods</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:key-chain</span>
+<span class="w">    </span><span class="nt">heading_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">title</span>
+<span class="w">    </span><span class="nt">card_mod</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">style</span><span class="p">:</span><span class="w"> </span><span class="s">"ha-card</span><span class="nv"> </span><span class="s">{\n</span><span class="nv">  </span><span class="s">border:</span><span class="nv"> </span><span class="s">none;\n</span><span class="nv">  </span><span class="s">--primary-text-color:</span><span class="nv"> </span><span class="s">var(--orange-color);\n\</span>
+<span class="w">        </span><span class="s">\ </span><span class="nv"> </span><span class="s">--secondary-text-color:</span><span class="nv"> </span><span class="s">var(--orange-color);\n</span><span class="nv">  </span><span class="s">--card-mod-icon-color:\</span>
+<span class="w">        </span><span class="s">\ var(--orange-color);\n}\n"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:auto-entities</span>
+<span class="w">    </span><span class="nt">card</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">entities</span>
+<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NFC Access</span>
+<span class="w">      </span><span class="nt">show_header_toggle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">filter</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">include</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:template-entity-row</span>
+<span class="w">          </span><span class="nt">entity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">this.entity_id</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">'{{</span><span class="nv"> </span><span class="s">state_attr(config.entity,</span><span class="nv"> </span><span class="se">''</span><span class="s">friendly_name</span><span class="se">''</span><span class="s">)</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">replace(</span><span class="se">''</span><span class="s">Unifi</span>
+<span class="w">            </span><span class="s">Access</span><span class="nv"> </span><span class="s">DB</span><span class="nv"> </span><span class="se">''</span><span class="s">,</span><span class="nv"> </span><span class="se">''''</span><span class="s">)</span><span class="nv"> </span><span class="s">}}</span>
+
+<span class="w">            </span><span class="s">'</span>
+<span class="w">          </span><span class="nt">secondary</span><span class="p">:</span><span class="w"> </span><span class="s">'{{</span><span class="nv"> </span><span class="s">relative_time(states[config.entity].last_changed)</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">ago</span>
+
+<span class="w">            </span><span class="s">'</span>
+<span class="w">          </span><span class="nt">card_mod</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">style</span><span class="p">:</span><span class="w"> </span><span class="s">":host::before</span><span class="nv"> </span><span class="s">{\n</span><span class="nv">  </span><span class="s">content:</span><span class="nv"> </span><span class="s">\"\";\n</span><span class="nv">  </span><span class="s">display:</span><span class="nv"> </span><span class="s">block;\n</span><span class="nv">  </span><span class="s">height:\</span>
+<span class="w">              </span><span class="s">\ 1px;\n</span><span class="nv">  </span><span class="s">background-color:</span><span class="nv"> </span><span class="s">#dddddd;\n</span><span class="nv">  </span><span class="s">opacity:</span><span class="nv"> </span><span class="s">0.2;\n</span><span class="nv">  </span><span class="s">margin-top:\</span>
+<span class="w">              </span><span class="s">\ 10px;\n</span><span class="nv">  </span><span class="s">margin-bottom:</span><span class="nv"> </span><span class="s">10px;\n}\nstate-badge</span><span class="nv"> </span><span class="s">{\n</span><span class="nv">  </span><span class="s">color:</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">'green'\</span>
+<span class="w">              </span><span class="s">\ if</span><span class="nv"> </span><span class="s">is_state(config.entity,</span><span class="nv"> </span><span class="s">'on')</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="s">'#fb6464'</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">!important;\n}\n"</span>
+<span class="w">        </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch.nfc_access_*</span>
+<span class="w">      </span><span class="nt">exclude</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">options</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unavailable</span>
+<span class="w">    </span><span class="nt">sort</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:auto-entities</span>
+<span class="w">    </span><span class="nt">card</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">entities</span>
+<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Fingerprint Access</span>
+<span class="w">      </span><span class="nt">show_header_toggle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">filter</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">include</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:template-entity-row</span>
+<span class="w">          </span><span class="nt">entity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">this.entity_id</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">'{{</span><span class="nv"> </span><span class="s">state_attr(config.entity,</span><span class="nv"> </span><span class="se">''</span><span class="s">friendly_name</span><span class="se">''</span><span class="s">)</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">replace(</span><span class="se">''</span><span class="s">Unifi</span>
+<span class="w">            </span><span class="s">Access</span><span class="nv"> </span><span class="s">DB</span><span class="nv"> </span><span class="se">''</span><span class="s">,</span><span class="nv"> </span><span class="se">''''</span><span class="s">)</span><span class="nv"> </span><span class="s">}}</span>
+
+<span class="w">            </span><span class="s">'</span>
+<span class="w">          </span><span class="nt">secondary</span><span class="p">:</span><span class="w"> </span><span class="s">'{{</span><span class="nv"> </span><span class="s">relative_time(states[config.entity].last_changed)</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">ago</span>
+
+<span class="w">            </span><span class="s">'</span>
+<span class="w">          </span><span class="nt">card_mod</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">style</span><span class="p">:</span><span class="w"> </span><span class="s">":host::before</span><span class="nv"> </span><span class="s">{\n</span><span class="nv">  </span><span class="s">content:</span><span class="nv"> </span><span class="s">\"\";\n</span><span class="nv">  </span><span class="s">display:</span><span class="nv"> </span><span class="s">block;\n</span><span class="nv">  </span><span class="s">height:\</span>
+<span class="w">              </span><span class="s">\ 1px;\n</span><span class="nv">  </span><span class="s">background-color:</span><span class="nv"> </span><span class="s">#dddddd;\n</span><span class="nv">  </span><span class="s">opacity:</span><span class="nv"> </span><span class="s">0.2;\n</span><span class="nv">  </span><span class="s">margin-top:\</span>
+<span class="w">              </span><span class="s">\ 10px;\n</span><span class="nv">  </span><span class="s">margin-bottom:</span><span class="nv"> </span><span class="s">10px;\n}\nstate-badge</span><span class="nv"> </span><span class="s">{\n</span><span class="nv">  </span><span class="s">color:</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">'lightgreen'\</span>
+<span class="w">              </span><span class="s">\ if</span><span class="nv"> </span><span class="s">is_state(config.entity,</span><span class="nv"> </span><span class="s">'on')</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="s">'#fb6464'</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">!important;\n}\n"</span>
+<span class="w">        </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch.fp_access_*</span>
+<span class="w">      </span><span class="nt">exclude</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">options</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unavailable</span>
+<span class="w">    </span><span class="nt">sort</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">heading</span>
+<span class="w">    </span><span class="nt">heading</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Guest Access Schedule</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:clock-outline</span>
+<span class="w">    </span><span class="nt">heading_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">title</span>
+<span class="w">    </span><span class="nt">card_mod</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">style</span><span class="p">:</span><span class="w"> </span><span class="s">"ha-card</span><span class="nv"> </span><span class="s">{\n</span><span class="nv">  </span><span class="s">border:</span><span class="nv"> </span><span class="s">none;\n</span><span class="nv">  </span><span class="s">--primary-text-color:</span><span class="nv"> </span><span class="s">var(--orange-color);\n\</span>
+<span class="w">        </span><span class="s">\ </span><span class="nv"> </span><span class="s">--secondary-text-color:</span><span class="nv"> </span><span class="s">var(--orange-color);\n</span><span class="nv">  </span><span class="s">--card-mod-icon-color:\</span>
+<span class="w">        </span><span class="s">\ var(--orange-color);\n}\n"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">entities</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Guest Schedule</span>
+<span class="w">    </span><span class="nt">show_header_toggle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">state_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">entities</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">entity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_datetime.guest_access_start</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Start Time</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">entity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_datetime.guest_access_end</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">End Time</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:fold-entity-row</span>
+<span class="w">      </span><span class="nt">head</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">section</span>
+<span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Allowed Days</span>
+<span class="w">      </span><span class="nt">entities</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_boolean.guest_access_mon</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_boolean.guest_access_tue</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_boolean.guest_access_wed</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_boolean.guest_access_thu</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_boolean.guest_access_fri</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_boolean.guest_access_sat</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_boolean.guest_access_sun</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grid</span>
+<span class="w">  </span><span class="nt">cards</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:mushroom-title-card</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Access Logs</span>
+<span class="w">    </span><span class="nt">alignment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">center</span>
+<span class="w">    </span><span class="nt">title_tap_action</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<span class="w">    </span><span class="nt">subtitle_tap_action</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">heading</span>
+<span class="w">    </span><span class="nt">heading</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Combined Access Logs</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:key-chain</span>
+<span class="w">    </span><span class="nt">heading_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">title</span>
+<span class="w">    </span><span class="nt">card_mod</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">style</span><span class="p">:</span><span class="w"> </span><span class="s">"ha-card</span><span class="nv"> </span><span class="s">{\n</span><span class="nv">  </span><span class="s">border:</span><span class="nv"> </span><span class="s">none;\n</span><span class="nv">  </span><span class="s">--primary-text-color:</span><span class="nv"> </span><span class="s">var(--orange-color);\n\</span>
+<span class="w">        </span><span class="s">\ </span><span class="nv"> </span><span class="s">--secondary-text-color:</span><span class="nv"> </span><span class="s">var(--orange-color);\n</span><span class="nv">  </span><span class="s">--card-mod-icon-color:\</span>
+<span class="w">        </span><span class="s">\ var(--orange-color);\n}\n"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">logbook</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Recent Access (48h)</span>
+<span class="w">    </span><span class="nt">hours_to_show</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">48</span>
+<span class="w">    </span><span class="nt">entities</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.front_door_lock_cloud</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sensor.front_door_lock_operator</span>
+<span class="w">    </span><span class="nt">grid_options</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">columns</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
+<span class="w">      </span><span class="nt">rows</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">heading</span>
+<span class="w">    </span><span class="nt">heading</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Registered UUIDs</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:fingerprint</span>
+<span class="w">    </span><span class="nt">heading_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">title</span>
+<span class="w">    </span><span class="nt">card_mod</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">style</span><span class="p">:</span><span class="w"> </span><span class="s">"ha-card</span><span class="nv"> </span><span class="s">{\n</span><span class="nv">  </span><span class="s">border:</span><span class="nv"> </span><span class="s">none;\n</span><span class="nv">  </span><span class="s">--primary-text-color:</span><span class="nv"> </span><span class="s">var(--red-color);\n\</span>
+<span class="w">        </span><span class="s">\ </span><span class="nv"> </span><span class="s">--secondary-text-color:</span><span class="nv"> </span><span class="s">var(--red-color);\n</span><span class="nv">  </span><span class="s">--card-mod-icon-color:</span><span class="nv"> </span><span class="s">var(--red-color);\n\</span>
+<span class="w">        </span><span class="s">}\n"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">entities</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Registered User IDs</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:identifier</span>
+<span class="w">    </span><span class="nt">entities</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:fold-entity-row</span>
+<span class="w">      </span><span class="nt">head</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">section</span>
+<span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User ID List</span>
+<span class="w">      </span><span class="nt">entities</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:hui-element</span>
+<span class="w">        </span><span class="nt">card_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">markdown</span>
+<span class="w">        </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="s">'##</span><span class="nv"> </span><span class="s">&lt;ha-icon</span><span class="nv"> </span><span class="s">icon="mdi:fingerprint"&gt;&lt;/ha-icon&gt;</span><span class="nv"> </span><span class="s">Registred</span><span class="nv"> </span><span class="s">User</span><span class="nv"> </span><span class="s">IDs</span>
+
+
+
+
+<span class="w">          </span><span class="s">|</span><span class="nv"> </span><span class="s">&lt;font</span><span class="nv"> </span><span class="s">color=orange&gt;Assigned</span><span class="nv"> </span><span class="s">User&lt;/font&gt;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">&lt;font</span><span class="nv"> </span><span class="s">color=orange&gt;Fingerprint</span>
+<span class="w">          </span><span class="s">ID&lt;/font&gt;</span><span class="nv"> </span><span class="s">|</span>
+
+<span class="w">          </span><span class="s">|</span><span class="nv"> </span><span class="s">:---</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">:---</span><span class="nv"> </span><span class="s">|</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">fingerprints</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">states.select</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">selectattr(</span><span class="se">''</span><span class="s">entity_id</span><span class="se">''</span><span class="s">,</span><span class="nv"> </span><span class="se">''</span><span class="s">search</span><span class="se">''</span><span class="s">,</span>
+<span class="w">          </span><span class="se">''</span><span class="s">^select\.unifi_user_</span><span class="se">''</span><span class="s">)</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">list</span><span class="nv"> </span><span class="s">-%}</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">state</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">fingerprints</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sort(attribute=</span><span class="se">''</span><span class="s">state</span><span class="se">''</span><span class="s">)</span><span class="nv"> </span><span class="s">-%}</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">assigned</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">state.state</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">default(</span><span class="se">''</span><span class="s">Unknown</span><span class="se">''</span><span class="s">)</span><span class="nv"> </span><span class="s">-%}</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">assigned</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">[</span><span class="se">''</span><span class="s">Unknown</span><span class="se">''</span><span class="s">,</span><span class="nv"> </span><span class="se">''</span><span class="s">unknown</span><span class="se">''</span><span class="s">,</span><span class="nv"> </span><span class="se">''</span><span class="s">unavailable</span><span class="se">''</span><span class="s">]</span><span class="nv"> </span><span class="s">-%}</span>
+
+<span class="w">          </span><span class="s">|</span><span class="nv"> </span><span class="s">**{{</span><span class="nv"> </span><span class="s">assigned</span><span class="nv"> </span><span class="s">}}**</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">`{{</span><span class="nv"> </span><span class="s">(state.attributes.ulp_id</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">default(</span><span class="se">''</span><span class="s">unknown</span><span class="se">''</span><span class="s">)).strip()</span>
+<span class="w">          </span><span class="s">}}`</span><span class="nv"> </span><span class="s">|</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="s">-%}</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">clean</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">assigned.replace(</span><span class="se">''</span><span class="nv"> </span><span class="s">Notifications</span><span class="se">''</span><span class="s">,</span><span class="nv"> </span><span class="se">''''</span><span class="s">).replace(</span><span class="se">''</span><span class="nv"> </span><span class="s">Notification</span><span class="se">''</span><span class="s">,</span>
+<span class="w">          </span><span class="se">''''</span><span class="s">)</span><span class="nv"> </span><span class="s">-%}</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">parts</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">clean.split(</span><span class="se">''</span><span class="nv"> </span><span class="se">''</span><span class="s">)</span><span class="nv"> </span><span class="s">-%}</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">parts</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">length</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">parts[0]</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">parts[-1]</span><span class="nv"> </span><span class="s">-%}</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">display_name</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">parts[0]</span><span class="nv"> </span><span class="s">-%}</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="s">-%}</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">display_name</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">clean</span><span class="nv"> </span><span class="s">-%}</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">endif</span><span class="nv"> </span><span class="s">-%}</span>
+
+<span class="w">          </span><span class="s">|</span><span class="nv"> </span><span class="s">**{{</span><span class="nv"> </span><span class="s">display_name</span><span class="nv"> </span><span class="s">}}**</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">`{{</span><span class="nv"> </span><span class="s">(state.attributes.ulp_id</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">default(</span><span class="se">''</span><span class="s">unknown</span><span class="se">''</span><span class="s">)).strip()</span>
+<span class="w">          </span><span class="s">}}`</span><span class="nv"> </span><span class="s">|</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">endif</span><span class="nv"> </span><span class="s">-%}</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="s">-%}</span>
+
+<span class="w">          </span><span class="s">|</span><span class="nv"> </span><span class="s">No</span><span class="nv"> </span><span class="s">fingerprints</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">found</span><span class="nv"> </span><span class="s">yet</span><span class="nv"> </span><span class="s">|</span>
+
+<span class="w">          </span><span class="s">{%</span><span class="nv"> </span><span class="s">endfor</span><span class="nv"> </span><span class="s">%}</span>
+
+<span class="w">          </span><span class="s">'</span>
+<span class="nt">header</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">card</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">markdown</span>
+<span class="w">    </span><span class="nt">text_only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="s">'#</span><span class="nv"> </span><span class="s">Home</span><span class="nv"> </span><span class="s">Access</span><span class="nv"> </span><span class="s">Center'</span>
+<span class="nt">max_columns</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="nt">cards</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">home-access-center</span>
+<span class="nt">top_margin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</code></pre></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 EvisHome
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better. We use Google Analytics to collect anonymous usage data.</p>
+<input class="md-toggle" type="checkbox" id="__settings">
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="analytics">
+      <span class="task-list-indicator"></span>
+      Google Analytics
+    </label>
+  </li>
+
+      
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
