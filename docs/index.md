@@ -71,19 +71,19 @@ hide:
 ## Featured
 <div class="feature-grid">
     <a href="home-lab/#network-topology" class="feature-card">
-        <span>Infrastructure</span>
-        <h4>Network Topology</h4>
-        <p>View the complete UniFi network map and VLAN structure.</p>
+        <span>Documentation</span>
+        <h4>Architecture & Workflow</h4>
+        <p>See how the Home Assistant documentation is managed via an Agentic Documentation Workflow.</p>
     </a>
     <a href="smart-home/dashboards/" class="feature-card">
-        <span>UI / UX</span>
+        <span>Home Assistant</span>
         <h4>Dashboards</h4>
-        <p>Explore the tablet and mobile interfaces centered on areas.</p>
+        <p>Check the dashboards for the Home Assistant</p>
     </a>
-    <a href="smart-home/" class="feature-card">
-        <span>Configuration</span>
-        <h4>Smart Home & Add-ons</h4>
-        <p>Deep dive into the Home Assistant config and NVR integration.</p>
+    <a href="smart-home/packages" class="feature-card">
+        <span>Home Assistant</span>
+        <h4>Automations</h4>
+        <p>Deep dive into the Home Assistant automations and dashboards.</p>
     </a>
 </div>
 
