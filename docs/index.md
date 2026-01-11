@@ -43,22 +43,30 @@ hide:
 
 
 <div class="hero-section">
-<a href="assets/images/evishomelab-intro-3.mp4" class="glightbox" data-width="100%" data-height="auto">
-    <video autoplay loop muted playsinline style="cursor: pointer;">
+    <video autoplay loop muted playsinline style="cursor: default;">
         <source src="assets/images/evishomelab-intro-3.mp4" type="video/mp4">
     </video>
-</a>
 </div>
 
-## Content
 
-- **[Articles](articles/index.md)**: Collection of articles and guides.
-
-- **[Home Lab](home-lab/index.md)**: Networking, Server Infrastructure, VMs, and containers.
-
-- **[Smart Home](smart-home/index.md)**: Home Assistant configuration, automations, and dashboards.
-
-- **[Tags](tags.md)**: Browse the content by tags.
+<div class="content-grid">
+    <a href="articles/" class="content-card">
+        <h3>Articles</h3>
+        <p>Collection of articles and guides.</p>
+    </a>
+    <a href="home-lab/" class="content-card">
+        <h3>Home Lab</h3>
+        <p>Networking, Server Infrastructure, VMs, and containers.</p>
+    </a>
+    <a href="smart-home/" class="content-card">
+        <h3>Smart Home</h3>
+        <p>Home Assistant configuration, automations, and dashboards.</p>
+    </a>
+    <a href="tags/" class="content-card">
+        <h3>Tags</h3>
+        <p>Browse the content by tags.</p>
+    </a>
+</div>
 
 ## Documentation Workflow
 
@@ -84,9 +92,6 @@ hide:
     <a href="articles/articles/the-rack/lab-preview.jpeg" class="glightbox">
         <img src="articles/articles/the-rack/lab-preview.jpeg" alt="Lab Lights">
     </a>
-</div>
-
-<div class="media-grid">
     <a href="articles/articles/the-rack/rack-back.jpeg" class="glightbox">
         <img src="articles/articles/the-rack/rack-back.jpeg" alt="Rack Back">
     </a>
