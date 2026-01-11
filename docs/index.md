@@ -7,12 +7,40 @@ hide:
   - toc
 ---
 
-
 <style>
+  /* Hide title and edit button */
   .md-typeset h1, .md-content__button {
     display: none;
   }
+  /* Remove default top padding/margins for ALL main content containers */
+  .md-container, .md-content, .md-content__inner, .md-main__inner, .md-main {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+  /* CRITICAL FIX: Hide the pseudo-element that adds 0.4rem top spacing */
+  .md-content__inner::before {
+    display: none !important;
+    content: none !important;
+  }
+  
+  /* ROBUST CROSS-BROWSER FIX: Kill ghost spacing from line-height/font-size */
+  .hero-section {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+  }
+  
+  .hero-section video, .hero-section a {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    vertical-align: top !important;
+  }
 </style>
+
+
+
 
 <div class="hero-section">
 <a href="assets/images/evishomelab-intro-3.mp4" class="glightbox" data-width="100%" data-height="auto">
