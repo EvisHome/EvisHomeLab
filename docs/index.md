@@ -70,7 +70,7 @@ hide:
 
 ## Featured
 <div class="feature-grid">
-    <a href="home-lab/#network-topology" class="feature-card">
+    <a href="workflow/" class="feature-card">
         <span>Documentation</span>
         <h4>Architecture & Workflow</h4>
         <p>See how the Home Assistant documentation is managed via an Agentic Documentation Workflow.</p>
