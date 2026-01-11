@@ -68,15 +68,24 @@ hide:
     </a>
 </div>
 
-## Documentation Workflow
-
-!!! info "Site Architecture & Maintenance"
-    Some parts of this documentation site is managed via an **Agentic Documentation Workflow**. Meaning that it is automatically generated from the live Home Assistant configuration using Google Antigravity.
-
-    * **Strategy:** Detached Docs (Private Config → Public Site)
-    * **Tools:** Home Assistant OS, Gemini AI (Architect AI), Antigravity IDE (AI Agent), Git, MkDocs Material
-
-    [**Documentation Workflow**](workflow/index.md)
+## Featured
+<div class="feature-grid">
+    <a href="home-lab/#network-topology" class="feature-card">
+        <span>Infrastructure</span>
+        <h4>Network Topology</h4>
+        <p>View the complete UniFi network map and VLAN structure.</p>
+    </a>
+    <a href="smart-home/dashboards/" class="feature-card">
+        <span>UI / UX</span>
+        <h4>Dashboards</h4>
+        <p>Explore the tablet and mobile interfaces centered on areas.</p>
+    </a>
+    <a href="smart-home/" class="feature-card">
+        <span>Configuration</span>
+        <h4>Smart Home & Add-ons</h4>
+        <p>Deep dive into the Home Assistant config and NVR integration.</p>
+    </a>
+</div>
 
 ## The Lab
 
