@@ -11,7 +11,7 @@ version: Unknown
 **Description:** No description provided.
 
 <!-- START_IMAGE -->
-![Package Diagram](../../assets/images/packages/debug_script.png)
+![Package Diagram](assets/debug_script.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

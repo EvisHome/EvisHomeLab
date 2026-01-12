@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Logic for Washing Machine state tracking, run time calculation, and notifications.
 
 <!-- START_IMAGE -->
-![Package Diagram](../../assets/images/packages/washing_machine.png)
+![Package Diagram](assets/washing_machine.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Parametric Time-of-Day Logic
 
 <!-- START_IMAGE -->
-![Package Diagram](../../assets/images/packages/home_time_modes.png)
+![Package Diagram](assets/home_time_modes.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

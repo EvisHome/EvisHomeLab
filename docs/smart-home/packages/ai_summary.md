@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Frontend controller for the remote AI Log Reporter integration.
 
 <!-- START_IMAGE -->
-![Package Diagram](../../assets/images/packages/ai_summary.png)
+![Package Diagram](assets/ai_summary.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

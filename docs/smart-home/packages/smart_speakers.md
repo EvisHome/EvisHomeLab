@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Configuration and helpers for managing Smart Speakers in Notification Center
 
 <!-- START_IMAGE -->
-![Package Diagram](../../assets/images/packages/smart_speakers.png)
+![Package Diagram](assets/smart_speakers.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

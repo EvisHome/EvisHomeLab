@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Manages temperature settings and schedules for the Bathroom Floor Heat (Aqara W500 Climate). Includes logic for high electricity price reduction and shower occupancy boost.
 
 <!-- START_IMAGE -->
-![Package Diagram](../../assets/images/packages/aqara_w500.png)
+![Package Diagram](assets/aqara_w500.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

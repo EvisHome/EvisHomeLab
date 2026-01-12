@@ -11,7 +11,7 @@ version: 1.1.0
 **Description:** Unified management for G4 Doorbell Pro Fingerprint & NFC.
 
 <!-- START_IMAGE -->
-![Package Diagram](../../assets/images/packages/unifi_access.png)
+![Package Diagram](assets/unifi_access.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

@@ -2,7 +2,6 @@
 tags:
   - package
   - automated
-  - car
 version: 2.0.3
 ---
 
@@ -12,7 +11,7 @@ version: 2.0.3
 **Description:** Unified logic for Mercedes GLC. Normalizes sensors (Windows/Doors), wrapper switches, and Status Notifications.
 
 <!-- START_IMAGE -->
-![Package Diagram](../../assets/images/packages/car.png)
+![Package Diagram](assets/car.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

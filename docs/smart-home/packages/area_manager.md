@@ -11,7 +11,7 @@ version: 2.0.0 (Refactored from Room Manager)
 **Description:** Dynamic creation of AREA settings via MQTT (Replaces Room Manager)
 
 <!-- START_IMAGE -->
-![Package Diagram](../../assets/images/packages/area_manager.png)
+![Package Diagram](assets/area_manager.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

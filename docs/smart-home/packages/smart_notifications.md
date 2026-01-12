@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Helpers and logic for the dynamic notification router
 
 <!-- START_IMAGE -->
-![Package Diagram](../../assets/images/packages/smart_notifications.png)
+![Package Diagram](assets/smart_notifications.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

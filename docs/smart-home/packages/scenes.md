@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Definitions for various lighting scenes (Daylight, Night, Movie, etc.)
 
 <!-- START_IMAGE -->
-![Package Diagram](../../assets/images/packages/scenes.png)
+![Package Diagram](assets/scenes.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

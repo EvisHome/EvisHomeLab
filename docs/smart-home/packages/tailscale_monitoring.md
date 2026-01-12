@@ -11,7 +11,7 @@ version: Unknown
 **Description:** No description provided.
 
 <!-- START_IMAGE -->
-![Package Diagram](../../assets/images/packages/tailscale_monitoring.png)
+![Package Diagram](assets/tailscale_monitoring.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary

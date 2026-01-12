@@ -11,7 +11,7 @@ version: 1.0.0
 **Description:** Nordpool energy price calculations and logic
 
 <!-- START_IMAGE -->
-![Package Diagram](../../assets/images/packages/nordpool_prices.png)
+![Package Diagram](assets/nordpool_prices.png)
 <!-- END_IMAGE -->
 
 ## Executive Summary
