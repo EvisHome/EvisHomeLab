@@ -44,7 +44,7 @@ hide:
 
 <div class="hero-section">
     <video autoplay loop muted playsinline style="cursor: default;">
-        <source src="assets/images/intro-480.mp4" type="video/mp4">
+        <source src="assets/images/intro-1080-2000.mp4" type="video/mp4">
     </video>
 </div>
 
