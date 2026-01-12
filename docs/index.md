@@ -124,5 +124,5 @@ My Smart Home journey started along time ago I think somewhere around 2005with h
 
 Before I moved to Home Assistant I used SmartThings with Webcore, SmartApps and Device Handlers (DTHs), which ran in the Groovy IDE. For some years I was using this setup, with a lot of custom code and a lot of time spent on debugging and just maintaining the system.
 
-Ever since I fully moved to Home Assistant things have been much easier and I've been able to focus on actual home automation, and making things smarter.
+Ever since I fully moved to Home Assistant things have been much easier and I've been able to focus on actual home automation, and making things smarter. Now with help of AI agents things are speeding up significantly and it is so much easier to come up with new ideas and implement them.
 
