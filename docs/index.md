@@ -5,6 +5,7 @@ description: explore the EvisHomeLab documentation covering Smart Home automatio
 hide:
   - navigation
   - toc
+render_macros: true
 ---
 
 <style>
@@ -43,10 +44,12 @@ hide:
 
 
 <div class="hero-section">
-    {{ hero_overlay("Virtual Fireplace", "Featured Project", "articles/articles/virtual-fireplace/") }}
-    <video autoplay loop muted playsinline style="cursor: default;">
-        <source src="assets/images/intro-1080-2000.mp4" type="video/mp4">
-    </video>
+    <div class="hero-inner" style="position: relative; width: 100%; max-width: 1200px; margin: 0 auto;">
+        {# {{ hero_overlay("Virtual Fireplace", "Featured Project", "articles/virtual-fireplace/") }} #}
+        <video autoplay loop muted playsinline style="cursor: default;">
+            <source src="assets/images/intro-1080-2000.mp4" type="video/mp4">
+        </video>
+    </div>
 </div>
 
 

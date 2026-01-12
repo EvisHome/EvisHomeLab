@@ -354,72 +354,112 @@ function applyFilter() {
         Creates an overlay card for the hero video section.
         """
         html = f'''
-        <div class="hero-overlay">
-            <a href="{link}" class="feature-card overlay-card">
-                <span>{subtitle}</span>
-                <h4>{title}</h4>
-                <p>Read more &rarr;</p>
+        <div class="hero-overlay-container">
+            <a href="{link}" class="overlay-card">
+                <span class="overlay-badge">{subtitle}</span>
+                <h4 class="overlay-title">{title}</h4>
+                <p class="overlay-link">Read more &rarr;</p>
             </a>
         </div>
         <style>
-        .hero-overlay {{
+        .hero-overlay-container {{
             position: absolute;
-            bottom: 30px;
-            left: 30px;
+            bottom: 60px; /* Raised higher */
+            left: 40px;   /* Moved inward */
             z-index: 20;
-            max-width: 320px;
-            width: 90%;
-            animation: fadeIn 1s ease-out 1s both;
+            width: auto;
+            min-width: 140px;
+            max-width: 340px; /* Wider to fit content */
+            pointer-events: auto;
         }}
-        .overlay-card {{
-            background: rgba(30, 30, 35, 0.85); /* Dark mode default */
+
+        .hero-overlay-container .overlay-card {{
+            display: flex !important;
+            flex-direction: column;
+            padding: 24px !important; /* Specificity boost + larger padding */
+            background: rgba(22, 24, 28, 0.25);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-left: 4px solid var(--md-accent-fg-color);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            transform: translateY(0);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-decoration: none !important;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideUpFade 0.8s ease-out 0.5s both;
+            line-height: normal !important;
+            text-align: left;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+            width: 100%;
         }}
         
-        [data-md-color-scheme="default"] .overlay-card {{
-            background: rgba(255, 255, 255, 0.85);
+        [data-md-color-scheme="default"] .hero-overlay-container .overlay-card {{
+            background: rgba(255, 255, 255, 0.9);
             border: 1px solid rgba(0,0,0,0.1);
-        }}
-        
-        .overlay-card:hover {{
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-            background: rgba(30, 30, 35, 0.95);
-        }}
-        [data-md-color-scheme="default"] .overlay-card:hover {{
-            background: rgba(255, 255, 255, 0.95);
-        }}
-        
-        .overlay-card h4 {{
-            margin-top: 5px;
-            color: var(--md-default-fg-color);
-        }}
-        
-        .overlay-card p {{
-            margin-top: 10px;
-            font-size: 0.85em;
-            font-weight: bold;
-            color: var(--md-accent-fg-color);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }}
 
-        @keyframes fadeIn {{
+        .hero-overlay-container .overlay-card:hover {{
+            transform: translateY(-5px);
+            background: rgba(22, 24, 28, 0.65);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        }}
+        
+        [data-md-color-scheme="default"] .hero-overlay-container .overlay-card:hover {{
+             background: #fff;
+        }}
+        
+        .overlay-badge {{
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0px;
+            font-weight: 500;
+            line-height: 1; 
+        }}
+        [data-md-color-scheme="default"] .overlay-badge {{
+            color: #555;
+        }}
+        
+        .overlay-title {{
+            margin: 0 0 4px 0;
+            color: #fff !important;
+            font-weight: 700;
+            font-size: 1.2rem;
+            line-height: 1 !important;
+        }}
+        [data-md-color-scheme="default"] .overlay-title {{
+            color: #222 !important;
+        }}
+        
+        .overlay-link {{
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--md-accent-fg-color) !important;
+            align-self: flex-start;
+            line-height: 1;
+        }}
+
+        @keyframes slideUpFade {{
             from {{ opacity: 0; transform: translateY(20px); }}
             to {{ opacity: 1; transform: translateY(0); }}
         }}
         
-        @media screen and (max-width: 480px) {{
-            .hero-overlay {{
-                bottom: 20px;
+        @media screen and (max-width: 600px) {{
+            .hero-overlay-container {{
+                bottom: 25px;
                 left: 20px;
                 right: 20px;
                 max-width: none;
-                width: auto;
+            }}
+            .overlay-title {{
+                font-size: 1.2rem;
+            }}
+            .overlay-card {{
+                padding: 16px 20px !important;
             }}
         }}
         </style>
