@@ -43,6 +43,7 @@ hide:
 
 
 <div class="hero-section">
+    {{ hero_overlay("Virtual Fireplace", "Featured Project", "articles/articles/virtual-fireplace/") }}
     <video autoplay loop muted playsinline style="cursor: default;">
         <source src="assets/images/intro-1080-2000.mp4" type="video/mp4">
     </video>
