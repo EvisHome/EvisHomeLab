@@ -120,7 +120,7 @@ render_macros: true
 
 I've had a passion for home automation, DIY, self-hosting for a while now. I'm a big fan of Home Assistant and have been using it for since 2019-2020. I have documented my journey on various platforms, but I've always wanted to have a single place to keep everything in one place. Now with the help of Google Antigravity and the MkDocs Material theme, I've been able to create a single place to keep everything in one place. And the speed of creating everything into this site has been just amazing. Withing just few weekends I was able to create this site automate the documentation process convert some of my older articles and make them into markdown files and add them to the site.
 
-My Smart Home journey started along time ago I think somewhere around 2005with having too many remote controllers for my home theater system. I started with a basic setup using a Raspberry Pi and a few scripts to control the system. Over time, I added more and more features, such as voice control, scene management, and more.
+My Smart Home journey started along time ago I think somewhere around 2005 with having too many remote controllers for my home theater system. I started with a basic setup using a Raspberry Pi and a few scripts to control the system. Over time, I added more and more features, such as voice control, scene management, and more.
 
 Before I moved to Home Assistant I used SmartThings with Webcore, SmartApps and Device Handlers (DTHs), which ran in the Groovy IDE. For some years I was using this setup, with a lot of custom code and a lot of time spent on debugging and just maintaining the system.
 
