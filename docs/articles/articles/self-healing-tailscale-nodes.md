@@ -199,7 +199,7 @@ shell_command:
     -o StrictHostKeyChecking=no
     -o UserKnownHostsFile=/dev/null
     root@10.0.0.89
-    'pct exec 101 -- tailscale update --yes'
+    'pct exec 101 -- bash -c "DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y tailscale"'
 
 script:
   update_tailscale_halo_node:
