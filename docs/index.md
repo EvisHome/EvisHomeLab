@@ -76,7 +76,7 @@ render_macros: true
 <div class="feature-grid">
     <a href="workflow/" class="feature-card">
         <span>Documentation</span>
-        <h4>Architecture & Workflow</h4>
+        <h4>Documentation & Workflow</h4>
         <p>See how the Home Assistant documentation is managed via an Agentic Documentation Workflow.</p>
     </a>
     <a href="smart-home/dashboards/" class="feature-card">
