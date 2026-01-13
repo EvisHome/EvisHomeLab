@@ -3,17 +3,21 @@ title: Self-Healing Tailscale Nodes
 date: 2026-01-13
 description: Stabilize Tailscale Exit Nodes running as Proxmox LXCs and integrate them into Home Assistant for active monitoring and automated recovery.
 image: self-healing-tailscale-nodes/tailscale-main.png
+highlight: true
 tags:
   - Tailscale
   - Home Assistant
   - Proxmox
   - LXC
   - Automation
+  - AI
 ---
 
 # Self-Healing Tailscale Nodes
 
 This guide documents how to stabilize Tailscale Exit Nodes running as Proxmox LXCs and integrate them into Home Assistant for active monitoring and automated recovery.
+
+![Self-Healing Tailscale Nodes](../self-healing-tailscale-nodes/tailscale-main.png)
 
 ## Prerequisites
 
@@ -335,6 +339,8 @@ This automation triggers in two scenarios:
 2.  **Health Warnings**: If `tailscale status` reports an error (e.g., specific sub-service failure), Gemini explains the error and suggests a fix.
 
 This provides a human-readable recommendation directly to your mobile device before you ever touch the terminal.
+
+![Gemini Advisor](../self-healing-tailscale-nodes/tailscale-notification.png)
 
 ## Verification & Testing
 
