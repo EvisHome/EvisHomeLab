@@ -2,6 +2,7 @@
 title: Self-Healing Tailscale Nodes
 date: 2026-01-13
 description: Stabilize Tailscale Exit Nodes running as Proxmox LXCs and integrate them into Home Assistant for active monitoring and automated recovery.
+image: self-healing-tailscale-nodes/tailscale-main.png
 tags:
   - Tailscale
   - Home Assistant
