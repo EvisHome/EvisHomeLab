@@ -1,0 +1,42 @@
+---
+title: Philips Hue Motion Sensor Wall Mount
+date: 2022-09-10
+description: Build a custom wall mount for your Philips Hue motion sensor.
+image: philips-hue-motion-sensor-mount/small-mount.jpg
+highlight: false
+tags:
+  - 3D Printing
+  - Philips Hue
+  - DIY
+---
+
+# Philips Hue Motion Sensor Wall Mount
+
+![wall mount](philips-hue-motion-sensor-mount/small-mount.jpg)
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+  <img src="philips-hue-motion-sensor-mount/small-mount-01.jpg" alt="Mount View 1" style="width: 100%; border-radius: 8px;">
+  <img src="philips-hue-motion-sensor-mount/small-mount-02.jpg" alt="Mount View 2" style="width: 100%; border-radius: 8px;">
+</div>
+
+
+
+
+3D printable wall mount for Philips Hue Motion sensor, give a little bit wider rotation angles, and allows easy battery changes while keeping the mount aligned to the correct direction. The mount is compatible with my ESPHome projects Room Presence and Presence Box 2 and can be mixed with all the different mount options.
+
+3D printable wall mount for [Philips Hue Motion sensor](https://amzn.to/3eFKGZe), give a little bit wider rotation angles, and allows easy battery changes while keeping the mount aligned to the correct direction. The mount is compatible with my ESPHome projects [Room Presence](https://github.com/EvisHome/Home-Assistant/tree/main/esphome/presence) and [Presence Box 2](https://github.com/EvisHome/Home-Assistant/tree/main/esphome/presence-box-2) and can be mixed with all the different mount options.
+
+## Parts
+
+* [Philips Hue Motion Sensor](https://amzn.to/3eFKGZe)
+* 3D Printable Mounting Parts | [Printables.com](https://www.printables.com/model/273578-philips-hue-motion-sensor-wall-mount) | [TinkerCad (Source Model)](https://www.tinkercad.com/things/9wCn1o8V80X-sensor-mounting-set)
+* Screws: preferably use a countersunk screw. There are two versions of the mount ball, one that should work with [M3 screws](https://amzn.to/3x9pdyv) (10mm or 12mm) and another one that should work with #6 - 32 UNC screw (9.5mm?)
+* "Wall Screw(s)" for attaching the mount to a wall/ceiling (4mm hole)
+
+## Installation
+
+![installation](philips-hue-motion-sensor-mount/installation2.png)
+
+## Mount Options
+
+![mount options](philips-hue-motion-sensor-mount/mounting-options.png)

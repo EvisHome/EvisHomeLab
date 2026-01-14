@@ -8,13 +8,14 @@ def define_env(env):
     """
 
     def get_articles(env):
-        articles_dir = os.path.join(env.project_dir, 'docs', 'articles', 'articles')
+        articles_dir = os.path.join(env.project_dir, 'docs', 'articles')
         articles = []
 
         # Walk through the articles directory
         for root, dirs, files in os.walk(articles_dir):
             for file in files:
-                if file.endswith('.md'):
+                # Ignore the index file itself to prevent recursion
+                if file.endswith('.md') and file != 'index.md':
                     file_path = os.path.join(root, file)
                     
                     # Read frontmatter
@@ -45,7 +46,7 @@ def define_env(env):
                                     
                                     # Link Calculation
                                     rel_path_from_articles = os.path.relpath(file_path, articles_dir)
-                                    link_url = f"articles/{rel_path_from_articles.replace('.md', '').replace('\\', '/')}"
+                                    link_url = rel_path_from_articles.replace('.md', '').replace('\\', '/')
                                     article['url'] = link_url
                                     
                                     # Image Path Calculation
@@ -53,9 +54,9 @@ def define_env(env):
                                     if not img_path.startswith('http'):
                                          article_sub_dir = os.path.dirname(rel_path_from_articles)
                                          if article_sub_dir:
-                                             article['image'] = f"articles/{article_sub_dir}/{img_path}".replace('\\', '/')
+                                             article['image'] = f"{article_sub_dir}/{img_path}".replace('\\', '/')
                                          else:
-                                             article['image'] = f"articles/{img_path}".replace('\\', '/')
+                                             article['image'] = img_path.replace('\\', '/')
 
                                     articles.append(article)
                         except Exception as e:
