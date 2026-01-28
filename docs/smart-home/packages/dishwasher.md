@@ -34,8 +34,10 @@ The Dishwasher package provides comprehensive integration for LG ThinQ dishwashe
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
+* **[Room Management](../dashboards/area-manager/room_management.md)** (Uses 2 entities)
 * **[Home](../dashboards/main/home.md)**: *The Home dashboard serves as the central information hub. It features a large clock and family calendars, alongside detailed weather forecasts. Key home stats are highlighted, including real-time energy prices, power usage, and the status of major appliances like the dishwasher and washing machine. The view also provides a high-level overview of the entire house, displaying camera feeds and status summaries for all key rooms (Sauna, Bathroom, Bedroom, etc.) using 'Streamline' area cards.* (Uses 2 entities)
 * **[Kitchen](../dashboards/main/kitchen.md)**: *This view offers comprehensive control over the Kitchen. It monitors critical appliances, showing the status of the fridge (door/leak), coffee machine, and detailed cycle information for the dishwasher. Lighting controls allow for general switching or individual bulb adjustments. A key feature is the visualization of zoned presence detection (Entrance, Table, Cooking) using FP2 sensors, enabling highly granular kitchen automations.* (Uses 6 entities)
+* **[Room Management](../dashboards/room-management/room_management.md)**: *The Room Management dashboard serves as the administrative backend for the home's room logic. It allows users to initialize new rooms (creating necessary helper entities) or delete existing ones. It features a dynamic "Configured Rooms" section powered by `auto-entities`, which automatically lists all configured rooms and provides collapsible controls for their automation modes, occupancy sensors, and timeouts.* (Uses 2 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram

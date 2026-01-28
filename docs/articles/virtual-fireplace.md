@@ -19,6 +19,9 @@ tags:
   <source src="../virtual-fireplace/virtual-fireplace.mp4" type="video/mp4">
 </video>
 
+> [!INFO] "Technical Reference"
+> This article covers the **hardware build**. For the live automation logic and YAML configuration, see the **[Fireplace Automation Package](../smart-home/packages/fireplace_automation.md)**.
+
 ## WLED
 
 check these

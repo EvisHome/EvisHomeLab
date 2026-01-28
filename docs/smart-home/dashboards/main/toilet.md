@@ -67,8 +67,8 @@ sections:
   - type: custom:decluttering-card
     template: area_occupancy_settings
     variables:
-    - area: backyard
-    - area_name: Backyard
+    - area: toilet
+    - area_name: Toilet
   - type: vertical-stack
     cards:
     - type: custom:mushroom-title-card

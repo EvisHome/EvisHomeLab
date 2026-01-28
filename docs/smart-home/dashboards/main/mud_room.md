@@ -59,7 +59,7 @@ sections:
       area_title: Mud Room
       temperature_sensor: sensor.airthings_wave_temperature
       temp_sensor_entity: sensor.mud_room_motion_sensor_device_temperature
-      indicator_1_entity: binary_sensor.front_door_lock_door
+      indicator_1_entity: binary_sensor.front_door_lock_sensor
       indicator_1_icon: mdi:door
       indicator_1_state: 'on'
       indicator_1_active_color: '#FF4444'

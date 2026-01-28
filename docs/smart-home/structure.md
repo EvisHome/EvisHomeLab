@@ -12,19 +12,22 @@ An overview of the key directories and files in the Home Assistant root folder.
 
 | Directory / File | Purpose |
 | :--- | :--- |
-| **`.ag_scripts/`** | Python tooling for automated docs generation (Packages, Dashboards, Indexing). |
+| **`.ag_scripts/`** | Automation scripts for maintaining this documentation and workspace. |
 | **`.storage/`** | Internal Home Assistant storage for registries (devices, entities, etc.). **Do not edit manually.** |
-| **`AI_CONTEXT.md`** | System prompt and context file for the creation of this AI Agent. |
+| **`AI_CONTEXT.md`** |  |
 | **`ag_v2_agent.py`** |  |
 | **`ag_v2_dashboard.py`** |  |
 | **`ag_v2_package.py`** |  |
 | **`ag_v2_update.py`** |  |
+| **`ai_docs_change_log.md`** |  |
+| **`ai_new_ideas.md`** |  |
 | **`automations.yaml`** | The main file for storing automations, commonly managed via the UI. |
 | **`blueprints/`** | Stores automation blueprints downloaded or created for reusability. |
 | **`button_card_templates/`** | Custom templates for `custom:button-card` Lovelace cards. |
 | **`configuration.yaml`** | The main configuration file for Home Assistant. |
 | **`custom_components/`** | Custom integrations installed manually or via HACS. |
 | **`custom_templates/`** | Global Jinja2 templates (macros) available throughout Home Assistant. |
+| **`dashboards/`** | Directory. |
 | **`debug_regex.py`** |  |
 | **`deps/`** | Python dependencies installed by Home Assistant or integrations. |
 | **`docs_site/`** | This documentation repository and MkDocs site structure. |
@@ -40,9 +43,11 @@ An overview of the key directories and files in the Home Assistant root folder.
 | **`node-red/`** | Storage for Node-RED flows and settings (if the add-on is used). |
 | **`packages/`** | Configuration split into logical "packages" (bundling automations, scripts, configuration by feature). |
 | **`pyscript/`** | Python scripts and apps for the `pyscript` integration. |
+| **`run_server.cmd`** |  |
 | **`scenes.yaml`** | Configuration file for defining scenes. |
 | **`scripts.yaml`** | Configuration file for scripts (sequences of actions). |
 | **`secrets.yaml`** | Stores sensitive data (passwords, tokens) referenced via `!secret`. |
+| **`smart_speaker_dashboard_view.yaml`** | YAML configuration file. |
 | **`themes/`** | Frontend themes definition files. |
 | **`tts/`** | Text-to-Speech cache or configuration. |
 | **`www/`** | Publicly accessible folder mapped to `/local/` for hosting custom cards, images, and resources. |
@@ -80,7 +85,10 @@ frontend:
 tts:
   - platform: google_translate
 
+## RECORDER ##
 recorder:
+  purge_keep_days: 7
+  auto_purge: true
 #  exclude:
 #    entities:
 
@@ -96,5 +104,6 @@ fan: !include include/philips_air_purifier.yaml
 ## FILES ##
 automation: !include automations.yaml ## UI-managed
 script: !include scripts.yaml ## UI-managed
+scene: !include scenes.yaml ## UI-managed
 
 ```

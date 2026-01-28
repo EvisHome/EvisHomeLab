@@ -25,7 +25,6 @@ This view offers comprehensive control over the Kitchen. It monitors critical ap
 This view contains entities managed by:
 
 * [Dishwasher](../../packages/dishwasher.md)
-* [Scenes](../../packages/scenes.md)
 
 
 ## Dependencies (Custom Cards)

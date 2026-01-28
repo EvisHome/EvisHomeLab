@@ -29,6 +29,7 @@ version: 1.0.0
 This package powers the following dashboard views:
 
 * **[Notifications Management](../dashboards/notification-center/notifications_management.md)**: *The Notification Center dashboard provides a comprehensive interface for managing the smart home's notification system. Administrators can add or remove users for mobile app notifications and define notification categories (e.g., 'Garage', 'Electricity'). The view allows for granular control over subscriptions, enabling individual users to opt-in or out of specific notification types, and includes tools to map and monitor notification-related automations.* (Uses 1 entities)
+* **[Smart Speakers Manager](../dashboards/smart-speakers/smart_speakers_manager.md)** (Uses 8 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram

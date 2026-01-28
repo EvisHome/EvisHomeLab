@@ -195,13 +195,13 @@ sections:
         icon: mdi:account
         fill_container: true
       - type: custom:mushroom-entity-card
-        entity: binary_sensor.front_door_lock_door
+        entity: binary_sensor.front_door_lock_sensor
         icon: mdi:door
         layout: vertical
         name: Lock Contact
         fill_container: true
       - type: custom:mushroom-entity-card
-        entity: binary_sensor.front_door_lock_door
+        entity: binary_sensor.front_door_lock_cloud
         icon: mdi:door
         layout: vertical
         name: Contact
@@ -225,6 +225,8 @@ sections:
         fill_container: true
         layout: vertical
       columns: 2
+- type: grid
+  cards:
   - type: vertical-stack
     cards:
     - type: custom:mushroom-title-card
@@ -233,7 +235,7 @@ sections:
       alignment: center
     - type: custom:frigate-card
       cameras:
-      - camera_entity: camera.frontdoor_doorbell
+      - camera_entity: camera.frontdoor_doorbell_frigate
       view:
         default: clips
         update_cycle_camera: false

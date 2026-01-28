@@ -25,8 +25,7 @@ The Living Room dashboard is a media and comfort hub. It features in-depth envir
 This view contains entities managed by:
 
 * [Airthings](../../packages/airthings.md)
-* [Room Manager](../../packages/room_manager.md)
-* [Scenes](../../packages/scenes.md)
+* [Area Manager](../../packages/area_manager.md)
 * [Smart Notifications](../../packages/smart_notifications.md)
 
 

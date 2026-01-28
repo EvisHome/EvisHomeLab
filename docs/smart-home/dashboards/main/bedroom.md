@@ -21,10 +21,6 @@ Bedroom management including lighting, window blinds, and detailed sleep trackin
 The Bedroom dashboard focuses on comfort and sleep tracking. It provides controls for the ceiling and bed lights, as well as both window blinds and roller covers. Environmental health is monitored via CO2, temperature, and humidity graphs. A specialized section covers 'Bed Occupancy', aggregating data from pressure sensors and mmWave (FP2) sensors to accurately detect presence in bed for both sides, enabling advanced sleep automations.
 <!-- END_SUMMARY -->
 
-## Related Packages
-This view contains entities managed by:
-
-* [Scenes](../../packages/scenes.md)
 
 
 ## Dependencies (Custom Cards)

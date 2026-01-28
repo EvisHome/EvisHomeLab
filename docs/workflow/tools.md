@@ -64,14 +64,34 @@ cd docs_site; git add .; git commit -m "Routine update"; git push
 ### The Agent Prompts
 
 **Task: Standardize Package Headers (Source Code Management)**
-> "Scan `packages/`. Check headers. If missing/legacy, prepend:
+> "Scan `packages/`. Check headers. If missing/legacy, prepend this EXACT structure:
 >
 > ```yaml
 > # ------------------------------------------------------------------------------
 > # Package: [Filename]
-> # Version: 1.0.0
+> # Version: [1.0.0]
 > # Description: [Summary]
-> # Dependencies: [Entities used]
+> # Dependencies:
+> #   - [Integration]: [Entity]
+> # ------------------------------------------------------------------------------
+> # IMPORTANT: Please add changes to the Changelog at the bottom of this file.
+> # ------------------------------------------------------------------------------
+> # <ai_instructions>
+> # WHEN YOU EDIT THIS FILE:
+> # 1. You MUST update the 'version' in the header.
+> # 2. You MUST append a new entry to the 'Changelog' section at the bottom.
+> # </ai_instructions>
+> # ------------------------------------------------------------------------------
+> ```
+>
+> **Also ensure the Changelog section exists at the bottom:**
+> ```yaml
+> # ------------------------------------------------------------------------------
+> # 3. Changelog
+> # ------------------------------------------------------------------------------
+> # [Version] ([Date]):
+> #   - [Change 1]
+> #   - [Change 2]
 > # ------------------------------------------------------------------------------
 > ```
 >"

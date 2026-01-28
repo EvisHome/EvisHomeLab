@@ -251,20 +251,18 @@ sections:
     - condition: state
       entity: binary_sensor.dishwasher_active
       state: 'on'
-  - type: custom:mushroom-template-card
-    primary: Washing Machine Running
-    secondary: '{{ states(''sensor.washing_machine_plug_power'') }} W'
-    icon: mdi:washing-machine
-    entity: sensor.washing_machine_status
-    icon_color: blue
-    layout: horizontal
-    grid_options:
-      columns: 12
-      rows: 1
-    visibility:
+  - type: conditional
+    conditions:
     - condition: state
+      entity: input_select.washing_machine_status
+      state_not: Idle
+    card:
+      type: custom:mushroom-template-card
+      primary: Washing Machine Running
+      secondary: '{{ states(''sensor.washing_machine_plug_power'') }} W'
+      icon: mdi:washing-machine
       entity: sensor.washing_machine_status
-      state_not: Stopped
+      icon_color: blue
   - type: custom:mushroom-entity-card
     entity: sensor.aqara_w500_bathroom_heating_hvac
     grid_options:
@@ -738,7 +736,7 @@ sections:
       area_name: bathroom
       area_title: Bathroom
       temperature_sensor: sensor.airthings_wave_temperature
-      indicator_1_entity: sensor.washing_machine_status
+      indicator_1_entity: input_select.washing_machine_status
       indicator_1_icon: mdi:washing-machine
       indicator_1_state: Running
       indicator_1_active_color: '#088CF8'
@@ -958,7 +956,7 @@ sections:
       area_title: Mud Room
       temperature_sensor: sensor.airthings_wave_temperature
       temp_sensor_entity: sensor.mud_room_motion_sensor_device_temperature
-      indicator_1_entity: binary_sensor.front_door_lock_door
+      indicator_1_entity: binary_sensor.front_door_lock_sensor
       indicator_1_icon: mdi:door
       indicator_1_state: 'on'
       indicator_1_active_color: '#FF4444'

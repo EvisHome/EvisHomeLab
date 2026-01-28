@@ -289,12 +289,16 @@ sections:
   - type: logbook
     title: Recent Access (48h)
     hours_to_show: 48
-    entities:
-    - lock.front_door_lock_cloud
-    - sensor.front_door_lock_operator
     grid_options:
       columns: 12
-      rows: 10
+      rows: 15
+    target:
+      entity_id:
+      - lock.front_door_lock_cloud
+      - sensor.front_door_lock_operator
+      - lock.front_door_lock
+      - binary_sensor.front_door_lock_sensor
+      device_id: 2af3a3bbce148f8ca8b2c6c42b8a6283
   - type: heading
     heading: Registered UUIDs
     icon: mdi:fingerprint

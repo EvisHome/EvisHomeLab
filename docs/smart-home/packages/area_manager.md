@@ -16,30 +16,101 @@ version: 2.0.0 (Refactored from Room Manager)
 
 ## Executive Summary
 <!-- START_SUMMARY -->
-*No executive summary generated yet.*
+The **Area Manager** is the central brain for room-level automation in EvisHomeLab. It completely replaces the legacy "Room Manager" with a dynamic, MQTT-backed architecture. It decouples **Presence Detection** (is someone here?) from **Action Logic** (what should I do?), allowing for sophisticated behaviors like "Manual Control" where presence is tracked but lights are not automated, or "Absence Detection" where lights turn off automatically but must be turned on manually. It utilizes **Pyscript** for complex state machine logic, offering millisecond-level responsiveness.
 <!-- END_SUMMARY -->
 
 ## Process Description (Non-Technical)
 <!-- START_DETAILED -->
-*No detailed non-technical description generated yet.*
+### How it Works
+The system treats every area (room) as a state machine that transitions between **Occupied**, **Idle**, **Absence**, **Sleep**, and **Do Not Disturb (DND)**.
+
+#### 1. The Four Modes
+You can independently configure how each room reacts to presence:
+*   **Presence Control (Default):** Lights turn ON when you enter, and OFF when you leave.
+*   **Absence Detection:** Lights will **never** turn ON automatically. However, if you turn them on manually, they will turn OFF automatically when you leave. Great for bedrooms or media rooms.
+*   **Manual Control:** Full manual control. The system tracks occupancy for analytics but will **never** touch the lights.
+*   **Schedule Mode:** (Future) Automated based on calendar events.
+
+#### 2. Time-of-Day Logic
+The system respects the time of day, automatically selecting the appropriate lighting scene:
+*   **Morning:** Soft, warm light for waking up.
+*   **Day:** Bright, cool light for focus.
+*   **Evening:** Relaxing, warmer tones.
+*   **Night:** Very dim, red-shifted light for minimal disruption.
+
+#### 3. New "Off Delay" Feature
+To prevent lights from turning off suddenly if you sit still too long:
+1.  **Idle Warning:** When the presence timer expires, the system enters "Absence" state.
+2.  **Off Action:** A "Warning" scene (e.g., Dim) activates for a configurable duration (e.g., 2 minutes).
+    *   *Smart Check:* This ONLY happens if lights are currently ON.
+3.  **Final Off:** If no motion is detected during the delay, the lights finally turn off.
+
+### Python Logic (The Brain)
+Unlike the old YAML-heavy version, V2 moves complex logic to Python (`pyscript/`):
+*   **`area_presence.py`**: Handles the state machine, timers, and transitions (Occupied -> Idle -> Absence).
+*   **`area_automations.py`**: Listens to state changes and triggers the actual scenes or actions based on the configured Mode.
 <!-- END_DETAILED -->
 
 ## Dashboard Connections
 <!-- START_DASHBOARD -->
 This package powers the following dashboard views:
 
+* **[Room Management](../dashboards/area-automations/room_management.md)** (Uses 7 entities)
+* **[Room Management](../dashboards/area-manager/room_management.md)** (Uses 7 entities)
 * **[Living Room](../dashboards/main/living_room.md)**: *The Living Room dashboard is a media and comfort hub. It features in-depth environmental monitoring (Radon, VOCs, CO2) via Airthings Wave, displaying historical trends. Entertainment controls are central, with remotes for the TV and Soundbar, plus power management for the media wall. The view also includes specific controls for the fireplace, air purifier modes, and various lighting scenes, alongside standard occupancy settings.* (Uses 1 entities)
 * **[Notifications Management](../dashboards/notification-center/notifications_management.md)**: *The Notification Center dashboard provides a comprehensive interface for managing the smart home's notification system. Administrators can add or remove users for mobile app notifications and define notification categories (e.g., 'Garage', 'Electricity'). The view allows for granular control over subscriptions, enabling individual users to opt-in or out of specific notification types, and includes tools to map and monitor notification-related automations.* (Uses 1 entities)
-* **[Room Management](../dashboards/room-management/room_management.md)**: *The Room Management dashboard serves as the administrative backend for the home's room logic. It allows users to initialize new rooms (creating necessary helper entities) or delete existing ones. It features a dynamic "Configured Rooms" section powered by `auto-entities`, which automatically lists all configured rooms and provides collapsible controls for their automation modes, occupancy sensors, and timeouts.* (Uses 1 entities)
+* **[Room Management](../dashboards/room-management/room_management.md)**: *The Room Management dashboard serves as the administrative backend for the home's room logic. It allows users to initialize new rooms (creating necessary helper entities) or delete existing ones. It features a dynamic "Configured Rooms" section powered by `auto-entities`, which automatically lists all configured rooms and provides collapsible controls for their automation modes, occupancy sensors, and timeouts.* (Uses 7 entities)
 <!-- END_DASHBOARD -->
 
 ## Architecture Diagram
 <!-- START_MERMAID_DESC -->
-*No architecture explanation generated yet.*
+The following diagram illustrates the decoupled flow. **Motion Sensors** trigger the **State Machine** in Python. The State Machine updates the **Area State** (Occupied/Idle). A separate **Automation Listener** watches this state and executes actions (Scenes) only if the **Mode** permits.
 <!-- END_MERMAID_DESC -->
 
 <!-- START_MERMAID -->
-*No architecture diagram generated yet.*
+```mermaid
+sequenceDiagram
+    participant S as Binary Sensor
+    participant P as area_presence.py
+    participant M as MQTT / HA State
+    participant A as area_automations.py
+    participant L as Lights / Scenes
+
+    S->>P: Motion ON
+    P->>P: Cancel Timers
+    P->>M: Set State = Occupied
+    
+    par Update UI
+        M-->>L: Update Binary Sensor
+    and Trigger Automation
+        M->>A: State Changed to Occupied
+    end
+
+    alt Mode == Presence Control
+        A->>A: Check Time of Day
+        A->>L: Activate Morning/Day/Night Scene
+    else Mode == Manual
+        A->>A: Do Nothing
+    end
+
+    S->>P: Motion OFF
+    P->>P: Start Idle Timer (e.g. 5min)
+    
+    opt Timer Expires
+        P->>M: Set State = Absence
+        P->>P: Start Off Delay Timer (e.g. 2min)
+        
+        M->>A: State Changed to Absence
+        A->>A: Check if Lights are ON
+        opt Lights ON
+            A->>L: Activate Warning/Dim Scene
+        end
+        
+        opt Off Delay Expires
+            P->>L: Turn Off All Lights
+        end
+    end
+```
 <!-- END_MERMAID -->
 
 ## Configuration (Source Code)
@@ -109,17 +180,50 @@ script:
     mode: single
     sequence:
       - variables:
-          target_slug: "{{ area_slug if area_slug is defined else states('input_select.area_mgmt_create_select') }}"
-          area_name: "{{ area_name(target_slug) or target_slug | replace('_', ' ') | title }}"
-          # Clean variable
-          area_slug: "{{ target_slug }}"
-          # Pre-calculate Sensor Options (DEBUG: Minimal List to test Pipeline)
-          sensor_options: >-
-            {{ ['-Select-'] | to_json }}
+          raw_slug: "{{ area_slug if area_slug is defined else states('input_select.area_mgmt_create_select') }}"
+          # Get Friendly Name from HA Area Registry or fallback to Title Case
+          friendly_name: "{{ area_name(raw_slug) or raw_slug | replace('_', ' ') | title }}"
+
+          # SANITIZATION: Strip 'area_' or '_area' to keep slugs clean
+          # e.g. 'backyard_area' -> 'backyard', 'area_51' -> '51'
+          sanitized: "{{ raw_slug | replace('area_', '') | replace('_area', '') }}"
+
+          # Final Variables
+          area_slug: "{{ sanitized }}"
+          area_name: "{{ friendly_name }}"
+
+          # Pre-calculate Occupancy Options
+          occupancy_options: >-
+            {% set keywords = ['occupancy', 'presence', 'motion'] %}
+            {% set sensors = states.binary_sensor 
+                | selectattr('entity_id', 'search', keywords | join('|')) 
+                | map(attribute='entity_id') | list %}
+            {% set all_sensors = sensors | sort %}
+            {{ (['-Select-'] + (all_sensors if all_sensors else [])) | to_json }}
+
+          # Pre-calculate Bed Options
+          # Logic: Must have 'bed' AND ('occupancy' OR 'presence')
+          bed_options: >-
+            {% set sensors = states.binary_sensor 
+                | selectattr('entity_id', 'search', 'bed') 
+                | selectattr('entity_id', 'search', 'occupancy|presence') 
+                | map(attribute='entity_id') | list %}
+            {% set all_sensors = sensors | sort %}
+            {{ (['-Select-'] + (all_sensors if all_sensors else [])) | to_json }}
+
+          # Pre-calculate Scene Options
+          scene_options: >-
+            {% set scenes = states.scene | map(attribute='entity_id') | list | sort %}
+            {{ (['-Select-'] + scenes) | to_json }}
+
+          # Pre-calculate Off Delay Options (scenes only, with "None" as first option)
+          off_delay_options: >-
+            {% set scenes = states.scene | map(attribute='entity_id') | list | sort %}
+            {{ (['None'] + scenes) | to_json }}
 
       - service: system_log.write
         data:
-          message: "Creating Area Settings for: {{ area_slug }} (v5 - Minimal)"
+          message: "Area Manager: Creating area '{{ area_slug }}'"
           level: warning
 
       # 1. Create Automation Mode Selector (Select)
@@ -130,7 +234,7 @@ script:
           payload: >-
             {
               "name": "{{ area_name }} Automation Mode",
-              "object_id": "area_{{ area_slug }}_automation_mode",
+              "default_entity_id": "select.area_{{ area_slug }}_automation_mode",
               "unique_id": "area_select_{{ area_slug }}_mode_v5",
               "icon": "mdi:home-lightning-bolt-outline",
               "options": ["presence-control", "absence-detection", "manual-control", "schedule-mode"],
@@ -165,7 +269,7 @@ script:
           payload: >-
             {
               "name": "{{ area_name }} Presence Idle Time",
-              "object_id": "area_{{ area_slug }}_presence_idle_time",
+              "default_entity_id": "number.area_{{ area_slug }}_presence_idle_time",
               "unique_id": "area_number_{{ area_slug }}_idle_v5",
               "device_class": "duration",
               "icon": "mdi:timer-sand",
@@ -197,7 +301,7 @@ script:
           payload: >-
             {
               "name": "{{ area_name }} Lights Presence Delay",
-              "object_id": "area_{{ area_slug }}_lights_presence_delay",
+              "default_entity_id": "number.area_{{ area_slug }}_lights_presence_delay",
               "unique_id": "area_number_{{ area_slug }}_delay_v5",
               "device_class": "duration",
               "icon": "mdi:lightbulb-clock",
@@ -229,7 +333,7 @@ script:
           payload: >-
             {
               "name": "{{ area_name }} Timer",
-              "object_id": "area_{{ area_slug }}_timer",
+              "default_entity_id": "sensor.area_{{ area_slug }}_timer",
               "unique_id": "area_sensor_{{ area_slug }}_timer_v5",
               "icon": "mdi:progress-clock",
               "device_class": "timestamp",
@@ -248,7 +352,7 @@ script:
           payload: >-
             {
               "name": "{{ area_name }} State",
-              "object_id": "area_{{ area_slug }}_state",
+              "default_entity_id": "select.area_{{ area_slug }}_state",
               "unique_id": "area_select_state_v5_{{ area_slug }}",
               "icon": "mdi:eye-outline",
               "options": ["Occupied", "Idle", "Absence", "Sleep", "DND"],
@@ -273,7 +377,7 @@ script:
           payload: >-
             {
               "name": "{{ area_name }} Occupancy",
-              "object_id": "area_{{ area_slug }}_occupancy",
+              "default_entity_id": "binary_sensor.area_{{ area_slug }}_occupancy",
               "unique_id": "area_occupancy_v5_{{ area_slug }}",
               "icon": "mdi:motion-sensor",
               "device_class": "occupancy",
@@ -290,7 +394,7 @@ script:
           payload: >-
             {
               "name": "{{ area_name }} Automation",
-              "object_id": "area_{{ area_slug }}_automation",
+              "default_entity_id": "switch.area_{{ area_slug }}_automation",
               "unique_id": "area_switch_automation_v5_{{ area_slug }}",
               "icon": "mdi:robot",
               "command_topic": "area/{{ area_slug }}/automation/set",
@@ -313,9 +417,9 @@ script:
           payload: >-
             {
               "name": "{{ area_name }} Bed Sensor",
-              "object_id": "area_{{ area_slug }}_bed_sensor",
+              "default_entity_id": "select.area_{{ area_slug }}_bed_sensor",
               "unique_id": "area_select_bed_{{ area_slug }}_v5",
-              "options": {{ sensor_options }},
+              "options": {{ bed_options }},
               "command_topic": "area/{{ area_slug }}/bed_sensor/set",
               "state_topic": "area/{{ area_slug }}/bed_sensor/state",
               "availability_topic": "area/{{ area_slug }}/availability",
@@ -330,7 +434,7 @@ script:
           payload: >-
             {
               "name": "{{ area_name }} Sleep Entry Delay",
-              "object_id": "area_{{ area_slug }}_sleep_entry_delay",
+              "default_entity_id": "number.area_{{ area_slug }}_sleep_entry_delay",
               "unique_id": "area_number_{{ area_slug }}_sleep_entry_v5",
               "device_class": "duration",
               "icon": "mdi:bed-clock",
@@ -362,7 +466,7 @@ script:
           payload: >-
             {
               "name": "{{ area_name }} Sleep Exit Delay",
-              "object_id": "area_{{ area_slug }}_sleep_exit_delay",
+              "default_entity_id": "number.area_{{ area_slug }}_sleep_exit_delay",
               "unique_id": "area_number_{{ area_slug }}_sleep_exit_v5",
               "device_class": "duration",
               "icon": "mdi:run-fast",
@@ -401,15 +505,118 @@ script:
           payload: >-
             {
               "name": "{{ area_name }} Occupancy Sensor",
-              "object_id": "area_{{ area_slug }}_occupancy_source",
+              "default_entity_id": "select.area_{{ area_slug }}_occupancy_source",
               "unique_id": "area_select_occ_source_v5_{{ area_slug }}",
-              "options": {{ sensor_options }},
+              "options": {{ occupancy_options }},
               "command_topic": "area/{{ area_slug }}/occupancy_source/set",
               "state_topic": "area/{{ area_slug }}/occupancy_source/state",
               "availability_topic": "area/{{ area_slug }}/availability",
               "device": { "identifiers": ["area_settings_{{ area_slug }}"] }
             }
       - delay: "00:00:00.050"
+      # 13. Create DND Switch
+      - service: mqtt.publish
+        data:
+          retain: true
+          topic: "homeassistant/switch/area_{{ area_slug }}_dnd/config"
+          payload: >-
+            {
+              "name": "{{ area_name }} Do Not Disturb",
+              "default_entity_id": "switch.area_{{ area_slug }}_dnd",
+              "unique_id": "area_switch_dnd_v5_{{ area_slug }}",
+              "icon": "mdi:minus-circle-outline",
+              "command_topic": "area/{{ area_slug }}/dnd/set",
+              "state_topic": "area/{{ area_slug }}/dnd/state",
+              "availability_topic": "area/{{ area_slug }}/availability",
+              "device": { "identifiers": ["area_settings_{{ area_slug }}"] }
+            }
+      - service: mqtt.publish
+        data:
+          retain: true
+          topic: "area/{{ area_slug }}/dnd/state"
+          payload: "OFF"
+      - delay: "00:00:00.050"
+
+      # 14. Create Scene Selectors (Morning, Day, Evening, Night)
+      - repeat:
+          for_each: ["morning", "day", "evening", "night"]
+          sequence:
+            - service: mqtt.publish
+              data:
+                retain: true
+                topic: "homeassistant/select/area_{{ area_slug }}_{{ repeat.item }}_scene/config"
+                payload: >-
+                  {
+                    "name": "{{ area_name }} {{ repeat.item | title }} Scene",
+                    "default_entity_id": "select.area_{{ area_slug }}_{{ repeat.item }}_scene",
+                    "unique_id": "area_select_{{ repeat.item }}_scene_v5_{{ area_slug }}",
+                    "options": {{ scene_options }},
+                    "command_topic": "area/{{ area_slug }}/{{ repeat.item }}_scene/set",
+                    "state_topic": "area/{{ area_slug }}/{{ repeat.item }}_scene/state",
+                    "availability_topic": "area/{{ area_slug }}/availability",
+                    "device": { "identifiers": ["area_settings_{{ area_slug }}"] }
+                  }
+            - delay: "00:00:00.050"
+
+      # 15a. Create Action Selectors (Absence, Sleep) - Options: Turn Off / None
+      - repeat:
+          for_each: ["absence", "sleep"]
+          sequence:
+            - service: mqtt.publish
+              data:
+                retain: true
+                topic: "homeassistant/select/area_{{ area_slug }}_{{ repeat.item }}_action/config"
+                payload: >-
+                  {
+                    "name": "{{ area_name }} {{ repeat.item | title }} Action",
+                    "default_entity_id": "select.area_{{ area_slug }}_{{ repeat.item }}_action",
+                    "unique_id": "area_select_{{ repeat.item }}_action_v5_{{ area_slug }}",
+                    "options": ["Turn Off", "None"],
+                    "command_topic": "area/{{ area_slug }}/{{ repeat.item }}_action/set",
+                    "state_topic": "area/{{ area_slug }}/{{ repeat.item }}_action/state",
+                    "availability_topic": "area/{{ area_slug }}/availability",
+                    "device": { "identifiers": ["area_settings_{{ area_slug }}"] }
+                  }
+            # Set Default to 'Turn Off' if new
+            - if:
+                - condition: template
+                  value_template: "{{ states('select.area_' ~ area_slug ~ '_' ~ repeat.item ~ '_action') in ['unknown', 'unavailable', 'none'] }}"
+              then:
+                - service: mqtt.publish
+                  data:
+                    retain: true
+                    topic: "area/{{ area_slug }}/{{ repeat.item }}_action/state"
+                    payload: "Turn Off"
+            - delay: "00:00:00.050"
+
+      # 15b. Create Off Delay Action Selector - Options: Scene List + None
+      - service: mqtt.publish
+        data:
+          retain: true
+          topic: "homeassistant/select/area_{{ area_slug }}_off_delay_action/config"
+          payload: >-
+            {
+              "name": "{{ area_name }} Off Delay Action",
+              "default_entity_id": "select.area_{{ area_slug }}_off_delay_action",
+              "unique_id": "area_select_off_delay_action_v5_{{ area_slug }}",
+              "options": {{ off_delay_options }},
+              "command_topic": "area/{{ area_slug }}/off_delay_action/set",
+              "state_topic": "area/{{ area_slug }}/off_delay_action/state",
+              "availability_topic": "area/{{ area_slug }}/availability",
+              "device": { "identifiers": ["area_settings_{{ area_slug }}"] }
+            }
+      # Set Default to 'None' if new
+      - if:
+          - condition: template
+            value_template: "{{ states('select.area_' ~ area_slug ~ '_off_delay_action') in ['unknown', 'unavailable', 'none'] }}"
+        then:
+          - service: mqtt.publish
+            data:
+              retain: true
+              topic: "area/{{ area_slug }}/off_delay_action/state"
+              payload: "None"
+      - delay: "00:00:00.050"
+
       - service: script.refresh_area_options
 
   # --- DELETE AREA SETTINGS ---
@@ -480,6 +687,29 @@ script:
           topic: "homeassistant/select/area_{{ area_slug }}_occupancy_source/config"
           payload: ""
 
+      # Clear New Helpers (DND, Scenes, Actions)
+      - service: mqtt.publish
+        data:
+          retain: true
+          topic: "homeassistant/switch/area_{{ area_slug }}_dnd/config"
+          payload: ""
+      - repeat:
+          for_each: ["morning", "day", "evening", "night"]
+          sequence:
+            - service: mqtt.publish
+              data:
+                retain: true
+                topic: "homeassistant/select/area_{{ area_slug }}_{{ repeat.item }}_scene/config"
+                payload: ""
+      - repeat:
+          for_each: ["absence", "sleep"]
+          sequence:
+            - service: mqtt.publish
+              data:
+                retain: true
+                topic: "homeassistant/select/area_{{ area_slug }}_{{ repeat.item }}_action/config"
+                payload: ""
+
       # Delete Availability to 'offline'
       - service: mqtt.publish
         data:
@@ -549,5 +779,84 @@ automation:
           topic: "{{ target_topic }}"
           payload: "{{ trigger.payload }}"
           retain: true
+
+  # SYNC SELECT STATE -> BINARY SENSOR
+  # Keeps the binary_sensor.area_X_occupancy in sync with select.area_X_state
+  - alias: "System: Sync Area State to Binary Sensor"
+    id: system_area_state_to_binary_sync
+    mode: queued
+    trigger:
+      - platform: event
+        event_type: state_changed
+    condition:
+      - condition: template
+        value_template: >-
+          {{ 
+            trigger.event.data.entity_id.startswith("select.area_") and 
+            trigger.event.data.entity_id.endswith("_state") 
+          }}
+    action:
+      - variables:
+          entity: "{{ trigger.event.data.entity_id }}"
+          slug: "{{ entity.split('.')[1].replace('area_', '').replace('_state', '') }}"
+          new_val: "{{ trigger.event.data.new_state.state if trigger.event.data.new_state else '' }}"
+      - service: mqtt.publish
+        data:
+          topic: "area/{{ slug }}/occupancy/state"
+          payload: "{{ 'ON' if new_val == 'Occupied' else 'OFF' }}"
+          retain: true
+
+  # AREA OCCUPANCY DETECTION
+  # Uses event trigger to catch all binary_sensor state changes efficiently
+  - alias: "System: Area Occupancy Sensor Trigger"
+    id: system_area_occupancy_sensor_trigger
+    mode: parallel
+    max: 20
+    trigger:
+      - platform: event
+        event_type: state_changed
+    variables:
+      sensor_id: "{{ trigger.event.data.entity_id | default('') }}"
+      new_state: "{{ trigger.event.data.new_state.state if trigger.event.data.new_state else '' }}"
+      # Build list of all selected occupancy sensors (only from area_* entities)
+      all_selected_sensors: >-
+        {% set ns = namespace(sensors=[]) %}
+        {% for sel in states.select | selectattr('entity_id', 'search', '^select\\.area_.*_occupancy_source$') %}
+          {% set val = states(sel.entity_id) %}
+          {% if val and val not in ['-Select-', 'unknown', 'unavailable', ''] %}
+            {% set ns.sensors = ns.sensors + [val] %}
+          {% endif %}
+        {% endfor %}
+        {{ ns.sensors }}
+    condition:
+      # Only binary_sensors
+      - condition: template
+        value_template: "{{ sensor_id.startswith('binary_sensor.') }}"
+      # FAST EARLY EXIT: Only continue if this sensor is actually selected
+      - condition: template
+        value_template: "{{ sensor_id in all_selected_sensors }}"
+      # Only on/off transitions
+      - condition: template
+        value_template: "{{ new_state in ['on', 'off'] }}"
+    action:
+      - variables:
+          # Find which areas use THIS specific sensor
+          matched_areas: >-
+            {% set ns = namespace(areas=[]) %}
+            {% for sel in states.select | selectattr('entity_id', 'search', '^select\\.area_.*_occupancy_source$') %}
+              {% set sel_value = states(sel.entity_id) %}
+              {% if sel_value == sensor_id %}
+                {% set clean_id = sel.entity_id.split('.')[1] %}
+                {% set slug = clean_id[5:-17] %}
+                {% set ns.areas = ns.areas + [slug] %}
+              {% endif %}
+            {% endfor %}
+            {{ ns.areas }}
+      - repeat:
+          for_each: "{{ matched_areas }}"
+          sequence:
+            - service: pyscript.check_area_state
+              data:
+                area_slug: "{{ repeat.item }}"
 
 ```

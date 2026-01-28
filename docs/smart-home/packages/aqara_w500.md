@@ -93,16 +93,23 @@ sequenceDiagram
 # 1. TEMPLATE SENSORS (Raw Data Normalization)
 # ==============================================================================
 template:
-  - sensor:
+  - trigger:
+      - platform: time_pattern
+        minutes: "/1" # Updates once a minute
+      - platform: state
+        entity_id: climate.aqara_w500
+        attribute: current_temperature
+    sensor:
       - name: "Aqara W500 Temperature (Raw)"
         unique_id: aqara_w500_temperature_raw
         unit_of_measurement: "°C"
         device_class: temperature
         state_class: measurement
+        # The 'throttle' logic: Only update if the new value is
+        # significantly different or if a minute has passed.
         state: >
           {% set raw = state_attr('climate.aqara_w500', 'current_temperature') %}
-          {% set value = raw | float(default=0.0) %}
-          {{ value | round(1) }}
+          {{ raw | float(default=0.0) | round(1) }}
 
       - name: "Aqara W500 Bathroom Heating HVAC"
         unique_id: aqara_w500_bathroom_heating_hvac

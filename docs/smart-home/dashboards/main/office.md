@@ -25,7 +25,6 @@ The Office dashboard handles both workspace environment and IT infrastructure. I
 This view contains entities managed by:
 
 * [Office Pc](../../packages/office_pc.md)
-* [Scenes](../../packages/scenes.md)
 
 
 ## Dependencies (Custom Cards)

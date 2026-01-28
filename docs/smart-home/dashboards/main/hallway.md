@@ -21,10 +21,6 @@ Controls for the hallway including lights and staircase automations.
 This view manages the Hallway area. It provides simple controls for the ceiling and stair lights. The dashboard also visualizes presence data from multiple FP2 sensors (Hallway and Downstairs) and includes standard occupancy and scheduling settings.
 <!-- END_SUMMARY -->
 
-## Related Packages
-This view contains entities managed by:
-
-* [Scenes](../../packages/scenes.md)
 
 
 ## Dependencies (Custom Cards)

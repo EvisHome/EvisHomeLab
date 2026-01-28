@@ -24,8 +24,9 @@ The Notification Center dashboard provides a comprehensive interface for managin
 ## Related Packages
 This view contains entities managed by:
 
-* [Room Manager](../../packages/room_manager.md)
+* [Area Manager](../../packages/area_manager.md)
 * [Smart Notifications](../../packages/smart_notifications.md)
+* [Smart Speakers](../../packages/smart_speakers.md)
 
 
 ## Dependencies (Custom Cards)
@@ -312,22 +313,26 @@ sections:
           }\n/* remove the extra top padding that can remain */\nha-card > :first-child\
           \ {\n  padding-top: 0 !important;\n}\n"
     filter:
-      template: "{% set ns = namespace(rows=[]) %} {# Find switches matching the global\
-        \ category pattern #} {% set switches = states.switch \n   | selectattr('entity_id',\
+      template: "{% set ns = namespace(rows=[]) %} \n\n{# Find switches matching the\
+        \ global category pattern #} \n{% set switches = states.switch \n   | selectattr('entity_id',\
         \ 'search', 'notify_category_.*_local') \n   | sort(attribute='name') \n \
-        \  | list %}\n\n{% if switches | length > 0 %}\n  {# Add a single label for\
-        \ all categories with Orange Style #}\n  {% set ns.rows = ns.rows + [{\n \
-        \     'type': 'section', \n      'label': 'Categories',\n      'card_mod':\
-        \ {\n        'style': \".label { color: orange !important; }\"\n      }\n\
-        \  }] %}\n\n  {% for sw in switches %}\n     {% set is_on = is_state(sw.entity_id,\
-        \ 'on') %}\n     \n     {# Define Icon and Color logic #}\n     {% set icon\
-        \ = 'mdi:home-account' if is_on else 'mdi:earth' %}\n     {% set color = 'lightgreen'\
-        \ if is_on else '#2196F3' %} {# Standard HA Blue #}\n     \n     {% set ns.rows\
-        \ = ns.rows + [{\n       'entity': sw.entity_id,\n       'secondary_info':\
-        \ 'If ON, requires presence',\n       'icon': icon,\n       'card_mod': {\n\
-        \         'style': \":host { --card-mod-icon-color: \" ~ color ~ \"; }\"\n\
-        \        }\n      }] %}\n  {% endfor %}\n{% endif %}\n{{ ns.rows | to_json\
-        \ }}\n"
+        \  | list %}\n\n{% if switches | length > 0 %}\n\n  {# 1. Create a sub-namespace\
+        \ for the inner list to avoid scoping issues #}\n  {% set sub_ns = namespace(entities=[])\
+        \ %}\n\n  {# 2. Build the list of switches #}\n  {% for sw in switches %}\n\
+        \     {% set is_on = is_state(sw.entity_id, 'on') %}\n     \n     {# Define\
+        \ Icon and Color logic #}\n     {% set icon = 'mdi:home-account' if is_on\
+        \ else 'mdi:earth' %}\n     {% set color = 'lightgreen' if is_on else '#2196F3'\
+        \ %} {# Standard HA Blue #}\n     \n     {% set sub_ns.entities = sub_ns.entities\
+        \ + [{\n       'entity': sw.entity_id,\n       'secondary_info': 'If ON, requires\
+        \ presence',\n       'icon': icon,\n       'card_mod': {\n         'style':\
+        \ \":host { --card-mod-icon-color: \" ~ color ~ \"; }\"\n        }\n     \
+        \ }] %}\n  {% endfor %}\n\n  {# 3. Create the Fold Row #}\n  {% set group\
+        \ = {\n    'type': 'custom:fold-entity-row',\n    'head': {\n      'type':\
+        \ 'section', \n      'label': 'Categories',\n      'card_mod': {\n       \
+        \ 'style': \".label { color: orange !important; }\"\n      }\n    },\n   \
+        \ 'entities': sub_ns.entities\n  } %}\n\n  {# 4. Add the Fold Row to the main\
+        \ list #}\n  {% set ns.rows = ns.rows + [group] %}\n\n{% endif %}\n\n{{ ns.rows\
+        \ | to_json }}"
     sort:
       method: none
 - type: grid
@@ -367,30 +372,33 @@ sections:
           }\n/* remove the extra top padding that can remain */\nha-card > :first-child\
           \ {\n  padding-top: 0 !important;\n}\n"
     filter:
-      template: "{% set ns = namespace(cards=[]) %} {# 1. Find all switches that belong\
-        \ to the notification system (have user_slug attribute) #} {% set switches\
-        \ = states.switch \n   | selectattr('entity_id', 'search', '_notification_')\
-        \ \n   | selectattr('attributes.user_slug', 'defined') \n   | list %}\n\n\
-        {# 2. Extract unique users to create groups #} {% set users = switches | map(attribute='attributes.user_slug')\
-        \ | unique | sort | list %}\n{% for user in users %}\n  {# Filter switches\
-        \ for this specific user #}\n  {% set user_switches = switches | selectattr('attributes.user_slug',\
+      template: "{% set ns = namespace(cards=[]) %}\n\n{# 1. Find all switches that\
+        \ belong to the notification system #}\n{% set switches = states.switch \n\
+        \   | selectattr('entity_id', 'search', '_notification_') \n   | selectattr('attributes.user_slug',\
+        \ 'defined') \n   | list %}\n\n{# 2. Extract unique users to create groups\
+        \ #}\n{% set users = switches | map(attribute='attributes.user_slug') | unique\
+        \ | sort | list %}\n\n{% for user in users %}\n  {# Filter switches for this\
+        \ specific user #}\n  {% set user_switches = switches | selectattr('attributes.user_slug',\
         \ 'eq', user) | sort(attribute='name') | list %}\n  \n  {% if user_switches\
-        \ | length > 0 %}\n    {# 3. Add Section Header with Orange Style #}\n   \
-        \ {% set ns.cards = ns.cards + [{\n      'type': 'section', \n      'label':\
-        \ user | capitalize ~ '\\'s Subscriptions',\n      'card_mod': {\n       \
-        \ 'style': \".label { color: orange !important; }\"\n      }\n    }] %}\n\
-        \    \n    {# 4. Add Switches #}\n    {% for sw in user_switches %}\n    \
-        \   {% set is_on = is_state(sw.entity_id, 'on') %}\n       {% set icon_color\
-        \ = 'green' if is_on else 'red' %}\n       {% set icon = 'mdi:email-check'\
+        \ | length > 0 %}\n    \n    {# FIX: Use a namespace for the inner entities\
+        \ list so it persists inside the loop #}\n    {% set sub_ns = namespace(entities=[])\
+        \ %}\n\n    {# 3. Build the Switch Rows #}\n    {% for sw in user_switches\
+        \ %}\n       {% set is_on = is_state(sw.entity_id, 'on') %}\n       {% set\
+        \ icon_color = 'green' if is_on else 'red' %}\n       {% set icon = 'mdi:email-check'\
         \ if is_on else 'mdi:email-remove-outline' %}\n       \n       {# Clean up\
-        \ the name by removing ' Notification' for a cleaner list #}\n       {% set\
-        \ clean_name = sw.name | replace(' Notification', '') %}\n       \n      \
-        \ {% set ns.cards = ns.cards + [{\n         'entity': sw.entity_id,\n    \
-        \     'name': clean_name,\n         'secondary_info': 'last-changed',\n  \
-        \       'icon': icon,\n         'card_mod': {\n           'style': \":host\
-        \ { --card-mod-icon-color: \" ~ icon_color ~ \"; }\"\n          }\n      \
-        \  }] %}\n    {% endfor %}\n  {% endif %}\n{% endfor %}\n{{ ns.cards | to_json\
-        \ }}\n"
+        \ the name #}\n       {% set clean_name = sw.name | replace(' Notification',\
+        \ '') %}\n       \n       {% set sub_ns.entities = sub_ns.entities + [{\n\
+        \         'entity': sw.entity_id,\n         'name': clean_name,\n        \
+        \ 'secondary_info': 'last-changed',\n         'icon': icon,\n         'card_mod':\
+        \ {\n           'style': \":host { --card-mod-icon-color: \" ~ icon_color\
+        \ ~ \"; }\"\n         }\n       }] %}\n    {% endfor %}\n\n    {# 4. Create\
+        \ the Fold Row using sub_ns.entities #}\n    {% set group = {\n      'type':\
+        \ 'custom:fold-entity-row',\n      'head': {\n        'type': 'section', \n\
+        \        'label': user | capitalize ~ '\\'s Subscriptions',\n        'card_mod':\
+        \ {\n          'style': \".label { color: orange !important; }\"\n       \
+        \ }\n      },\n      'entities': sub_ns.entities\n    } %}\n\n    {# 5. Add\
+        \ the group to the main card list #}\n    {% set ns.cards = ns.cards + [group]\
+        \ %}\n\n  {% endif %}\n{% endfor %}\n\n{{ ns.cards | to_json }}"
     sort:
       method: none
 - type: grid
@@ -398,30 +406,7 @@ sections:
   - type: custom:mushroom-title-card
     title: Notifications List
     alignment: center
-    title_tap_action:
-      action: none
-    subtitle_tap_action:
-      action: none
-  - type: heading
-    heading: Automation Map
-    icon: mdi:sitemap
-    heading_style: title
-    card_mod:
-      style: "ha-card {\n  border: none;\n  --primary-text-color: var(--orange-color);\n\
-        \  --secondary-text-color: var(--orange-color);\n  --card-mod-icon-color:\
-        \ var(--orange-color);\n}\n"
-  - type: markdown
-    content: '**Notifications Overview**
-
-
-      Lists all notifcation automations grouped by Category Labels. You can turn the
-      automations on or off.
-
-
-      *Tip: Add labels like ''Notify: Electricity'' to your automations to see them
-      here.*
-
-      '
+        '
   - type: custom:auto-entities
     show_empty: true
     card:
@@ -429,28 +414,29 @@ sections:
       title: Labeled Automations
       show_header_toggle: false
       card_mod:
-        style: "/* hide the header row completely */\n.card-header,\n.card-header\
-          \ > .name,\n.card-header > .menu,\n.header {\n  display: none !important;\n\
-          }\n/* remove the extra top padding that can remain */\nha-card > :first-child\
-          \ {\n  padding-top: 0 !important;\n}\n"
+        style: "/* hide the header row completely */\n.card-header,\n.card-header\n          \
+          > .name,\n.card-header > .menu,\n.header {\n  display: none !important;\n\
+          }\n/* remove the extra top padding that can remain */\nha-card > :first-child\n          \
+          {\n  padding-top: 0 !important;\n}\n"
     filter:
-      template: "{% set ns = namespace(cards=[]) %} {% set all_labels = labels() %}\
-        \ {% set notify_labels = all_labels | select('search', '^notify_') | sort\
-        \ | list %}\n{% for label_id in notify_labels %}\n  {% set entities = label_entities(label_id)\
-        \ | select('search', '^automation\\.') | list %}\n  \n  {% if entities | length\
-        \ > 0 %}\n    {% set display_name = label_id.replace('notify_', '') | capitalize\
-        \ %}\n    \n    {# Add Section with Orange Label Style #}\n    {% set ns.cards\
-        \ = ns.cards + [{\n      'type': 'section', \n      'label': display_name\
-        \ ~ ' Notifications',\n      'card_mod': {\n        'style': \".label { color:\
-        \ orange !important; }\"\n      }\n    }] %}\n    \n    {% for ent in entities\
-        \ %}\n       {% set icon_color = 'lightgreen' if is_state(ent, 'on') else\
+      template: "{% set ns = namespace(cards=[]) %} {% set all_labels = labels() %}\n        \
+        {% set notify_labels = all_labels | select('search', '^notify_') | sort\n        \
+        | list %}\n{% for label_id in notify_labels %}\n  {% set entities = label_entities(label_id)\n        \
+        | select('search', '^automation\\.') | list %}\n  \n  {% if entities | length\n        \
+        > 0 %}\n    {% set display_name = label_id.replace('notify_', '') | capitalize\n        \
+        %}\n    \n    {# Add Section with Orange Label Style #}\n    {% set ns.cards\n        \
+        = ns.cards + [{\n      'type': 'section', \n      'label': display_name\n        \
+        ~ ' Notifications',\n      'card_mod': {\n        'style': \".label { color:\n        \
+        orange !important; }\"\n      }\n    }] %}\n    \n    {% for ent in entities\n        \
+        %}\n       {% set icon_color = 'lightgreen' if is_state(ent, 'on') else\n        \
         \ 'red' %}\n       {% set ns.cards = ns.cards + [{\n         'entity': ent,\n\
         \         'secondary_info': 'last-triggered',\n         'icon': 'mdi:cellphone-message',\n\
-        \         'card_mod': {\n           'style': \":host { --card-mod-icon-color:\
+        \         'card_mod': {\n           'style': \":host { --card-mod-icon-color:\n        \
         \ \" ~ icon_color ~ \"; }\"\n          }\n        }] %}\n    {% endfor %}\n\
         \  {% endif %}\n{% endfor %}\n{{ ns.cards | to_json }}\n"
     sort:
       method: none
+
 cards: []
 header:
   card:

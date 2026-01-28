@@ -21,10 +21,6 @@ Staircase lighting controls including WLED effects.
 This view manages the Stairs area. It features specific control for the WLED strip lighting on the stairs, allowing users to toggle power, adjust brightness, and select WLED presets/effects. Standard occupancy settings and scheduling options are also available.
 <!-- END_SUMMARY -->
 
-## Related Packages
-This view contains entities managed by:
-
-* [Scenes](../../packages/scenes.md)
 
 
 ## Dependencies (Custom Cards)
