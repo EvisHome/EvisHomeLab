@@ -1,0 +1,4869 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for EvisHomeLab - A comprehensive Smart Home &amp; Home Lab built with Home Assistant, Unraid, and Networking gear.">
+      
+      
+        <meta name="author" content="Evis">
+      
+      
+        <link rel="canonical" href="https://www.evishome.com/smart-home/packages/unifi_access/">
+      
+      
+        <link rel="prev" href="../tailscale_monitoring/">
+      
+      
+        <link rel="next" href="../washing_machine/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Package: Unifi Access - EvisHomeLab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-Q3C6JS2Q46"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-Q3C6JS2Q46",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-Q3C6JS2Q46",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+  
+
+    
+    
+  <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#package-unifi-access" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="EvisHomeLab" class="md-header__button md-logo" aria-label="EvisHomeLab" data-md-component="logo">
+      
+  <img src="../../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EvisHomeLab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Package: Unifi Access
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="orange" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="orange" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/EvisHome/EvisHomeLab" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    EvisHome/EvisHomeLab
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="EvisHomeLab" class="md-nav__button md-logo" aria-label="EvisHomeLab" data-md-component="logo">
+      
+  <img src="../../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    EvisHomeLab
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/EvisHome/EvisHomeLab" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    EvisHome/EvisHomeLab
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Device Inventory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../articles/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/ai-log-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Log Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/area-occupancy-sensor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Area Occupancy Sensor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/bed-occupancy-sensor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bed Occupancy Sensor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/dns-adguard-unbound/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DNS AdGuard Home &amp; Unbound
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/motorized-blinds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Motorized Horizontal Blinds - Tilt Action
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/philips-hue-motion-sensor-mount/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Philips Hue Motion Sensor Wall Mount
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/self-healing-tailscale-nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Healing Tailscale Nodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/tinkercad-project-box-creator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TinkerCad Project Box Creator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/virtual-fireplace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtual Fireplace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11">
+        
+          
+          <label class="md-nav__link" for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ai log summary
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ai log summary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/ai-log-summary/home-lab-logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home lab logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/ai-log-summary/unraid-syslog-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unraid syslog server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../home-lab/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home lab
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home lab
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Planning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../planning/ai_roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Automation Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Smart home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Smart home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Automations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration &amp; Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../addons/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Addons
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Addons
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../addons/frigate_nvr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frigate NVR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../dashboards/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboards
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dashboards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_2">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_2" id="__nav_6_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin system
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Admin system
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/admin-system/system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_3">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_3" id="__nav_6_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Area automations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Area automations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/area-automations/room_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Room Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_4">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_4" id="__nav_6_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Area manager
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Area manager
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/area-manager/room_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Room Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_5">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_5" id="__nav_6_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboard persons
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dashboard persons
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/dashboard-persons/car/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CAR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/dashboard-persons/evis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/dashboard-persons/guest_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guest-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_6" id="__nav_6_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home access
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home access
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/home-access/home_access_center/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Access Center
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_7">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_7" id="__nav_6_5_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Main
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Main
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/backyard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backyard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/bathroom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bathroom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/bedroom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bedroom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/daughter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Daughter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/electricity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Electricity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/electricity_dev/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Electricity Dev
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/front_door/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Front Door
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/guest_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guest-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/guest_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guest-3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/hallway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/kitchen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kitchen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/living_room/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Living Room
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/lobby/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lobby
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/mud_room/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mud Room
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/office/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Office
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/sauna/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sauna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/stairs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stairs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/toilet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toilet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_8">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_8" id="__nav_6_5_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notification center
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notification center
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/notification-center/notification_builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notification Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/notification-center/notifications_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_9">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_9" id="__nav_6_5_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Room management
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Room management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/room-management/room_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Room Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_10">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_10" id="__nav_6_5_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Smart speakers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Smart speakers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/smart-speakers/smart_speakers_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Smart Speakers Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../integrations/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/ai_reporter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration: AI Log Reporter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_7" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_7" id="__nav_6_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Packages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Ai Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../airthings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Airthings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aqara_w500/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Aqara W500
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../area_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Area Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../car/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Car
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debug_script/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Debug Script
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dishwasher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Dishwasher
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dna_tv_hub/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Dna Tv Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fireplace_automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Fireplace Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../garmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Garmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../home_time_modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Home Time Modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nordpool_prices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Nordpool Prices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../office_pc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Office Pc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../philips_air_purifier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Philips Air Purifier
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../room_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Room Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scenes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Scenes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shelly_3em/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Shelly 3Em
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../smart_notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Smart Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../smart_speakers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Smart Speakers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tailscale_edge_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Tailscale Edge Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tailscale_halo_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Tailscale Halo Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tailscale_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Tailscale Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Unifi Access
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Unifi Access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#process-description-non-technical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process Description (Non-Technical)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboard-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard Connections
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration (Source Code)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../washing_machine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Washing Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../workflow/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Workflow
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workflow/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation System Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workflow/setup_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workflow/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#process-description-non-technical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process Description (Non-Technical)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboard-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard Connections
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration (Source Code)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags">
+    
+      
+      
+      
+      
+        <a href="../../../tags/#tag:automated" class="md-tag">automated</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../tags/#tag:package" class="md-tag">package</a>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="package-unifi-access">Package: Unifi Access</h1>
+<p><strong>Version:</strong> 1.1.0<br>
+<strong>Description:</strong> Unified management for G4 Doorbell Pro Fingerprint &amp; NFC.</p>
+<!-- START_IMAGE -->
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/unifi_access.png" data-desc-position="bottom"><img alt="Package Diagram" src="../assets/unifi_access.png"></a></p>
+<!-- END_IMAGE -->
+
+<h2 id="executive-summary">Executive Summary</h2>
+<!-- START_SUMMARY -->
+<p>The <strong>Unifi Access</strong> package implements a unified access control layer on top of the Ubiquiti G4 Doorbell Pro. It abstracts distinct hardware events (NFC, Fingerprint) into a single logical "Unified User" entity backed by MQTT discovery. The system provides granular, per-credential access management (switches), a centralized Guest Schedule (input_helpers), and "Fail-Closed" authorization logic. State persistence is handled via MQTT Retain to ensure reliability across reboots.</p>
+<!-- END_SUMMARY -->
+
+<h2 id="process-description-non-technical">Process Description (Non-Technical)</h2>
+<!-- START_DETAILED -->
+<ol>
+<li><strong>Scan</strong>: A user scans their fingerprint or NFC tag at the doorbell.</li>
+<li><strong>Identify</strong>: The system instantly recognizes the person (e.g., "Dad" or "Guest").</li>
+<li><strong>Check Permissions</strong>:<ul>
+<li><strong>Family</strong>: Checks if their specific access (Fingerprint or Card) is currently switched ON.</li>
+<li><strong>Guests</strong>: Checks if they are allowed today <strong>AND</strong> if it is currently within the "Guest Hours".</li>
+</ul>
+</li>
+<li><strong>Unlock</strong>: If valid, the door unlocks and a snapshot is sent to your phone. If denied, a security alert is triggered.</li>
+</ol>
+<!-- END_DETAILED -->
+
+<h2 id="dashboard-connections">Dashboard Connections</h2>
+<!-- START_DASHBOARD -->
+<p>This package powers the following dashboard views:</p>
+<ul>
+<li><strong><a href="../../dashboards/home-access/home_access_center/">Home Access Center</a></strong>: <em>The <strong>Home Access Center</strong> serves as the central administrative hub for managing physical security and entry credentials. Its primary function is to maintain a unified user registry where distinct hardware identifiers—such as Fingerprints and NFC tags—are mapped to specific individuals. This abstraction allows homeowners to easily enroll new keys, assign them to family members or guests, and instantly revoke permissions if a credential is lost or compromised.</em> (Uses 8 entities)</li>
+<li><strong><a href="../../dashboards/main/front_door/">Front Door</a></strong>: <em>This view is the central security hub for the Front Door. It features live feeds and event clips from Frigate cameras (Doorbell and Porch). Users can control the smart lock, arm/disarm the alarm system, and manage the front entry lights. It also monitors door status and presence, with settings for occupancy-based automations.</em> (Uses 1 entities)</li>
+<li><strong><a href="../../dashboards/main/home/">Home</a></strong>: <em>The Home dashboard serves as the central information hub. It features a large clock and family calendars, alongside detailed weather forecasts. Key home stats are highlighted, including real-time energy prices, power usage, and the status of major appliances like the dishwasher and washing machine. The view also provides a high-level overview of the entire house, displaying camera feeds and status summaries for all key rooms (Sauna, Bathroom, Bedroom, etc.) using 'Streamline' area cards.</em> (Uses 1 entities)</li>
+<li><strong><a href="../../dashboards/main/mud_room/">Mud Room</a></strong>: <em>This dashboard manages the Mud Room. It provides control for the ceiling light and visualizes occupancy status via motion sensors. The view includes standard settings for occupancy automations and light scheduling.</em> (Uses 1 entities)</li>
+<li><strong><a href="../../dashboards/room-management/room_management/">Room Management</a></strong>: <em>The Room Management dashboard serves as the administrative backend for the home's room logic. It allows users to initialize new rooms (creating necessary helper entities) or delete existing ones. It features a dynamic "Configured Rooms" section powered by <code>auto-entities</code>, which automatically lists all configured rooms and provides collapsible controls for their automation modes, occupancy sensors, and timeouts.</em> (Uses 1 entities)</li>
+</ul>
+<!-- END_DASHBOARD -->
+
+<h2 id="architecture-diagram">Architecture Diagram</h2>
+<!-- START_MERMAID_DESC -->
+<p>The sequence starts when the G4 Doorbell Pro broadcasts a hardware event (fingerprint or NFC) to Home Assistant. The automation logic intercepts this event and resolves the raw ID to a "Unified User" using a mapped MQTT lookup. Once the user is identified, the system performs a multi-stage authorization check: first verifying the specific credential type is enabled (e.g., is NFC allowed for this user?), and then—if the user is a Guest—verifying the request against the global Guest Schedule. A "Pass" decision triggers the Z-Wave lock and logs the entry; a "Fail" decision prevents access and logs a security warning.</p>
+<!-- END_MERMAID_DESC -->
+
+<!-- START_MERMAID -->
+<pre class="mermaid"><code>sequenceDiagram
+    participant User
+    participant G4 as G4 Doorbell Pro
+    participant HA as Home Assistant
+    participant Logic as Access Logic
+    participant MQTT as MQTT Broker
+    participant Lock as Yale Lock
+    participant Notify as Notification Svc
+
+    User-&gt;&gt;G4: Scans Fingerprint / NFC
+    G4-&gt;&gt;HA: Event (ulp_id)
+    HA-&gt;&gt;Logic: Trigger Automation
+
+    rect rgb(240, 240, 240)
+        Note over Logic: Identity Resolution
+        Logic-&gt;&gt;MQTT: Query User for ulp_id
+        MQTT--&gt;&gt;Logic: Returns "Unified User"
+    end
+
+    rect rgb(230, 245, 255)
+        Note over Logic: Authorization Check
+        alt is Unknown ID
+            Logic-&gt;&gt;Logic: Auto-Learn (Create "Unknown")
+            Logic-&gt;&gt;Notify: Alert "New ID Found"
+        else is Known User
+            Logic-&gt;&gt;Logic: Check Access Switch (FP/NFC)
+            opt is Guest
+                Logic-&gt;&gt;Logic: Validate Schedule (Time/Day)
+            end
+
+            alt Access Granted
+                Logic-&gt;&gt;Lock: Unlock Command
+                Logic-&gt;&gt;Notify: Send "Unlocked" Snapshot
+            else Access Denied
+                Logic-&gt;&gt;Notify: Send Critical Alert
+            end
+        end
+    end</code></pre>
+<!-- END_MERMAID -->
+
+<h2 id="configuration-source-code">Configuration (Source Code)</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># Package: Unifi Unified Access Control</span>
+<span class="c1"># Version: 1.1.0</span>
+<span class="c1"># Description: Unified management for G4 Doorbell Pro Fingerprint &amp; NFC.</span>
+<span class="c1">#              - Shared Identity: 'select.unifi_user_ID'</span>
+<span class="c1">#              - Separate Access: 'switch.fp_access_USER' &amp; 'switch.nfc_access_USER'</span>
+<span class="c1">#              - Unified Schedule: 'input_datetime.guest_access_...'</span>
+<span class="c1"># ------------------------------------------------------------------------------</span>
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># 1. HELPERS &amp; SCHEDULES</span>
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="nt">input_select</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">unifi_delete_id</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Select</span><span class="nv"> </span><span class="s">ID</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Delete"</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:delete-empty</span>
+<span class="w">    </span><span class="nt">options</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"-select-"</span><span class="p p-Indicator">]</span>
+
+<span class="c1"># --- UNIFIED GUEST SCHEDULE ---</span>
+<span class="nt">input_datetime</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">guest_access_start</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Guest</span><span class="nv"> </span><span class="s">Access</span><span class="nv"> </span><span class="s">Start"</span>
+<span class="w">    </span><span class="nt">has_date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">has_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:clock-start</span>
+<span class="w">    </span><span class="nt">initial</span><span class="p">:</span><span class="w"> </span><span class="s">"09:00"</span>
+<span class="w">  </span><span class="nt">guest_access_end</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Guest</span><span class="nv"> </span><span class="s">Access</span><span class="nv"> </span><span class="s">End"</span>
+<span class="w">    </span><span class="nt">has_date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">has_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:clock-end</span>
+<span class="w">    </span><span class="nt">initial</span><span class="p">:</span><span class="w"> </span><span class="s">"21:00"</span>
+
+<span class="nt">input_boolean</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">guest_access_mon</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Mon"</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:calendar</span>
+<span class="w">  </span><span class="nt">guest_access_tue</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Tue"</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:calendar</span>
+<span class="w">  </span><span class="nt">guest_access_wed</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Wed"</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:calendar</span>
+<span class="w">  </span><span class="nt">guest_access_thu</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Thu"</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:calendar</span>
+<span class="w">  </span><span class="nt">guest_access_fri</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Fri"</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:calendar</span>
+<span class="w">  </span><span class="nt">guest_access_sat</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Sat"</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:calendar</span>
+<span class="w">  </span><span class="nt">guest_access_sun</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Sun"</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:calendar</span>
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># 2. AUTOMATIONS</span>
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="nt">automation</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># --- LOGIC 1: FINGERPRINT ENTRY ---</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">"Access:</span><span class="nv"> </span><span class="s">Fingerprint</span><span class="nv"> </span><span class="s">Entry</span><span class="nv"> </span><span class="s">Logic"</span>
+<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">access_fingerprint_entry_logic</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">single</span>
+<span class="w">    </span><span class="nt">trigger</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">state</span>
+<span class="w">        </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">event.front_door_fingerprint</span>
+<span class="w">        </span><span class="nt">not_from</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"unknown"</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"unavailable"</span>
+<span class="w">        </span><span class="nt">not_to</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"unknown"</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"unavailable"</span>
+<span class="w">    </span><span class="nt">variables</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">raw_id</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">        </span><span class="no">{{ trigger.to_state.attributes.ulp_id | default('unknown') }}</span>
+<span class="w">      </span><span class="nt">slug_id</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">raw_id</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">replace('-',</span><span class="nv"> </span><span class="s">'_')</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">lower</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">      </span><span class="c1"># SHARED IDENTITY ENTITY</span>
+<span class="w">      </span><span class="nt">assigned_user</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">states('select.unifi_user_'</span><span class="nv"> </span><span class="s">~</span><span class="nv"> </span><span class="s">slug_id)</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">      </span><span class="c1"># FP ACCESS SWITCH</span>
+<span class="w">      </span><span class="nt">user_switch</span><span class="p">:</span><span class="w"> </span><span class="s">"switch.fp_access_{{</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">slugify</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">camera.g4_doorbell_pro_poe_high_resolution_channel</span>
+<span class="w">        </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/config/www/front_door_unlock_snapshot.jpg</span>
+<span class="w">        </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">camera.snapshot</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">choose</span><span class="p">:</span>
+<span class="w">          </span><span class="c1"># ROLE 1: GUEST</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">conditions</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">                </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">'guest'</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">lower</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">            </span><span class="nt">sequence</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">                    </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">                      </span><span class="no">{# FAIL CLOSED: Switch MUST be ON #}</span>
+<span class="w">                      </span><span class="no">{% set access_enabled = is_state(user_switch, 'on') %}</span>
+<span class="w">                      </span><span class="no">{# SCHEDULE CHECK (UNIFIED) #}</span>
+<span class="w">                      </span><span class="no">{% set current_day = now().strftime('%a')|lower %}</span>
+<span class="w">                      </span><span class="no">{% set is_day_allowed = is_state('input_boolean.guest_access_' ~ current_day, 'on') %}</span>
+<span class="w">                      </span><span class="no">{% set current_time = now().strftime('%H:%M:%S') %}</span>
+<span class="w">                      </span><span class="no">{% set start_time = states('input_datetime.guest_access_start') %}</span>
+<span class="w">                      </span><span class="no">{% set end_time = states('input_datetime.guest_access_end') %}</span>
+<span class="w">                      </span><span class="no">{% set is_time_allowed = (current_time &gt;= start_time) and (current_time &lt;= end_time) %}</span>
+
+<span class="w">                      </span><span class="no">{{ access_enabled and is_day_allowed and is_time_allowed }}</span>
+<span class="w">                </span><span class="nt">then</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.unlock</span>
+<span class="w">                    </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.front_door_lock</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.notify_smart_master</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security</span>
+<span class="w">                      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">🔓 Guest Entry (Fingerprint)</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"Guest</span><span class="nv"> </span><span class="s">entered</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">Fingerprint."</span>
+<span class="w">                      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/local/front_door_unlock_snapshot.jpg?t={{ now().timestamp() }}</span>
+<span class="w">                      </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">door_lock</span>
+<span class="w">                </span><span class="nt">else</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.notify_smart_master</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security</span>
+<span class="w">                      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">⛔ Access Denied (Fingerprint)</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">                        </span><span class="no">{% if not is_state(user_switch, 'on') %}</span>
+<span class="w">                          </span><span class="no">Guest FP access manually DISABLED.</span>
+<span class="w">                        </span><span class="no">{% else %}</span>
+<span class="w">                          </span><span class="no">Guest outside allowed schedule.</span>
+<span class="w">                        </span><span class="no">{% endif %}</span>
+<span class="w">                      </span><span class="nt">critical</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">                      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/local/front_door_unlock_snapshot.jpg?t={{ now().timestamp() }}</span>
+<span class="w">                      </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">door_lock_denied</span>
+
+<span class="w">          </span><span class="c1"># ROLE 2: STANDARD USER</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">conditions</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">                </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">                  </span><span class="no">{{ assigned_user not in ['unknown', 'unavailable', 'none', 'Unknown', '-Unassigned-', '-unassigned-', 'Guest'] }}</span>
+<span class="w">            </span><span class="nt">sequence</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">                    </span><span class="c1"># FAIL CLOSED: Switch MUST be ON</span>
+<span class="w">                    </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">is_state(user_switch,</span><span class="nv"> </span><span class="s">'on')</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">                </span><span class="nt">then</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.unlock</span>
+<span class="w">                    </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.front_door_lock</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">logbook.log</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Front</span><span class="nv"> </span><span class="s">Door</span><span class="nv"> </span><span class="s">Access"</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"🔓</span><span class="nv"> </span><span class="s">Guest</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">entered</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">Fingerprint."</span>
+<span class="w">                      </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.front_door_lock_cloud</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">logbook.log</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Front</span><span class="nv"> </span><span class="s">Door</span><span class="nv"> </span><span class="s">Access"</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"🔓</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">unlocked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">Fingerprint."</span>
+<span class="w">                      </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.front_door_lock_cloud</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.notify_smart_master</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security</span>
+<span class="w">                      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">🔓 Front Door Unlocked</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"Unlocked</span><span class="nv"> </span><span class="s">by:</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">                      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/local/front_door_unlock_snapshot.jpg?t={{ now().timestamp() }}</span>
+<span class="w">                      </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">door_lock</span>
+<span class="w">                </span><span class="nt">else</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">logbook.log</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Front</span><span class="nv"> </span><span class="s">Door</span><span class="nv"> </span><span class="s">Access"</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"⛔</span><span class="nv"> </span><span class="s">Guest</span><span class="nv"> </span><span class="s">Access</span><span class="nv"> </span><span class="s">Denied</span><span class="nv"> </span><span class="s">(Fingerprint):</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">}}."</span>
+<span class="w">                      </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.front_door_lock_cloud</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">logbook.log</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Front</span><span class="nv"> </span><span class="s">Door</span><span class="nv"> </span><span class="s">Access"</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"⛔</span><span class="nv"> </span><span class="s">Access</span><span class="nv"> </span><span class="s">Disabled</span><span class="nv"> </span><span class="s">(Fingerprint):</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">}}."</span>
+<span class="w">                      </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.front_door_lock_cloud</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.notify_smart_master</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security</span>
+<span class="w">                      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">⛔ Access Disabled</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"Fingerprint</span><span class="nv"> </span><span class="s">valid,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">}}'s</span><span class="nv"> </span><span class="s">access</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">switched</span><span class="nv"> </span><span class="s">OFF."</span>
+<span class="w">                      </span><span class="nt">critical</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">                      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/local/front_door_unlock_snapshot.jpg?t={{ now().timestamp() }}</span>
+<span class="w">                      </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">door_lock_denied</span>
+
+<span class="w">          </span><span class="c1"># ROLE 3: AUTO-LEARN</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">conditions</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">                </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">raw_id</span><span class="nv"> </span><span class="s">!=</span><span class="nv"> </span><span class="s">'unknown'</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">raw_id</span><span class="nv"> </span><span class="s">!=</span><span class="nv"> </span><span class="s">''</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">            </span><span class="nt">sequence</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.add_unifi_user_entity</span>
+<span class="w">                </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">ulp_id</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">raw_id</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">                  </span><span class="nt">current_user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unknown</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.notify_smart_master</span>
+<span class="w">                </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">system</span>
+<span class="w">                  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">🖐️ New Fingerprint ID</span>
+<span class="w">                  </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"ID:</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">raw_id</span><span class="nv"> </span><span class="s">}}\nAdded</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">User</span><span class="nv"> </span><span class="s">Management</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">'Unknown'."</span>
+<span class="w">                  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/local/front_door_unlock_snapshot.jpg?t={{ now().timestamp() }}</span>
+<span class="w">                  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">door_lock_unknown</span>
+<span class="w">                  </span><span class="nt">clickAction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/lovelace/access-control</span>
+
+<span class="w">  </span><span class="c1"># --- LOGIC 2: NFC ENTRY ---</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">"Access:</span><span class="nv"> </span><span class="s">NFC</span><span class="nv"> </span><span class="s">Entry</span><span class="nv"> </span><span class="s">Logic"</span>
+<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">access_nfc_entry_logic</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">single</span>
+<span class="w">    </span><span class="nt">trigger</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">state</span>
+<span class="w">        </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">event.front_door_nfc</span>
+<span class="w">        </span><span class="nt">not_from</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"unknown"</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"unavailable"</span>
+<span class="w">        </span><span class="nt">not_to</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"unknown"</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"unavailable"</span>
+<span class="w">    </span><span class="nt">variables</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">raw_id</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">        </span><span class="no">{{ trigger.to_state.attributes.ulp_id | default('unknown') }}</span>
+<span class="w">      </span><span class="nt">slug_id</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">raw_id</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">replace('-',</span><span class="nv"> </span><span class="s">'_')</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">lower</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">      </span><span class="c1"># SHARED IDENTITY ENTITY</span>
+<span class="w">      </span><span class="nt">assigned_user</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">states('select.unifi_user_'</span><span class="nv"> </span><span class="s">~</span><span class="nv"> </span><span class="s">slug_id)</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">      </span><span class="c1"># NFC ACCESS SWITCH</span>
+<span class="w">      </span><span class="nt">user_switch</span><span class="p">:</span><span class="w"> </span><span class="s">"switch.nfc_access_{{</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">slugify</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">camera.g4_doorbell_pro_poe_high_resolution_channel</span>
+<span class="w">        </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/config/www/front_door_nfc_snapshot.jpg</span>
+<span class="w">        </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">camera.snapshot</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">choose</span><span class="p">:</span>
+<span class="w">          </span><span class="c1"># ROLE 1: GUEST</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">conditions</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">                </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">'guest'</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">lower</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">            </span><span class="nt">sequence</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">                    </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">                      </span><span class="no">{# FAIL CLOSED: Switch MUST be ON #}</span>
+<span class="w">                      </span><span class="no">{% set access_enabled = is_state(user_switch, 'on') %}</span>
+<span class="w">                      </span><span class="no">{# SCHEDULE CHECK (UNIFIED) #}</span>
+<span class="w">                      </span><span class="no">{% set current_day = now().strftime('%a')|lower %}</span>
+<span class="w">                      </span><span class="no">{% set is_day_allowed = is_state('input_boolean.guest_access_' ~ current_day, 'on') %}</span>
+<span class="w">                      </span><span class="no">{% set current_time = now().strftime('%H:%M:%S') %}</span>
+<span class="w">                      </span><span class="no">{% set start_time = states('input_datetime.guest_access_start') %}</span>
+<span class="w">                      </span><span class="no">{% set end_time = states('input_datetime.guest_access_end') %}</span>
+<span class="w">                      </span><span class="no">{% set is_time_allowed = (current_time &gt;= start_time) and (current_time &lt;= end_time) %}</span>
+
+<span class="w">                      </span><span class="no">{{ access_enabled and is_day_allowed and is_time_allowed }}</span>
+<span class="w">                </span><span class="nt">then</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.unlock</span>
+<span class="w">                    </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.front_door_lock</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">logbook.log</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Front</span><span class="nv"> </span><span class="s">Door</span><span class="nv"> </span><span class="s">Access"</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"🔓</span><span class="nv"> </span><span class="s">Guest</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">entered</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">NFC."</span>
+<span class="w">                      </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.front_door_lock_cloud</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.notify_smart_master</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security</span>
+<span class="w">                      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">🔓 Guest Entry (NFC)</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"Guest</span><span class="nv"> </span><span class="s">entered</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">NFC."</span>
+<span class="w">                      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/local/front_door_nfc_snapshot.jpg?t={{ now().timestamp() }}</span>
+<span class="w">                      </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">door_lock</span>
+<span class="w">                </span><span class="nt">else</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">logbook.log</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Front</span><span class="nv"> </span><span class="s">Door</span><span class="nv"> </span><span class="s">Access"</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"⛔</span><span class="nv"> </span><span class="s">Guest</span><span class="nv"> </span><span class="s">Access</span><span class="nv"> </span><span class="s">Denied</span><span class="nv"> </span><span class="s">(NFC):</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">}}."</span>
+<span class="w">                      </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.front_door_lock_cloud</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.notify_smart_master</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security</span>
+<span class="w">                      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">⛔ Access Denied (NFC)</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">                        </span><span class="no">{% if not is_state(user_switch, 'on') %}</span>
+<span class="w">                          </span><span class="no">Guest NFC access manually DISABLED.</span>
+<span class="w">                        </span><span class="no">{% else %}</span>
+<span class="w">                          </span><span class="no">Guest outside allowed schedule.</span>
+<span class="w">                        </span><span class="no">{% endif %}</span>
+<span class="w">                      </span><span class="nt">critical</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">                      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/local/front_door_nfc_snapshot.jpg?t={{ now().timestamp() }}</span>
+<span class="w">                      </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">door_lock_denied</span>
+
+<span class="w">          </span><span class="c1"># ROLE 2: STANDARD USER</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">conditions</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">                </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">                  </span><span class="no">{{ assigned_user not in ['unknown', 'unavailable', 'none', 'Unknown', '-Unassigned-', '-unassigned-', 'Guest'] }}</span>
+<span class="w">            </span><span class="nt">sequence</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">                    </span><span class="c1"># FAIL CLOSED</span>
+<span class="w">                    </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">is_state(user_switch,</span><span class="nv"> </span><span class="s">'on')</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">                </span><span class="nt">then</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.unlock</span>
+<span class="w">                    </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.front_door_lock</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">logbook.log</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Front</span><span class="nv"> </span><span class="s">Door</span><span class="nv"> </span><span class="s">Access"</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"🔓</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">unlocked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">NFC."</span>
+<span class="w">                      </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.front_door_lock_cloud</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.notify_smart_master</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security</span>
+<span class="w">                      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">🔓 Front Door Unlocked (NFC)</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"Unlocked</span><span class="nv"> </span><span class="s">by:</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">                      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/local/front_door_nfc_snapshot.jpg?t={{ now().timestamp() }}</span>
+<span class="w">                      </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">door_lock</span>
+<span class="w">                </span><span class="nt">else</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">logbook.log</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Front</span><span class="nv"> </span><span class="s">Door</span><span class="nv"> </span><span class="s">Access"</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"⛔</span><span class="nv"> </span><span class="s">Access</span><span class="nv"> </span><span class="s">Disabled</span><span class="nv"> </span><span class="s">(NFC):</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">}}."</span>
+<span class="w">                      </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lock.front_door_lock_cloud</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.notify_smart_master</span>
+<span class="w">                    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                      </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security</span>
+<span class="w">                      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">⛔ Access Disabled</span>
+<span class="w">                      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"NFC</span><span class="nv"> </span><span class="s">valid,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">assigned_user</span><span class="nv"> </span><span class="s">}}'s</span><span class="nv"> </span><span class="s">NFC</span><span class="nv"> </span><span class="s">access</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">switched</span><span class="nv"> </span><span class="s">OFF."</span>
+<span class="w">                      </span><span class="nt">critical</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">                      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/local/front_door_nfc_snapshot.jpg?t={{ now().timestamp() }}</span>
+<span class="w">                      </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">door_lock_denied</span>
+
+<span class="w">          </span><span class="c1"># ROLE 3: AUTO-LEARN</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">conditions</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">                </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">raw_id</span><span class="nv"> </span><span class="s">!=</span><span class="nv"> </span><span class="s">'unknown'</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">raw_id</span><span class="nv"> </span><span class="s">!=</span><span class="nv"> </span><span class="s">''</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">            </span><span class="nt">sequence</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.add_unifi_user_entity</span>
+<span class="w">                </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">ulp_id</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">raw_id</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">                  </span><span class="nt">current_user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unknown</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.notify_smart_master</span>
+<span class="w">                </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">system</span>
+<span class="w">                  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">🏷️ New NFC ID</span>
+<span class="w">                  </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">"ID:</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">raw_id</span><span class="nv"> </span><span class="s">}}\nAdded</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">User</span><span class="nv"> </span><span class="s">Management</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">'Unknown'."</span>
+<span class="w">                  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/local/front_door_nfc_snapshot.jpg?t={{ now().timestamp() }}</span>
+<span class="w">                  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">door_lock_unknown</span>
+<span class="w">                  </span><span class="nt">clickAction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/lovelace/access-control</span>
+
+<span class="w">  </span><span class="c1"># --- SYSTEM PERSISTENCE (Universal) ---</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">"System:</span><span class="nv"> </span><span class="s">Unifi</span><span class="nv"> </span><span class="s">Access</span><span class="nv"> </span><span class="s">MQTT</span><span class="nv"> </span><span class="s">Persistence"</span>
+<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">system_unifi_access_mqtt_persistence</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parallel</span>
+<span class="w">    </span><span class="nt">trigger</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+<span class="w">        </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"unifi_access/+/user/set"</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+<span class="w">        </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"unifi_access/access/+/set"</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+<span class="w">        </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"fingerprint/access/+/set"</span><span class="w"> </span><span class="c1"># Legacy/Compatibility</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+<span class="w">        </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"nfc/access/+/set"</span><span class="w"> </span><span class="c1"># Legacy/Compatibility</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt.publish</span>
+<span class="w">        </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">trigger.topic</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">replace('/set',</span><span class="nv"> </span><span class="s">'/state')</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">          </span><span class="nt">payload</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">trigger.payload</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">          </span><span class="nt">retain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="c1"># --- AUTO-CREATE SWITCHES ON ASSIGNMENT CHANGE ---</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">"System:</span><span class="nv"> </span><span class="s">Unifi</span><span class="nv"> </span><span class="s">User</span><span class="nv"> </span><span class="s">Assignment</span><span class="nv"> </span><span class="s">Update"</span>
+<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">system_unifi_user_assignment_update</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parallel</span>
+<span class="w">    </span><span class="nt">trigger</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt</span>
+<span class="w">        </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"unifi_access/+/user/set"</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">variables</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">slug</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">trigger.topic.split('/')[1]</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">          </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="s">"select.unifi_user_{{</span><span class="nv"> </span><span class="s">slug</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">delay</span><span class="p">:</span><span class="w"> </span><span class="s">"00:00:00.200"</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.add_unifi_user_entity</span>
+<span class="w">        </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">ulp_id</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">state_attr(entity_id,</span><span class="nv"> </span><span class="s">'ulp_id')</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">default(slug)</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">          </span><span class="nt">current_user</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">trigger.payload</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">delay</span><span class="p">:</span><span class="w"> </span><span class="s">"00:00:00.200"</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.cleanup_unused_unifi_switches</span>
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># 3. SCRIPTS</span>
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="nt">script</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># --- ADD / UPDATE USER &amp; CREATE BOTH SWITCHES ---</span>
+<span class="w">  </span><span class="nt">add_unifi_user_entity</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">"System:</span><span class="nv"> </span><span class="s">Add</span><span class="nv"> </span><span class="s">Unifi</span><span class="nv"> </span><span class="s">User"</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parallel</span>
+<span class="w">    </span><span class="nt">fields</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ulp_id</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">"The</span><span class="nv"> </span><span class="s">Unifi</span><span class="nv"> </span><span class="s">ID</span><span class="nv"> </span><span class="s">(Member</span><span class="nv"> </span><span class="s">ID)"</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">current_user</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">"Current</span><span class="nv"> </span><span class="s">assigned</span><span class="nv"> </span><span class="s">user"</span>
+<span class="w">        </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="s">"-unassigned-"</span>
+<span class="w">    </span><span class="nt">sequence</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">variables</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">slug</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">ulp_id</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">replace('-',</span><span class="nv"> </span><span class="s">'_')</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">lower</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">          </span><span class="nt">user_list</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">            </span><span class="no">{% set ns = namespace(users=['-Unassigned-', 'Guest']) %}</span>
+<span class="w">            </span><span class="no">{% for p in states.person %}</span>
+<span class="w">              </span><span class="no">{% set ns.users = ns.users + [p.attributes.friendly_name] %}</span>
+<span class="w">            </span><span class="no">{% endfor %}</span>
+<span class="w">            </span><span class="no">{{ ns.users | unique | sort | list }}</span>
+
+<span class="w">          </span><span class="c1"># Clean Name</span>
+<span class="w">          </span><span class="nt">clean_current_user</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">            </span><span class="no">{% set step1 = current_user | replace(' Notify Service', '') | replace(' Notifications', '') %}</span>
+<span class="w">            </span><span class="no">{% set parts = step1.split(' ') %}</span>
+<span class="w">            </span><span class="no">{% if parts|length &gt; 1 and parts[0] == parts[-1] %}</span>
+<span class="w">               </span><span class="no">{{ parts[0] }}</span>
+<span class="w">            </span><span class="no">{% else %}</span>
+<span class="w">               </span><span class="no">{{ step1 }}</span>
+<span class="w">            </span><span class="no">{% endif %}</span>
+
+<span class="w">      </span><span class="c1"># --- 1. PUBLISH SHARED IDENTITY SELECT ---</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt.publish</span>
+<span class="w">        </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">retain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">          </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"homeassistant/select/unifi_user_{{</span><span class="nv"> </span><span class="s">slug</span><span class="nv"> </span><span class="s">}}/config"</span>
+<span class="w">          </span><span class="nt">payload</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">            </span><span class="no">{</span>
+<span class="w">              </span><span class="no">"name": "Unifi User {{ ulp_id[:4] }}...",</span>
+<span class="w">              </span><span class="no">"object_id": "unifi_user_{{ slug }}",</span>
+<span class="w">              </span><span class="no">"unique_id": "unifi_user_{{ slug }}",</span>
+<span class="w">              </span><span class="no">"icon": "mdi:account-key",</span>
+<span class="w">              </span><span class="no">"options": {{ user_list | to_json }},</span>
+<span class="w">              </span><span class="no">"command_topic": "unifi_access/{{ slug }}/user/set",</span>
+<span class="w">              </span><span class="no">"state_topic": "unifi_access/{{ slug }}/user/state",</span>
+<span class="w">              </span><span class="no">"availability_topic": "unifi_access/{{ slug }}/availability",</span>
+<span class="w">              </span><span class="no">"payload_available": "online",</span>
+<span class="w">              </span><span class="no">"json_attributes_topic": "unifi_access/{{ slug }}/attributes",</span>
+<span class="w">              </span><span class="no">"device": {</span>
+<span class="w">                </span><span class="no">"identifiers": ["unifi_access_manager"],</span>
+<span class="w">                </span><span class="no">"name": "Unifi Access DB",</span>
+<span class="w">                </span><span class="no">"manufacturer": "Home Assistant",</span>
+<span class="w">                </span><span class="no">"model": "Unified ID DB"</span>
+<span class="w">              </span><span class="no">}</span>
+<span class="w">            </span><span class="no">}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt.publish</span>
+<span class="w">        </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">retain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">          </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"unifi_access/{{</span><span class="nv"> </span><span class="s">slug</span><span class="nv"> </span><span class="s">}}/attributes"</span>
+<span class="w">          </span><span class="nt">payload</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">            </span><span class="no">{ "ulp_id": "{{ ulp_id }}" }</span>
+
+<span class="w">      </span><span class="c1"># --- 2. UPDATE STATE ---</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">            </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">              </span><span class="no">{{ states('select.unifi_user_' ~ slug) != clean_current_user }}</span>
+<span class="w">        </span><span class="nt">then</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt.publish</span>
+<span class="w">            </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">retain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">              </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"unifi_access/{{</span><span class="nv"> </span><span class="s">slug</span><span class="nv"> </span><span class="s">}}/user/state"</span>
+<span class="w">              </span><span class="nt">payload</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">clean_current_user</span><span class="nv"> </span><span class="s">}}"</span>
+
+<span class="w">      </span><span class="c1"># --- 3. CREATE SWITCHES (FP &amp; NFC) ---</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">variables</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">user_slug</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">clean_current_user</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">slugify</span><span class="nv"> </span><span class="s">}}"</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">            </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">clean_current_user</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">['-Unassigned-',</span><span class="nv"> </span><span class="s">'Unknown',</span><span class="nv"> </span><span class="s">'unknown']</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">        </span><span class="nt">then</span><span class="p">:</span>
+<span class="w">          </span><span class="c1"># --- SWITCH 1: FINGERPRINT ACCESS ---</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt.publish</span>
+<span class="w">            </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">retain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">              </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"homeassistant/switch/fp_access_{{</span><span class="nv"> </span><span class="s">user_slug</span><span class="nv"> </span><span class="s">}}/config"</span>
+<span class="w">              </span><span class="nt">payload</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">                </span><span class="no">{</span>
+<span class="w">                  </span><span class="no">"name": "FP Access: {{ clean_current_user }}",</span>
+<span class="w">                  </span><span class="no">"object_id": "fp_access_{{ user_slug }}",</span>
+<span class="w">                  </span><span class="no">"unique_id": "fp_access_switch_{{ user_slug }}",</span>
+<span class="w">                  </span><span class="no">"icon": "mdi:fingerprint",</span>
+<span class="w">                  </span><span class="no">"command_topic": "fingerprint/access/{{ user_slug }}/set",</span>
+<span class="w">                  </span><span class="no">"state_topic": "fingerprint/access/{{ user_slug }}/state",</span>
+<span class="w">                  </span><span class="no">"device": { "identifiers": ["unifi_access_manager"] }</span>
+<span class="w">                </span><span class="no">}</span>
+<span class="w">          </span><span class="c1"># Init FP ON</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">                </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">states('switch.fp_access_'</span><span class="nv"> </span><span class="s">~</span><span class="nv"> </span><span class="s">user_slug)</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">['unknown',</span><span class="nv"> </span><span class="s">'unavailable',</span><span class="nv"> </span><span class="s">'none']</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">            </span><span class="nt">then</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt.publish</span>
+<span class="w">                </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">retain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">                  </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"fingerprint/access/{{</span><span class="nv"> </span><span class="s">user_slug</span><span class="nv"> </span><span class="s">}}/state"</span>
+<span class="w">                  </span><span class="nt">payload</span><span class="p">:</span><span class="w"> </span><span class="s">"ON"</span>
+
+<span class="w">          </span><span class="c1"># --- SWITCH 2: NFC ACCESS ---</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt.publish</span>
+<span class="w">            </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">retain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">              </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"homeassistant/switch/nfc_access_{{</span><span class="nv"> </span><span class="s">user_slug</span><span class="nv"> </span><span class="s">}}/config"</span>
+<span class="w">              </span><span class="nt">payload</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">                </span><span class="no">{</span>
+<span class="w">                  </span><span class="no">"name": "NFC Access: {{ clean_current_user }}",</span>
+<span class="w">                  </span><span class="no">"object_id": "nfc_access_{{ user_slug }}",</span>
+<span class="w">                  </span><span class="no">"unique_id": "nfc_access_switch_{{ user_slug }}",</span>
+<span class="w">                  </span><span class="no">"icon": "mdi:tag-check",</span>
+<span class="w">                  </span><span class="no">"command_topic": "nfc/access/{{ user_slug }}/set",</span>
+<span class="w">                  </span><span class="no">"state_topic": "nfc/access/{{ user_slug }}/state",</span>
+<span class="w">                  </span><span class="no">"device": { "identifiers": ["unifi_access_manager"] }</span>
+<span class="w">                </span><span class="no">}</span>
+<span class="w">          </span><span class="c1"># Init NFC ON</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">                </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">states('switch.nfc_access_'</span><span class="nv"> </span><span class="s">~</span><span class="nv"> </span><span class="s">user_slug)</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">['unknown',</span><span class="nv"> </span><span class="s">'unavailable',</span><span class="nv"> </span><span class="s">'none']</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">            </span><span class="nt">then</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt.publish</span>
+<span class="w">                </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">retain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">                  </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"nfc/access/{{</span><span class="nv"> </span><span class="s">user_slug</span><span class="nv"> </span><span class="s">}}/state"</span>
+<span class="w">                  </span><span class="nt">payload</span><span class="p">:</span><span class="w"> </span><span class="s">"ON"</span>
+
+<span class="w">      </span><span class="c1"># --- 4. SET ONLINE ---</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt.publish</span>
+<span class="w">        </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">retain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">          </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"unifi_access/{{</span><span class="nv"> </span><span class="s">slug</span><span class="nv"> </span><span class="s">}}/availability"</span>
+<span class="w">          </span><span class="nt">payload</span><span class="p">:</span><span class="w"> </span><span class="s">"online"</span>
+
+<span class="w">  </span><span class="c1"># --- REFRESH ALL USERS ---</span>
+<span class="w">  </span><span class="nt">refresh_unifi_users</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">"System:</span><span class="nv"> </span><span class="s">Refresh</span><span class="nv"> </span><span class="s">Unifi</span><span class="nv"> </span><span class="s">Users"</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">single</span>
+<span class="w">    </span><span class="nt">sequence</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repeat</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">for_each</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">            </span><span class="no">{{ states.select | selectattr('entity_id', 'search', '^select\\.unifi_user_') | list }}</span>
+<span class="w">          </span><span class="nt">sequence</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.add_unifi_user_entity</span>
+<span class="w">              </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">ulp_id</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">state_attr(repeat.item.entity_id,</span><span class="nv"> </span><span class="s">'ulp_id')</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">                </span><span class="nt">current_user</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">repeat.item.state</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.cleanup_unused_unifi_switches</span>
+
+<span class="w">  </span><span class="c1"># --- CLEANUP ORPHANED SWITCHES (FP &amp; NFC) ---</span>
+<span class="w">  </span><span class="nt">cleanup_unused_unifi_switches</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">"System:</span><span class="nv"> </span><span class="s">Cleanup</span><span class="nv"> </span><span class="s">Unused</span><span class="nv"> </span><span class="s">Unifi</span><span class="nv"> </span><span class="s">Switches"</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">single</span>
+<span class="w">    </span><span class="nt">sequence</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">variables</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">active_user_slugs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">            </span><span class="no">{% set ns = namespace(slugs=[]) %}</span>
+<span class="w">            </span><span class="no">{% for s in states.select | selectattr('entity_id', 'search', '^select\\.unifi_user_') %}</span>
+<span class="w">               </span><span class="no">{% if s.state not in ['-Unassigned-', 'Unknown', 'unknown', 'unavailable', 'none'] %}</span>
+<span class="w">                 </span><span class="no">{% set ns.slugs = ns.slugs + [s.state | slugify] %}</span>
+<span class="w">               </span><span class="no">{% endif %}</span>
+<span class="w">            </span><span class="no">{% endfor %}</span>
+<span class="w">            </span><span class="no">{{ ns.slugs | unique | list }}</span>
+
+<span class="w">          </span><span class="c1"># Find all existing switches</span>
+<span class="w">          </span><span class="nt">fp_switches</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">states.switch</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">selectattr('entity_id',</span><span class="nv"> </span><span class="s">'search',</span><span class="nv"> </span><span class="s">'^switch\\.fp_access_')</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">map(attribute='entity_id')</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">list</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">          </span><span class="nt">nfc_switches</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">states.switch</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">selectattr('entity_id',</span><span class="nv"> </span><span class="s">'search',</span><span class="nv"> </span><span class="s">'^switch\\.nfc_access_')</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">map(attribute='entity_id')</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">list</span><span class="nv"> </span><span class="s">}}"</span>
+
+<span class="w">      </span><span class="c1"># Cleanup FP Switches</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repeat</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">for_each</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">fp_switches</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">          </span><span class="nt">sequence</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">variables</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">switch_slug</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">repeat.item.replace('switch.fp_access_',</span><span class="nv"> </span><span class="s">'')</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">                  </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">switch_slug</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">active_user_slugs</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">              </span><span class="nt">then</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt.publish</span>
+<span class="w">                  </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                    </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"homeassistant/switch/fp_access_{{</span><span class="nv"> </span><span class="s">switch_slug</span><span class="nv"> </span><span class="s">}}/config"</span>
+<span class="w">                    </span><span class="nt">payload</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">                    </span><span class="nt">retain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt.publish</span>
+<span class="w">                  </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                    </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"fingerprint/access/{{</span><span class="nv"> </span><span class="s">switch_slug</span><span class="nv"> </span><span class="s">}}/state"</span>
+<span class="w">                    </span><span class="nt">payload</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">                    </span><span class="nt">retain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">      </span><span class="c1"># Cleanup NFC Switches</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repeat</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">for_each</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">nfc_switches</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">          </span><span class="nt">sequence</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">variables</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">switch_slug</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">repeat.item.replace('switch.nfc_access_',</span><span class="nv"> </span><span class="s">'')</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">                  </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="s">"{{</span><span class="nv"> </span><span class="s">switch_slug</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">active_user_slugs</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="w">              </span><span class="nt">then</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt.publish</span>
+<span class="w">                  </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                    </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"homeassistant/switch/nfc_access_{{</span><span class="nv"> </span><span class="s">switch_slug</span><span class="nv"> </span><span class="s">}}/config"</span>
+<span class="w">                    </span><span class="nt">payload</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">                    </span><span class="nt">retain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mqtt.publish</span>
+<span class="w">                  </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">                    </span><span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s">"nfc/access/{{</span><span class="nv"> </span><span class="s">switch_slug</span><span class="nv"> </span><span class="s">}}/state"</span>
+<span class="w">                    </span><span class="nt">payload</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">                    </span><span class="nt">retain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 EvisHome
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better. We use Google Analytics to collect anonymous usage data.</p>
+<input class="md-toggle" type="checkbox" id="__settings">
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="analytics">
+      <span class="task-list-indicator"></span>
+      Google Analytics
+    </label>
+  </li>
+
+      
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

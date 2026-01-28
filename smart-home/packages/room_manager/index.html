@@ -1,0 +1,5133 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for EvisHomeLab - A comprehensive Smart Home &amp; Home Lab built with Home Assistant, Unraid, and Networking gear.">
+      
+      
+        <meta name="author" content="Evis">
+      
+      
+        <link rel="canonical" href="https://www.evishome.com/smart-home/packages/room_manager/">
+      
+      
+        <link rel="prev" href="../philips_air_purifier/">
+      
+      
+        <link rel="next" href="../scenes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Package: Room Manager - EvisHomeLab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-Q3C6JS2Q46"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-Q3C6JS2Q46",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-Q3C6JS2Q46",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+  
+
+    
+    
+  <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#package-room-manager" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="EvisHomeLab" class="md-header__button md-logo" aria-label="EvisHomeLab" data-md-component="logo">
+      
+  <img src="../../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EvisHomeLab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Package: Room Manager
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="orange" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="orange" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/EvisHome/EvisHomeLab" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    EvisHome/EvisHomeLab
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="EvisHomeLab" class="md-nav__button md-logo" aria-label="EvisHomeLab" data-md-component="logo">
+      
+  <img src="../../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    EvisHomeLab
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/EvisHome/EvisHomeLab" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    EvisHome/EvisHomeLab
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Device Inventory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../articles/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/ai-log-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Log Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/area-occupancy-sensor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Area Occupancy Sensor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/bed-occupancy-sensor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bed Occupancy Sensor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/dns-adguard-unbound/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DNS AdGuard Home &amp; Unbound
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/motorized-blinds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Motorized Horizontal Blinds - Tilt Action
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/philips-hue-motion-sensor-mount/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Philips Hue Motion Sensor Wall Mount
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/self-healing-tailscale-nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Healing Tailscale Nodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/tinkercad-project-box-creator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TinkerCad Project Box Creator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/virtual-fireplace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtual Fireplace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11">
+        
+          
+          <label class="md-nav__link" for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ai log summary
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ai log summary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/ai-log-summary/home-lab-logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home lab logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../articles/ai-log-summary/unraid-syslog-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unraid syslog server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../home-lab/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home lab
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home lab
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Planning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../planning/ai_roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Automation Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Smart home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Smart home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Automations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration &amp; Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../addons/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Addons
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Addons
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../addons/frigate_nvr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frigate NVR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../dashboards/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboards
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dashboards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_2">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_2" id="__nav_6_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin system
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Admin system
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/admin-system/system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_3">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_3" id="__nav_6_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Area automations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Area automations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/area-automations/room_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Room Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_4">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_4" id="__nav_6_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Area manager
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Area manager
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/area-manager/room_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Room Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_5">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_5" id="__nav_6_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboard persons
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dashboard persons
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/dashboard-persons/car/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CAR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/dashboard-persons/evis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/dashboard-persons/guest_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guest-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_6" id="__nav_6_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home access
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home access
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/home-access/home_access_center/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Access Center
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_7">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_7" id="__nav_6_5_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Main
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Main
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/backyard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backyard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/bathroom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bathroom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/bedroom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bedroom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/daughter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Daughter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/electricity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Electricity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/electricity_dev/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Electricity Dev
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/front_door/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Front Door
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/guest_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guest-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/guest_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guest-3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/hallway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/kitchen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kitchen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/living_room/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Living Room
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/lobby/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lobby
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/mud_room/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mud Room
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/office/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Office
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/sauna/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sauna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/stairs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stairs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/main/toilet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toilet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_8">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_8" id="__nav_6_5_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notification center
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notification center
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/notification-center/notification_builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notification Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/notification-center/notifications_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_9">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_9" id="__nav_6_5_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Room management
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Room management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/room-management/room_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Room Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_10">
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_10" id="__nav_6_5_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Smart speakers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Smart speakers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/smart-speakers/smart_speakers_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Smart Speakers Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../integrations/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/ai_reporter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration: AI Log Reporter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_7" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_7" id="__nav_6_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Packages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Ai Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../airthings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Airthings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aqara_w500/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Aqara W500
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../area_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Area Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../car/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Car
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debug_script/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Debug Script
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dishwasher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Dishwasher
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dna_tv_hub/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Dna Tv Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fireplace_automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Fireplace Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../garmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Garmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../home_time_modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Home Time Modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nordpool_prices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Nordpool Prices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../office_pc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Office Pc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../philips_air_purifier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Philips Air Purifier
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Room Manager
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Room Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#process-description-non-technical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process Description (Non-Technical)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboard-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard Connections
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dashboard Connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embedded-card-configured-rooms-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embedded Card: Configured Rooms List
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration (Source Code)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scenes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Scenes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shelly_3em/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Shelly 3Em
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../smart_notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Smart Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../smart_speakers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Smart Speakers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tailscale_edge_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Tailscale Edge Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tailscale_halo_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Tailscale Halo Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tailscale_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Tailscale Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unifi_access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Unifi Access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../washing_machine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package: Washing Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../workflow/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Workflow
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workflow/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation System Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workflow/setup_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workflow/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#process-description-non-technical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process Description (Non-Technical)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboard-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard Connections
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dashboard Connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embedded-card-configured-rooms-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embedded Card: Configured Rooms List
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration (Source Code)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags">
+    
+      
+      
+      
+      
+        <a href="../../../tags/#tag:automated" class="md-tag">automated</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../tags/#tag:package" class="md-tag">package</a>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="package-room-manager">Package: Room Manager</h1>
+<p><strong>Version:</strong> 1.2.0<br>
+<strong>Description:</strong> Dynamic creation of room settings via MQTT</p>
+<!-- START_IMAGE -->
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../../assets/images/packages/room_automation.png" data-desc-position="bottom"><img alt="Package Diagram" src="../../../assets/images/packages/room_automation.png"></a></p>
+<!-- END_IMAGE -->
+
+<h2 id="executive-summary">Executive Summary</h2>
+<!-- START_SUMMARY -->
+<p>The <strong>Room Automation Manager</strong> is a dynamic configuration engine that enables the decentralized creation of smart room controllers. Unlike static YAML configuration, this package allows administrators to "initialize" a room directly from the dashboard. This triggers a script that publishes <strong>MQTT Discovery</strong> payloads to Home Assistant, effectively factory-generating a standardized suite of entities for that room (Automation Mode, Idle Timers, Occupancy Sensors, etc.) without requiring a system restart. It acts as a "Room Controller Factory," ensuring every smart room has a consistent interface and logic structure.</p>
+<!-- END_SUMMARY -->
+
+<h2 id="process-description-non-technical">Process Description (Non-Technical)</h2>
+<!-- START_DETAILED -->
+<p>This system allows you to turn any standard "Area" in your home into a fully functional Smart Room with a single click.
+1.  <strong>Select &amp; Initialize:</strong> Go to the <strong>Room Management</strong> dashboard, pick a room (e.g., "Kitchen") from the list, and click "Initialize".
+2.  <strong>Automatic Creation:</strong> The system instantly builds a "Control Panel" for that room behind the scenes. It creates:
+    *   <strong>Mode Switch:</strong> To set the room to "Automatic", "Manual", or "Guest Mode".
+    *   <strong>Timers:</strong> Dials to set how long lights stay on (e.g., 5 minutes).
+    *   <strong>Sensor Links:</strong> Dropdown menus to choose which Motion Sensor and Bed Sensor belongs to this room.
+3.  <strong>Instant Control:</strong> New controls appear immediately. You can now tweak the "Kitchen" settings without ever touching a code file. If you delete the room, all these controls vanish cleanly.</p>
+<!-- END_DETAILED -->
+
+<h2 id="dashboard-connections">Dashboard Connections</h2>
+<!-- START_DASHBOARD -->
+<ul>
+<li><strong><a href="../../dashboards/room-management/room_management/">Room Management</a></strong>: The primary admin interface. Used to Create (Initialize) and Delete rooms. It also lists all active rooms and their configuration state.</li>
+<li><strong><a href="../../dashboards/main/settings/">Settings (System)</a></strong>: Displays the global list of active rooms and their current modes (Occupied/Idle).</li>
+</ul>
+<h3 id="embedded-card-configured-rooms-list">Embedded Card: Configured Rooms List</h3>
+<p>The following <code>auto-entities</code> configuration is used to dynamically list all rooms:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom:auto-entities</span>
+<span class="nt">show_empty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">card</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">entities</span>
+<span class="w">  </span><span class="nt">show_header_toggle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">filter</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">{% set ns = namespace(rows=[]) %}</span>
+<span class="w">    </span><span class="no">{% set mode_selectors = states.select | selectattr('entity_id','search','automation_mode') | sort(attribute='entity_id') | list %}</span>
+
+<span class="w">    </span><span class="no">{% for sel in mode_selectors %}</span>
+<span class="w">      </span><span class="no">{# Extract base id and normalize to room_key #}</span>
+<span class="w">      </span><span class="no">{% set raw_id = sel.entity_id.split('.')[1] %}</span>
+<span class="w">      </span><span class="no">{% set base = raw_id.replace('_automation_mode','') %}</span>
+<span class="w">      </span><span class="no">{% if base.startswith('room_') %}</span>
+<span class="w">        </span><span class="no">{% set room_key = base[5:] %}</span>
+<span class="w">      </span><span class="no">{% else %}</span>
+<span class="w">        </span><span class="no">{% set room_key = base %}</span>
+<span class="w">      </span><span class="no">{% endif %}</span>
+<span class="w">      </span><span class="no">{% set name = room_key.replace('_',' ') | title %}</span>
+
+<span class="w">      </span><span class="no">{# Entity IDs #}</span>
+<span class="w">      </span><span class="no">{% set state_select = 'select.room_' ~ room_key ~ '_state' %}</span>
+<span class="w">      </span><span class="no">{% set auto_switch  = 'switch.room_' ~ room_key ~ '_automation' %}</span>
+<span class="w">      </span><span class="no">{% set occ_sensor   = 'binary_sensor.room_' ~ room_key ~ '_occupancy' %}</span>
+<span class="w">      </span><span class="no">{% set idle_entity  = 'number.room_' ~ room_key ~ '_presence_idle_time' %}</span>
+<span class="w">      </span><span class="no">{% set delay_entity = 'number.room_' ~ room_key ~ '_lights_presence_delay' %}</span>
+<span class="w">      </span><span class="no">{% set bed_s        = 'select.room_' ~ room_key ~ '_bed_sensor' %}</span>
+<span class="w">      </span><span class="no">{% set sleep_entry  = 'number.room_' ~ room_key ~ '_sleep_entry_delay' %}</span>
+<span class="w">      </span><span class="no">{% set sleep_exit   = 'number.room_' ~ room_key ~ '_sleep_exit_delay' %}</span>
+<span class="w">      </span><span class="no">{% set occ_source   = 'select.room_' ~ room_key ~ '_occupancy_source' %}</span>
+<span class="w">      </span><span class="no">{% set timer_entity = 'sensor.room_' ~ room_key ~ '_timer' %}</span>
+
+<span class="w">      </span><span class="no">{% set entities = [] %}</span>
+
+<span class="w">      </span><span class="no">{# 1. Mode #}</span>
+<span class="w">      </span><span class="no">{% set entities = entities + [{'entity': sel.entity_id, 'name': 'Mode'}] %}</span>
+
+<span class="w">      </span><span class="no">{# 2. Switch #}</span>
+<span class="w">      </span><span class="no">{% if states[auto_switch] is defined %}</span>
+<span class="w">        </span><span class="no">{% set entities = entities + [{'entity': auto_switch, 'name': 'Automation Enabled'}] %}</span>
+<span class="w">      </span><span class="no">{% endif %}</span>
+
+<span class="w">      </span><span class="no">{# 3. State #}</span>
+<span class="w">      </span><span class="no">{% if states[state_select] is defined %}</span>
+<span class="w">        </span><span class="no">{% set entities = entities + [{'entity': state_select, 'name': 'Current State'}] %}</span>
+<span class="w">      </span><span class="no">{% endif %}</span>
+
+<span class="w">      </span><span class="no">{# 4. Occupancy #}</span>
+<span class="w">      </span><span class="no">{% if states[occ_sensor] is defined %}</span>
+<span class="w">        </span><span class="no">{% set entities = entities + [{'entity': occ_sensor, 'name': 'Occupancy'}] %}</span>
+<span class="w">      </span><span class="no">{% endif %}</span>
+
+<span class="w">      </span><span class="no">{# 5. Occupancy Source #}</span>
+<span class="w">      </span><span class="no">{% if states[occ_source] is defined %}</span>
+<span class="w">        </span><span class="no">{% set entities = entities + [{'entity': occ_source, 'name': 'Occupancy Sensor'}] %}</span>
+<span class="w">      </span><span class="no">{% endif %}</span>
+
+<span class="w">      </span><span class="no">{# 6. Timer Bar (Conditional Row) #}</span>
+<span class="w">      </span><span class="no">{% if states[timer_entity] is defined %}</span>
+<span class="w">         </span><span class="no">{% set entities = entities + [{</span>
+<span class="w">            </span><span class="no">'type': 'conditional',</span>
+<span class="w">            </span><span class="no">'conditions': [</span>
+<span class="w">              </span><span class="no">{'entity': timer_entity, 'state_not': 'unavailable'},</span>
+<span class="w">              </span><span class="no">{'entity': timer_entity, 'state_not': 'unknown'},</span>
+<span class="w">              </span><span class="no">{'entity': timer_entity, 'state_not': 'none'},</span>
+<span class="w">              </span><span class="no">{'entity': timer_entity, 'state_not': ''}</span>
+<span class="w">            </span><span class="no">],</span>
+<span class="w">            </span><span class="no">'row': {</span>
+<span class="w">               </span><span class="no">'entity': timer_entity,</span>
+<span class="w">               </span><span class="no">'name': 'Timer'</span>
+<span class="w">            </span><span class="no">}</span>
+<span class="w">         </span><span class="no">}] %}</span>
+<span class="w">      </span><span class="no">{% endif %}</span>
+
+<span class="w">      </span><span class="no">{# 7. Config Numbers #}</span>
+<span class="w">      </span><span class="no">{% if states[idle_entity] is defined %}</span>
+<span class="w">        </span><span class="no">{% set entities = entities + [{'entity': idle_entity, 'name': 'Idle Time (sec)'}] %}</span>
+<span class="w">      </span><span class="no">{% endif %}</span>
+<span class="w">      </span><span class="no">{% if states[delay_entity] is defined %}</span>
+<span class="w">        </span><span class="no">{% set entities = entities + [{'entity': delay_entity, 'name': 'Off Delay (sec)'}] %}</span>
+<span class="w">      </span><span class="no">{% endif %}</span>
+
+<span class="w">      </span><span class="no">{# 8. Bed Sensor &amp; Sleep Timers (Conditional) #}</span>
+<span class="w">      </span><span class="no">{% if states[bed_s] is defined %}</span>
+<span class="w">        </span><span class="no">{% set entities = entities + [{'entity': bed_s, 'name': 'Bed Occupancy Sensor'}] %}</span>
+
+<span class="w">        </span><span class="no">{# Sleep Entry Delay #}</span>
+<span class="w">        </span><span class="no">{% if states[sleep_entry] is defined %}</span>
+<span class="w">          </span><span class="no">{% set entities = entities + [{</span>
+<span class="w">             </span><span class="no">'type': 'conditional',</span>
+<span class="w">             </span><span class="no">'conditions': [</span>
+<span class="w">                </span><span class="no">{'entity': bed_s, 'state_not': '-Select-'},</span>
+<span class="w">                </span><span class="no">{'entity': bed_s, 'state_not': 'unknown'},</span>
+<span class="w">                </span><span class="no">{'entity': bed_s, 'state_not': 'unavailable'}</span>
+<span class="w">             </span><span class="no">],</span>
+<span class="w">             </span><span class="no">'row': {</span>
+<span class="w">                </span><span class="no">'entity': sleep_entry,</span>
+<span class="w">                </span><span class="no">'name': 'Sleep Entry Delay (sec)'</span>
+<span class="w">             </span><span class="no">}</span>
+<span class="w">          </span><span class="no">}] %}</span>
+<span class="w">        </span><span class="no">{% endif %}</span>
+
+<span class="w">        </span><span class="no">{# Sleep Exit Delay #}</span>
+<span class="w">        </span><span class="no">{% if states[sleep_exit] is defined %}</span>
+<span class="w">          </span><span class="no">{% set entities = entities + [{</span>
+<span class="w">             </span><span class="no">'type': 'conditional',</span>
+<span class="w">             </span><span class="no">'conditions': [</span>
+<span class="w">                </span><span class="no">{'entity': bed_s, 'state_not': '-Select-'},</span>
+<span class="w">                </span><span class="no">{'entity': bed_s, 'state_not': 'unknown'},</span>
+<span class="w">                </span><span class="no">{'entity': bed_s, 'state_not': 'unavailable'}</span>
+<span class="w">             </span><span class="no">],</span>
+<span class="w">             </span><span class="no">'row': {</span>
+<span class="w">                </span><span class="no">'entity': sleep_exit,</span>
+<span class="w">                </span><span class="no">'name': 'Sleep Exit Delay (sec)'</span>
+<span class="w">             </span><span class="no">}</span>
+<span class="w">          </span><span class="no">}] %}</span>
+<span class="w">        </span><span class="no">{% endif %}</span>
+<span class="w">      </span><span class="no">{% endif %}</span>
+
+<span class="w">      </span><span class="no">{# Create the Group #}</span>
+<span class="w">      </span><span class="no">{% set group = {</span>
+<span class="w">        </span><span class="no">'type': 'custom:fold-entity-row',</span>
+<span class="w">        </span><span class="no">'head': {'type':'section', 'label': name},</span>
+<span class="w">        </span><span class="no">'entities': entities</span>
+<span class="w">      </span><span class="no">} %}</span>
+<span class="w">      </span><span class="no">{% set ns.rows = ns.rows + [group] %}</span>
+<span class="w">    </span><span class="no">{% endfor %}</span>
+
+<span class="w">    </span><span class="no">{{ ns.rows | to_json }}</span>
+</code></pre></div>
+<!-- END_DASHBOARD -->
+
+<h2 id="architecture-diagram">Architecture Diagram</h2>
+<!-- START_MERMAID_DESC -->
+<p>The sequence diagram below illustrates the <strong>Room Initialization Flow</strong>. When a user clicks "Initialize" for a specific room (e.g., "Kitchen"), the <code>create_room_settings</code> script triggers. It loops through a definition of required entities (Automation Mode, Idle Timer, Occupancy Sensor Link) and publishes <strong>MQTT Configuration Payloads</strong> to the <code>homeassistant/</code> discovery topic. Home Assistant detects these payloads and dynamically creates the entities in its registry. Finally, the script publishes default state values (retained) to ensure the new controls are immediately usable.</p>
+<!-- END_MERMAID_DESC -->
+
+<!-- START_MERMAID -->
+<pre class="mermaid"><code>sequenceDiagram
+    participant User as 👤 Admin (Dashboard)
+    participant Script as 📜 Script: create_room
+    participant MQTT as 📡 MQTT Broker
+    participant HA as 🏠 Home Assistant (Discovery)
+
+    User-&gt;&gt;Script: Run(room_slug="kitchen")
+    activate Script
+
+    rect rgb(20, 20, 20)
+        note right of Script: 1. Entity Construction Loop
+        Script-&gt;&gt;MQTT: Publish config: select.room_kitchen_mode
+        MQTT--&gt;&gt;HA: Discovery: New Entity (select...mode)
+        Script-&gt;&gt;MQTT: Publish config: number.room_kitchen_idle
+        MQTT--&gt;&gt;HA: Discovery: New Entity (number...idle)
+        Script-&gt;&gt;MQTT: Publish config: binary_sensor.room_kitchen_occupancy
+        MQTT--&gt;&gt;HA: Discovery: New Entity (binary_sensor...occupancy)
+    end
+
+    rect rgb(30, 30, 50)
+        note right of Script: 2. Default State Injection (Retained)
+        Script-&gt;&gt;MQTT: Publish state: mode = "presence-control"
+        Script-&gt;&gt;MQTT: Publish state: idle_time = 120s
+        Script-&gt;&gt;MQTT: Publish state: occupancy = OFF
+    end
+
+    deactivate Script
+    HA--&gt;&gt;User: UI Updates (New Controls Appear)</code></pre>
+<!-- END_MERMAID -->
+
+<h2 id="configuration-source-code">Configuration (Source Code)</h2>
+<p>```yaml</p>
+<h1 id="package-room-automation-manager">Package: Room Automation Manager</h1>
+<h1 id="version-120">Version: 1.2.0</h1>
+<h1 id="description-dynamic-creation-of-room-settings-via-mqtt">Description: Dynamic creation of room settings via MQTT</h1>
+<h1 id="dependencies-mqtt-input_textroom_mgmt_name-automationsystem_populate_room_list">Dependencies: MQTT, input_text.room_mgmt_name, automation.system_populate_room_list</h1>
+<h1 id="-">------------------------------------------------------------------------------</h1>
+<h1 id="-_1">------------------------------------------------------------------------------</h1>
+<h1 id="1-global-customization-force-text-boxes">1. GLOBAL CUSTOMIZATION (Force Text Boxes)</h1>
+<h1 id="-_2">------------------------------------------------------------------------------</h1>
+<p>homeassistant:
+  customize_glob:
+    "number.<em>_presence_idle_time":
+      mode: box
+    "number.</em>_lights_presence_delay":
+      mode: box
+    "number.<em>_sleep_entry_delay":
+      mode: box
+    "number.</em>_sleep_exit_delay":
+      mode: box</p>
+<h1 id="-_3">------------------------------------------------------------------------------</h1>
+<h1 id="2-helpers-dashboard-inputs">2. HELPERS (Dashboard Inputs)</h1>
+<h1 id="-_4">------------------------------------------------------------------------------</h1>
+<p>input_text:
+  room_mgmt_name:
+    name: "Room Name"
+    icon: mdi:door-open
+  room_mgmt_slug:
+    name: "Room ID (slug)"
+    icon: mdi:identifier</p>
+<p>input_select:
+  # SOURCE: Native Home Assistant Areas
+  room_mgmt_create_select:
+    name: "Select Area to Initialize"
+    icon: mdi:map-plus
+    options:
+      - "unknown"</p>
+<p># SOURCE: Existing Created Rooms
+  room_mgmt_delete_select:
+    name: "Select Room to Delete"
+    icon: mdi:delete-sweep
+    options:
+      - "unknown"</p>
+<h1 id="-_5">------------------------------------------------------------------------------</h1>
+<h1 id="3-scripts">3. SCRIPTS</h1>
+<h1 id="-_6">------------------------------------------------------------------------------</h1>
+<p>script:
+  # --- CREATE ROOM SETTINGS ---
+  create_room_settings:
+    alias: "System: Create Room Settings"
+    icon: mdi:home-plus
+    mode: single
+    sequence:
+      - variables:
+          # Get the selected Area ID (slug) directly from the dropdown
+          room_slug: "{{ states('input_select.room_mgmt_create_select') }}"
+          # Use the Area Name as the Friendly Name (Title Case)
+          room_name: "{{ area_name(room_slug) }}"</p>
+<pre><code>  # 1. Create Automation Mode Selector (Select)
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/select/room_{{ room_slug }}_mode/config"
+      payload: &gt;-
+        {
+          "name": "{{ room_name }} Automation Mode",
+          "object_id": "room_{{ room_slug }}_automation_mode",
+          "unique_id": "room_select_{{ room_slug }}_mode_v4",
+          "icon": "mdi:home-lightning-bolt-outline",
+          "options": ["presence-control", "absence-detection", "manual-control", "schedule-mode"],
+          "command_topic": "room/{{ room_slug }}/mode/set",
+          "state_topic": "room/{{ room_slug }}/mode/state",
+          "availability_topic": "room/{{ room_slug }}/availability",
+          "payload_available": "online",
+          "device": {
+            "identifiers": ["room_settings_{{ room_slug }}"],
+            "name": "{{ room_name }} Settings",
+            "manufacturer": "Home Assistant",
+            "model": "Room Controller"
+          }
+        }
+  # Set default if new
+  - if:
+      - condition: template
+        value_template: "{{ states('select.room_' ~ room_slug ~ '_automation_mode') in ['unknown', 'unavailable', 'none'] }}"
+    then:
+      - service: mqtt.publish
+        data:
+          retain: true
+          topic: "room/{{ room_slug }}/mode/state"
+          payload: "presence-control"
+  - delay: "00:00:00.050"
+
+  # 1.1 Create Automation Master Switch (Switch)
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/switch/room_{{ room_slug }}_automation/config"
+      payload: &gt;-
+        {
+          "name": "{{ room_name }} Automation",
+          "object_id": "room_{{ room_slug }}_automation",
+          "unique_id": "room_switch_{{ room_slug }}_automation_v1",
+          "icon": "mdi:robot",
+          "command_topic": "room/{{ room_slug }}/automation/set",
+          "state_topic": "room/{{ room_slug }}/automation/state",
+          "availability_topic": "room/{{ room_slug }}/availability",
+          "payload_on": "ON",
+          "payload_off": "OFF",
+          "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
+        }
+  # Default to ON if new
+  - if:
+      - condition: template
+        value_template: "{{ states('switch.room_' ~ room_slug ~ '_automation') in ['unknown', 'unavailable', 'none'] }}"
+    then:
+      - service: mqtt.publish
+        data:
+          retain: true
+          topic: "room/{{ room_slug }}/automation/state"
+          payload: "ON"
+  - delay: "00:00:00.050"
+
+  # 2. Create Idle Time Slider (Number)
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/number/room_{{ room_slug }}_idle/config"
+      payload: &gt;-
+        {
+          "name": "{{ room_name }} Presence Idle Time",
+          "object_id": "room_{{ room_slug }}_presence_idle_time",
+          "unique_id": "room_number_{{ room_slug }}_idle_v5",
+          "device_class": "duration",
+          "icon": "mdi:timer-sand",
+          "min": 0,
+          "max": 1800,
+          "step": 1,
+          "unit_of_measurement": "s",
+          "command_topic": "room/{{ room_slug }}/idle/set",
+          "state_topic": "room/{{ room_slug }}/idle/state",
+          "availability_topic": "room/{{ room_slug }}/availability",
+          "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
+        }
+  # Default Value
+  - if:
+      - condition: template
+        value_template: "{{ states('number.room_' ~ room_slug ~ '_presence_idle_time') in ['unknown', 'unavailable', 'none'] }}"
+    then:
+      - service: mqtt.publish
+        data:
+          retain: true
+          topic: "room/{{ room_slug }}/idle/state"
+          payload: "15"
+  - delay: "00:00:00.050"
+
+  # 3. Create Delay Time (Number)
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/number/room_{{ room_slug }}_delay/config"
+      payload: &gt;-
+        {
+          "name": "{{ room_name }} Lights Presence Delay",
+          "object_id": "room_{{ room_slug }}_lights_presence_delay",
+          "unique_id": "room_number_{{ room_slug }}_delay_v5",
+          "device_class": "duration",
+          "icon": "mdi:lightbulb-clock",
+          "min": 0,
+          "max": 3600,
+          "step": 1,
+          "unit_of_measurement": "s",
+          "command_topic": "room/{{ room_slug }}/delay/set",
+          "state_topic": "room/{{ room_slug }}/delay/state",
+          "availability_topic": "room/{{ room_slug }}/availability",
+          "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
+        }
+  - if:
+      - condition: template
+        value_template: "{{ states('number.room_' ~ room_slug ~ '_lights_presence_delay') in ['unknown', 'unavailable', 'none'] }}"
+    then:
+      - service: mqtt.publish
+        data:
+          retain: true
+          topic: "room/{{ room_slug }}/delay/state"
+          payload: "120"
+  - delay: "00:00:00.050"
+
+  # 4. Create Timer Display (Timestamp Sensor)
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/sensor/room_{{ room_slug }}_timer/config"
+      payload: &gt;-
+        {
+          "name": "{{ room_name }} Timer",
+          "object_id": "room_{{ room_slug }}_timer",
+          "unique_id": "room_sensor_{{ room_slug }}_timer_v4",
+          "icon": "mdi:progress-clock",
+          "device_class": "timestamp",
+          "value_template": "{{ '{{' }} value if value not in ['unknown', 'unavailable', ''] else None {{ '}}' }}",
+          "state_topic": "room/{{ room_slug }}/timer/state",
+          "json_attributes_topic": "room/{{ room_slug }}/timer/attributes",
+          "availability_topic": "room/{{ room_slug }}/availability",
+          "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
+        }
+  - delay: "00:00:00.050"
+  # 5. Create Room State (Select)
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/select/room_{{ room_slug }}_state/config"
+      payload: &gt;-
+        {
+          "name": "{{ room_name }} State",
+          "object_id": "room_{{ room_slug }}_state",
+          "unique_id": "room_select_state_v4_{{ room_slug }}",
+          "icon": "mdi:eye-outline",
+          "options": ["Occupied", "Idle", "Absence", "Sleep"],
+          "command_topic": "room/{{ room_slug }}/state/set",
+          "state_topic": "room/{{ room_slug }}/state/state",
+          "availability_topic": "room/{{ room_slug }}/availability",
+          "payload_available": "online",
+          "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
+        }
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "room/{{ room_slug }}/state/state"
+      payload: "Absence"
+  - delay: "00:00:00.050"
+
+  # 6. Create Occupancy (Binary Sensor)
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/binary_sensor/room_{{ room_slug }}_occupancy/config"
+      payload: &gt;-
+        {
+          "name": "{{ room_name }} Occupancy",
+          "object_id": "room_{{ room_slug }}_occupancy",
+          "unique_id": "room_occupancy_v4_{{ room_slug }}",
+          "icon": "mdi:motion-sensor",
+          "device_class": "occupancy",
+          "state_topic": "room/{{ room_slug }}/occupancy/state",
+          "payload_on": "ON",
+          "payload_off": "OFF",
+          "availability_topic": "room/{{ room_slug }}/availability",
+          "payload_available": "online",
+          "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
+        }
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "room/{{ room_slug }}/occupancy/state"
+      payload: "OFF"
+  - delay: "00:00:00.050"
+
+  # 9. Create Bed Sensor (Select)
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/select/room_{{ room_slug }}_bed_sensor/config"
+      payload: &gt;-
+        {
+          "name": "{{ room_name }} Bed Sensor ID",
+          "object_id": "room_{{ room_slug }}_bed_sensor",
+          "unique_id": "room_select_bed_sensor_v4_{{ room_slug }}",
+          "icon": "mdi:bed",
+          "options": ["-Select-"],
+          "command_topic": "room/{{ room_slug }}/bed_sensor/set",
+          "state_topic": "room/{{ room_slug }}/bed_sensor/state",
+          "availability_topic": "room/{{ room_slug }}/availability",
+          "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
+        }
+  - delay: "00:00:00.050"
+  # 10. Create Sleep Entry Delay (Number)
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/number/room_{{ room_slug }}_sleep_entry_delay/config"
+      payload: &gt;-
+        {
+          "name": "{{ room_name }} Sleep Entry Delay",
+          "object_id": "room_{{ room_slug }}_sleep_entry_delay",
+          "unique_id": "room_number_sleep_entry_delay_v4_{{ room_slug }}",
+          "icon": "mdi:bed-clock",
+          "min": 0, "max": 3600, "step": 15, "unit_of_measurement": "s",
+          "command_topic": "room/{{ room_slug }}/sleep_entry_delay/set",
+          "state_topic": "room/{{ room_slug }}/sleep_entry_delay/state",
+          "availability_topic": "room/{{ room_slug }}/availability",
+          "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
+        }
+  - if:
+      - condition: template
+        value_template: "{{ states('number.room_' ~ room_slug ~ '_sleep_entry_delay') in ['unknown', 'unavailable', 'none'] }}"
+    then:
+      - service: mqtt.publish
+        data:
+          retain: true
+          topic: "room/{{ room_slug }}/sleep_entry_delay/state"
+          payload: "300"
+  - delay: "00:00:00.050"
+
+  # 11. Create Sleep Exit Delay (Number)
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/number/room_{{ room_slug }}_sleep_exit_delay/config"
+      payload: &gt;-
+        {
+          "name": "{{ room_name }} Sleep Exit Delay",
+          "object_id": "room_{{ room_slug }}_sleep_exit_delay",
+          "unique_id": "room_number_sleep_exit_delay_v4_{{ room_slug }}",
+          "icon": "mdi:run-fast",
+          "min": 0, "max": 3600, "step": 15, "unit_of_measurement": "s",
+          "command_topic": "room/{{ room_slug }}/sleep_exit_delay/set",
+          "state_topic": "room/{{ room_slug }}/sleep_exit_delay/state",
+          "availability_topic": "room/{{ room_slug }}/availability",
+          "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
+        }
+  - if:
+      - condition: template
+        value_template: "{{ states('number.room_' ~ room_slug ~ '_sleep_exit_delay') in ['unknown', 'unavailable', 'none'] }}"
+    then:
+      - service: mqtt.publish
+        data:
+          retain: true
+          topic: "room/{{ room_slug }}/sleep_exit_delay/state"
+          payload: "60"
+  - delay: "00:00:00.050"
+
+  # 12. Set Online &amp; Refresh Lists
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "room/{{ room_slug }}/availability"
+      payload: "online"
+
+  # 13. Create Occupancy Source (Select)
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/select/room_{{ room_slug }}_occupancy_source/config"
+      payload: &gt;-
+        {
+          "name": "{{ room_name }} Occupancy Sensor",
+          "object_id": "room_{{ room_slug }}_occupancy_source",
+          "unique_id": "room_select_occ_source_v1_{{ room_slug }}",
+          "icon": "mdi:motion-sensor-off",
+          "options": ["-Select-"],
+          "command_topic": "room/{{ room_slug }}/occupancy_source/set",
+          "state_topic": "room/{{ room_slug }}/occupancy_source/state",
+          "availability_topic": "room/{{ room_slug }}/availability",
+          "device": { "identifiers": ["room_settings_{{ room_slug }}"] }
+        }
+  - delay: "00:00:00.050"
+  # Trigger Refresh to populate options
+  - service: script.refresh_room_options
+</code></pre>
+<p># --- DELETE ROOM SETTINGS ---
+  delete_room_settings:
+    alias: "System: Delete Room Settings"
+    icon: mdi:home-remove
+    mode: single
+    sequence:
+      - variables:
+          raw_slug: "{{ states('input_select.room_mgmt_delete_select') }}"
+          # SAFETY: If slug starts with 'room_', strip it to get the clean ID
+          room_slug: "{{ raw_slug | replace('room_', '') if raw_slug.startswith('room_') else raw_slug }}"</p>
+<pre><code>  # Clear Config Topics
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/select/room_{{ room_slug }}_mode/config"
+      payload: ""
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/number/room_{{ room_slug }}_idle/config"
+      payload: ""
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/number/room_{{ room_slug }}_delay/config"
+      payload: ""
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/sensor/room_{{ room_slug }}_timer/config"
+      payload: ""
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/select/room_{{ room_slug }}_state/config"
+      payload: ""
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/binary_sensor/room_{{ room_slug }}_occupancy/config"
+      payload: ""
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/switch/room_{{ room_slug }}_automation/config"
+      payload: ""
+  # Cleanup New Bed Sensor Select
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/select/room_{{ room_slug }}_bed_sensor/config"
+      payload: ""
+
+  # RESTORED: Cleanup for deprecated entities to remove legacy retained messages
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/text/room_{{ room_slug }}_lux_sensor/config"
+      payload: ""
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/number/room_{{ room_slug }}_lux_threshold/config"
+      payload: ""
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/select/room_{{ room_slug }}_light_target/config"
+      payload: ""
+  # END RESTORED
+
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/text/room_{{ room_slug }}_bed_sensor/config"
+      payload: ""
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/number/room_{{ room_slug }}_sleep_exit_delay/config"
+      payload: ""
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "homeassistant/select/room_{{ room_slug }}_occupancy_source/config"
+      payload: ""
+
+  # Set Offline
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: "room/{{ room_slug }}/availability"
+      payload: "offline"
+
+  # Refresh Lists
+  # PURGE LEGACY TEXT BED SENSORS (Fixes MQTT Warnings)
+  - repeat:
+      for_each: "{{ room_slugs }}"
+      sequence:
+        - service: mqtt.publish
+          data:
+            retain: true
+            topic: "homeassistant/text/room_{{ repeat.item }}_bed_sensor/config"
+            payload: ""
+
+  # Refresh Lists
+
+  - delay: "00:00:02"
+  - service: automation.trigger
+    target:
+      entity_id: automation.system_populate_room_list
+    data:
+      skip_condition: true
+</code></pre>
+<p># --- REFRESH OPTIONS FOR SELECTS ---
+  refresh_room_options:
+    alias: "System: Refresh Room Options"
+    mode: single
+    sequence:
+      - variables:
+          # FILTER: Binary Sensors (Occupancy/Presence/Motion OR 'presence'/'occupancy' in name)
+          sensor_list: &gt;-
+            {% set ns = namespace(items=['-Select-']) %}
+            {% for s in states.binary_sensor %}
+               {% set dev_class = s.attributes.device_class | default('') %}
+               {% set name = s.name | lower %}
+               {% if dev_class in ['occupancy', 'presence', 'motion'] or 'presence' in name or 'occupancy' in name %}
+                 {% set ns.items = ns.items + [s.entity_id] %}
+               {% endif %}
+            {% endfor %}
+            {{ ns.items | sort | list }}</p>
+<pre><code>      # FILTER: Bed Sensors (Must have 'bed' AND ('occupancy' OR 'presence') in name/id)
+      bed_sensor_list: &gt;-
+        {% set ns = namespace(items=['-Select-']) %}
+        {% for s in states.binary_sensor %}
+           {% set name = s.entity_id | lower %}
+           {% if 'bed' in name and ('occupancy' in name or 'presence' in name) %}
+             {% set ns.items = ns.items + [s.entity_id] %}
+           {% endif %}
+        {% endfor %}
+        {{ ns.items | sort | list }}
+
+      # Find all active room slugs
+      room_slugs: &gt;-
+        {% set ns = namespace(rooms=[]) %}
+        {% set selectors = states.select | selectattr('object_id', 'search', '_automation_mode$') | list %}
+        {% for sel in selectors %}
+           {% set raw_id = sel.entity_id.split('.')[1] %}
+           {% set base = raw_id | replace('_automation_mode', '') %}
+           {% if base.startswith('room_') %}
+              {% set slug = base[5:] %}
+           {% else %}
+              {% set slug = base %}
+           {% endif %}
+           {% set ns.rooms = ns.rooms + [slug] %}
+        {% endfor %}
+        {{ ns.rooms | unique | list }}
+
+  # Loop through each room and update its config topic with new options
+  - repeat:
+      for_each: "{{ room_slugs }}"
+      sequence:
+        # 1. Update Occupancy Source Options
+        - service: mqtt.publish
+          data:
+            topic: "homeassistant/select/room_{{ repeat.item }}_occupancy_source/config"
+            retain: true
+            payload: &gt;-
+              {
+                "name": "{{ area_name(repeat.item) | default(repeat.item) }} Occupancy Sensor",
+                "object_id": "room_{{ repeat.item }}_occupancy_source",
+                "unique_id": "room_select_occ_source_v1_{{ repeat.item }}",
+                "icon": "mdi:motion-sensor-off",
+                "options": {{ sensor_list | to_json }},
+                "command_topic": "room/{{ repeat.item }}/occupancy_source/set",
+                "state_topic": "room/{{ repeat.item }}/occupancy_source/state",
+                "availability_topic": "room/{{ repeat.item }}/availability",
+                "device": { "identifiers": ["room_settings_{{ repeat.item }}"] }
+              }
+
+        # 2. Update Bed Sensor Options
+        - service: mqtt.publish
+          data:
+            topic: "homeassistant/select/room_{{ repeat.item }}_bed_sensor/config"
+            retain: true
+            payload: &gt;-
+              {
+                "name": "{{ area_name(repeat.item) | default(repeat.item) }} Bed Sensor ID",
+                "object_id": "room_{{ repeat.item }}_bed_sensor",
+                "unique_id": "room_select_bed_sensor_v4_{{ repeat.item }}",
+                "icon": "mdi:bed",
+                "options": {{ bed_sensor_list | to_json }},
+                "command_topic": "room/{{ repeat.item }}/bed_sensor/set",
+                "state_topic": "room/{{ repeat.item }}/bed_sensor/state",
+                "availability_topic": "room/{{ repeat.item }}/availability",
+                "device": { "identifiers": ["room_settings_{{ repeat.item }}"] }
+              }
+</code></pre>
+<p># ... (Helper Scripts set_room_timer, etc. remain the same) ...
+  set_room_timer:
+    alias: "System: Set Room Timer"
+    mode: parallel
+    fields:
+      room_slug:
+        description: "Room Slug (e.g. bathroom)"
+        required: true
+    sequence:
+      - variables:
+          seconds: "{{ states('number.' ~ room_slug ~ '_lights_presence_delay') | int(0) }}"
+      - service: mqtt.publish
+        data:
+          topic: "room/{{ room_slug }}/timer/attributes"
+          payload: &gt;-
+            { "duration": "{{ seconds }}" }
+          retain: true
+      - service: mqtt.publish
+        data:
+          topic: "room/{{ room_slug }}/timer/state"
+          payload: "{{ (now() + timedelta(seconds=seconds)).isoformat() }}"
+          retain: true</p>
+<p>cancel_room_timer:
+    alias: "System: Cancel Room Timer"
+    mode: parallel
+    fields:
+      room_slug:
+        description: "Room Slug"
+        required: true
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "room/{{ room_slug }}/timer/attributes"
+          payload: "{}"
+          retain: true
+      - service: mqtt.publish
+        data:
+          topic: "room/{{ room_slug }}/timer/state"
+          payload: "unknown"
+          retain: true</p>
+<p>set_room_state:
+    alias: "System: Set Room State"
+    mode: parallel
+    fields:
+      room_slug:
+        description: "Room Slug"
+        required: true
+      state:
+        description: "Occupied, Idle, or Absence"
+        required: true
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "room/{{ room_slug }}/state/set"
+          payload: "{{ state }}"
+          retain: true</p>
+<p>set_room_occupancy:
+    alias: "System: Set Room Occupancy"
+    mode: parallel
+    fields:
+      room_slug:
+        description: "Room Slug"
+        required: true
+      occupied:
+        description: "True (ON) or False (OFF)"
+        required: true
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "room/{{ room_slug }}/occupancy/state"
+          payload: "{{ 'ON' if occupied else 'OFF' }}"
+          retain: true</p>
+<h1 id="-_7">------------------------------------------------------------------------------</h1>
+<h1 id="4-automations">4. AUTOMATIONS</h1>
+<h1 id="-_8">------------------------------------------------------------------------------</h1>
+<p>automation:
+  # Keeps the MQTT Selects/Numbers in sync (State Persistence)
+  - alias: "System: Room MQTT Persistence"
+    id: system_room_mqtt_persistence
+    mode: parallel
+    trigger:
+      - platform: mqtt
+        topic: "room/#"
+    condition:
+      - condition: template
+        value_template: "{{ trigger.topic.endswith('/set') }}"
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "{{ trigger.topic[:-4] }}/state"
+          payload: "{{ trigger.payload }}"
+          retain: true</p>
+<ul>
+<li>
+<p>alias: "System: Populate Room Lists"
+    id: system_populate_room_list
+    trigger:</p>
+<ul>
+<li>platform: homeassistant
+    event: start</li>
+<li>platform: time_pattern
+    hours: "/1"
+action:
+  # Define room_slugs for use in cleanup loop</li>
+<li>variables:
+      room_slugs: &gt;-
+        {% set ns = namespace(rooms=[]) %}
+        {% set mode_selectors = states.select | selectattr('object_id', 'search', '<em>automation_mode$') | list %}
+        {% for sel in mode_selectors %}
+           {% set raw_id = sel.entity_id.split('.')[1] %}
+           {% set base = raw_id | replace('_automation_mode', '') %}
+           {% if base.startswith('room</em>') %}
+              {% set slug = base[5:] %}
+           {% else %}
+              {% set slug = base %}
+           {% endif %}
+           {% set ns.rooms = ns.rooms + [slug] %}
+        {% endfor %}
+        {{ ns.rooms | unique | list }}</li>
+</ul>
+<p># 1. Populate 'Create' dropdown with Native Areas
+  - service: input_select.set_options
+    target:
+      entity_id: input_select.room_mgmt_create_select
+    data:
+      options: &gt;
+        {# Get list of all area IDs #}
+        {{ (['unknown'] + areas() | sort | list) }}</p>
+<p># 2. Populate 'Delete' dropdown with Existing Rooms
+  - service: input_select.set_options
+    target:
+      entity_id: input_select.room_mgmt_delete_select
+    data:
+      # UPDATED: Fixed populate logic to properly strip prefixes
+      options: &gt;
+        {% set ns = namespace(rooms=[]) %}
+        {% set mode_selectors = states.select | selectattr('object_id', 'search', '<em>automation_mode$') | list %}
+        {% for sel in mode_selectors %}
+           {# Extract slug. Handles "select.bathroom_automation_mode" or "select.room_bathroom_automation_mode" #}
+           {% set raw_id = sel.entity_id.split('.')[1] %}
+           {% set base = raw_id | replace('_automation_mode', '') %}
+           {% if base.startswith('room</em>') %}
+              {% set slug = base[5:] %}
+           {% else %}
+              {% set slug = base %}
+           {% endif %}
+           {% set ns.rooms = ns.rooms + [slug] %}
+        {% endfor %}
+        {{ (['unknown'] + ns.rooms | unique | list) }}
+  # 3. Purge Legacy Text Bed Sensors (Fixes MQTT Warnings)
+  - repeat:
+      for_each: "{{ room_slugs }}"
+      sequence:
+        - service: mqtt.publish
+          data:
+            retain: true
+            topic: "homeassistant/text/room_{{ repeat.item }}_bed_sensor/config"
+            payload: ""</p>
+<ul>
+<li>service: script.refresh_room_options</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 EvisHome
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better. We use Google Analytics to collect anonymous usage data.</p>
+<input class="md-toggle" type="checkbox" id="__settings">
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="analytics">
+      <span class="task-list-indicator"></span>
+      Google Analytics
+    </label>
+  </li>
+
+      
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
