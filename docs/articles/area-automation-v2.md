@@ -6,6 +6,8 @@ tags:
   - architecture
 date: 2026-01-21
 status: published
+draft: true
+highlight: false
 ---
 
 # Redesigning Area Automation: From YAML to Python
