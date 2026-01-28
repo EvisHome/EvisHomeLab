@@ -6,6 +6,18 @@ def define_env(env):
     """
     This is the hook for defining variables, macros and filters
     """
+    # Explicitly load devices.yaml to be robust against path issues
+    devices_path = os.path.join(env.project_dir, 'docs', '_data', 'devices.yaml')
+    if os.path.exists(devices_path):
+        try:
+            with open(devices_path, 'r', encoding='utf-8') as f:
+                env.conf['extra']['devices'] = yaml.safe_load(f)
+                # Also make it available directly as a variable if macros want it
+                env.variables['devices'] = env.conf['extra']['devices']
+        except Exception as e:
+            print(f"Error loading devices.yaml: {e}")
+    else:
+        print(f"Warning: devices.yaml not found at {devices_path}")
 
     def get_articles(env):
         articles_dir = os.path.join(env.project_dir, 'docs', 'articles')

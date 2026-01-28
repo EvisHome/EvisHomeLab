@@ -56,6 +56,7 @@ plugins:
   - search
   - macros:
       render_by_default: false
+      include_dir: docs/_data
 
 extra:
   analytics:

@@ -1,0 +1,522 @@
+- name: Yale Linus Smart Lock
+  area: Hallway / Front Door
+  type: Security
+  integration: Yale Access (August)
+  components:
+    - Yale Connect Bridge
+    - Yale Smart Keypad
+  package: unifi_access.yaml
+  tags:
+    - security
+    - critical
+    - bluetooth
+    - bridge
+- name: G4 Doorbell Pro
+  area: Front Door
+  type: Camera/Doorbell
+  integration: Unifi Protect
+  manual: https://dl.ui.com/qig/g4-doorbell-pro
+  tags:
+    - security
+    - video
+- name: WLED Fireplace
+  area: Living Room
+  type: Light
+  integration: WLED
+  package: fireplace_automation.yaml
+  tags:
+    - ambiance
+    - diy
+- name: Aqara W500
+  area: Bathroom
+  type: Thermostat
+  integration: Zigbee2MQTT
+  package: aqara_w500.yaml
+  tags:
+    - climate
+    - heating
+  brand: Aqara
+  model: lumi.airrtc.aeu001
+- name: Shelly 3EM
+  area: Utility
+  type: Energy Monitor
+  integration: Shelly
+  package: shelly_3em.yaml
+  tags:
+    - energy
+    - critical
+- name: Airthings Wave Plus
+  area: Living Room
+  type: Sensor
+  integration: BLE/ESPHome
+  package: airthings.yaml
+  tags:
+    - climate
+    - health
+    - battery
+- name: Tailscale Edge Node
+  area: Network
+  type: Infrastructure
+  integration: Tailscale
+  package: tailscale_edge_monitoring.yaml
+  tags:
+    - network
+    - critical
+- name: Bedroom Wall Tap Dial Switch
+  area: Bedroom
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+  brand: Signify Netherlands B.V.
+  model: RDM002
+- name: Bedroom Tap Dial Switch
+  area: Bedroom
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+  brand: Signify Netherlands B.V.
+  model: RDM002
+- name: Office Desk Wall Light
+  area: Office
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Signify Netherlands B.V.
+  model: LST002
+- name: Bedroom Bed Light
+  area: Bedroom
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Signify Netherlands B.V.
+  model: LST002
+- name: Bedroom Window Roller Cover
+  area: Bedroom
+  type: Cover
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - motor
+  brand: LUMI
+  model: lumi.curtain.acn002
+- name: Server Cabinet Light
+  area: Server Room
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Signify Netherlands B.V.
+  model: LCL001
+- name: Bedroom 3 Window Light
+  area: Bedroom 3
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: _TZ3000_kdi2o9m6
+  model: TS011F
+- name: Bathroom Wall Box Switch
+  area: Bathroom
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: LUMI
+  model: lumi.switch.l2aeu1
+- name: Bathroom Lightstrip
+  area: Bathroom
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: _TZ3000_riwp3k79
+  model: TS0505A
+- name: Toilet Wall Box Switch
+  area: Toilet
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: LUMI
+  model: lumi.switch.l1aeu1
+- name: Bedroom 2 Ceiling Light
+  area: Bedroom 2
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: FeiBit
+  model: FNB56-ZSW01LX2.0
+- name: Bedroom 2 Wall Dimmer Switch
+  area: Bedroom 2
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+  brand: Philips
+  model: RWL021
+- name: Kitchen Wall Box Switch
+  area: Kitchen
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: LUMI
+  model: lumi.switch.l2aeu1
+- name: Kitchen Ceiling Light 1
+  area: Kitchen
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+- name: Kitchen Ceiling Light 2
+  area: Kitchen
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+- name: Kitchen Ceiling Light 3
+  area: Kitchen
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+- name: Kitchen Sink Light
+  area: Kitchen
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Signify Netherlands B.V.
+  model: LST002
+- name: Kitchen Wall Dimmer Switch
+  area: Kitchen
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+  brand: Philips
+  model: RWL021
+- name: Floor Light
+  area: Living Room
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Philips
+  model: LST002
+- name: Hallway Wall Dimmer Switch
+  area: Hallway
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+  brand: Philips
+  model: RWL021
+- name: Hallway Closet Door Right
+  area: Hallway
+  type: Sensor
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - security
+  brand: Samjin
+  model: multi
+- name: Mud Room Motion Sensor OLD
+  area: Mud Room
+  type: Sensor
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+- name: Living Room Cabinet Motion
+  area: Living Room
+  type: Sensor
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+  brand: Philips
+  model: SML001
+- name: Front Door Rail Light
+  area: Front Door
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: LEDVANCE
+  model: Plug Value
+- name: Backyard Plug
+  area: Backyard
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: OSRAM
+  model: Plug 01
+- name: Living Room Tap Dial Switch
+  area: Living Room
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+  brand: Signify Netherlands B.V.
+  model: RDM002
+- name: Living Room Ceiling Light
+  area: Living Room
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Signify Netherlands B.V.
+  model: LST002
+- name: Lobby Wall Dimmer Switch
+  area: Lobby
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+  brand: Philips
+  model: RWL021
+- name: Washing Machine Plug
+  area: Utility
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - energy
+  brand: SmartThings
+  model: outletv4
+- name: Bedroom Window Dimmer Switch
+  area: Bedroom
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+  brand: Philips
+  model: RWL021
+- name: Sauna Door
+  area: Sauna
+  type: Sensor
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - security
+  brand: LUMI
+  model: lumi.sensor_magnet.aq2
+- name: Hallway Ceiling Light 1
+  area: Hallway
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Aqara
+  model: lumi.light.agl003
+- name: Hallway Ceiling Light 2
+  area: Hallway
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Aqara
+  model: lumi.light.agl003
+- name: Bedroom 4 Ceiling Light 1
+  area: Bedroom 4
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Aqara
+  model: lumi.light.agl003
+- name: Bedroom 4 Ceiling Light 2
+  area: Bedroom 4
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Aqara
+  model: lumi.light.agl003
+- name: Mud Room Motion Sensor
+  area: Mud Room
+  type: Sensor
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+  brand: LUMI
+  model: lumi.motion.ac02
+- name: Kitchen Fridge Door
+  area: Kitchen
+  type: Sensor
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - security
+  brand: LUMI
+  model: lumi.sensor_magnet.aq2
+- name: Backyard Door Sensor
+  area: Backyard
+  type: Sensor
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - security
+  brand: LUMI
+  model: lumi.sensor_magnet.aq2
+- name: Bedroom 3 Ceiling Light 1
+  area: Bedroom 3
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Aqara
+  model: lumi.light.agl003
+- name: Bedroom 3 Ceiling Light 2
+  area: Bedroom 3
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Aqara
+  model: lumi.light.agl003
+- name: Bedroom 3 Desk Light
+  area: Bedroom 3
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Signify Netherlands B.V.
+  model: LST002
+- name: Bedroom 3 Wall Dimmer Switch
+  area: Bedroom 3
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+  brand: Philips
+  model: RWL021
+- name: Bedroom 3 Desk Button
+  area: Bedroom 3
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+  brand: Signify Netherlands B.V.
+  model: ROM001
+- name: Office Button
+  area: Office
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+  brand: Signify Netherlands B.V.
+  model: ROM001
+- name: Kitchen Dishwasher Leak Sensor
+  area: Kitchen
+  type: Sensor
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+    - leak
+  brand: LUMI
+  model: lumi.sensor_wleak.aq1
+- name: Kitchen Fridge Leak Sensor
+  area: Kitchen
+  type: Sensor
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+    - leak
+  brand: LUMI
+  model: lumi.sensor_wleak.aq1
+- name: Mud Room Ceiling Light
+  area: Mud Room
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Aqara
+  model: lumi.light.agl003
+- name: Inner Back Door
+  area: Backyard
+  type: Sensor
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - security
+  brand: LUMI
+  model: lumi.sensor_magnet.aq2
+- name: Lobby Ceiling Light
+  area: Lobby
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Aqara
+  model: lumi.light.agl003
+- name: Bedroom 4 Wall Dimmer Switch
+  area: Bedroom 4
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - battery
+  brand: Philips
+  model: RWL021
+- name: Mud Room Door Sensor
+  area: Mud Room
+  type: Sensor
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - security
+  brand: LUMI
+  model: lumi.sensor_magnet.aq2
+- name: Bedroom Ceiling Light 1
+  area: Bedroom
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Aqara
+  model: lumi.light.agl004
+- name: Bedroom Ceiling Light 2
+  area: Bedroom
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Aqara
+  model: lumi.light.agl004
+- name: Bedroom Ceiling Light 3
+  area: Bedroom
+  type: Light
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+  brand: Aqara
+  model: lumi.light.agl004
+- name: Christmas Tree Plug
+  area: Living Room
+  type: Switch
+  integration: Zigbee2MQTT
+  tags:
+    - zigbee
+    - seasonal
