@@ -719,3 +719,93 @@
     - video
   brand: Ubiquiti
   model: G3 Flex
+- name: Guest Room FP2 Sensor
+  area: Guest Room
+  type: Presence Sensor
+  integration: HomeKit Device
+  tags:
+    - security
+    - occupancy
+    - wifi
+  brand: Aqara
+  model: PS-S02E
+- name: Bedroom 2 FP2 Sensor
+  area: Bedroom 2
+  type: Presence Sensor
+  integration: HomeKit Device
+  tags:
+    - security
+    - occupancy
+    - wifi
+  brand: Aqara
+  model: PS-S02E
+- name: Bedroom 3 FP2 Sensor
+  area: Bedroom 3
+  type: Presence Sensor
+  integration: HomeKit Device
+  tags:
+    - security
+    - occupancy
+    - wifi
+  brand: Aqara
+  model: PS-S02E
+- name: Bathroom FP2 Sensor
+  area: Bathroom
+  type: Presence Sensor
+  integration: HomeKit Device
+  tags:
+    - security
+    - occupancy
+    - wifi
+  brand: Aqara
+  model: PS-S02D
+- name: Bedroom FP2 Sensor
+  area: Bedroom
+  type: Presence Sensor
+  integration: HomeKit Device
+  tags:
+    - security
+    - occupancy
+    - wifi
+  brand: Aqara
+  model: PS-S02D
+- name: Hallway FP2 Sensor
+  area: Hallway
+  type: Presence Sensor
+  integration: HomeKit Device
+  tags:
+    - security
+    - occupancy
+    - wifi
+  brand: Aqara
+  model: PS-S02D
+- name: Kitchen FP2 Sensor
+  area: Kitchen
+  type: Presence Sensor
+  integration: HomeKit Device
+  tags:
+    - security
+    - occupancy
+    - wifi
+  brand: Aqara
+  model: PS-S02D
+- name: Living Room FP2 Sensor
+  area: Living Room
+  type: Presence Sensor
+  integration: HomeKit Device
+  tags:
+    - security
+    - occupancy
+    - wifi
+  brand: Aqara
+  model: PS-S02D
+- name: Lobby FP2 Sensor
+  area: Lobby
+  type: Presence Sensor
+  integration: HomeKit Device
+  tags:
+    - security
+    - occupancy
+    - wifi
+  brand: Aqara
+  model: PS-S02D
