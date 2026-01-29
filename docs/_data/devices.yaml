@@ -809,3 +809,113 @@
     - wifi
   brand: Aqara
   model: PS-S02D
+- name: Bedroom 2 Indoor Module
+  area: Bedroom 2
+  type: Sensor
+  integration: Netatmo
+  tags:
+    - climate
+    - weather
+  brand: Netatmo
+  model: Smart Indoor Module
+- name: Backyard Outdoor Module
+  area: Backyard
+  type: Sensor
+  integration: Netatmo
+  tags:
+    - climate
+    - weather
+    - outdoor
+  brand: Netatmo
+  model: Smart Outdoor Module
+- name: Bedroom Weather Station
+  area: Bedroom
+  type: Sensor
+  integration: Netatmo
+  tags:
+    - climate
+    - weather
+  brand: Netatmo
+  model: Smart Home Weather Station
+- name: Bedroom 2 Window Outlet
+  area: Bedroom 2
+  type: Switch
+  integration: Shelly
+  tags:
+    - energy
+    - wifi
+  brand: Shelly
+  model: Shelly Plus 1PM
+- name: Bedroom 3 Window Outlet
+  area: Bedroom 3
+  type: Switch
+  integration: Shelly
+  tags:
+    - energy
+    - wifi
+  brand: Shelly
+  model: Shelly Plus 1PM
+- name: Cottage Heating 1
+  area: Cottage
+  type: Switch
+  integration: Shelly
+  tags:
+    - energy
+    - wifi
+    - climate
+  brand: Shelly
+  model: Shelly Plus Plug S
+- name: Kitchen Coffee Machine Outlet
+  area: Kitchen
+  type: Switch
+  integration: Shelly
+  tags:
+    - energy
+    - wifi
+  brand: Shelly
+  model: Shelly Plus 1PM
+- name: Kitchen Lamp Outlets Left
+  area: Kitchen
+  type: Switch
+  integration: Shelly
+  tags:
+    - energy
+    - wifi
+  brand: Shelly
+  model: Shelly Plus 1PM
+- name: Kitchen Lamp Outlets Right
+  area: Kitchen
+  type: Switch
+  integration: Shelly
+  tags:
+    - energy
+    - wifi
+  brand: Shelly
+  model: Shelly Plus 1PM
+- name: Living Room Desk Outlet
+  area: Living Room
+  type: Switch
+  integration: Shelly
+  tags:
+    - energy
+    - wifi
+  brand: Shelly
+  model: Shelly 2.5
+- name: Living Room Media Outlet
+  area: Living Room
+  type: Switch
+  integration: Shelly
+  tags:
+    - energy
+    - wifi
+  brand: Shelly
+  model: Shelly Plus 1PM
+- name: Office Desk Outlet
+  area: Office
+  type: Switch
+  integration: Shelly
+  tags:
+    - energy
+    - wifi
+  brand: Shelly
+  model: Shelly Plus 1PM
