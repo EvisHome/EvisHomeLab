@@ -5,6 +5,12 @@
   components:
     - Yale Connect Bridge
     - Yale Smart Keypad
+  capabilities:
+    - lock
+    - unlock
+  sensors:
+    - battery
+    - door_state
   tags:
     - security
     - critical
@@ -16,9 +22,20 @@
   integration: Unifi Protect
   manual: https://dl.ui.com/qig/g4-doorbell-pro
   package: unifi_access.yaml
+  capabilities:
+    - two_way_audio
+    - chime
+    - display_message
+  sensors:
+    - motion
+    - doorbell_press
+    - person_detection
+    - package_detection
+    - fingerprint
   tags:
     - security
     - video
+    - biometric
   brand: Ubiquiti
   model: G4 Doorbell Pro PoE
 - name: WLED Fireplace
@@ -26,6 +43,13 @@
   type: Light
   integration: WLED
   package: fireplace_automation.yaml
+  capabilities:
+    - on_off
+    - brightness
+    - effect
+    - color_palette
+  sensors:
+    - power_estimated
   tags:
     - ambiance
     - diy
@@ -34,6 +58,14 @@
   type: Energy Monitor
   integration: Shelly
   package: shelly_3em.yaml
+  sensors:
+    - power_phase_a
+    - power_phase_b
+    - power_phase_c
+    - energy_total
+    - voltage
+    - current
+    - power_factor
   tags:
     - energy
     - critical
@@ -43,6 +75,14 @@
   type: Sensor
   integration: BLE/ESPHome
   package: airthings.yaml
+  sensors:
+    - radon
+    - co2
+    - voc
+    - temperature
+    - humidity
+    - pressure
+    - battery
   tags:
     - climate
     - health
@@ -52,6 +92,9 @@
   type: Infrastructure
   integration: Tailscale
   package: tailscale_edge_monitoring.yaml
+  sensors:
+    - latency
+    - availability
   tags:
     - network
     - critical
@@ -60,6 +103,18 @@
   area: Server Room
   type: Router/Gateway
   integration: Unifi Network
+  capabilities:
+    - routing
+    - firewall
+    - dpi
+    - ids_ips
+    - nvr
+  sensors:
+    - uptime
+    - cpu_usage
+    - memory_usage
+    - temperature
+    - internet_health
   tags:
     - network
     - critical
@@ -76,6 +131,14 @@
     - fiber
   brand: Ubiquiti
   model: USW Aggregation
+  capabilities:
+    - switching
+    - link_aggregation
+    - vlan
+  sensors:
+    - throughput
+    - port_status
+    - temperature
 - name: UniFi Switch Enterprise
   area: Server Room
   type: Network Switch
@@ -86,6 +149,16 @@
     - poe
   brand: Ubiquiti
   model: UniFi Switch Enterprise
+  capabilities:
+    - switching
+    - poe
+    - vlan
+    - layer3
+  sensors:
+    - throughput
+    - port_status
+    - power_consumption
+    - temperature
 - name: USW Flex 2.5G 8 PoE
   area: Server Room
   type: Network Switch
@@ -96,6 +169,14 @@
     - poe
   brand: Ubiquiti
   model: USW Flex 2.5G 8 PoE
+  capabilities:
+    - switching
+    - poe
+    - vlan
+  sensors:
+    - throughput
+    - port_status
+    - power_consumption
 - name: USW Flex (Front Porch)
   area: Front Porch
   type: Network Switch
@@ -106,6 +187,15 @@
     - poe
   brand: Ubiquiti
   model: USW Flex
+  capabilities:
+    - switching
+    - poe
+    - vlan
+    - outdoor_rated
+  sensors:
+    - throughput
+    - port_status
+    - power_consumption
 - name: USW-Flex (Backyard)
   area: Backyard
   type: Network Switch
@@ -116,6 +206,15 @@
     - poe
   brand: Ubiquiti
   model: USW Flex
+  capabilities:
+    - switching
+    - poe
+    - vlan
+    - outdoor_rated
+  sensors:
+    - throughput
+    - port_status
+    - power_consumption
 - name: USW-Flex-Mini (E)
   area: Network
   type: Network Switch
@@ -124,6 +223,12 @@
     - network
   brand: Ubiquiti
   model: USW Flex Mini
+  capabilities:
+    - switching
+    - vlan
+  sensors:
+    - throughput
+    - port_status
 - name: USW-Lite-8-PoE (Living room)
   area: Living Room
   type: Network Switch
@@ -133,6 +238,14 @@
     - poe
   brand: Ubiquiti
   model: USW Lite 8 PoE
+  capabilities:
+    - switching
+    - poe
+    - vlan
+  sensors:
+    - throughput
+    - port_status
+    - power_consumption
 - name: U6-Lite (Backyard)
   area: Backyard
   type: Access Point
@@ -143,6 +256,13 @@
     - outdoor
   brand: Ubiquiti
   model: U6 Lite
+  capabilities:
+    - wifi_6
+    - mesh
+  sensors:
+    - active_clients
+    - traffic
+    - signal_strength
 - name: U7 Pro (Upstairs)
   area: Upstairs
   type: Access Point
@@ -153,6 +273,15 @@
     - wifi7
   brand: Ubiquiti
   model: U7 Pro
+  capabilities:
+    - wifi_7
+    - wifi_6e
+    - mesh
+  sensors:
+    - active_clients
+    - traffic
+    - signal_strength
+    - interference
 - name: Backyard Cam (G5 Turret Ultra)
   area: Backyard
   type: Camera
@@ -163,6 +292,13 @@
     - ai
   brand: Ubiquiti
   model: G5 Turret Ultra
+  capabilities:
+    - night_vision
+    - smart_detection
+  sensors:
+    - motion
+    - person_detection
+    - vehicle_detection
 - name: Front Porch (G5 Turret Ultra)
   area: Front Porch
   type: Camera
@@ -173,6 +309,13 @@
     - ai
   brand: Ubiquiti
   model: G5 Turret Ultra
+  capabilities:
+    - night_vision
+    - smart_detection
+  sensors:
+    - motion
+    - person_detection
+    - vehicle_detection
 - name: Storage Cam (G3 Instant)
   area: Storage
   type: Camera
@@ -182,6 +325,11 @@
     - video
   brand: Ubiquiti
   model: G3 Instant
+  capabilities:
+    - night_vision
+    - two_way_audio
+  sensors:
+    - motion
 - name: AI Port
   area: Network
   type: Accessory
@@ -190,6 +338,10 @@
     - security
   brand: Ubiquiti
   model: AI Port
+  capabilities:
+    - cellular_backup
+  sensors:
+    - connection_status
 - name: Smart PoE Chime
   area: Hallway
   type: Chime
@@ -199,6 +351,11 @@
     - audio
   brand: Ubiquiti
   model: Smart PoE Chime
+  capabilities:
+    - chime
+    - two_way_audio
+  sensors:
+    - connection_status
 - name: Guest Room Ceiling Light
   area: Guest Room
   type: Light
@@ -207,6 +364,9 @@
     - zigbee
   brand: Nue/3A
   model: HGZB-42-UK
+  capabilities:
+    - on_off
+    - brightness
 - name: Guest Room Wall Dimmer Switch
   area: Guest Room
   type: Switch
@@ -215,6 +375,11 @@
     - zigbee
   brand: Philips
   model: 324131092621
+  capabilities:
+    - remote_control
+  sensors:
+    - battery
+    - action
 - name: Bedroom 2 Ceiling Light 1
   area: Bedroom 2
   type: Light
@@ -223,6 +388,9 @@
     - zigbee
   brand: Aqara
   model: T2_E27
+  capabilities:
+    - on_off
+    - brightness
 - name: Bedroom 2 Ceiling Light 2
   area: Bedroom 2
   type: Light
@@ -231,6 +399,9 @@
     - zigbee
   brand: Aqara
   model: T2_E27
+  capabilities:
+    - on_off
+    - brightness
 - name: Bedroom 2 Desk Button
   area: Bedroom 2
   type: Switch
@@ -240,6 +411,12 @@
     - battery
   brand: Philips
   model: 8718699693985
+  capabilities:
+    - remote_control
+  sensors:
+    - battery
+    - action
+    - battery
 - name: Bedroom 2 Desk Light
   area: Bedroom 2
   type: Light
@@ -248,6 +425,11 @@
     - zigbee
   brand: Philips
   model: 915005106701
+  capabilities:
+    - on_off
+    - brightness
+    - color_temp
+    - color_xy
 - name: Bedroom 2 Wall Dimmer Switch
   area: Bedroom 2
   type: Switch
@@ -257,6 +439,12 @@
     - battery
   brand: Philips
   model: 324131092621
+  capabilities:
+    - remote_control
+  sensors:
+    - battery
+    - action
+    - battery
 - name: Bedroom 2 Window Light
   area: Bedroom 2
   type: Light
@@ -265,6 +453,11 @@
     - zigbee
   brand: Lidl
   model: HG06337
+  capabilities:
+    - on_off
+    - brightness
+    - color_temp
+    - color_xy
 - name: Aqara W500
   area: Bathroom
   type: Thermostat
@@ -275,6 +468,12 @@
     - heating
   brand: Aqara
   model: UT-A01E
+  capabilities:
+    - target_temperature
+    - hvac_mode
+    - preset
+  sensors:
+    - temperature
 - name: Backyard Door Sensor
   area: Backyard
   type: Sensor
@@ -284,6 +483,9 @@
     - security
   brand: Aqara
   model: MCCGQ11LM
+  sensors:
+    - contact
+    - battery
 - name: Backyard Plug
   area: Backyard
   type: Switch
@@ -292,6 +494,8 @@
     - zigbee
   brand: OSRAM
   model: AB3257001NJ
+  capabilities:
+    - on_off
 - name: Bathroom Lightstrip
   area: Bathroom
   type: Light
@@ -300,6 +504,11 @@
     - zigbee
   brand: Lidl
   model: HG06104A
+  capabilities:
+    - on_off
+    - brightness
+    - color_temp
+    - color_xy
 - name: Bathroom Wall Box Switch
   area: Bathroom
   type: Switch
@@ -308,6 +517,11 @@
     - zigbee
   brand: Aqara
   model: WS-EUK02
+  capabilities:
+    - on_off
+  sensors:
+    - power
+    - energy
 - name: Bedroom Bed Light
   area: Bedroom
   type: Light
@@ -316,6 +530,11 @@
     - zigbee
   brand: Philips
   model: 915005106701
+  capabilities:
+    - on_off
+    - brightness
+    - color_temp
+    - color_xy
 - name: Bedroom Ceiling Light 1
   area: Bedroom
   type: Light
@@ -324,6 +543,10 @@
     - zigbee
   brand: Aqara
   model: T2_E27_CCT
+  capabilities:
+    - on_off
+    - brightness
+    - color_temp
 - name: Bedroom Ceiling Light 2
   area: Bedroom
   type: Light
@@ -332,6 +555,10 @@
     - zigbee
   brand: Aqara
   model: T2_E27_CCT
+  capabilities:
+    - on_off
+    - brightness
+    - color_temp
 - name: Bedroom Ceiling Light 3
   area: Bedroom
   type: Light
@@ -340,6 +567,10 @@
     - zigbee
   brand: Aqara
   model: T2_E27_CCT
+  capabilities:
+    - on_off
+    - brightness
+    - color_temp
 - name: Bedroom Tap Dial Switch
   area: Bedroom
   type: Switch
@@ -349,6 +580,12 @@
     - battery
   brand: Philips
   model: 8719514440937
+  capabilities:
+    - remote_control
+    - scene_control
+  sensors:
+    - battery
+    - action
 - name: Bedroom Wall Tap Dial Switch
   area: Bedroom
   type: Switch
@@ -358,6 +595,12 @@
     - battery
   brand: Philips
   model: 8719514440937
+  capabilities:
+    - remote_control
+    - scene_control
+  sensors:
+    - battery
+    - action
 - name: Bedroom Window Dimmer Switch
   area: Bedroom
   type: Switch
@@ -367,6 +610,12 @@
     - battery
   brand: Philips
   model: 324131092621
+  capabilities:
+    - remote_control
+  sensors:
+    - battery
+    - action
+    - battery
 - name: Bedroom Window Roller Cover
   area: Bedroom
   type: Cover
@@ -376,6 +625,13 @@
     - motor
   brand: Aqara
   model: ZNJLBL01LM
+  capabilities:
+    - open
+    - close
+    - stop
+    - position
+  sensors:
+    - battery
 - name: Bedroom 3 Ceiling Light 1
   area: Bedroom 3
   type: Light
@@ -384,6 +640,9 @@
     - zigbee
   brand: Aqara
   model: T2_E27
+  capabilities:
+    - on_off
+    - brightness
 - name: Bedroom 3 Ceiling Light 2
   area: Bedroom 3
   type: Light
@@ -392,6 +651,9 @@
     - zigbee
   brand: Aqara
   model: T2_E27
+  capabilities:
+    - on_off
+    - brightness
 - name: Bedroom 3 Wall Dimmer Switch
   area: Bedroom 3
   type: Switch
@@ -401,6 +663,12 @@
     - battery
   brand: Philips
   model: 324131092621
+  capabilities:
+    - remote_control
+  sensors:
+    - battery
+    - action
+    - battery
 - name: Floor Light
   area: Living Room
   type: Light
@@ -409,6 +677,11 @@
     - zigbee
   brand: Philips
   model: 915005106701
+  capabilities:
+    - on_off
+    - brightness
+    - color_temp
+    - color_xy
 - name: Front Door Rail Light
   area: Front Door
   type: Light
@@ -417,6 +690,10 @@
     - zigbee
   brand: LEDVANCE
   model: 4058075729308
+  capabilities:
+    - on_off
+    - brightness
+    - color_temp
 - name: Hallway Ceiling Light 1
   area: Hallway
   type: Light
@@ -425,6 +702,9 @@
     - zigbee
   brand: Aqara
   model: T2_E27
+  capabilities:
+    - on_off
+    - brightness
 - name: Hallway Ceiling Light 2
   area: Hallway
   type: Light
@@ -433,6 +713,9 @@
     - zigbee
   brand: Aqara
   model: T2_E27
+  capabilities:
+    - on_off
+    - brightness
 - name: Hallway Closet Door Right
   area: Hallway
   type: Sensor
@@ -442,6 +725,9 @@
     - security
   brand: SmartThings
   model: IM6001-MPP01
+  sensors:
+    - contact
+    - battery
 - name: Hallway Wall Dimmer Switch
   area: Hallway
   type: Switch
@@ -451,6 +737,12 @@
     - battery
   brand: Philips
   model: 324131092621
+  capabilities:
+    - remote_control
+  sensors:
+    - battery
+    - action
+    - battery
 - name: Inner Back Door
   area: Backyard
   type: Sensor
@@ -460,6 +752,9 @@
     - security
   brand: Aqara
   model: MCCGQ11LM
+  sensors:
+    - contact
+    - battery
 - name: Kitchen Ceiling Light 1
   area: Kitchen
   type: Light
@@ -468,6 +763,9 @@
     - zigbee
   brand: Philips
   model: 8718696548738
+  capabilities:
+    - on_off
+    - brightness
 - name: Kitchen Dishwasher Leak Sensor
   area: Kitchen
   type: Sensor
@@ -478,6 +776,9 @@
     - leak
   brand: Aqara
   model: SJCGQ11LM
+  sensors:
+    - water_leak
+    - battery
 - name: Kitchen Fridge Door
   area: Kitchen
   type: Sensor
@@ -487,6 +788,9 @@
     - security
   brand: Aqara
   model: MCCGQ11LM
+  sensors:
+    - contact
+    - battery
 - name: Kitchen Fridge Leak Sensor
   area: Kitchen
   type: Sensor
@@ -497,6 +801,9 @@
     - leak
   brand: Aqara
   model: SJCGQ11LM
+  sensors:
+    - water_leak
+    - battery
 - name: Kitchen Sink Light
   area: Kitchen
   type: Light
@@ -505,6 +812,11 @@
     - zigbee
   brand: Philips
   model: 915005106701
+  capabilities:
+    - on_off
+    - brightness
+    - color_temp
+    - color_xy
 - name: Kitchen Wall Box Switch
   area: Kitchen
   type: Switch
@@ -513,6 +825,11 @@
     - zigbee
   brand: Aqara
   model: WS-EUK02
+  capabilities:
+    - on_off
+  sensors:
+    - power
+    - energy
 - name: Kitchen Wall Dimmer Switch
   area: Kitchen
   type: Switch
@@ -522,6 +839,12 @@
     - battery
   brand: Philips
   model: 324131092621
+  capabilities:
+    - remote_control
+  sensors:
+    - battery
+    - action
+    - battery
 - name: Living Room Cabinet Motion
   area: Living Room
   type: Sensor
@@ -531,6 +854,10 @@
     - battery
   brand: Philips
   model: 9290012607
+  sensors:
+    - motion
+    - illuminance
+    - battery
 - name: Living Room Ceiling Light
   area: Living Room
   type: Light
@@ -539,6 +866,11 @@
     - zigbee
   brand: Philips
   model: 915005106701
+  capabilities:
+    - on_off
+    - brightness
+    - color_temp
+    - color_xy
 - name: Living Room Tap Dial Switch
   area: Living Room
   type: Switch
@@ -548,6 +880,12 @@
     - battery
   brand: Philips
   model: 8719514440937
+  capabilities:
+    - remote_control
+    - scene_control
+  sensors:
+    - battery
+    - action
 - name: Lobby Ceiling Light
   area: Lobby
   type: Light
@@ -556,6 +894,9 @@
     - zigbee
   brand: Aqara
   model: T2_E27
+  capabilities:
+    - on_off
+    - brightness
 - name: Lobby Wall Dimmer Switch
   area: Lobby
   type: Switch
@@ -565,6 +906,12 @@
     - battery
   brand: Philips
   model: 324131092621
+  capabilities:
+    - remote_control
+  sensors:
+    - battery
+    - action
+    - battery
 - name: Mud Room Ceiling Light
   area: Mud Room
   type: Light
@@ -573,6 +920,9 @@
     - zigbee
   brand: Aqara
   model: T2_E27
+  capabilities:
+    - on_off
+    - brightness
 - name: Mud Room Door Sensor
   area: Mud Room
   type: Sensor
@@ -582,6 +932,9 @@
     - security
   brand: Aqara
   model: MCCGQ11LM
+  sensors:
+    - contact
+    - battery
 - name: Mud Room Motion Sensor
   area: Mud Room
   type: Sensor
@@ -591,6 +944,10 @@
     - battery
   brand: Aqara
   model: RTCGQ14LM
+  sensors:
+    - motion
+    - illuminance
+    - battery
 - name: Office Button
   area: Office
   type: Switch
@@ -600,6 +957,12 @@
     - battery
   brand: Philips
   model: 8718699693985
+  capabilities:
+    - remote_control
+  sensors:
+    - battery
+    - action
+    - battery
 - name: Office Desk Wall Light
   area: Office
   type: Light

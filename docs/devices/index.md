@@ -117,11 +117,33 @@ render_macros: true
                 {% endfor %}
             </div>
             {% endif %}
+
+            {% if device.capabilities %}
+            <div class="device-data-section">
+                <span class="device-section-label">Capabilities</span>
+                <div class="device-chips-container">
+                    {% for cap in device.capabilities %}
+                    <span class="device-chip capability">{{ cap | replace('_', ' ') }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if device.sensors %}
+            <div class="device-data-section">
+                <span class="device-section-label">Sensors</span>
+                <div class="device-chips-container">
+                    {% for sensor in device.sensors %}
+                    <span class="device-chip sensor">{{ sensor | replace('_', ' ') }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
         </div>
 
         <div class="device-actions">
             {% if device.package %}
-            <a href="smart-home/packages/{{ device.package | replace('.yaml', '.md') }}" class="md-button md-button--primary md-button--small">View Package</a>
+            <a href="../smart-home/packages/{{ device.package | replace('.yaml', '/') }}" class="md-button md-button--primary md-button--small">View Package</a>
             {% elif device.manual %}
             <a href="{{ device.manual }}" class="md-button md-button--small">Manual</a>
             {% endif %}
