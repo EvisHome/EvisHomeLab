@@ -40,7 +40,7 @@ An overview of the key directories and files in the Home Assistant root folder.
 | **`image/`** | Directory. |
 | **`include/`** | Split configuration files referenced from `configuration.yaml` to keep it clean. |
 | **`model_cache/`** | Cache for local AI models (Wake words, assist pipelines). |
-| **`node-red/`** | Storage for Node-RED flows and settings (if the add-on is used). |
+| **`node-red/`** | Storage for Node-RED flows and settings (if the app is used). |
 | **`packages/`** | Configuration split into logical "packages" (bundling automations, scripts, configuration by feature). |
 | **`pyscript/`** | Python scripts and apps for the `pyscript` integration. |
 | **`run_server.cmd`** |  |

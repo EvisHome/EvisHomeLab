@@ -29,7 +29,7 @@ Source NVR: All camera feeds originate from the Unifi Protect NVR (Dream Machine
 * Front Porch: G5 Turret Ultra
 * Storage Cam: G3 Instant
 
-**Management Note**: Accessing the Frigate WebUI and API is facilitated by the Frigate Proxy Add-on within Home Assistant, which simplifies network configuration and authentication.
+**Management Note**: Accessing the Frigate WebUI and API is facilitated by the Frigate Proxy App within Home Assistant, which simplifies network configuration and authentication.
 
 This configuration is optimized for high-performance detection using two Coral Edge TPUs and NVIDIA hardware acceleration (H.264) for video decoding. Video streams are managed centrally by Go2RTC and then sent internally to Frigate for detection/recording roles.
 

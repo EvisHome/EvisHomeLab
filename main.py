@@ -478,3 +478,39 @@ function applyFilter() {
         </style>
         '''
         return html
+
+    @env.macro
+    def package_image(page_name):
+        """
+        Dynamically finds the image for a package (png/jpg) or returns placeholder.
+        Usage: {{ package_image(page.file.name) }}
+        """
+        import os
+        
+        # 1. Clean filename (remove extension)
+        stem = page_name.rsplit('.', 1)[0] if '.' in page_name else page_name
+        
+        # 2. Define search path (Assumes assets are in specific 'assets' subfolder relative to Smart Home Packages)
+        # Note: This path is specific to where the markdown files live. 
+        # For robustness, we check the absolute path.
+        base_assets_path = os.path.join(env.project_dir, 'docs', 'smart-home', 'packages', 'assets')
+        extensions = ['.png', '.jpg', '.jpeg']
+        
+        # 3. Search for existing image
+        found_image = None
+        for ext in extensions:
+            img_name = f"{stem}{ext}"
+            if os.path.exists(os.path.join(base_assets_path, img_name)):
+                found_image = f"assets/{img_name}"
+                break
+        
+        # 4. Return HTML
+        if found_image:
+            return f'![{stem}]({found_image})'
+        else:
+            # Fallback Placeholder (Optional: Return empty string or specific placeholder)
+            # return f'![{stem}](https://via.placeholder.com/800x400?text={stem})'
+            return "" # Return empty if no image found, cleaner than broken placeholder?
+            # User asked for similar to devices cards... devices show placeholder.
+            return f'![{stem}](https://via.placeholder.com/800x400/252933/ffffff?text={stem})'
+

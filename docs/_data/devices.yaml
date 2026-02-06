@@ -980,6 +980,9 @@
     - security
   brand: Aqara
   model: MCCGQ11LM
+  sensors:
+    - contact
+    - battery
 - name: Server Cabinet Light
   area: Server Room
   type: Light
@@ -1064,6 +1067,18 @@
     - ai
   brand: Ubiquiti
   model: G5 Turret Ultra
+  capabilities:
+    - night_vision
+    - smart_detection
+    - recording
+    - audio
+  sensors:
+    - motion
+    - person_detection
+    - vehicle_detection
+    - animal_detection
+    - audio_detection
+    - is_dark
 - name: Cottage Driveway (G6 Bullet)
   area: Cottage
   type: Camera
@@ -1073,6 +1088,18 @@
     - video
   brand: Ubiquiti
   model: G6 Bullet
+  capabilities:
+    - night_vision
+    - smart_detection
+    - recording
+    - audio
+  sensors:
+    - motion
+    - person_detection
+    - vehicle_detection
+    - animal_detection
+    - audio_detection
+    - is_dark
 - name: Cottage Yard (G3 Flex)
   area: Cottage
   type: Camera
@@ -1082,6 +1109,13 @@
     - video
   brand: Ubiquiti
   model: G3 Flex
+  capabilities:
+    - night_vision
+    - recording
+    - audio
+  sensors:
+    - motion
+    - is_dark
 - name: Guest Room FP2 Sensor
   area: Guest Room
   type: Presence Sensor
@@ -1181,6 +1215,11 @@
     - weather
   brand: Netatmo
   model: Smart Indoor Module
+  sensors:
+    - temperature
+    - humidity
+    - co2
+    - battery
 - name: Backyard Outdoor Module
   area: Backyard
   type: Sensor
@@ -1191,6 +1230,10 @@
     - outdoor
   brand: Netatmo
   model: Smart Outdoor Module
+  sensors:
+    - temperature
+    - humidity
+    - battery
 - name: Bedroom Weather Station
   area: Bedroom
   type: Sensor
@@ -1200,6 +1243,12 @@
     - weather
   brand: Netatmo
   model: Smart Home Weather Station
+  sensors:
+    - temperature
+    - humidity
+    - co2
+    - pressure
+    - noise
 - name: Bedroom 2 Window Outlet
   area: Bedroom 2
   type: Switch

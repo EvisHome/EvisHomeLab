@@ -66,9 +66,9 @@ render_macros: true
         <h3>Smart Home</h3>
         <p>Home Assistant configuration, automations, and dashboards.</p>
     </a>
-    <a href="tags/" class="content-card">
-        <h3>Tags</h3>
-        <p>Browse the content by tags.</p>
+    <a href="devices/" class="content-card">
+        <h3>Devices</h3>
+        <p>Browse the devices in the lab.</p>
     </a>
 </div>
 
