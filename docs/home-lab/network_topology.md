@@ -20,43 +20,62 @@ The core network is built on Ubiquiti UniFi gear, interconnected via 10Gbps SFP+
 
 ```mermaid
 graph TD
-    %% Nodes
+    %% Define Styles
+    classDef core fill:#2a2a2a,stroke:#fff,stroke-width:2px;
+    classDef edge fill:#1f425f,stroke:#fff,stroke-width:1px;
+    classDef client fill:#1a5c20,stroke:#fff,stroke-width:1px;
+
+    %% Nodes grouped by location/logic to force cleaner layout
     ISP["ISP: DNA Oyj"]
-    UDM["UDM Pro\nDream Machine Pro"]
-    Agg["USW-Aggregation\n10G Core"]
-    Ent["USW-Enterprise-24-PoE\nAccess Switch"]
-    
-    %% Downstream Switches
-    Lite8["USW-Lite-8-PoE\nLiving Room"]
-    FlexBack["USW-Flex\nBackyard"]
-    FlexFront["USW-Flex\nFront Porch"]
-    FlexMini["USW-Flex-Mini\nOffice?"]
-    
-    %% Access Points
-    U7Pro["U7 Pro\nUpstairs"]
-    U6Lite["U6-Lite\nBackyard"]
 
-    %% Key Clients
-    Halo["Server | HALO\nProxmox Node"]
-    Edge["Server | EDGE\nProxmox Node"]
-    PiDNS1["RPi | DNS 63\nNTP/DNS"]
-    PiDNS2["RPi | DNS 62\nNTP/DNS"]
+    subgraph Core_Net [Core Network]
+        direction TB
+        UDM["UDM Pro\nDream Machine Pro"]:::core
+        Agg["USW-Aggregation\n10G Core"]:::core
+        Ent["USW-Enterprise-24-PoE\nAccess Switch"]:::core
+    end
+    
+    subgraph Servers [Compute Clients]
+        Halo["Server | HALO\nProxmox Node"]:::client
+        Edge["Server | EDGE\nProxmox Node"]:::client
+    end
+    
+    subgraph Downstream [Edge Switches]
+        Lite8["USW-Lite-8-PoE\nLiving Room"]:::edge
+        FlexBack["USW-Flex\nBackyard"]:::edge
+        FlexFront["USW-Flex\nFront Porch"]:::edge
+        FlexMini["USW-Flex-Mini\nOffice?"]:::edge
+    end
+    
+    subgraph Wireless [Access Points]
+        U7Pro["U7 Pro\nUpstairs"]:::edge
+        U6Lite["U6-Lite\nBackyard"]:::edge
+    end
 
-    %% Connections
+    subgraph IoT [IoT Clients]
+        PiDNS1["RPi | DNS 63\nNTP/DNS"]:::client
+        PiDNS2["RPi | DNS 62\nNTP/DNS"]:::client
+    end
+
+    %% Main Backbone Connections
     ISP -->|WAN| UDM
-    UDM -->|10G SFP+| Agg
+    UDM -->|10G DAC| Agg
+    Agg -->|20G LACP| Ent
     
-    Agg -->|10G SFP+| Ent
-    Agg -->|10G SFP+| Halo
-    Agg -->|10G SFP+| Edge
+    %% Server Connections (Direct from Aggregation)
+    Agg -->|10G DAC| Halo
+    Agg -->|10G DAC| Edge
     
-    Ent -->|Link| Lite8
-    Ent -->|Link| FlexBack
-    Ent -->|Link| FlexFront
-    Ent -->|Link| FlexMini
+    %% Downstream Switch Connections (From Enterprise)
+    Ent -->|Eth| Lite8
+    Ent -->|Eth| FlexBack
+    Ent -->|Eth| FlexFront
+    Ent -->|Eth| FlexMini
+    Ent -->|Eth| PiDNS1
+    Ent -->|Eth| PiDNS2
     
-    %% Wireless Links
-    Ent -->|PoE| U7Pro
+    %% Wireless & PoE Chain
+    Ent -->|PoE+| U7Pro
     FlexBack -->|PoE| U6Lite
 ```
 
