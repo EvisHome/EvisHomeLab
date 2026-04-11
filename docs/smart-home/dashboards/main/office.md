@@ -11,14 +11,14 @@ tags:
 **Path:** `office`
 
 <!-- START_DESCRIPTION -->
-Home office workspace controls and extensive system monitoring.
+Home office command center combining workspace environment controls, remote PC management, and full Proxmox server infrastructure monitoring.
 <!-- END_DESCRIPTION -->
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_office.png)
 
 ## Summary
 <!-- START_SUMMARY -->
-The Office dashboard handles both workspace environment and IT infrastructure. It offers detailed environmental tracking (Airthings Wave) and lighting prompts. Key features include remote PC control (Audio, Power, Displays) and extensive server monitoring (Proxmox, Home Assistant OS stats, SSD usage). It also manages potential window covers and detailed power consumption for office equipment.
+The Office dashboard serves as a dual-purpose command center for both the physical workspace and the home lab infrastructure. The environment section provides real-time CO₂, temperature, and humidity graphs from the Airthings Wave sensor. Four independently controllable lights (Desk WLED, Server Rack, Ceiling, and Wall) are complemented by a WLED preset selector for quick desk ambiance switching. Motorized window blinds and a roller cover offer position and button controls. A dedicated PC section enables full remote desktop management — toggling between speakers and headset, play/pause and mute controls, display power, and a hold-to-toggle PC power switch — backed by a 12-hour CPU and memory usage chart. Three power outlet graphs (Desk, Modem, Rack) track 24-hour energy consumption per circuit. The Proxmox VE section provides comprehensive server health visibility with a 7-day uptime bar, memory and SSD10 storage donut charts, and detailed Home Assistant OS VM metrics including CPU, memory, uptime, health status, and node assignment. A settings section rounds out the view with occupancy configuration, automation mode scheduling, and an auto-discovered battery level overview for all office sensors.
 <!-- END_SUMMARY -->
 
 ## Related Packages
