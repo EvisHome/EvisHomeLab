@@ -102,10 +102,10 @@ The master controller.
 * **Function:** Generates prompts for the IDE AI to write documentation.
 * **Context:** Reads YAML and MD to give the AI full context.
 
-### E. The Directives Layer (`AI_CONTEXT.md`)
+### E. The Modular Instruction System (.antigravity)
 * **Role:** The "Brain" or "Constitution" for the AI Agent.
-* **Location:** `z:\AI_CONTEXT.md` (Root) and `z:\docs_site\AI_CONTEXT.md` (Replica).
-* **Purpose:** To bridge the gap between deterministic scripts and stochastic AI. While scripts handle the structure, this file tells the AI *how* to write the content (tone, rules, privacy mapping). It is the single source of truth for the Agent's behavior.
+* **Location:** `.antigravity/` directory.
+* **Purpose:** To bridge the gap between deterministic scripts and stochastic AI. While scripts handle the automated structure, these modular markdown files (loaded via `master_init.md`) tell the AI *how* to write the content (tone, rules, privacy mapping, task tracking). It is the single source of truth for the Agent's behavior.
 
 ## 3. The Workflow (How we work)
 
@@ -125,34 +125,4 @@ We edit the **Python Modules** in `.ag_scripts/`.
 2.  **Git-Backed:** We rely on Git for versioning and backups.
 3.  **Preservation:** The Dashboard Manager specifically reads existing Markdown to preserve manual summaries before regenerating the structure.
 
-## 5. How to Use (Quick Start)
 
-Here is how you actually run the tools in your daily workflow.
-
-### Scenario 1: I just updated a package
-You changed `packages/car.yaml` and want to see the docs update.
-```powershell
-python ag_v2_package.py car
-```
-*   **What it does:** Reads `car.yaml`, updates `docs/smart-home/packages/car.md`.
-
-### Scenario 2: I added a new view to my dashboard
-You edited the dashboard in the UI. Now you want the docs to match.
-```powershell
-python ag_v2_dashboard.py
-```
-*   **What it does:** Scans your Lovelace config, anonymizes names, and rebuilds the dashboard docs.
-
-### Scenario 3: I want the AI to analyze my code
-You want the AI (in VS Code) to write a summary for you.
-```powershell
-python ag_v2_agent.py car
-```
-*   **What it does:** Generates a "Prompt" that you can copy-paste to your AI Assistant to get a perfect analysis.
-
-### Scenario 4: I want to update EVERYTHING
-You are done for the day and want to sync up.
-```powershell
-python ag_v2_update.py
-```
-*   **What it does:** Runs all of the above in sequence.

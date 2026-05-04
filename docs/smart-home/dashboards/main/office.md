@@ -16,6 +16,10 @@ Home office command center combining workspace environment controls, remote PC m
 
 ![View Screenshot](../../../assets/images/dashboards/dashboard_office.png)
 
+![Settings & Occupancy](../../../assets/images/dashboards/dashboard_office_settings.png)
+
+![Schedules & Automation Modes](../../../assets/images/dashboards/dashboard_office_schedules.png)
+
 ## Summary
 <!-- START_SUMMARY -->
 The Office dashboard serves as a dual-purpose command center for both the physical workspace and the home lab infrastructure. The environment section provides real-time CO₂, temperature, and humidity graphs from the Airthings Wave sensor. Four independently controllable lights (Desk WLED, Server Rack, Ceiling, and Wall) are complemented by a WLED preset selector for quick desk ambiance switching. Motorized window blinds and a roller cover offer position and button controls. A dedicated PC section enables full remote desktop management — toggling between speakers and headset, play/pause and mute controls, display power, and a hold-to-toggle PC power switch — backed by a 12-hour CPU and memory usage chart. Three power outlet graphs (Desk, Modem, Rack) track 24-hour energy consumption per circuit. The Proxmox VE section provides comprehensive server health visibility with a 7-day uptime bar, memory and SSD10 storage donut charts, and detailed Home Assistant OS VM metrics including CPU, memory, uptime, health status, and node assignment. A settings section rounds out the view with occupancy configuration, automation mode scheduling, and an auto-discovered battery level overview for all office sensors.
@@ -101,7 +105,7 @@ sections:
       type: grid
       cards:
       - type: custom:mushroom-light-card
-        entity: light.wled_2
+        entity: light.wled_office_desk
         layout: vertical
         show_color_control: false
         show_brightness_control: true
@@ -132,11 +136,58 @@ sections:
       columns: 4
     - square: false
       type: grid
+      columns: 2
       cards:
-      - type: custom:mushroom-select-card
-        entity: select.wled_preset_2
-        name: Office Desk Presets
-      columns: 1
+      - type: custom:mushroom-template-card
+        entity: select.wled_office_desk_preset
+        primary: Bright
+        icon: mdi:white-balance-sunny
+        icon_color: |-
+          {% set current = states(config.entity) | lower %}
+          {% if current == 'bright' and is_state('light.wled_office_desk', 'on') %}
+            orange
+          {% endif %}
+        layout: vertical
+        tap_action:
+          action: call-service
+          service: select.select_option
+          data:
+            option: Bright
+          target:
+            entity_id: select.wled_office_desk_preset
+        card_mod:
+          style: |
+            ha-card {
+              {% set current = states(config.entity) | lower %}
+              {% if current == 'bright' and is_state('light.wled_office_desk', 'on') %}
+                background: rgba(255, 152, 0, 0.2) !important;
+              {% endif %}
+            }
+      - type: custom:mushroom-template-card
+        entity: select.wled_office_desk_preset
+        primary: Fire
+        icon: mdi:fire
+        icon_color: |-
+          {% set current = states(config.entity) | lower %}
+          {% if current == 'fire' and is_state('light.wled_office_desk', 'on') %}
+            deep-orange
+          {% endif %}
+        layout: vertical
+        tap_action:
+          action: call-service
+          service: select.select_option
+          data:
+            option: Fire
+          target:
+            entity_id: select.wled_office_desk_preset
+        card_mod:
+          style: |
+            ha-card {
+               {% set current = states(config.entity) | lower %}
+               {% if current == 'fire' and is_state('light.wled_office_desk', 'on') %}
+                 background: rgba(255, 87, 34, 0.2) !important;
+               {% endif %}
+            }
   - type: vertical-stack
     cards:
     - type: custom:mushroom-title-card
