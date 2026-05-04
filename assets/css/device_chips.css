@@ -1,0 +1,57 @@
+
+/* Device Capabilities and Sensors */
+.device-data-section {
+    margin-top: 0.8rem;
+}
+
+.device-section-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--md-default-fg-color--lighter);
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: block;
+    letter-spacing: 0.5px;
+}
+
+.device-chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 0.6rem;
+}
+
+.device-chip {
+    font-size: 0.7rem !important;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+    line-height: 1.2;
+    background: var(--md-default-fg-color--lightest); /* Fallback */
+    color: var(--md-default-fg-color);
+}
+
+.device-chip.capability {
+    background: rgba(33, 150, 243, 0.1);
+    color: #1976D2;
+    border: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.device-chip.sensor {
+    background: rgba(76, 175, 80, 0.1);
+    color: #2E7D32;
+    border: 1px solid rgba(76, 175, 80, 0.2);
+}
+
+/* Dark Mode Overrides for Chips */
+[data-md-color-scheme="slate"] .device-chip.capability {
+    background: rgba(33, 150, 243, 0.2);
+    color: #64B5F6;
+    border-color: rgba(33, 150, 243, 0.3);
+}
+
+[data-md-color-scheme="slate"] .device-chip.sensor {
+    background: rgba(76, 175, 80, 0.2);
+    color: #81C784;
+    border-color: rgba(76, 175, 80, 0.3);
+}
